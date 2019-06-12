@@ -11,6 +11,6 @@ class MainActivity : AppCompatActivity() {
 
         var i = 0
         i++
-
+        var malik =100
     }
 }
