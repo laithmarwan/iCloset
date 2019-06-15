@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/cookie</item>
+        <item>@font/dorsa</item>
+        <item>@font/hanalei</item>
+        <item>@font/monoton</item>
+        <item>@font/stint_ultra_condensed</item>
+        <item>@font/titan_one</item>
+    </array>
+</resources>
