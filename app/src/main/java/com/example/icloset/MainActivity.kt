@@ -16,5 +16,6 @@ class MainActivity : AppCompatActivity() {
         var halaaaw = "radaideh"
         var manaf = "7mar"
         var onelastcheck = 1
+
     }
 }
