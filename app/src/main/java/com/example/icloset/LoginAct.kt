@@ -17,15 +17,13 @@ class LoginAct : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        login_new.setOnClickListener {
+        textView5.setOnClickListener {
 
-            var i= Intent(this,NewUserAct::class.java)
-            startActivity(i)
-
+            startActivity(Intent(this, NewUserAct::class.java))
         }
 
 
-        login_button.setOnClickListener {
+        imageView5.setOnClickListener {
 
             var pd= ProgressDialog(this)
             pd.setMessage("Please Wait...")
@@ -39,7 +37,7 @@ class LoginAct : AppCompatActivity() {
                 Response.Listener { response ->
                     pd.hide()
                     if(response=="1") {
-                        AppInfo.Email = login_mobile.text.toString()
+                        AppInfo.Email = login_email.text.toString()
                         var i = Intent(this, MainActivity::class.java)
                         startActivity(i)
                         finish()
@@ -57,8 +55,8 @@ class LoginAct : AppCompatActivity() {
                 override fun getParams(): MutableMap<String, String> {
                     var map=HashMap<String,String>()
 
-                    map.put("Email",login_mobile.text.toString())
-                    map.put("Password",login_password.text.toString())
+                    map.put("Email",login_email.text.toString())
+                    map.put("Password",login_pass.text.toString())
 
                     return map
                 }
