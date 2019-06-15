@@ -5,7 +5,7 @@ class AppInfo {
 
     companion object {
 
-        var web:String="http://paproject.online/"
+        var web:String="http://tafakkur.com/icloset/"
 
         var UserID:Int=0
         var Name:String=""
