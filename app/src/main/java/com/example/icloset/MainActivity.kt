@@ -13,5 +13,6 @@ class MainActivity : AppCompatActivity() {
         i++
         var malik =100
         var maysara = 102
+        var halaaaw = "radaideh"
     }
 }
