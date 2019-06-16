@@ -24,7 +24,11 @@ class LoginAct : AppCompatActivity() {
 
 
         imageView5.setOnClickListener {
-
+            if(login_email.text.toString() == "" || login_pass.text.toString() == "" ){
+                Toast.makeText(this,"Fields must not be empty!",
+                    Toast.LENGTH_LONG).show()
+            }
+            else{
             var pd= ProgressDialog(this)
             pd.setMessage("Please Wait...")
             pd.setProgressStyle(ProgressDialog.STYLE_SPINNER)
@@ -64,7 +68,7 @@ class LoginAct : AppCompatActivity() {
 
             rq.add(sr)
 
-        }
+        }}
 
     }
 }

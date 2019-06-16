@@ -1,5 +1,4 @@
 package com.example.icloset
-
 import android.app.ProgressDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -9,6 +8,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_new_user.*
 
 class NewUserAct : AppCompatActivity() {
@@ -18,7 +18,12 @@ class NewUserAct : AppCompatActivity() {
         setContentView(R.layout.activity_new_user)
 
         register_button.setOnClickListener {
-            if (register_pass.text.toString() != register_confirm.text.toString()) {
+            if(register_email.text.toString() == "" || register_pass.text.toString() == "" || register_confirm.text.toString() == ""
+                || register_address.text.toString() == "" || register_name.text.toString() == "" ){
+                Toast.makeText(this,"Fields must not be empty!",
+                    Toast.LENGTH_LONG).show()
+            }
+            else if (register_pass.text.toString() != register_confirm.text.toString()) {
                 Toast.makeText(this,"Passwords don't match",Toast.LENGTH_LONG).show()
             } else {
 
