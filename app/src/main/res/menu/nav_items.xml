@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Closet" android:icon="@drawable/clothes"/>
-    <item android:title="Outfits" android:icon="@drawable/outfits"/>
-    <item android:title="Home" android:icon="@drawable/home"/>
-    <item android:title="Calendar" android:icon="@drawable/calendar"/>
-    <item android:title="Settings" android:icon="@drawable/settings"/>
+    <item android:title="Closet" android:icon="@drawable/clothes" android:id="@+id/menu_closet"
+    />
+    <item android:title="Outfits" android:icon="@drawable/outfits" android:id="@+id/menu_outfits"/>
+    <item android:title="Home" android:icon="@drawable/home" android:id="@+id/menu_home"/>
+    <item android:title="Calendar" android:icon="@drawable/calendar" android:id="@+id/menu_calendar"/>
+    <item android:title="Settings" android:icon="@drawable/settings" android:id="@+id/menu_settings"/>
 </menu>

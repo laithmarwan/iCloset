@@ -2,6 +2,8 @@ package com.example.icloset
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.app.Fragment
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -9,13 +11,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var i = 0
-        i++
-        var malik =100
-        var maysara = 102
-        var halaaaw = "radaideh"
-        var manaf = "7mar"
-        var onelastcheck = 1
+       
 
+    }
+
+    private fun moveToFragment(myFragment: Fragment) {
+        var tr = fragmentManager.beginTransaction()
+        var obj = myFragment
+        tr.replace(R.id.relativeLayout,obj)
+        tr.commit()
     }
 }
