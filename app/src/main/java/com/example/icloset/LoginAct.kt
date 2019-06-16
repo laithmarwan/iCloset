@@ -43,7 +43,7 @@ class LoginAct : AppCompatActivity() {
                         finish()
                     }
                     else
-                        Toast.makeText(this,"Login Fail",
+                        Toast.makeText(this,"Login Failed",
                             Toast.LENGTH_LONG).show()
                 },
                 Response.ErrorListener { error ->
