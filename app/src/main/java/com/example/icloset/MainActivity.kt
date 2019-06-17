@@ -13,12 +13,41 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
+        main_nav.setOnNavigationItemSelectedListener {
+
+            menuItem ->
+            var tr = fragmentManager.beginTransaction()
+            if(menuItem.itemId == R.id.menu_closet){
+                var obj = ClosetFragment()
+                tr.replace(R.id.main_frame,obj)
+                tr.commit()
+            }
+            if(menuItem.itemId == R.id.menu_outfits){
+                var obj = OutfitsFragment()
+                tr.replace(R.id.main_frame,obj)
+                tr.commit()
+            }
+            if(menuItem.itemId == R.id.menu_home){
+                var obj = HomeFragment()
+                tr.replace(R.id.main_frame,obj)
+                tr.commit()
+            }
+            if(menuItem.itemId == R.id.menu_calendar){
+                var obj = CalendarFragment()
+                tr.replace(R.id.main_frame,obj)
+                tr.commit()
+            }
+            if(menuItem.itemId == R.id.menu_settings){
+                var obj = SettingsFragment()
+                tr.replace(R.id.main_frame,obj)
+                tr.commit()
+            }
+            true
+        }
+
     }
 
-    private fun moveToFragment(myFragment: Fragment) {
-        var tr = fragmentManager.beginTransaction()
-        var obj = myFragment
-        tr.replace(R.id.relativeLayout,obj)
-        tr.commit()
-    }
+
 }
