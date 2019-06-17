@@ -31,6 +31,8 @@
 
         <activity android:name=".activity_forgotpass">
         </activity>
+        <activity android:name=".activity_resetpass">
+        </activity>
     </application>
 
 </manifest>
