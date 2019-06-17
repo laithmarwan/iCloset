@@ -29,17 +29,17 @@ class LoginAct : AppCompatActivity() {
                     Toast.LENGTH_LONG).show()
             }
             else{
-            var pd= ProgressDialog(this)
-            pd.setMessage("Please Wait...")
-            pd.setProgressStyle(ProgressDialog.STYLE_SPINNER)
-            pd.show()
+           // var pd= ProgressDialog(this)
+           // pd.setMessage("Please Wait...")
+           // pd.setProgressStyle(ProgressDialog.STYLE_SPINNER)
+           // pd.show()
 
             var rq= Volley.newRequestQueue(this)
             var sr=object: StringRequest(
 
                 Request.Method.POST,AppInfo.web+"login.php",
                 Response.Listener { response ->
-                    pd.hide()
+                   // pd.hide()
                     if(response=="1") {
                         AppInfo.Email = login_email.text.toString()
                         var i = Intent(this, MainActivity::class.java)
@@ -51,7 +51,7 @@ class LoginAct : AppCompatActivity() {
                             Toast.LENGTH_LONG).show()
                 },
                 Response.ErrorListener { error ->
-                    pd.hide()
+                   // pd.hide()
                     Toast.makeText(this,error.message,
                         Toast.LENGTH_LONG).show()
                 })
