@@ -1,11 +1,14 @@
 package com.example.icloset
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.app.Fragment
+import android.support.design.widget.BottomSheetDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_home.view.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -19,12 +22,20 @@ private const val ARG_PARAM2 = "param2"
  */
 class HomeFragment : Fragment() {
 
+    @SuppressLint("NewApi")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        var v = inflater.inflate(R.layout.fragment_home, container, false)
+
+        v.dress_me_up.setOnClickListener {
+            val dialog = BottomSheetDialog(activity)
+            val view = layoutInflater.inflate(R.layout.dialog_layout, null)
+            dialog.show()
+        }
+        return v
     }
 
 
