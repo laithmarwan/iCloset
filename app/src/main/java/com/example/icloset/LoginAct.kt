@@ -1,6 +1,7 @@
 package com.example.icloset
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -18,6 +19,15 @@ class LoginAct : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        var sp=getSharedPreferences("user_data",
+            Context.MODE_PRIVATE)
+        if (sp.getString("user_id","")!="")
+        {
+            var i=Intent(this,MainActivity::class.java)
+            AppInfo.UserID = sp.getString("user_id","")
+            startActivity(i)
+            finish()
+        }
         textView5.setOnClickListener {
 
             startActivity(Intent(this, NewUserAct::class.java))
@@ -45,6 +55,11 @@ class LoginAct : AppCompatActivity() {
                         AppInfo.Email = login_email.text.toString()
                         AppInfo.UserID = response
                         var i = Intent(this, MainActivity::class.java)
+                        var sp=getSharedPreferences("user_data",
+                            Context.MODE_PRIVATE)
+                        var editor = sp.edit()
+                        editor.putString("user_id",response)
+                        editor.commit()
                         Toast.makeText(this,"Welcome back" +"!",Toast.LENGTH_LONG).show()
                         startActivity(i)
                         finish()
