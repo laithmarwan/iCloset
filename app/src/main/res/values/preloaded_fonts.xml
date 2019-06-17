@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/bigelow_rules</item>
+        <item>@font/bungee_shade</item>
+        <item>@font/ceviche_one</item>
         <item>@font/cookie</item>
+        <item>@font/diplomata_sc</item>
         <item>@font/dorsa</item>
+        <item>@font/fascinate_inline</item>
+        <item>@font/faster_one</item>
+        <item>@font/griffy</item>
         <item>@font/hanalei</item>
         <item>@font/monoton</item>
+        <item>@font/monsieur_la_doulaise</item>
+        <item>@font/nosifer</item>
+        <item>@font/orbitron_medium</item>
+        <item>@font/spirax</item>
         <item>@font/stint_ultra_condensed</item>
+        <item>@font/tangerine_bold</item>
         <item>@font/titan_one</item>
+        <item>@font/walter_turncoat</item>
     </array>
 </resources>

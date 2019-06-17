@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.icloset">
-<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -12,7 +14,6 @@
         <activity android:name=".MainActivity">
         </activity>
         <activity android:name=".NewUserAct">
-
         </activity>
         <activity android:name=".LoginAct">
             <intent-filter>
@@ -20,6 +21,15 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".activity_signup">
+        </activity>
+
+        <meta-data
+                android:name="preloaded_fonts"
+                android:resource="@array/preloaded_fonts"/>
+
+        <activity android:name=".activity_forgotpass">
         </activity>
     </application>
 
