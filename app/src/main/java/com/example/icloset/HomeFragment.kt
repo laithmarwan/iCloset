@@ -31,8 +31,11 @@ class HomeFragment : Fragment() {
         var v = inflater.inflate(R.layout.fragment_home, container, false)
 
         v.dress_me_up.setOnClickListener {
+
+
             val dialog = BottomSheetDialog(activity)
             val view = layoutInflater.inflate(R.layout.dialog_layout, null)
+            dialog.setContentView(view)
             dialog.show()
         }
         return v

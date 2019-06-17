@@ -1,12 +1,18 @@
 package com.example.icloset
 
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.app.Fragment
+import android.content.DialogInterface
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import kotlinx.android.synthetic.main.fragment_settings.view.*
+import android.security.ConfirmationPrompt
+import android.widget.Toast
+import kotlinx.android.synthetic.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +30,29 @@ class SettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false)
+        var v = inflater.inflate(R.layout.fragment_settings, container, false)
+
+        v.iv_logout.setOnClickListener {
+
+            val builder = AlertDialog.Builder(activity)
+            builder.setTitle("Alert")
+            builder.setMessage("Are you sure?")
+            builder.setPositiveButton("Yes"){dialog, which ->
+                AppInfo.UserID=""
+                AppInfo.Name=""
+                AppInfo.Email=""
+                AppInfo.Address=""
+                var i = Intent(activity, LoginAct::class.java)
+                startActivity(i)
+                
+            }
+            builder.setNegativeButton("No"){
+                dialog, which ->
+                dialog.dismiss()
+            }
+            builder.show()
+        }
+        return v
     }
 
 
