@@ -44,7 +44,7 @@ class SettingsFragment : Fragment() {
                 AppInfo.Address=""
                 var i = Intent(activity, LoginAct::class.java)
                 startActivity(i)
-                
+
             }
             builder.setNegativeButton("No"){
                 dialog, which ->
