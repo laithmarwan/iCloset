@@ -13,10 +13,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" app:srcCompat="@android:drawable/sym_def_app_icon"
             android:id="@+id/app_logo3" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            app:layout_constraintHorizontal_bias="0.185" android:layout_marginTop="28dp"/>
+            android:layout_marginTop="28dp"
+            app:layout_constraintEnd_toStartOf="@+id/appname_tv4" app:layout_constraintHorizontal_bias="1.0"/>
 
     <TextView
             android:foregroundGravity="center"
@@ -25,10 +25,9 @@
             android:layout_height="28dp"
             android:id="@+id/appname_tv4" app:fontFamily="@font/diplomata_sc"
             android:textSize="25sp"
-            android:textStyle="bold" app:layout_constraintStart_toEndOf="@+id/app_logo3"
+            android:textStyle="bold"
             android:layout_marginTop="44dp" app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="24dp"
-            app:layout_constraintHorizontal_bias="0.578"
     />
 
     <TextView
