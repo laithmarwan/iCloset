@@ -19,10 +19,14 @@ class NewUserAct : AppCompatActivity() {
 
         register_button.setOnClickListener {
             if(register_email.text.toString() == "" || register_pass.text.toString() == "" || register_confirm.text.toString() == ""
-                || register_address.text.toString() == "" || register_name.text.toString() == "" ){
+                || register_address.text.toString() == "" ||  register_name.text.toString() == "" ){
                 Toast.makeText(this,"Fields must not be empty!",
                     Toast.LENGTH_LONG).show()
             }
+
+
+
+
             else if (register_pass.text.toString() != register_confirm.text.toString()) {
                 Toast.makeText(this,"Passwords don't match",Toast.LENGTH_LONG).show()
             } else {
@@ -38,12 +42,13 @@ class NewUserAct : AppCompatActivity() {
                     Request.Method.POST, AppInfo.web + "signup.php",
                     Response.Listener { response ->
                         pd.hide()
-                        if(response == "1"){
+                        if(response != "0"){
                             AppInfo.Email = register_email.text.toString()
                             AppInfo.Address = register_address.text.toString()
                             AppInfo.Name = register_name.text.toString()
-
+                            AppInfo.UserID = response
                             var i = Intent(this, MainActivity::class.java)
+                            Toast.makeText(this,"Welcome " + register_name.text.toString() +"!",Toast.LENGTH_LONG).show()
                             startActivity(i)
                             finish()
                         }
@@ -64,6 +69,12 @@ class NewUserAct : AppCompatActivity() {
                     }) {
                     override fun getParams(): MutableMap<String, String> {
                         var map = HashMap<String, String>()
+                        if(radioButton5.isChecked){
+                            map.put("gender", "1")
+                        }
+                        else{
+                            map.put("gender", "0")
+                        }
                         map.put("email", register_email.text.toString())
                         map.put("password", register_pass.text.toString())
                         map.put("name", register_name.text.toString())

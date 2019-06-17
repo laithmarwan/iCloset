@@ -7,7 +7,7 @@ class AppInfo {
 
         var web:String="http://tafakkur.com/icloset/"
 
-        var UserID:Int=0
+        var UserID:String=""
         var Name:String=""
         var Email:String=""
         var Address:String=""
