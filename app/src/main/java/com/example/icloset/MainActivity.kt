@@ -11,7 +11,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         main_nav.menu.getItem(2).setChecked(true)
-
+        var trans = fragmentManager.beginTransaction()
+        var obj = HomeFragment()
+        trans.replace(R.id.main_frame,obj)
+        trans.commit()
 
 
 
