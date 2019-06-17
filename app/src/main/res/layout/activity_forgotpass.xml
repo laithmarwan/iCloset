@@ -26,9 +26,9 @@
             android:id="@+id/appname_tv4" app:fontFamily="@font/diplomata_sc"
             android:textSize="25sp"
             android:textStyle="bold" app:layout_constraintStart_toEndOf="@+id/app_logo3"
-            android:layout_marginTop="44dp" app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginTop="44dp" app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="24dp"
+            app:layout_constraintHorizontal_bias="0.578"
     />
 
     <TextView
@@ -61,11 +61,12 @@
             android:layout_width="256dp"
             android:layout_height="65dp" app:srcCompat="@drawable/button"
             android:id="@+id/register_button2"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             android:layout_marginTop="84dp"
-            app:layout_constraintTop_toBottomOf="@+id/register_email2"/>
+            app:layout_constraintTop_toBottomOf="@+id/register_email2" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.41000003"
+            android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="8dp"/>
 
     <TextView
             android:text="Submit"
