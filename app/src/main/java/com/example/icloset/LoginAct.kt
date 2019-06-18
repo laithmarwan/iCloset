@@ -52,8 +52,13 @@ class LoginAct : AppCompatActivity() {
                 Response.Listener { response ->
                     pd.hide()
                     if(response!="0") {
+                        var arr = response.split(",")
+
                         AppInfo.Email = login_email.text.toString()
-                        AppInfo.UserID = response
+                        AppInfo.UserID = arr[0]
+                        AppInfo.Gender = arr[1]
+                        AppInfo.Name = arr[2]
+                        AppInfo.Address = arr[3]
                         var i = Intent(this, MainActivity::class.java)
                         var sp=getSharedPreferences("user_data",
                             Context.MODE_PRIVATE)

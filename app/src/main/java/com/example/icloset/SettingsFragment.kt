@@ -34,7 +34,7 @@ class SettingsFragment : Fragment() {
         var v = inflater.inflate(R.layout.fragment_settings, container, false)
 
         v.iv_update.setOnClickListener {
-            Toast.makeText(activity,AppInfo.UserID,Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity,AppInfo.UserID+AppInfo.Gender+AppInfo.Name+AppInfo.Address,Toast.LENGTH_SHORT).show()
         }
 
         v.iv_logout.setOnClickListener {

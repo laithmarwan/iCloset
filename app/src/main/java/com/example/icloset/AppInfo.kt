@@ -10,6 +10,7 @@ class AppInfo {
         var Name:String=""
         var Email:String=""
         var Address:String=""
+        var Gender:String = ""
 
 
     }
