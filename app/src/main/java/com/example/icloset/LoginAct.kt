@@ -65,7 +65,7 @@ class LoginAct : AppCompatActivity() {
                         var editor = sp.edit()
                         editor.putString("user_id",response)
                         editor.commit()
-                        Toast.makeText(this,"Welcome back" +"!",Toast.LENGTH_LONG).show()
+                        Toast.makeText(this,"Welcome back "+ AppInfo.Name+"!",Toast.LENGTH_LONG).show()
                         startActivity(i)
                         finish()
                     }
