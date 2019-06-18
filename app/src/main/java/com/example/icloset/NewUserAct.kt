@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_login.*
@@ -18,18 +19,19 @@ class NewUserAct : AppCompatActivity() {
         setContentView(R.layout.activity_new_user)
 
         register_button.setOnClickListener {
+
+
             if(register_email.text.toString() == "" || register_pass.text.toString() == "" || register_confirm.text.toString() == ""
                 || register_address.text.toString() == "" ||  register_name.text.toString() == "" ){
                 Toast.makeText(this,"Fields must not be empty!",
                     Toast.LENGTH_LONG).show()
             }
-
-
-
-
             else if (register_pass.text.toString() != register_confirm.text.toString()) {
                 Toast.makeText(this,"Passwords don't match",Toast.LENGTH_LONG).show()
-            } else {
+            } else if (register_pass.text.toString().length < 8) {
+                Toast.makeText(this, "Password must be at least 8 characters", Toast.LENGTH_LONG).show()
+
+            }else{
 
 
                 var pd = ProgressDialog(this)
@@ -38,7 +40,35 @@ class NewUserAct : AppCompatActivity() {
                 pd.show()
 
                 var rq = Volley.newRequestQueue(this)
-                var sr = object : StringRequest(
+
+                var jo = JsonObjectRequest(Request.Method.GET,
+                    "https://api.emailverifyapi.com/v3/lookups/json?key=512BE052EAFFBB11&email="+register_email.text.toString(),
+                    null,Response.Listener {
+                        response ->
+                            if(response.getString("deliverable") != "true")
+                            {
+                                pd.hide()
+                                tv_hidden.text = "ok"
+                                Toast.makeText(this,"Invalid Email",Toast.LENGTH_SHORT).show()
+                            }
+
+
+
+                    },Response.ErrorListener {
+                        error ->
+                        pd.hide()
+                        Toast.makeText(
+                            this, error.message,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    })
+
+                rq.add(jo)
+
+                if(tv_hidden.text.toString() == "ok"){
+                    tv_hidden.text = ""
+
+                    var sr = object : StringRequest(
                     Request.Method.POST, AppInfo.web + "signup.php",
                     Response.Listener { response ->
                         pd.hide()
@@ -87,6 +117,7 @@ class NewUserAct : AppCompatActivity() {
                 rq.add(sr)
 
 
+            }
             }
         }
 
