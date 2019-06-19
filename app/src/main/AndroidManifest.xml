@@ -16,15 +16,13 @@
         </activity>
         <activity android:name=".NewUserAct">
         </activity>
-        <activity android:name=".LoginAct">
+        <activity android:name=".IntroAct">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-
 
         <meta-data
                 android:name="preloaded_fonts"
@@ -33,6 +31,8 @@
         <activity android:name=".activity_forgotpass">
         </activity>
         <activity android:name=".activity_resetpass">
+        </activity>
+        <activity android:name=".LoginAct">
         </activity>
     </application>
 

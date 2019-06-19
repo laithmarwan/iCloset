@@ -35,6 +35,14 @@ class LoginAct : AppCompatActivity() {
 
 
         imageView5.setOnClickListener {
+            imageView5.animate()
+                .scaleX(0.94f)
+                .scaleY(0.94f)
+                .duration = 500
+
+
+
+
             if(login_email.text.toString() == "" || login_pass.text.toString() == "" ){
                 Toast.makeText(this,"Fields must not be empty!",
                     Toast.LENGTH_LONG).show()

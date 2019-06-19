@@ -4,5 +4,17 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="pref_name">My Pref</string>
+    <string name="pref_key">My Key</string>
+
+    <string name="slide1_title">Computer</string>
+    <string name="slide1_des">Computer Repair and Services</string>
+
+    <string name="slide2_title">Laptop</string>
+    <string name="slide2_des">Laptop Repair and Services</string>
+
+    <string name="slide3_title">Mobile</string>
+    <string name="slide3_des">Mobile Reapair and Services</string>
+
 
 </resources>

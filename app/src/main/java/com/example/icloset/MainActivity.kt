@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         main_nav.setOnNavigationItemSelectedListener {
 
-            menuItem ->
+                menuItem ->
             var tr = fragmentManager.beginTransaction()
             if(menuItem.itemId == R.id.menu_closet){
                 var obj = ClosetFragment()
