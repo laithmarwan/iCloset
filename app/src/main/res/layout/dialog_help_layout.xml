@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView android:layout_width="103dp"
+              android:layout_height="wrap_content"
+              android:padding="16dp"
+              android:textSize="15dp"
+              android:textAlignment="center"
+              android:text="CAMERA" android:id="@+id/camera_help_button"
+              android:drawableTop="@drawable/camera_help"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              android:layout_marginBottom="16dp" android:layout_marginLeft="24dp" android:layout_marginStart="24dp"/>
+
+    <TextView android:layout_width="124dp"
+              android:layout_height="wrap_content"
+              android:padding="16dp"
+              android:textSize="15dp"
+              android:textAlignment="center"
+              android:text="MEDIA" android:id="@+id/media_button"
+              android:drawableTop="@drawable/media"
+              android:layout_marginBottom="16dp"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintStart_toEndOf="@+id/camera_help_button" android:layout_marginStart="16dp"
+              android:layout_marginLeft="16dp"/>
+
+
+    <TextView android:layout_width="99dp"
+              android:layout_height="wrap_content"
+              android:padding="16dp"
+              android:textSize="15dp"
+              android:textAlignment="center"
+              android:text="CLOSET" android:id="@+id/closet_help_button"
+              android:drawableTop="@drawable/closet_help"
+              android:layout_marginBottom="16dp"
+              app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="28dp"
+              app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="28dp"/>
+
+</android.support.constraint.ConstraintLayout>
