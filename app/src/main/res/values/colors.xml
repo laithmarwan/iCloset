@@ -8,6 +8,9 @@
     <color name="slide1">#3F51B5</color>
     <color name="slide2">#795548</color>
     <color name="slide3">#009688</color>
+    <color name="slide4">#3F51B5</color>
+    <color name="slide5">#795548</color>
+    <color name="slide6">#009688</color>
 
     <color name="active_dots">#fffafa</color>
     <color name="inactive_dots">#83878b</color>

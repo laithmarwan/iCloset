@@ -28,6 +28,7 @@ android:background="@color/slide1">
             />
 
     <TextView
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/slide1_des"
@@ -35,7 +36,7 @@ android:background="@color/slide1">
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_below="@+id/img"
-            android:layout_marginTop="140dp"
+            android:layout_marginTop="120dp"
             android:gravity="center_horizontal"
             android:id="@+id/slide_des"
     />

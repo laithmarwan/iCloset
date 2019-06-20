@@ -28,6 +28,7 @@ android:background="@color/slide2">
     />
 
     <TextView
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/slide2_des"
