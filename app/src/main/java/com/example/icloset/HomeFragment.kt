@@ -3,8 +3,10 @@ package com.example.icloset
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.os.Bundle
 import android.app.Fragment
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -90,21 +92,28 @@ class HomeFragment : Fragment() {
 
             val camera_help = view.findViewById<TextView>(R.id.camera_help_button)
             camera_help.setOnClickListener {
-                var i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                startActivityForResult(i, 123)
+                if (Build.VERSION.SDK_INT > 22) {
+                    if (checkSelfPermission(getContext(), android.Manifest.permission.CAMERA) ==
+                        PackageManager.PERMISSION_DENIED) {
+                        ActivityCompat.requestPermissions(activity, arrayOf(android.Manifest.permission.CAMERA), camera_code)
+                    }
+                    else {
+                        openCamera()
+                    }
+                }
+                else{
+                    openCamera()
+                }
             }
 
             val media = view.findViewById<TextView>(R.id.media_button)
-
             media.setOnClickListener {
-
-          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (checkSelfPermission(getContext(),android.Manifest.permission.READ_EXTERNAL_STORAGE) ==
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if(checkSelfPermission(getContext(),android.Manifest.permission.READ_EXTERNAL_STORAGE) ==
                         PackageManager.PERMISSION_DENIED) {
-
-                        ActivityCompat.requestPermissions(activity, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+                        ActivityCompat.requestPermissions(activity, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), permission_code)
                     }
-                    else {
+                    else{
                         pickImageFromGallery()
                     }
                 }
@@ -132,6 +141,11 @@ class HomeFragment : Fragment() {
         startActivityForResult(intent, image_pick_code)
     }
 
+    private fun openCamera(){
+        var i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(i, 123)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode === 123){
@@ -147,18 +161,25 @@ class HomeFragment : Fragment() {
     companion object {
         private val image_pick_code = 1000
         private val permission_code = 1001
+        private val camera_code = 1002
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         when(requestCode){
             permission_code -> {
-                if(grantResults.size > 0 && grantResults[0] ==
-                    PackageManager.PERMISSION_GRANTED){
+                if(grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     pickImageFromGallery()
                 }
                 else{
-                    Toast.makeText(activity, "Permission denied", Toast.LENGTH_LONG).show()
-
+                    //
+                }
+            }
+            camera_code -> {
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    openCamera()
+                }
+                else{
+                    //
                 }
             }
         }
