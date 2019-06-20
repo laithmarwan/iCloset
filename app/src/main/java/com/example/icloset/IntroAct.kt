@@ -134,6 +134,7 @@ class IntroAct : AppCompatActivity(), View.OnClickListener {
     private fun loadHome() {
 
         startActivity(Intent(this,LoginAct::class.java))
+        finish()
     }
 
     fun createDots(position:Int)

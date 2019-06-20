@@ -3,9 +3,12 @@ package com.example.icloset
 
 import android.os.Bundle
 import android.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -24,7 +27,22 @@ class ClosetFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_closet, container, false)
+        var v = inflater.inflate(R.layout.fragment_closet, container, false)
+
+       val recyclerView = v.findViewById(R.id.recyclerView) as RecyclerView
+        recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayout.VERTICAL,false)
+        val cats = ArrayList<Categories>()
+        cats.add(Categories("Tops"))
+        cats.add(Categories("Tops"))
+        cats.add(Categories("Tops"))
+        cats.add(Categories("Tops"))
+        cats.add(Categories("Tops"))
+
+        val adapter = CustomAdapter(cats)
+        recyclerView.adapter = adapter
+
+
+        return v
     }
 
 
