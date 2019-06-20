@@ -23,7 +23,7 @@ class IntroAct : AppCompatActivity(), View.OnClickListener {
 
     lateinit var mPager : ViewPager
 
-    var layouts: IntArray = intArrayOf(R.layout.first_slide,R.layout.second_slide,R.layout.third_slide)
+    var layouts: IntArray = intArrayOf(R.layout.first_slide,R.layout.second_slide,R.layout.third_slide,R.layout.fourth_slide,R.layout.fifth_slide,R.layout.sixth_slide)
 
     lateinit var dotsLayout: LinearLayout
 

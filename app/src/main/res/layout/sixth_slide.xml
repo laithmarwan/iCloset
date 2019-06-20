@@ -18,7 +18,7 @@ android:background="@color/slide3">
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/slide3_title"
+            android:text="@string/slide6_title"
             android:textColor="@android:color/white"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -30,7 +30,7 @@ android:background="@color/slide3">
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/slide3_des"
+            android:text="@string/slide6_des"
             android:textColor="@android:color/white"
             android:textSize="24sp"
             android:textStyle="bold"

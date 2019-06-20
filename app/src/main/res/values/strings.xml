@@ -7,14 +7,22 @@
     <string name="pref_name">My Pref</string>
     <string name="pref_key">My Key</string>
 
-    <string name="slide1_title">Computer</string>
-    <string name="slide1_des">Computer Repair and Services</string>
+    <string name="slide1_title">Dress me up</string>
+    <string name="slide1_des">Click to make the application suggest you an outfit to wear from your closet</string>
 
-    <string name="slide2_title">Laptop</string>
-    <string name="slide2_des">Laptop Repair and Services</string>
+    <string name="slide2_title">Help me match</string>
+    <string name="slide2_des">Click to get a suitable item to another item of your choice</string>
 
-    <string name="slide3_title">Mobile</string>
-    <string name="slide3_des">Mobile Reapair and Services</string>
+    <string name="slide3_title">Outfits</string>
+    <string name="slide3_des">Lets you create outfits from your closet and check outfits already created</string>
 
+    <string name="slide4_title">Closet</string>
+    <string name="slide4_des">Lets you add items to your closet and check items already in it</string>
+
+    <string name="slide5_title">Laundry</string>
+    <string name="slide5_des">Lets you check which items are not unavailable and in laundry</string>
+
+    <string name="slide6_title">Calender</string>
+    <string name="slide6_des">lets your plan outfits in advance for future days and allows you to check weather</string>
 
 </resources>
