@@ -1,5 +1,6 @@
 package com.example.icloset
 
+import android.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.app.Fragment
@@ -10,6 +11,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+
+
         main_nav.menu.getItem(2).setChecked(true)
         var trans = fragmentManager.beginTransaction()
         var obj = HomeFragment()
@@ -51,6 +56,10 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+
+
+
 
 
 }

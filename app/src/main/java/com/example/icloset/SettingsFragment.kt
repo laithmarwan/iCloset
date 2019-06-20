@@ -1,6 +1,7 @@
 package com.example.icloset
 
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.os.Bundle
 import android.app.Fragment
@@ -32,6 +33,11 @@ class SettingsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         var v = inflater.inflate(R.layout.fragment_settings, container, false)
+        v.iv_contact2.setOnClickListener{
+            showIntroAgain(v)
+        }
+
+
 
         v.iv_update.setOnClickListener {
             Toast.makeText(activity,AppInfo.UserID+AppInfo.Gender+AppInfo.Name+AppInfo.Address,Toast.LENGTH_SHORT).show()
@@ -64,6 +70,10 @@ class SettingsFragment : Fragment() {
         }
         return v
     }
+fun showIntroAgain(v: View)
+{
+    PrefManager(activity).clearPreference()
 
+}
 
 }

@@ -43,9 +43,11 @@ class PrefManager {
 
     fun clearPreference()
     {
-        pref.edit().clear().commit()
+        var editor: SharedPreferences.Editor=pref.edit()
+        editor.clear()
+        editor.commit()
 
-        con.startActivity(Intent(con,MainActivity::class.java))
+        con.startActivity(Intent(con,IntroAct::class.java))
         (con as AppCompatActivity).finish()
     }
 
