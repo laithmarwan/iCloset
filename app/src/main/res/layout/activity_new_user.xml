@@ -10,6 +10,13 @@
 >
 
     <ImageView
+            android:layout_width="74dp"
+            android:layout_height="77dp" app:srcCompat="@drawable/logotest"
+            android:id="@+id/imageView4" android:layout_marginTop="44dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp"/>
+    <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" app:srcCompat="@drawable/button2"
             android:id="@+id/register_button"
@@ -24,17 +31,8 @@
             android:layout_marginTop="52dp"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginEnd="44dp" android:layout_marginRight="44dp"
-            app:layout_constraintStart_toStartOf="@+id/app_logo2" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="0.835"/>
-    <ImageView
-            android:foregroundGravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:srcCompat="@android:drawable/sym_def_app_icon"
-            android:id="@+id/app_logo2" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="44dp"
-            android:layout_marginStart="60dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="60dp"
-    />
+            app:layout_constraintStart_toStartOf="@+id/imageView4" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="0.85"/>
 
     <EditText
             android:foregroundGravity="center"
@@ -51,8 +49,8 @@
             android:layout_marginRight="100dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="98dp" android:layout_marginStart="98dp"
             app:layout_constraintHorizontal_bias="0.492"
-            android:hint="Full name" android:layout_marginTop="56dp"
-            app:layout_constraintTop_toBottomOf="@+id/app_logo2"/>
+            android:hint="Full name"
+            android:layout_marginTop="56dp" app:layout_constraintTop_toBottomOf="@+id/imageView4"/>
 
     <TextView
             android:background="@drawable/round_corners"
