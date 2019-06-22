@@ -129,11 +129,10 @@ class HomeFragment : Fragment() {
 
             dialog.setContentView(view)
             dialog.show()
-
         }
-
         return v
     }
+
 
     private fun pickImageFromGallery() {
         val intent = Intent(Intent.ACTION_PICK)
