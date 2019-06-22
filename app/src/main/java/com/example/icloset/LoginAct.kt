@@ -1,7 +1,9 @@
 package com.example.icloset
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -68,6 +70,7 @@ class LoginAct : AppCompatActivity() {
                         AppInfo.Name = arr[2]
                         AppInfo.Address = arr[3]
                         var i = Intent(this, MainActivity::class.java)
+                        i.putExtra("act", "login")
                         var sp=getSharedPreferences("user_data",
                             Context.MODE_PRIVATE)
                         var editor = sp.edit()
@@ -99,7 +102,7 @@ class LoginAct : AppCompatActivity() {
 
             rq.add(sr)
 
-        }}
-
+            }
+        }
     }
 }

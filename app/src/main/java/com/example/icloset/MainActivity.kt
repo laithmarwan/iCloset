@@ -4,6 +4,8 @@ import android.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.app.Fragment
+import android.content.DialogInterface
+import android.content.Intent
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -12,6 +14,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        var obj1 = icloset(this)
+        var db = obj1.writableDatabase
+        var cur= db.rawQuery("select * from item", arrayOf())
+        if(cur.count == 0){
+
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Lets start")
+            builder.setMessage("Would you like to add your closet?")
+            builder.setPositiveButton("Start",
+                { dialogInterface: DialogInterface, i: Int -> var tr = fragmentManager.beginTransaction()
+                    var obj = ClosetFragment()
+                    tr.replace(R.id.main_frame,obj)
+                    tr.commit()
+                })
+
+            builder.setNegativeButton("Later"){
+                    dialog, which ->
+                dialog.dismiss()}
+            builder.show()
+        }
 
 
 
