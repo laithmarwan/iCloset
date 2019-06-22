@@ -6,7 +6,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity"
-        android:background="#a1d6d6">
+        android:background="#a1d6d6"
+
+
+>
 
     <android.support.design.widget.BottomNavigationView
             android:layout_width="match_parent"
