@@ -13,7 +13,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" app:srcCompat="@drawable/button2"
             android:id="@+id/register_button"
-            android:layout_marginTop="20dp" app:layout_constraintTop_toBottomOf="@+id/register_confirm"
+            android:layout_marginTop="12dp" app:layout_constraintTop_toBottomOf="@+id/register_confirm"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp" app:layout_constraintHorizontal_bias="0.494"/>
@@ -42,25 +42,31 @@
             android:layout_height="47dp"
             android:inputType="textPersonName"
             android:background="@drawable/round_corners"
+            android:drawableLeft="@drawable/user"
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"
             android:ems="10"
             android:id="@+id/register_name"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="100dp"
             android:layout_marginRight="100dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="98dp" android:layout_marginStart="98dp"
             app:layout_constraintHorizontal_bias="0.492"
-            android:hint="  Full name" android:layout_marginTop="56dp"
+            android:hint="Full name" android:layout_marginTop="56dp"
             app:layout_constraintTop_toBottomOf="@+id/app_logo2"/>
 
     <TextView
             android:background="@drawable/round_corners"
+            android:drawableLeft="@drawable/gender"
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"
             android:gravity="center"
             android:textAlignment="viewStart"
-            android:text="  Select your gender"
+            android:text="Gender"
             android:layout_width="353dp"
             android:layout_height="47dp"
             android:id="@+id/textView10"
             android:textSize="16sp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="3dp"
             app:layout_constraintTop_toBottomOf="@+id/register_name" android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp" android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"/>
@@ -90,6 +96,9 @@
 
     <EditText
             android:background="@drawable/round_corners"
+            android:drawableLeft="@drawable/mail"
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"
             android:foregroundGravity="center"
             android:layout_width="353dp"
             android:layout_height="47dp"
@@ -99,11 +108,14 @@
             android:layout_marginRight="100dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="98dp" android:layout_marginStart="98dp"
             app:layout_constraintHorizontal_bias="0.491"
-            android:hint="  Email"
-            android:layout_marginTop="2dp" app:layout_constraintTop_toBottomOf="@+id/textView10"/>
+            android:hint="Email"
+            android:layout_marginTop="3dp" app:layout_constraintTop_toBottomOf="@+id/textView10"/>
 
     <EditText
             android:background="@drawable/round_corners"
+            android:drawableLeft="@drawable/address"
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"
             android:foregroundGravity="center"
             android:layout_width="353dp"
             android:layout_height="47dp"
@@ -113,10 +125,13 @@
             android:layout_marginLeft="98dp" android:layout_marginStart="98dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="100dp" android:layout_marginRight="100dp"
             app:layout_constraintTop_toBottomOf="@+id/register_email" app:layout_constraintHorizontal_bias="0.491"
-            android:hint="  Address" android:layout_marginTop="2dp"/>
+            android:hint="Address" android:layout_marginTop="3dp"/>
 
     <EditText
             android:background="@drawable/round_corners"
+            android:drawableLeft="@drawable/pass"
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"
             android:foregroundGravity="center"
             android:layout_width="353dp"
             android:layout_height="47dp"
@@ -126,12 +141,15 @@
             app:layout_constraintTop_toBottomOf="@+id/register_address" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="100dp" android:layout_marginRight="100dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="98dp"
-            android:layout_marginStart="98dp" app:layout_constraintHorizontal_bias="0.491" android:hint="  Password"
-            android:layout_marginTop="2dp"/>
+            android:layout_marginStart="98dp" app:layout_constraintHorizontal_bias="0.491" android:hint="Password"
+            android:layout_marginTop="3dp"/>
 
 
     <EditText
             android:background="@drawable/round_corners"
+            android:drawableLeft="@drawable/passcon"
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"
             android:foregroundGravity="center"
             android:layout_width="353dp"
             android:layout_height="47dp"
@@ -142,7 +160,7 @@
             android:layout_marginRight="100dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="98dp" android:layout_marginStart="98dp"
             app:layout_constraintTop_toBottomOf="@+id/register_pass" app:layout_constraintHorizontal_bias="0.491"
-            android:hint="  Confirm password" android:layout_marginTop="2dp"/>
+            android:hint="Confirm password" android:layout_marginTop="3dp"/>
 
     <TextView
             android:text="Signup"
