@@ -13,6 +13,8 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -24,11 +26,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         setSupportActionBar(toolbar)
 
         //our code from here
-//        tv_name.text = AppInfo.Name
-//        tv_email.text = AppInfo.Email
+
+        var navigationView =  findViewById(R.id.nav_view) as NavigationView
+        var headerView: View = navigationView.getHeaderView(0)
+        var navUsername:TextView  =  headerView.findViewById(R.id.tv_name) as (TextView)
+        navUsername.setText(AppInfo.Name)
+        var navEmail:TextView  =  headerView.findViewById(R.id.tv_email) as (TextView)
+        navEmail.setText(AppInfo.Email)
+
+
+
         var obj1 = icloset(this)
         var db = obj1.writableDatabase
         var cur= db.rawQuery("select * from item", arrayOf())

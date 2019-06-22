@@ -36,6 +36,12 @@ class LoginAct : AppCompatActivity() {
         {
             var i=Intent(this,MainActivity::class.java)
             AppInfo.UserID = sp.getString("user_id","")
+            var arr = AppInfo.UserID.split(",")
+            AppInfo.UserID = arr[0]
+            AppInfo.Gender = arr[1]
+            AppInfo.Name = arr[2]
+            AppInfo.Address = arr[3]
+            AppInfo.Email = arr[4]
             startActivity(i)
             finish()
         }
@@ -73,11 +79,11 @@ class LoginAct : AppCompatActivity() {
                     if(response!="0") {
                         var arr = response.split(",")
 
-                        AppInfo.Email = login_email.text.toString()
                         AppInfo.UserID = arr[0]
                         AppInfo.Gender = arr[1]
                         AppInfo.Name = arr[2]
                         AppInfo.Address = arr[3]
+                        AppInfo.Email = arr[4]
                         var i = Intent(this, MainActivity::class.java)
                         i.putExtra("act", "login")
                         var sp=getSharedPreferences("user_data",
