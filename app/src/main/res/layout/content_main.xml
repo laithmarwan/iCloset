@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,7 +9,7 @@
         tools:showIn="@layout/app_bar_main"
         tools:context=".MainActivity">
 
-
+<!--
     <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="622dp" android:id="@+id/main_frame"
@@ -31,8 +31,40 @@
 
 
     </android.support.design.widget.BottomNavigationView>
+-->
+    <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="620dp"
+            android:layout_weight="1"
+            android:id="@+id/vp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
+    </android.support.v4.view.ViewPager>
+    <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vp" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="1.0"
+            app:tabBackground="@color/active_dots" app:tabIndicatorColor="@color/colorPrimary">
 
-</RelativeLayout>
+        <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/clothes"/>
+
+        <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/home"/>
+
+        <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/calendar"/>
+    </android.support.design.widget.TabLayout>
+
+</android.support.constraint.ConstraintLayout>
 
 

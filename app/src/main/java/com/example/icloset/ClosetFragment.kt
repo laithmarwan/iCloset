@@ -2,7 +2,7 @@ package com.example.icloset
 
 
 import android.os.Bundle
-import android.app.Fragment
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -32,7 +32,7 @@ class ClosetFragment : Fragment() {
         // Inflate the layout for this fragment
       var v = inflater.inflate(R.layout.fragment_closet, container, false)
 
-        var trans = fragmentManager.beginTransaction()
+    /*    var trans = fragmentManager.beginTransaction()
         var obj = ItemsFragment()
         trans.replace(R.id.relative_layout,obj)
         trans.commit()
@@ -48,7 +48,7 @@ class ClosetFragment : Fragment() {
             var obj = OutfitsFragment()
             trans.replace(R.id.relative_layout,obj)
             trans.commit()
-        }
+        }*/
         return v
     }
 

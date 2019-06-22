@@ -4,29 +4,47 @@
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
-                                             tools:context=".ClosetFragment"
-                                             android:background="#a1d6d6">
-    <Button
-            android:text="Items"
-            android:layout_width="191dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/items_btn" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp" app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="4dp"/>
-    <Button
-            android:text="Outfits"
-            android:layout_width="184dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/outfits_btn" android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="4dp"/>
-    <RelativeLayout
-            android:layout_width="395dp"
-            android:layout_height="662dp"
-            android:id="@+id/relative_layout" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/items_btn" android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp">
+                                             tools:context=".ClosetFragment">
 
-    </RelativeLayout>
+
+    <android.support.design.widget.TabLayout
+            android:layout_width="395dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp" app:layout_constraintHorizontal_bias="1.0">
+
+        <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Outfits"
+                android:icon="@drawable/outfits"/>
+
+        <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tops"/>
+
+        <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bottoms"
+                />
+        <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bottoms"
+        />
+        <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bottoms"
+        />
+        <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bottoms"
+        />
+    </android.support.design.widget.TabLayout>
 </android.support.constraint.ConstraintLayout>

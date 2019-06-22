@@ -4,8 +4,9 @@ package com.example.icloset
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
-import android.app.Fragment
+import android.support.v4.app.Fragment
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -45,7 +46,7 @@ class HomeFragment : Fragment() {
         var v = inflater.inflate(R.layout.fragment_home, container, false)
 
         v.dress_me_up.setOnClickListener {
-            val dialog = BottomSheetDialog(activity)
+            val dialog = BottomSheetDialog(requireContext())
             val view = layoutInflater.inflate(R.layout.dialog_layout, null)
 
             val gym = view.findViewById<TextView>(R.id.gym_button)
@@ -87,15 +88,15 @@ class HomeFragment : Fragment() {
         }
 
         v.help_me_match.setOnClickListener {
-            val dialog = BottomSheetDialog(activity)
+            val dialog = BottomSheetDialog(requireContext())
             val view = layoutInflater.inflate(R.layout.dialog_help_layout, null)
 
             val camera_help = view.findViewById<TextView>(R.id.camera_help_button)
             camera_help.setOnClickListener {
                 if (Build.VERSION.SDK_INT > 22) {
-                    if (checkSelfPermission(getContext(), android.Manifest.permission.CAMERA) ==
+                    if (checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) ==
                         PackageManager.PERMISSION_DENIED) {
-                        ActivityCompat.requestPermissions(activity, arrayOf(android.Manifest.permission.CAMERA), camera_code)
+                        ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.CAMERA), camera_code)
                     }
                     else {
                         openCamera()
@@ -109,9 +110,9 @@ class HomeFragment : Fragment() {
             val media = view.findViewById<TextView>(R.id.media_button)
             media.setOnClickListener {
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if(checkSelfPermission(getContext(),android.Manifest.permission.READ_EXTERNAL_STORAGE) ==
+                    if(checkSelfPermission(requireContext(),android.Manifest.permission.READ_EXTERNAL_STORAGE) ==
                         PackageManager.PERMISSION_DENIED) {
-                        ActivityCompat.requestPermissions(activity, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), permission_code)
+                        ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), permission_code)
                     }
                     else{
                         pickImageFromGallery()

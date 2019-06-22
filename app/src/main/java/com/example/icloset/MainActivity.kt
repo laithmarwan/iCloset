@@ -7,6 +7,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.design.widget.TabLayout
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AlertDialog
@@ -31,6 +35,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         //our code from here
 
+
+        var adp = FPA(supportFragmentManager)
+        vp.adapter = adp
+
+        vp.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
+
+        tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(vp))
+
         var navigationView =  findViewById(R.id.nav_view) as NavigationView
         var headerView: View = navigationView.getHeaderView(0)
         var navUsername:TextView  =  headerView.findViewById(R.id.tv_name) as (TextView)
@@ -48,12 +60,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Lets start")
             builder.setMessage("Would you like to add your closet?")
-            builder.setPositiveButton("Start",
-                { dialogInterface: DialogInterface, i: Int -> var tr = fragmentManager.beginTransaction()
-                    var obj = ClosetFragment()
-                    tr.replace(R.id.main_frame,obj)
-                    tr.commit()
-                })
+            builder.setPositiveButton("Start"
+            ) { dialogInterface: DialogInterface, i: Int ->
+                vp.currentItem = 0
+            }
 
             builder.setNegativeButton("Later"){
                     dialog, which ->
@@ -62,8 +72,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
 
-
-        main_nav.menu.getItem(1).setChecked(true)
+        /* main_nav.menu.getItem(1).setChecked(true)
         var trans = fragmentManager.beginTransaction()
         var obj = HomeFragment()
         trans.replace(R.id.main_frame,obj)
@@ -93,7 +102,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             true
-        }
+        }*/
+
+
+
+
         //till here
 
         fab.setOnClickListener { view ->
@@ -106,10 +119,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
-
+        vp.currentItem = 1
         nav_view.setNavigationItemSelectedListener(this)
     }
+    class FPA(fm: FragmentManager) : FragmentPagerAdapter(fm)
+    {
+        override fun getItem(position: Int): Fragment {
 
+            return when (position) {
+                0 -> ClosetFragment()
+                1 -> HomeFragment()
+                else -> CalendarFragment()
+            }
+
+        }
+
+        override fun getCount(): Int {
+            return 3
+        }
+
+    }
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
