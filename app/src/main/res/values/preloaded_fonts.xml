@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/alef</item>
+        <item>@font/amita</item>
         <item>@font/bigelow_rules</item>
+        <item>@font/black_ops_one</item>
         <item>@font/bungee_shade</item>
         <item>@font/ceviche_one</item>
         <item>@font/cookie</item>
@@ -19,6 +22,7 @@
         <item>@font/stint_ultra_condensed</item>
         <item>@font/tangerine_bold</item>
         <item>@font/titan_one</item>
+        <item>@font/vast_shadow</item>
         <item>@font/walter_turncoat</item>
     </array>
 </resources>
