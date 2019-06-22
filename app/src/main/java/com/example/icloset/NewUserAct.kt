@@ -100,10 +100,10 @@ class NewUserAct : AppCompatActivity() {
                     override fun getParams(): MutableMap<String, String> {
                         var map = HashMap<String, String>()
                         if(radioButton5.isChecked){
-                            map.put("gender", "1")
+                            map.put("gender", "0")
                         }
                         else{
-                            map.put("gender", "0")
+                            map.put("gender", "1")
                         }
                         map.put("email", register_email.text.toString())
                         map.put("password", register_pass.text.toString())

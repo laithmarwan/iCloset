@@ -30,41 +30,25 @@ class ClosetFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var v = inflater.inflate(R.layout.fragment_closet, container, false)
+      var v = inflater.inflate(R.layout.fragment_closet, container, false)
 
-       val recyclerView = v.findViewById(R.id.recyclerView) as RecyclerView
-        recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayout.VERTICAL,false)
-        val cats = ArrayList<Categories>()
-        var obj = icloset(activity)
-        var db = obj.writableDatabase
-        var cur= db.rawQuery("select * from item", arrayOf())
-        if(cur.count == 0){
-            Toast.makeText(activity,"No items",Toast.LENGTH_SHORT).show()
+        var trans = fragmentManager.beginTransaction()
+        var obj = ItemsFragment()
+        trans.replace(R.id.relative_layout,obj)
+        trans.commit()
 
+         v.items_btn.setOnClickListener {
+            var trans = fragmentManager.beginTransaction()
+            var obj = ItemsFragment()
+            trans.replace(R.id.relative_layout,obj)
+            trans.commit()
         }
-        else{
-
-            cur.moveToNext()
-            while (!cur.isAfterLast){
-                cats.add(Categories(cur.getString(0)))
-                cur.moveToNext()
-            }
+        v.outfits_btn.setOnClickListener {
+            var trans = fragmentManager.beginTransaction()
+            var obj = OutfitsFragment()
+            trans.replace(R.id.relative_layout,obj)
+            trans.commit()
         }
-
-
-
-        val adapter = CustomAdapter(cats)
-        recyclerView.adapter = adapter
-
-        v.add_btn.setOnClickListener {
-            db.execSQL("insert into item " +
-                          "(Type,Description,Weather,Times_worn,Occasion,Available,Item_image)" +
-                          " values ('Top','Shirt',1,0,'Party',1,'top_shirt1.png')", arrayOf())
-            //db.execSQL("drop table item", arrayOf())
-            Toast.makeText(activity,"done",Toast.LENGTH_SHORT).show()
-
-        }
-
         return v
     }
 
