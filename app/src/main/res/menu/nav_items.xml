@@ -3,8 +3,6 @@
 
     <item android:title="Closet" android:icon="@drawable/clothes" android:id="@+id/menu_closet"
     />
-    <item android:title="Outfits" android:icon="@drawable/outfits" android:id="@+id/menu_outfits"/>
     <item android:title="Home" android:icon="@drawable/home" android:id="@+id/menu_home"/>
     <item android:title="Calendar" android:icon="@drawable/calendar" android:id="@+id/menu_calendar"/>
-    <item android:title="Settings" android:icon="@drawable/settings" android:id="@+id/menu_settings"/>
 </menu>
