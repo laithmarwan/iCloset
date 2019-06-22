@@ -6,8 +6,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".NewUserAct"
-        android:background="#eeeeee"
->
+        android:id="@+id/background"
+        android:background="#80d8ff"
+
+    >
+
 
     <ImageView
             android:layout_width="74dp"
@@ -16,14 +19,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="60dp"
             android:layout_marginStart="60dp"/>
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:srcCompat="@drawable/button2"
-            android:id="@+id/register_button"
-            android:layout_marginTop="12dp" app:layout_constraintTop_toBottomOf="@+id/register_confirm"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp" app:layout_constraintHorizontal_bias="0.494"/>
+
     <ImageView
             android:layout_width="232dp"
             android:layout_height="62dp" app:srcCompat="@drawable/appname2"
@@ -50,47 +46,9 @@
             android:layout_marginLeft="98dp" android:layout_marginStart="98dp"
             app:layout_constraintHorizontal_bias="0.492"
             android:hint="Full name"
-            android:layout_marginTop="56dp" app:layout_constraintTop_toBottomOf="@+id/imageView4"/>
+            android:layout_marginTop="40dp" app:layout_constraintTop_toBottomOf="@+id/imageView4"
+    />
 
-    <TextView
-            android:background="@drawable/round_corners"
-            android:drawableLeft="@drawable/gender"
-            android:paddingLeft="10dp"
-            android:drawablePadding="10dp"
-            android:gravity="center"
-            android:textAlignment="viewStart"
-            android:text="Gender"
-            android:layout_width="353dp"
-            android:layout_height="47dp"
-            android:id="@+id/textView10"
-            android:textSize="16sp"
-            android:layout_marginTop="3dp"
-            app:layout_constraintTop_toBottomOf="@+id/register_name" android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp" android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"/>
-
-    <RadioGroup
-            android:orientation="horizontal"
-            android:layout_width="178dp"
-            android:layout_height="47dp"
-            android:id="@+id/radioGroup"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="32dp" android:layout_marginRight="32dp"
-            app:layout_constraintTop_toTopOf="@+id/textView10">
-
-        <RadioButton
-                android:layout_gravity="center"
-                android:text="Male"
-                android:layout_width="6dp"
-                android:layout_height="wrap_content" android:id="@+id/radioButton3" android:layout_weight="1"
-                android:checked="true"/>
-        <RadioButton
-                android:layout_gravity="center"
-                android:text="Female"
-                android:layout_width="9dp"
-                android:layout_height="wrap_content" android:id="@+id/radioButton5" android:layout_weight="1"
-        />
-    </RadioGroup>
 
     <EditText
             android:background="@drawable/round_corners"
@@ -105,9 +63,9 @@
             android:id="@+id/register_email" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="100dp"
             android:layout_marginRight="100dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="98dp" android:layout_marginStart="98dp"
-            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintHorizontal_bias="0.492"
             android:hint="Email"
-            android:layout_marginTop="3dp" app:layout_constraintTop_toBottomOf="@+id/textView10"/>
+            android:layout_marginTop="3dp" app:layout_constraintTop_toBottomOf="@+id/register_name"/>
 
     <EditText
             android:background="@drawable/round_corners"
@@ -158,31 +116,73 @@
             android:layout_marginRight="100dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="98dp" android:layout_marginStart="98dp"
             app:layout_constraintTop_toBottomOf="@+id/register_pass" app:layout_constraintHorizontal_bias="0.491"
-            android:hint="Confirm password" android:layout_marginTop="3dp"/>
+            android:hint="Confirm password" android:layout_marginTop="3dp"
+    />
 
     <TextView
-            android:text="Signup"
-            android:layout_height="38dp"
-            android:id="@+id/login_tv2" android:layout_width="wrap_content"
-            android:typeface="serif" android:textSize="29sp" app:fontFamily="@font/titan_one"
-            android:textAllCaps="false"
-            tools:textColor="#757575"
-            android:textColor="@color/loginButton"
-            android:layout_marginTop="56dp"
-            app:layout_constraintTop_toTopOf="@+id/register_button" android:layout_marginStart="8dp"
+            android:background="@drawable/round_corners"
+            android:drawableLeft="@drawable/gender"
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:textAlignment="viewStart"
+            android:text="Gender"
+            android:layout_width="353dp"
+            android:layout_height="47dp"
+            android:id="@+id/textView10"
+            android:textSize="16sp"
+            android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp" android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"/>
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"
+            android:layout_marginTop="3dp" app:layout_constraintTop_toBottomOf="@+id/register_confirm"
+    />
+
+    <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="178dp"
+            android:layout_height="47dp"
+            android:id="@+id/radioGroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="32dp" android:layout_marginRight="32dp"
+            app:layout_constraintTop_toTopOf="@+id/textView10">
+
+        <RadioButton
+                android:layout_gravity="center"
+                android:text="Male"
+                android:layout_width="6dp"
+                android:layout_height="wrap_content" android:id="@+id/radioButton3" android:layout_weight="1"
+                android:checked="true"/>
+        <RadioButton
+                android:layout_gravity="center"
+                android:text="Female"
+                android:layout_width="9dp"
+                android:layout_height="wrap_content" android:id="@+id/radioButton5" android:layout_weight="1"
+        />
+    </RadioGroup>
+
+    <Button
+            android:background="@drawable/round_corners_button"
+            android:textColor="#263238"
+            android:textStyle="bold"
+            android:text="Signup"
+            android:layout_width="198dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/register_button" android:layout_marginTop="48dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView10"
+            android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="8dp"/>
+
     <TextView
             android:text="By signing up you agree on our"
             android:layout_width="195dp"
             android:layout_height="19dp"
             android:id="@+id/textView"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/login_tv2" android:layout_marginTop="4dp"/>
-
+            app:layout_constraintTop_toBottomOf="@+id/register_button" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+    />
 
 
     <TextView
@@ -191,15 +191,20 @@
             android:layout_width="94dp"
             android:layout_height="19dp"
             android:id="@+id/textView2"
-            android:textColor="#0288d1"
-            android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginRight="8dp" android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/textView"/>
+            android:textColor="#5f02d1"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/textView" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+    />
+
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" tools:layout_editor_absoluteY="667dp"
-            tools:layout_editor_absoluteX="176dp" android:id="@+id/tv_hidden"/>
+            tools:layout_editor_absoluteX="176dp" android:id="@+id/tv_hidden"
+    />
+
+
 
 
 </android.support.constraint.ConstraintLayout>

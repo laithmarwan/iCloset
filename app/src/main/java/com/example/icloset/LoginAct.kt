@@ -5,8 +5,11 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.drawable.AnimationDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.constraint.ConstraintLayout
+import android.view.View
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
@@ -20,6 +23,12 @@ class LoginAct : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        val constraintLayout = findViewById<View>(R.id.login_layout)
+        val animationDrawble = constraintLayout.getBackground() as AnimationDrawable
+        animationDrawble.setEnterFadeDuration(2000)
+        animationDrawble.setExitFadeDuration(4000)
+        animationDrawble.start()
 
         var sp=getSharedPreferences("user_data",
             Context.MODE_PRIVATE)

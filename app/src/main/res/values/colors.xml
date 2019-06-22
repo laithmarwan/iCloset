@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="loginButton">#424242</color>
-    757575
+
 
 
     <color name="slide1">#3F51B5</color>
@@ -16,4 +16,7 @@
 
     <color name="active_dots">#fffafa</color>
     <color name="inactive_dots">#83878b</color>
+
+    <color name="signup_male">#80d8ff</color>
+    <color name="signup_female">#f3e5f5</color>
 </resources>

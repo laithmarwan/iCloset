@@ -1,8 +1,13 @@
 package com.example.icloset
+import android.app.PendingIntent.getActivity
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.CalendarContract
+import android.support.v4.content.ContextCompat
+import android.view.View
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
@@ -17,6 +22,22 @@ class NewUserAct : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_user)
+
+        val colorValue1 = ContextCompat.getColor(this, R.color.signup_male)
+        val colorValue2 = ContextCompat.getColor(this, R.color.signup_female)
+
+        radioButton3.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                background.setBackgroundColor(colorValue1)
+            }
+        })
+
+        radioButton5.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                background.setBackgroundColor(colorValue2)
+
+            }
+        })
 
         register_button.setOnClickListener {
 
