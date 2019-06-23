@@ -31,10 +31,10 @@ class ClosetFragment : Fragment() {
         // Inflate the layout for this fragment
       var v = inflater.inflate(R.layout.fragment_closet, container, false)
 
-        var adp = ClosetFragment.FPA(requireActivity().supportFragmentManager)
+        var adp = FPA(requireActivity().supportFragmentManager)
         v.vp.adapter = adp
 
-        v.vp.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
+        v.vp.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(v.tabs))
 
         v.tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(v.vp))
 

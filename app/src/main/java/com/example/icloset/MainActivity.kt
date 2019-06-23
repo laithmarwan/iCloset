@@ -85,7 +85,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 tr.commit()
 
             }
+            if(menuItem.itemId == R.id.menu_outfits){
+                var obj = OutfitsFragment()
+                tr.replace(R.id.main_frame,obj)
+                tr.addToBackStack(null)
+                tr.commit()
 
+            }
             if(menuItem.itemId == R.id.menu_home){
                 var obj = HomeFragment()
                 tr.replace(R.id.main_frame,obj)
@@ -105,10 +111,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         //till here
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+
 
         val toggle = ActionBarDrawerToggle(
             this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
