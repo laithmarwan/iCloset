@@ -25,10 +25,10 @@ class TabAct : AppCompatActivity(), TabLayout.OnTabSelectedListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tab)
 
-        var courses= arrayOf("Closet","Home","Calendar")
-        var icons = arrayOf(R.drawable.clothes,R.drawable.home,R.drawable.calendar)
+        var courses= arrayOf("Tops","Bottoms","Shoes","Dresses","Bags","Accessories","Outerwear")
+        var icons = arrayOf(R.drawable.clothes,R.drawable.home,R.drawable.calendar,R.drawable.calendar,R.drawable.calendar,R.drawable.calendar,R.drawable.calendar)
 
-        for(x in 0..courses.size-1)
+        for(x in 0 until courses.size)
         {
             tab2.addTab(tab2.newTab().setText(courses[x]).setIcon(icons[x]))
         }
