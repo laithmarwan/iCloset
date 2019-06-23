@@ -10,20 +10,6 @@
         android:id="@+id/login_layout"
         >
 
-    <TextView
-            android:text="ICLOSET"
-            android:layout_width="328dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/app_name"
-            android:textSize="60sp"
-            app:fontFamily="@font/southernaire"
-            app:layout_constraintTop_toBottomOf="@+id/imageView6"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginRight="8dp"/>
-
     <EditText
             android:foregroundGravity="center"
             android:layout_width="353dp"
@@ -38,8 +24,8 @@
             android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="8dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="28dp" app:layout_constraintTop_toBottomOf="@+id/app_name"
-            app:layout_constraintHorizontal_bias="0.547"/>
+            app:layout_constraintHorizontal_bias="0.547"
+            android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/imageView6"/>
 
     <EditText
             android:foregroundGravity="center"
@@ -94,12 +80,65 @@
             android:layout_marginLeft="8dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginRight="8dp"/>
     <ImageView
-            android:layout_width="179dp"
-            android:layout_height="110dp" app:srcCompat="@drawable/applogo"
+            android:layout_width="47dp"
+            android:layout_height="62dp" app:srcCompat="@drawable/applogo"
             android:id="@+id/imageView6"
-            android:layout_marginTop="68dp" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"/>
+            app:layout_constraintStart_toEndOf="@+id/textView11"
+            android:layout_marginTop="152dp" app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+            android:text="I"
+            android:layout_width="15dp"
+            android:layout_height="62dp"
+            android:id="@+id/textView4" android:textSize="60sp"
+            app:fontFamily="@font/aldith" android:layout_marginStart="72dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="72dp" android:textColor="#ffc91f" android:layout_marginTop="152dp"
+            app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+            android:text="C"
+            android:layout_width="47dp"
+            android:layout_height="62dp"
+            android:id="@+id/textView7" android:textSize="55sp"
+            app:fontFamily="@font/aldith"
+            android:textColor="#ff9b0b" app:layout_constraintStart_toEndOf="@+id/textView4"
+            android:layout_marginTop="152dp" app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+            android:text="S"
+            android:layout_width="41dp"
+            android:layout_height="62dp"
+            android:id="@+id/textView12" android:textSize="60sp"
+            app:fontFamily="@font/aldith"
+            android:textColor="#004776"
+            app:layout_constraintStart_toEndOf="@+id/imageView6"
+            android:layout_marginTop="152dp" app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+            android:text="E"
+            android:layout_width="41dp"
+            android:layout_height="62dp"
+            android:id="@+id/textView13" android:textSize="60sp"
+            app:fontFamily="@font/aldith"
+            android:textColor="#007f76"
+            app:layout_constraintStart_toEndOf="@+id/textView12"
+            android:layout_marginTop="152dp" app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+            android:text="T"
+            android:layout_width="41dp"
+            android:layout_height="62dp"
+            android:id="@+id/textView14" android:textSize="60sp"
+            app:fontFamily="@font/aldith"
+            android:textColor="#55bf00"
+            app:layout_constraintStart_toEndOf="@+id/textView13"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"
+            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="152dp"
+            app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+            android:text="L"
+            android:layout_width="32dp"
+            android:layout_height="62dp"
+            android:id="@+id/textView11" android:textSize="60sp"
+            app:fontFamily="@font/aldith"
+            android:textColor="#d70006"
+            app:layout_constraintStart_toEndOf="@+id/textView7"
+            android:layout_marginTop="152dp" app:layout_constraintTop_toTopOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>
