@@ -50,6 +50,11 @@ class LoginAct : AppCompatActivity() {
             startActivity(Intent(this, NewUserAct::class.java))
         }
 
+        forgotps_tv.setOnClickListener {
+
+            startActivity(Intent(this, activity_forgotpass::class.java))
+        }
+
 
         imageView5.setOnClickListener {
             imageView5.animate()
