@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
 
+
         var obj1 = icloset(this)
         var db = obj1.writableDatabase
         var cur= db.rawQuery("select * from item", arrayOf())
@@ -197,7 +198,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     editor.commit()
                     var i = Intent(this, LoginAct::class.java)
                     startActivity(i)
-                    finish();
+                    finish()
                 }
                 builder.setNegativeButton("No"){
                         dialog, which ->

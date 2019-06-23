@@ -13,14 +13,17 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Build
 import android.provider.MediaStore
+import android.support.design.widget.BaseTransientBottomBar
 import android.support.design.widget.BottomSheetDialog
 import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.support.v4.content.ContextCompat.checkSelfPermission
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_photo_edit_review.*
 import kotlinx.android.synthetic.main.dialog_layout.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import java.util.jar.Manifest
@@ -94,16 +97,22 @@ class HomeFragment : Fragment() {
             val camera_help = view.findViewById<TextView>(R.id.camera_help_button)
             camera_help.setOnClickListener {
                 if (Build.VERSION.SDK_INT > 22) {
-                    if (checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) ==
+                    if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) ==
                         PackageManager.PERMISSION_DENIED) {
-                        ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.CAMERA), camera_code)
+                        ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.CAMERA),
+                            HomeFragment.camera_code
+                        )
                     }
                     else {
-                        openCamera()
+                        var i = Intent(activity, PhotoEditReview::class.java)
+                        startActivity(i)
+
                     }
                 }
                 else{
-                    openCamera()
+                    var i = Intent(activity, PhotoEditReview::class.java)
+                    startActivity(i)
+
                 }
             }
 
@@ -141,18 +150,10 @@ class HomeFragment : Fragment() {
         startActivityForResult(intent, image_pick_code)
     }
 
-    private fun openCamera(){
-        var i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(i, 123)
-    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode === 123){
-            var bmp = data.extras.get("data") as Bitmap
-            //camera action here
-        }
-
         if (resultCode == Activity.RESULT_OK && requestCode == image_pick_code){
             // pick image action here
         }
@@ -176,7 +177,9 @@ class HomeFragment : Fragment() {
             }
             camera_code -> {
                 if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    openCamera()
+                    var i = Intent(activity, PhotoEditReview::class.java)
+                    startActivity(i)
+
                 }
                 else{
                     //
