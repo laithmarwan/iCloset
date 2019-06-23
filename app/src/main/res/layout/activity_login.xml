@@ -15,24 +15,12 @@
             android:layout_width="wrap_content"
             android:layout_height="65dp"
             android:id="@+id/app_name"
-            android:textSize="80sp"
+            android:textSize="50sp"
             android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="8dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginRight="8dp"
-            app:fontFamily="@font/garto16"
-            android:textStyle="italic"
-            app:layout_constraintTop_toBottomOf="@+id/imageView6"/>
-    <Button
-            android:background="@drawable/round_corners_button"
-            android:textColor="#FFFF"
-            android:text="Login"
-            android:layout_width="198dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView5"
-            android:layout_marginTop="116dp" app:layout_constraintTop_toBottomOf="@+id/login_pass"
-            android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginRight="8dp" android:textAllCaps="false" android:textSize="18dp"/>
+            app:fontFamily="@font/vastshadow"
+            app:layout_constraintTop_toBottomOf="@+id/imageView6" android:textStyle="italic"/>
 
     <EditText
             android:foregroundGravity="center"
@@ -48,7 +36,8 @@
             android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="8dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="104dp" app:layout_constraintTop_toBottomOf="@+id/app_name"/>
+            android:layout_marginTop="88dp" app:layout_constraintTop_toBottomOf="@+id/app_name"
+            app:layout_constraintHorizontal_bias="0.547"/>
 
     <EditText
             android:foregroundGravity="center"
@@ -77,42 +66,37 @@
             android:layout_marginRight="8dp"
             app:layout_constraintHorizontal_bias="0.928"
             app:layout_constraintTop_toBottomOf="@+id/login_pass"
-    />
+            android:textColor="#FFE5DEDE"/>
 
-
-
-
-    <TextView
-            android:text="New User?"
-            android:layout_width="wrap_content"
+    <Button
+            android:background="@drawable/round_corners_button"
+            android:textColor="#FFFF"
+            android:text="Login"
+            android:layout_width="198dp"
             android:layout_height="wrap_content"
-            android:id="@+id/textView4"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-            app:layout_constraintHorizontal_bias="0.446"
+            android:id="@+id/imageView5"
+            android:layout_marginTop="116dp" app:layout_constraintTop_toBottomOf="@+id/login_pass"
+            android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="8dp" android:textAllCaps="false" android:textSize="18dp"
     />
 
     <TextView
-            android:text="sign up"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView5"
-            android:textColor="#0288d1"
-
+            android:text="Sign up"
+            android:layout_width="55dp"
+            android:layout_height="20dp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/imageView5" android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"
-            app:layout_constraintStart_toEndOf="@+id/textView4" android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp" app:layout_constraintHorizontal_bias="0.0"/>
+            android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp"
+            android:id="@+id/textView5" android:textSize="16sp" android:textColor="@color/active_dots"/>
     <ImageView
             android:layout_width="179dp"
             android:layout_height="110dp" app:srcCompat="@drawable/applogo"
             android:id="@+id/imageView6" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp" android:layout_marginTop="52dp" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"/>
+            android:layout_marginRight="8dp" android:layout_marginTop="72dp" app:layout_constraintTop_toTopOf="parent"
+    />
 
 </android.support.constraint.ConstraintLayout>
