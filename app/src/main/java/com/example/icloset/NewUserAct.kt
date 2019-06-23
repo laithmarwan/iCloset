@@ -23,18 +23,17 @@ class NewUserAct : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_user)
 
-        val colorValue1 = ContextCompat.getColor(this, R.color.signup_male)
-        val colorValue2 = ContextCompat.getColor(this, R.color.signup_female)
 
         radioButton3.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                background.setBackgroundColor(colorValue1)
+                background.setBackgroundResource(R.drawable.gradient_male)
+
             }
         })
 
         radioButton5.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                background.setBackgroundColor(colorValue2)
+                background.setBackgroundResource(R.drawable.gradient_female)
 
             }
         })
