@@ -1,21 +1,16 @@
 package com.example.icloset
 
-import android.app.PendingIntent.getActivity
+
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
-import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
@@ -23,7 +18,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.android.synthetic.main.nav_header_main.*
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -36,19 +31,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //our code from here
 
 
-        var adp = FPA(supportFragmentManager)
-        vp.adapter = adp
 
-        vp.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
-
-        tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(vp))
-
-        var navigationView =  findViewById(R.id.nav_view) as NavigationView
+        var navigationView = findViewById<NavigationView>(R.id.nav_view)
         var headerView: View = navigationView.getHeaderView(0)
         var navUsername:TextView  =  headerView.findViewById(R.id.tv_name) as (TextView)
-        navUsername.setText(AppInfo.Name)
+        navUsername.text = AppInfo.Name
         var navEmail:TextView  =  headerView.findViewById(R.id.tv_email) as (TextView)
-        navEmail.setText(AppInfo.Email)
+        navEmail.text = AppInfo.Email
 
 
 
@@ -62,7 +51,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             builder.setMessage("Would you like to add your closet?")
             builder.setPositiveButton("Start"
             ) { dialogInterface: DialogInterface, i: Int ->
-                vp.currentItem = 0
+                var trans = supportFragmentManager.beginTransaction()
+                var obj = ClosetFragment()
+                trans.replace(R.id.main_frame,obj)
+                trans.commit()
+
             }
 
             builder.setNegativeButton("Later"){
@@ -72,10 +65,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
 
-        /* main_nav.menu.getItem(1).setChecked(true)
-        var trans = fragmentManager.beginTransaction()
+        var trans = supportFragmentManager.beginTransaction()
         var obj = HomeFragment()
         trans.replace(R.id.main_frame,obj)
+        trans.addToBackStack(null)
         trans.commit()
 
 
@@ -83,11 +76,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         main_nav.setOnNavigationItemSelectedListener {
 
                 menuItem ->
-            var tr = fragmentManager.beginTransaction()
+            var tr = supportFragmentManager.beginTransaction()
             if(menuItem.itemId == R.id.menu_closet){
                 var obj = ClosetFragment()
                 tr.replace(R.id.main_frame,obj)
+                tr.addToBackStack(null)
                 tr.commit()
+
             }
 
             if(menuItem.itemId == R.id.menu_home){
@@ -102,7 +97,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             true
-        }*/
+        }
 
 
 
@@ -119,25 +114,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
-        vp.currentItem = 1
         nav_view.setNavigationItemSelectedListener(this)
-    }
-    class FPA(fm: FragmentManager) : FragmentPagerAdapter(fm)
-    {
-        override fun getItem(position: Int): Fragment {
-
-            return when (position) {
-                0 -> ClosetFragment()
-                1 -> HomeFragment()
-                else -> CalendarFragment()
-            }
-
-        }
-
-        override fun getCount(): Int {
-            return 3
-        }
-
     }
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
@@ -147,21 +124,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        when (item.itemId) {
-            R.id.action_settings -> return true
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
@@ -197,7 +159,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     editor.commit()
                     var i = Intent(this, LoginAct::class.java)
                     startActivity(i)
-                    finish();
+                    finish()
                 }
                 builder.setNegativeButton("No"){
                         dialog, which ->
