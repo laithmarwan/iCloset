@@ -11,5 +11,7 @@
         android:toYScale="0.94"
         android:duration="600"
         android:repeatMode="reverse"
-        android:repeatCount="1"></scale>
+        android:repeatCount="1"
+    />
+
 </set>
