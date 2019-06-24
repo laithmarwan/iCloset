@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import kotlinx.android.synthetic.main.fragment_bottoms.view.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -24,7 +26,25 @@ class BottomsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bottoms, container, false)
+         var v = inflater.inflate(R.layout.fragment_bottoms, container, false)
+
+        var tops = ArrayList<String>()
+        tops.add("Trousers")
+        tops.add("Shorts")
+        tops.add("Jeans")
+        if(AppInfo.Gender == "0")
+            tops.add("Skirts")
+
+
+        var adp = ArrayAdapter(activity,R.layout.layout_group,tops)
+
+        v.BottomsListView.adapter = adp
+
+        v.BottomsListView.setOnItemClickListener { parent, view, position, id ->
+
+
+        }
+        return v
     }
 
 

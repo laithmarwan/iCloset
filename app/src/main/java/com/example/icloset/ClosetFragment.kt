@@ -12,16 +12,6 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_closet.*
 import kotlinx.android.synthetic.main.fragment_closet.view.*
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- *
- */
 class ClosetFragment : Fragment() {
 
     override fun onCreateView(
@@ -35,7 +25,24 @@ class ClosetFragment : Fragment() {
         v.vp.adapter = adp
 
         v.vp.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(v.tabs))
+        lateinit var courses:Array<String>
+        lateinit var icons:Array<Int>
+        if(AppInfo.Gender == "0") {
+            //Women's clothing: see our documentation interface
+            courses= arrayOf("","","","","","","")
+            icons = arrayOf(R.drawable.clothes,R.drawable.home,R.drawable.calendar,R.drawable.calendar,R.drawable.calendar,R.drawable.calendar,R.drawable.calendar)
+        }
+        else{
+            //Men's clothing: don't include dresses icon
+            courses= arrayOf("","","","","","")
+            icons = arrayOf(R.drawable.clothes,R.drawable.home,R.drawable.calendar,R.drawable.calendar,R.drawable.calendar,R.drawable.calendar)
+        }
 
+
+        for(x in 0 until courses.size)
+        {
+            v.tabs.addTab(v.tabs.newTab().setText(courses[x]).setIcon(icons[x]))
+        }
         v.tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(v.vp))
 
 

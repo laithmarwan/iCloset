@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import kotlinx.android.synthetic.main.fragment_accessories.view.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -24,7 +26,30 @@ class AccessoriesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_accessories, container, false)
+        var v = inflater.inflate(R.layout.fragment_bottoms, container, false)
+
+        var tops = ArrayList<String>()
+
+        tops.add("Watches")
+        tops.add("Sunglasses")
+        tops.add("Belts")
+        tops.add("Hats")
+        tops.add("Necklaces")
+        tops.add("Bracelets")
+        tops.add("Rings")
+        tops.add("Headbands")
+        tops.add("Earrings")
+        tops.add("Scarves")
+
+        var adp = ArrayAdapter(activity,R.layout.layout_group,tops)
+
+        v.AccsListView.adapter = adp
+
+        v.AccsListView.setOnItemClickListener { parent, view, position, id ->
+
+
+        }
+        return v
     }
 
 

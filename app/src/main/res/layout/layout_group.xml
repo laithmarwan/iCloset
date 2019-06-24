@@ -3,8 +3,8 @@
           android:id="@+id/tv_title"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:paddingEnd="10dp"
-          android:paddingBottom="10dp"
-          android:paddingTop="10dp"
-          android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft" android:paddingRight="10dp"
+          android:paddingEnd="20dp"
+          android:paddingBottom="20dp"
+          android:paddingTop="20dp"
+          android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft" android:paddingRight="20dp"
           android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"/>
