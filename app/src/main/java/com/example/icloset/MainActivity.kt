@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 var obj = ClosetFragment()
                 trans.replace(R.id.main_frame,obj)
                 trans.commit()
-
+                main_nav.menu.getItem(1).isChecked = true
             }
 
             builder.setNegativeButton("Later"){
