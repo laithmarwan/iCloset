@@ -78,7 +78,6 @@ class PhotoEditReview : AppCompatActivity() {
 
     private fun openCamera(){
         var i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-
         startActivityForResult(i, 123)
     }
 
