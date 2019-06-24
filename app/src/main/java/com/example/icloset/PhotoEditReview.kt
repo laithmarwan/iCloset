@@ -13,6 +13,8 @@ import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.view.MotionEvent
+import android.widget.Toast
+import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.activity_photo_edit_review.*
 
 class PhotoEditReview : AppCompatActivity() {
@@ -22,7 +24,18 @@ class PhotoEditReview : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_photo_edit_review)
-        openCamera()
+
+
+       // if (intent.getStringExtra("valor") == "cam")
+        //{
+            openCamera()
+       // }
+
+        //else
+       // {
+           // pickImageFromGallery()
+       // }
+
 
         item_photo_editor.isDrawingCacheEnabled = true
         item_photo_editor.buildDrawingCache(true)
@@ -48,15 +61,30 @@ class PhotoEditReview : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode === 123){
             //camera action here
-
             var bmp = data?.extras?.get("data") as Bitmap
             item_photo_editor.setImageBitmap(bmp)
+            // crop
+            //if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+                //var result = CropImage.getActivityResult(data)
+                //item_photo_editor.setImageURI(result.uri)
+            //}
+        }
 
+        if(requestCode === 1234){
+            var bmp = data?.extras?.get("data") as Bitmap
+            item_photo_editor.setImageBitmap(bmp)
         }
     }
 
     private fun openCamera(){
         var i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
         startActivityForResult(i, 123)
+    }
+
+    private fun pickImageFromGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, 1234)
     }
 }

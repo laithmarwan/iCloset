@@ -23,6 +23,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_photo_edit_review.*
 import kotlinx.android.synthetic.main.dialog_layout.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
@@ -100,19 +102,22 @@ class HomeFragment : Fragment() {
                     if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) ==
                         PackageManager.PERMISSION_DENIED) {
                         ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.CAMERA),
-                            HomeFragment.camera_code
-                        )
+                            HomeFragment.camera_code)
                     }
-                    else {
+                    else
+                    {
                         var i = Intent(activity, PhotoEditReview::class.java)
                         startActivity(i)
-
                     }
                 }
-                else{
+                else
+                {
+                    //crop
+                    //CropImage.activity()
+                        //.setGuidelines(CropImageView.Guidelines.ON)
+                        //.start(Activity())
                     var i = Intent(activity, PhotoEditReview::class.java)
                     startActivity(i)
-
                 }
             }
 
@@ -121,21 +126,25 @@ class HomeFragment : Fragment() {
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     if(checkSelfPermission(requireContext(),android.Manifest.permission.READ_EXTERNAL_STORAGE) ==
                         PackageManager.PERMISSION_DENIED) {
-                        ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), permission_code)
+                        ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
+                            HomeFragment.permission_code)
                     }
                     else{
-                        pickImageFromGallery()
+                        var i = Intent(activity, PhotoEditReview::class.java)
+                        startActivity(i)
                     }
                 }
                 else{
-                    pickImageFromGallery()
+                    var i = Intent(activity, PhotoEditReview::class.java)
+                    startActivity(i)
                 }
             }
 
             val closet_help = view.findViewById<TextView>(R.id.closet_help_button)
             closet_help.setOnClickListener {
-
+                //Go to closet
             }
+
 
             dialog.setContentView(view)
             dialog.show()
@@ -144,23 +153,7 @@ class HomeFragment : Fragment() {
     }
 
 
-    private fun pickImageFromGallery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, image_pick_code)
-    }
-
-
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == image_pick_code){
-            // pick image action here
-        }
-    }
-
     companion object {
-        private val image_pick_code = 1000
         private val permission_code = 1001
         private val camera_code = 1002
     }
@@ -169,19 +162,25 @@ class HomeFragment : Fragment() {
         when(requestCode){
             permission_code -> {
                 if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    pickImageFromGallery()
+                    var i = Intent(activity, PhotoEditReview::class.java)
+                    //i.putExtra("act", "media")
+                    startActivity(i)
                 }
-                else{
+
+                else
+                {
                     //
                 }
             }
             camera_code -> {
                 if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     var i = Intent(activity, PhotoEditReview::class.java)
+                    //i.putExtra("valor", "cam")
                     startActivity(i)
-
                 }
-                else{
+
+                else
+                {
                     //
                 }
             }
