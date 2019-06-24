@@ -26,7 +26,7 @@ class AccessoriesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var v = inflater.inflate(R.layout.fragment_bottoms, container, false)
+        var v = inflater.inflate(R.layout.fragment_accessories, container, false)
 
         var tops = ArrayList<String>()
 
@@ -43,12 +43,12 @@ class AccessoriesFragment : Fragment() {
 
         var adp = ArrayAdapter(activity,R.layout.layout_group,tops)
 
-        v.AccsListView.adapter = adp
+        v.lv_accessories.adapter = adp
 
-        v.AccsListView.setOnItemClickListener { parent, view, position, id ->
+       /* v.AccsListView.setOnItemClickListener { parent, view, position, id ->
 
 
-        }
+        }*/
         return v
     }
 

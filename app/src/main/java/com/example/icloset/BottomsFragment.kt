@@ -37,13 +37,14 @@ class BottomsFragment : Fragment() {
 
 
         var adp = ArrayAdapter(activity,R.layout.layout_group,tops)
-
-        v.BottomsListView.adapter = adp
-
-        v.BottomsListView.setOnItemClickListener { parent, view, position, id ->
+        v.lv_bottoms.adapter = adp
 
 
-        }
+
+        /*   v.BottomsListView.setOnItemClickListener { parent, view, position, id ->
+
+
+        }*/
         return v
     }
 

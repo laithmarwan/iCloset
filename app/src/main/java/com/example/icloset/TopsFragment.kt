@@ -40,10 +40,10 @@ class TopsFragment : Fragment() {
 
         v.ListView.adapter = adp
 
-        v.ListView.setOnItemClickListener { parent, view, position, id ->
+      /*  v.ListView.setOnItemClickListener { parent, view, position, id ->
 
 
-        }
+        }*/
 
 /*
         val recyclerView = v.findViewById(R.id.recyclerView) as RecyclerView

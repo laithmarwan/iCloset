@@ -26,7 +26,7 @@ class BagsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var v = inflater.inflate(R.layout.fragment_bottoms, container, false)
+        var v = inflater.inflate(R.layout.fragment_bags, container, false)
 
         var tops = ArrayList<String>()
         if(AppInfo.Gender == "0"){
@@ -43,12 +43,12 @@ class BagsFragment : Fragment() {
 
         var adp = ArrayAdapter(activity,R.layout.layout_group,tops)
 
-        v.BagsListView.adapter = adp
+        v.lv_bags.adapter = adp
 
-        v.BagsListView.setOnItemClickListener { parent, view, position, id ->
+    /*    v.BagsListView.setOnItemClickListener { parent, view, position, id ->
 
 
-        }
+        }*/
         return v
     }
 

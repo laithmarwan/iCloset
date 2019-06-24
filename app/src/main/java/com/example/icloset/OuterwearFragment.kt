@@ -26,7 +26,7 @@ class OuterwearFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var v = inflater.inflate(R.layout.fragment_bottoms, container, false)
+        var v = inflater.inflate(R.layout.fragment_outerwear, container, false)
 
         var tops = ArrayList<String>()
 
@@ -35,12 +35,12 @@ class OuterwearFragment : Fragment() {
 
         var adp = ArrayAdapter(activity,R.layout.layout_group,tops)
 
-        v.OutListView.adapter = adp
+        v.lv_outer.adapter = adp
 
-        v.OutListView.setOnItemClickListener { parent, view, position, id ->
+      /*  v.OutListView.setOnItemClickListener { parent, view, position, id ->
 
 
-        }
+        }*/
         return v
     }
 

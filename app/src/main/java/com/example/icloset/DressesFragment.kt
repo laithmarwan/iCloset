@@ -26,7 +26,7 @@ class DressesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var v = inflater.inflate(R.layout.fragment_bottoms, container, false)
+        var v = inflater.inflate(R.layout.fragment_dresses, container, false)
 
         var tops = ArrayList<String>()
         tops.add("Trousers")
@@ -37,12 +37,12 @@ class DressesFragment : Fragment() {
 
         var adp = ArrayAdapter(activity,R.layout.layout_group,tops)
 
-        v.DressListView.adapter = adp
+       v.lv_dresses.adapter = adp
 
-        v.DressListView.setOnItemClickListener { parent, view, position, id ->
+      /*  v.DressListView.setOnItemClickListener { parent, view, position, id ->
 
 
-        }
+        }*/
         return v
     }
 

@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import kotlinx.android.synthetic.main.fragment_shoes.*
+import kotlinx.android.synthetic.main.fragment_shoes.view.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -24,7 +27,29 @@ class ShoesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_shoes, container, false)
+        var v = inflater.inflate(R.layout.fragment_shoes, container, false)
+
+        var tops = ArrayList<String>()
+        if(AppInfo.Gender == "0"){
+            tops.add("Satchels")
+            tops.add("Totes")
+            tops.add("Clutches")
+        }
+        else{
+            tops.add("Briefcase")
+            tops.add("Messenger Bag")
+            tops.add("Hobo")
+        }
+
+        tops.add("ello")
+        var adp = ArrayAdapter(activity,R.layout.layout_group,tops)
+
+        v.lv_shoes.adapter = adp
+
+        /*    v.BagsListView.setOnItemClickListener { parent, view, position, id ->
+
+            }*/
+        return v
     }
 
 
