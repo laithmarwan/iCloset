@@ -37,12 +37,33 @@ class OuterwearFragment : Fragment() {
 
         v.lv_outer.adapter = adp
 
-      /*  v.OutListView.setOnItemClickListener { parent, view, position, id ->
+      v.lv_outer.setOnItemClickListener { parent, view, position, id ->
+
+          AppInfo.type = "outerwear"
+          when (position) {
+              0 -> {
+                  AppInfo.desc = "jackets"
+                  MoveToFragment(ItemsFragment())
+              }
+              else -> {
+                  AppInfo.desc = "coats"
+                  MoveToFragment(ItemsFragment())
+              }
+          }
 
 
-        }*/
+
+      }
         return v
     }
 
+    private fun MoveToFragment(frg:Fragment){
+        var trans = requireActivity().supportFragmentManager.beginTransaction()
+        var obj = frg
+        trans.replace(R.id.vp,obj)
+        trans.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
+        trans.addToBackStack(null)
+        trans.commit()
+    }
 
 }

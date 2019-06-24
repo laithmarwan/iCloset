@@ -31,26 +31,66 @@ class ShoesFragment : Fragment() {
 
         var tops = ArrayList<String>()
         if(AppInfo.Gender == "0"){
-            tops.add("Satchels")
-            tops.add("Totes")
-            tops.add("Clutches")
+            tops.add("Boots")
+            tops.add("Flats")
+            tops.add("Heels")
+            tops.add("Sandals")
         }
         else{
-            tops.add("Briefcase")
-            tops.add("Messenger Bag")
-            tops.add("Hobo")
+            tops.add("Boots")
+            tops.add("Boat Shoes")
+            tops.add("Sneakers")
+            tops.add("Trainers")
         }
 
-        tops.add("ello")
+
         var adp = ArrayAdapter(activity,R.layout.layout_group,tops)
 
         v.lv_shoes.adapter = adp
 
-        /*    v.BagsListView.setOnItemClickListener { parent, view, position, id ->
+          v.lv_shoes.setOnItemClickListener { parent, view, position, id ->
+              AppInfo.type = "shoes"
+              when (position) {
+                  0 -> {
+                      AppInfo.desc = "boots"
+                      MoveToFragment(ItemsFragment())
+                  }
+                  1 -> {
+                      if(AppInfo.Gender == "0")
+                          AppInfo.desc = "flats"
+                      else
+                          AppInfo.desc = "boat"
+                      MoveToFragment(ItemsFragment())
+                  }
+                  2 -> {
+                      if(AppInfo.Gender == "0")
+                          AppInfo.desc = "heels"
+                      else
+                          AppInfo.desc = "sneakers"
+                      MoveToFragment(ItemsFragment())
+                  }
+                else -> {
+                    if(AppInfo.Gender == "0")
+                        AppInfo.desc = "sandals"
+                    else
+                        AppInfo.desc = "trainers"
+                    MoveToFragment(ItemsFragment())
+                  }
+              }
 
-            }*/
+
+
+          }
         return v
     }
 
+    private fun MoveToFragment(frg:Fragment){
+        var trans = requireActivity().supportFragmentManager.beginTransaction()
+        var obj = frg
+        trans.replace(R.id.vp,obj)
+        trans.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
+        trans.addToBackStack(null)
+        trans.commit()
+    }
 
 }

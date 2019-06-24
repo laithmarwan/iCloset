@@ -29,9 +29,11 @@ class DressesFragment : Fragment() {
         var v = inflater.inflate(R.layout.fragment_dresses, container, false)
 
         var tops = ArrayList<String>()
-        tops.add("Trousers")
-        tops.add("Shorts")
-        tops.add("Jeans")
+        tops.add("Evening Gowns")
+        tops.add("Cocktail Dresses")
+        tops.add("Strapless Dresses")
+        tops.add("Sundresses")
+        tops.add("Shirt Dresses")
 
 
 
@@ -39,12 +41,46 @@ class DressesFragment : Fragment() {
 
        v.lv_dresses.adapter = adp
 
-      /*  v.DressListView.setOnItemClickListener { parent, view, position, id ->
+        v.lv_dresses.setOnItemClickListener { parent, view, position, id ->
+            AppInfo.type = "dresses"
+            when (position) {
+                0 -> {
+                    AppInfo.desc = "evening"
+                    MoveToFragment(ItemsFragment())
+                }
+                1 -> {
+                    AppInfo.desc = "cocktail"
+                    MoveToFragment(ItemsFragment())
+                }
+                2 -> {
+                    AppInfo.desc = "strapless"
+                    MoveToFragment(ItemsFragment())
+                }
+                3 -> {
+                    AppInfo.desc = "sundresses"
+                    MoveToFragment(ItemsFragment())
+                }
+                else -> {
+                    AppInfo.desc = "shirt"
+                    MoveToFragment(ItemsFragment())
+                }
+            }
 
 
-        }*/
+
+
+        }
         return v
     }
 
 
+
+    private fun MoveToFragment(frg:Fragment){
+        var trans = requireActivity().supportFragmentManager.beginTransaction()
+        var obj = frg
+        trans.replace(R.id.vp,obj)
+        trans.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
+        trans.addToBackStack(null)
+        trans.commit()
+    }
 }

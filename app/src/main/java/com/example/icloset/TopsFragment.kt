@@ -40,10 +40,35 @@ class TopsFragment : Fragment() {
 
         v.ListView.adapter = adp
 
-      /*  v.ListView.setOnItemClickListener { parent, view, position, id ->
+        v.ListView.setOnItemClickListener { parent, view, position, id ->
+
+            AppInfo.type = "tops"
+            when (position) {
+                0 -> {
+                    AppInfo.desc = "blazers"
+                    MoveToFragment(ItemsFragment())
+                }
+                1 -> {
+                    AppInfo.desc = "shirts"
+                    MoveToFragment(ItemsFragment())
+                }
+                2 -> {
+                    AppInfo.desc = "sweaters"
+                    MoveToFragment(ItemsFragment())
+                }
+                3 -> {
+                    AppInfo.desc = "tshirts"
+                    MoveToFragment(ItemsFragment())
+                }
+                else -> {
+                    AppInfo.desc = "sleeveless"
+                    MoveToFragment(ItemsFragment())
+                }
+            }
 
 
-        }*/
+
+        }
 
 /*
         val recyclerView = v.findViewById(R.id.recyclerView) as RecyclerView
@@ -82,4 +107,13 @@ class TopsFragment : Fragment() {
     }
 
 
+
+    private fun MoveToFragment(frg:Fragment){
+        var trans = requireActivity().supportFragmentManager.beginTransaction()
+        var obj = frg
+        trans.replace(R.id.vp,obj)
+        trans.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
+        trans.addToBackStack(null)
+        trans.commit()
+    }
 }

@@ -3,6 +3,7 @@ package com.example.icloset
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,12 +46,63 @@ class AccessoriesFragment : Fragment() {
 
         v.lv_accessories.adapter = adp
 
-       /* v.AccsListView.setOnItemClickListener { parent, view, position, id ->
+        v.lv_accessories.setOnItemClickListener { parent, view, position, id ->
+            AppInfo.type = "accessories"
+            when (position) {
+                0 -> {
+                    AppInfo.desc = "watches"
+                    MoveToFragment(ItemsFragment())
+                }
+                1 -> {
+                    AppInfo.desc = "sunglasses"
+                    MoveToFragment(ItemsFragment())
+                }
+                2 -> {
+                    AppInfo.desc = "belts"
+                    MoveToFragment(ItemsFragment())
+                }
+                3 -> {
+                    AppInfo.desc = "hats"
+                    MoveToFragment(ItemsFragment())
+                }
+                4 -> {
+                    AppInfo.desc = "necklaces"
+                    MoveToFragment(ItemsFragment())
+                }
+                5 -> {
+                    AppInfo.desc = "bracelets"
+                    MoveToFragment(ItemsFragment())
+                }
+                6 -> {
+                    AppInfo.desc = "rings"
+                    MoveToFragment(ItemsFragment())
+                }
+                7 -> {
+                    AppInfo.desc = "headbands"
+                    MoveToFragment(ItemsFragment())
+                }
+                8 -> {
+                    AppInfo.desc = "earrings"
+                    MoveToFragment(ItemsFragment())
+                }
+                else -> {
+                    AppInfo.desc = "scarves"
+                    MoveToFragment(ItemsFragment())
+                }
+            }
 
 
-        }*/
+        }
         return v
     }
 
+    private fun MoveToFragment(frg:Fragment){
+        var trans = requireActivity().supportFragmentManager.beginTransaction()
+        var obj = frg
+        trans.replace(R.id.vp,obj)
+        trans.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
+        trans.addToBackStack(null)
+        trans.commit()
+    }
 
 }

@@ -41,12 +41,40 @@ class BottomsFragment : Fragment() {
 
 
 
-        /*   v.BottomsListView.setOnItemClickListener { parent, view, position, id ->
+        v.lv_bottoms.setOnItemClickListener { parent, view, position, id ->
+            AppInfo.type = "bottoms"
+            when (position) {
+                0 -> {
+                    AppInfo.desc = "trousers"
+                    MoveToFragment(ItemsFragment())
+                }
+                1 -> {
+                    AppInfo.desc = "shorts"
+                    MoveToFragment(ItemsFragment())
+                }
+                2 -> {
+                    AppInfo.desc = "jeans"
+                    MoveToFragment(ItemsFragment())
+                      }
+                else -> {
+                    AppInfo.desc = "skirts"
+                    MoveToFragment(ItemsFragment())
+                }
+            }
 
 
-        }*/
+
+
+        }
         return v
     }
-
+    private fun MoveToFragment(frg:Fragment){
+        var trans = requireActivity().supportFragmentManager.beginTransaction()
+        var obj = frg
+        trans.replace(R.id.vp,obj)
+        trans.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
+        trans.addToBackStack(null)
+        trans.commit()
+    }
 
 }

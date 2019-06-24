@@ -71,6 +71,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         trans.replace(R.id.main_frame,obj)
         trans.addToBackStack(null)
         trans.commit()
+        main_nav.menu.getItem(0).isChecked = true
 
 
 

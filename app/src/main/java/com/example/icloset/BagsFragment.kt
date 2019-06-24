@@ -45,12 +45,50 @@ class BagsFragment : Fragment() {
 
         v.lv_bags.adapter = adp
 
-    /*    v.BagsListView.setOnItemClickListener { parent, view, position, id ->
+        v.lv_bags.setOnItemClickListener { parent, view, position, id ->
+
+            AppInfo.type = "bags"
+            when (position) {
+                0 -> {
+                    if(AppInfo.Gender == "0")
+                        AppInfo.desc = "satchels"
+                    else
+                        AppInfo.desc = "briefcase"
+                    MoveToFragment(ItemsFragment())
+                }
+                1 -> {
+                    if(AppInfo.Gender == "0")
+                        AppInfo.desc = "satchels"
+                    else
+                        AppInfo.desc = "messenger"
+                    MoveToFragment(ItemsFragment())
+                }
+               else ->{
+                   if(AppInfo.Gender == "0")
+                       AppInfo.desc = "clutches"
+                   else
+                       AppInfo.desc = "hobo"
+                   MoveToFragment(ItemsFragment())
+
+                    }
+
+            }
 
 
-        }*/
+
+
+
+
+        }
         return v
     }
-
+    private fun MoveToFragment(frg:Fragment){
+        var trans = requireActivity().supportFragmentManager.beginTransaction()
+        var obj = frg
+        trans.replace(R.id.vp,obj)
+        trans.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
+        trans.addToBackStack(null)
+        trans.commit()
+    }
 
 }

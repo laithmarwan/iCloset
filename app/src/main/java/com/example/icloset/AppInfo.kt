@@ -11,6 +11,8 @@ class AppInfo {
         var Email:String=""
         var Address:String=""
         var Gender:String = ""
+        var type:String = ""
+        var desc:String = ""
 
 
     }
