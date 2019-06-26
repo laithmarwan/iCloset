@@ -30,12 +30,12 @@ class ClosetFragment : Fragment() {
         if(AppInfo.Gender == "0") {
             //Women's clothing: see our documentation interface
             courses= arrayOf("","","","","","","")
-            icons = arrayOf(R.drawable.clothes,R.drawable.home,R.drawable.calendar,R.drawable.camera_help,R.drawable.calendar,R.drawable.calendar,R.drawable.calendar)
+            icons = arrayOf(R.drawable.woman_tshirt,R.drawable.bottoms,R.drawable.woman_shoes,R.drawable.dresses,R.drawable.purses,R.drawable.shades,R.drawable.jacket)
         }
         else{
             //Men's clothing: don't include dresses icon
             courses= arrayOf("","","","","","")
-            icons = arrayOf(R.drawable.clothes,R.drawable.home,R.drawable.calendar,R.drawable.calendar,R.drawable.calendar,R.drawable.calendar)
+            icons = arrayOf(R.drawable.men_tshirt,R.drawable.bottoms,R.drawable.men_shoes,R.drawable.man_bag,R.drawable.shades,R.drawable.jacket)
         }
 
 
