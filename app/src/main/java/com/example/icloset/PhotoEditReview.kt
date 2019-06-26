@@ -15,6 +15,7 @@ import android.support.v4.content.ContextCompat
 import android.view.MotionEvent
 import android.widget.Toast
 import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_photo_edit_review.*
 
 class PhotoEditReview : AppCompatActivity() {
@@ -26,15 +27,15 @@ class PhotoEditReview : AppCompatActivity() {
         setContentView(R.layout.activity_photo_edit_review)
 
 
-       // if (intent.getStringExtra("valor") == "cam")
-        //{
+       // if (AppInfo.act == "cam")
+       // {
             openCamera()
        // }
 
-        //else
-       // {
-           // pickImageFromGallery()
-       // }
+        /*else if(AppInfo.act == "media")
+        {
+            pickImageFromGallery()
+        }*/
 
 
         item_photo_editor.isDrawingCacheEnabled = true
@@ -59,31 +60,37 @@ class PhotoEditReview : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode === 123){
+        //if (requestCode === 123){
             //camera action here
-            var bmp = data?.extras?.get("data") as Bitmap
-            item_photo_editor.setImageBitmap(bmp)
+            //var bmp = data?.extras?.get("data") as Bitmap
+            //item_photo_editor.setImageBitmap(bmp)
             // crop
-            //if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-                //var result = CropImage.getActivityResult(data)
-                //item_photo_editor.setImageURI(result.uri)
-            //}
-        }
+            if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+                var result = CropImage.getActivityResult(data)
+                item_photo_editor.setImageURI(result.uri)
+            }
+       // }
 
-        if(requestCode === 1234){
-            var bmp = data?.extras?.get("data") as Bitmap
-            item_photo_editor.setImageBitmap(bmp)
-        }
+       /* if (resultCode == Activity.RESULT_OK && requestCode == 1234){
+            item_photo_editor.setImageURI(data?.data)
+        }*/
     }
 
     private fun openCamera(){
-        var i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(i, 123)
+        //var i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        CropImage.activity()
+            .setGuidelines(CropImageView.Guidelines.ON)
+        //startActivityForResult(i, 123)
+
+        .start(this)
+
     }
 
-    private fun pickImageFromGallery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, 1234)
-    }
+   //private fun pickImageFromGallery() {
+        //val intent = Intent(Intent.ACTION_PICK)
+        //intent.type = "image/*"
+        //startActivityForResult(intent, 1234)
+   // }
+
+
 }

@@ -107,6 +107,7 @@ class HomeFragment : Fragment() {
                     else
                     {
                         var i = Intent(activity, PhotoEditReview::class.java)
+                        //AppInfo.act = "cam"
                         startActivity(i)
                     }
                 }
@@ -117,11 +118,12 @@ class HomeFragment : Fragment() {
                         //.setGuidelines(CropImageView.Guidelines.ON)
                         //.start(Activity())
                     var i = Intent(activity, PhotoEditReview::class.java)
+                    //AppInfo.act = "cam"
                     startActivity(i)
                 }
             }
 
-            val media = view.findViewById<TextView>(R.id.media_button)
+            /*val media = view.findViewById<TextView>(R.id.media_button)
             media.setOnClickListener {
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     if(checkSelfPermission(requireContext(),android.Manifest.permission.READ_EXTERNAL_STORAGE) ==
@@ -131,14 +133,16 @@ class HomeFragment : Fragment() {
                     }
                     else{
                         var i = Intent(activity, PhotoEditReview::class.java)
+                        AppInfo.act = "media"
                         startActivity(i)
                     }
                 }
                 else{
                     var i = Intent(activity, PhotoEditReview::class.java)
+                    AppInfo.act = "media"
                     startActivity(i)
                 }
-            }
+            }*/
 
             val closet_help = view.findViewById<TextView>(R.id.closet_help_button)
             closet_help.setOnClickListener {
@@ -154,13 +158,13 @@ class HomeFragment : Fragment() {
 
 
     companion object {
-        private val permission_code = 1001
+        //private val permission_code = 1001
         private val camera_code = 1002
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         when(requestCode){
-            permission_code -> {
+           /* permission_code -> {
                 if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     var i = Intent(activity, PhotoEditReview::class.java)
                     //i.putExtra("act", "media")
@@ -171,7 +175,7 @@ class HomeFragment : Fragment() {
                 {
                     //
                 }
-            }
+            }*/
             camera_code -> {
                 if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     var i = Intent(activity, PhotoEditReview::class.java)
