@@ -12,10 +12,12 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.support.v4.view.GravityCompat
 import android.view.MotionEvent
 import android.widget.Toast
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_photo_edit_review.*
 
 class PhotoEditReview : AppCompatActivity() {
@@ -58,6 +60,8 @@ class PhotoEditReview : AppCompatActivity() {
         }
     }
 
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         //if (requestCode === 123){
@@ -66,8 +70,14 @@ class PhotoEditReview : AppCompatActivity() {
             //item_photo_editor.setImageBitmap(bmp)
             // crop
             if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+
+
                 var result = CropImage.getActivityResult(data)
                 item_photo_editor.setImageURI(result.uri)
+            }
+
+            else{
+                Toast.makeText(this, "aaa", Toast.LENGTH_SHORT).show()
             }
        // }
 
@@ -78,11 +88,11 @@ class PhotoEditReview : AppCompatActivity() {
 
     private fun openCamera(){
         //var i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        CropImage.activity()
-            .setGuidelines(CropImageView.Guidelines.ON)
-        //startActivityForResult(i, 123)
 
-        .start(this)
+         var crm = CropImage.activity()
+            .setGuidelines(CropImageView.Guidelines.ON)
+
+             crm.start(this)
 
     }
 

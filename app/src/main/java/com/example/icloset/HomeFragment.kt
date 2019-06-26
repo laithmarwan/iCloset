@@ -101,7 +101,7 @@ class HomeFragment : Fragment() {
                 if (Build.VERSION.SDK_INT > 22) {
 
 
-                        ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.CAMERA),
+                        requestPermissions(arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.READ_EXTERNAL_STORAGE),
                             HomeFragment.camera_code)
 
                    /* else
@@ -179,9 +179,9 @@ class HomeFragment : Fragment() {
                      //
                  }
              */
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
                 var i = Intent(activity, PhotoEditReview::class.java)
-
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(i)
             }
 
@@ -192,5 +192,5 @@ class HomeFragment : Fragment() {
         }
     }
 
-    }
+}
 

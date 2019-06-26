@@ -25,7 +25,7 @@
     <android.support.design.widget.BottomNavigationView
             android:theme="@style/BottomNavigationTheme"
             android:layout_width="match_parent"
-            android:layout_height="39dp"
+            android:layout_height="46dp"
             app:menu="@menu/nav_items"
             android:id="@+id/main_nav"
             android:layout_marginBottom="0dp"
@@ -33,7 +33,7 @@
             android:layout_marginEnd="0dp"
             android:layout_marginLeft="0dp"
             android:layout_marginStart="0dp"
-            app:itemIconSize="22dp"
+            app:itemIconSize="21dp"
 
             
 

@@ -1,6 +1,7 @@
 package com.example.icloset
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -11,6 +12,7 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.util.Range
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
@@ -18,6 +20,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.fragment_closet.*
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -134,16 +137,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_account -> {
+                var trans = supportFragmentManager.beginTransaction().replace(R.id.main_frame, MyAccount())
+                trans.addToBackStack(null)
+                trans.commit()
+
                 Toast.makeText(this,AppInfo.UserID+AppInfo.Gender+AppInfo.Name+AppInfo.Address, Toast.LENGTH_SHORT).show()
             }
             R.id.nav_theme -> {
 
             }
             R.id.nav_backup -> {
+                Snackbar.make(this.findViewById(R.id.main_frame) , "Backup in progress...", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()
 
             }
             R.id.nav_contact -> {
-
+                var trans = supportFragmentManager.beginTransaction().replace(R.id.main_frame, ContactUs())
+                trans.addToBackStack(null)
+                trans.commit()
             }
             R.id.nav_help -> {
                 PrefManager(this).clearPreference()
