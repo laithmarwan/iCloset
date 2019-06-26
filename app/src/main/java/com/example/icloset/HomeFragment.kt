@@ -99,17 +99,17 @@ class HomeFragment : Fragment() {
             val camera_help = view.findViewById<TextView>(R.id.camera_help_button)
             camera_help.setOnClickListener {
                 if (Build.VERSION.SDK_INT > 22) {
-                    if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) ==
-                        PackageManager.PERMISSION_DENIED) {
+
+
                         ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.CAMERA),
                             HomeFragment.camera_code)
-                    }
-                    else
+
+                   /* else
                     {
                         var i = Intent(activity, PhotoEditReview::class.java)
                         //AppInfo.act = "cam"
                         startActivity(i)
-                    }
+                    }*/
                 }
                 else
                 {
@@ -154,6 +154,8 @@ class HomeFragment : Fragment() {
             dialog.show()
         }
         return v
+
+
     }
 
 
@@ -162,32 +164,33 @@ class HomeFragment : Fragment() {
         private val camera_code = 1002
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        when(requestCode){
-           /* permission_code -> {
-                if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    var i = Intent(activity, PhotoEditReview::class.java)
-                    //i.putExtra("act", "media")
-                    startActivity(i)
-                }
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == camera_code){
+            /* permission_code -> {
+                 if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                     var i = Intent(activity, PhotoEditReview::class.java)
+                     //i.putExtra("act", "media")
+                     startActivity(i)
+                 }
 
-                else
-                {
-                    //
-                }
-            }*/
-            camera_code -> {
-                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    var i = Intent(activity, PhotoEditReview::class.java)
-                    //i.putExtra("valor", "cam")
-                    startActivity(i)
-                }
+                 else
+                 {
+                     //
+                 }
+             */
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                var i = Intent(activity, PhotoEditReview::class.java)
 
-                else
-                {
-                    //
-                }
+                startActivity(i)
+            }
+
+            else
+            {
+                Toast.makeText(activity,"Permissions must be granted",Toast.LENGTH_SHORT).show()
             }
         }
     }
-}
+
+    }
+
