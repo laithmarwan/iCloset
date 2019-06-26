@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
             if(menuItem.itemId == R.id.menu_outfits){
-                var obj = OutfitsFragment()
+                var obj = ItemsFragment()
                 tr.replace(R.id.main_frame,obj)
                 tr.addToBackStack(null)
                 tr.commit()

@@ -21,7 +21,7 @@ class ClosetFragment : Fragment() {
         // Inflate the layout for this fragment
       var v = inflater.inflate(R.layout.fragment_closet, container, false)
 
-        var adp = FPA(requireActivity().supportFragmentManager)
+        var adp = FPA(childFragmentManager)
         v.vp.adapter = adp
 
         v.vp.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(v.tabs))

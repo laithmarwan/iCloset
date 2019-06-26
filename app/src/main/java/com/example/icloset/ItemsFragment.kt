@@ -1,6 +1,8 @@
 package com.example.icloset
 
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -33,13 +35,15 @@ class ItemsFragment : Fragment() {
 
 
         Toast.makeText(activity,AppInfo.type + AppInfo.desc,Toast.LENGTH_SHORT).show()
-        var arr = ArrayList<Item>()
-        arr.add(Item("0","Tops","Blazer",R.id.menu_outfits))
-
+        var cats = ArrayList<Categories>()
+        var bmp:Bitmap = BitmapFactory.decodeResource(context?.resources,R.drawable.outfits)
+        cats.add(Categories("0","tops","blazers",bmp))
+        cats.add(Categories("0","tops","blazers",bmp))
+        cats.add(Categories("0","tops","blazers",bmp))
 
         v.recyclerView.layoutManager = GridLayoutManager(activity,3)
-        var myadapter = RecyclerViewAdapter(activity,arr)
-        v.recyclerView.adapter = myadapter
+        val adapter = CustomAdapter(cats)
+        v.recyclerView.adapter = adapter
         return v
     }
 

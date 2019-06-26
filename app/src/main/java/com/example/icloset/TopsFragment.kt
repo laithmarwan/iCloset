@@ -109,11 +109,11 @@ class TopsFragment : Fragment() {
 
 
     private fun MoveToFragment(frg:Fragment){
-        var trans = requireActivity().supportFragmentManager.beginTransaction()
-        var obj = frg
-        trans.replace(R.id.vp,obj)
-        trans.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
-        trans.addToBackStack(null)
-        trans.commit()
+        childFragmentManager.beginTransaction().apply {
+            add(R.id.vp,frg)
+            addToBackStack(null)
+            //setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
+            commit()
+        }
     }
 }

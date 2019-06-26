@@ -1,3 +1,5 @@
 package com.example.icloset
 
-data class Categories(val name:String )
+import android.graphics.Bitmap
+
+data class Categories(val ID:String, val type:String,var desc:String ,var thumbnail:Bitmap)

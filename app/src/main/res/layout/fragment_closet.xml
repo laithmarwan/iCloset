@@ -15,54 +15,19 @@
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp"
             app:tabBackground="@color/active_dots"
-            app:tabIndicatorColor="@color/colorPrimary"
-    >
-<!--
-        <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:icon="@drawable/clothes"
-                />
+            app:tabIndicatorColor="@color/colorPrimary">
 
-        <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:icon="@drawable/clothes"
-                />
-
-        <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:icon="@drawable/clothes"
-                />
-        <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:icon="@drawable/clothes"
-                />
-        <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:icon="@drawable/clothes"
-                />
-        <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:icon="@drawable/clothes"
-                />
-        <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:icon="@drawable/clothes"
-                />-->
     </android.support.design.widget.TabLayout>
+
+
     <android.support.v4.view.ViewPager
             android:layout_width="match_parent"
-            android:layout_height="0dp"
             android:layout_weight="1"
-            android:id="@+id/vp">
+            android:id="@+id/vp"
+            android:layout_height="690dp">
 
     </android.support.v4.view.ViewPager>
+
     <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
