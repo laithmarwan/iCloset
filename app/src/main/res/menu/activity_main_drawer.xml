@@ -8,12 +8,15 @@
     <group android:checkableBehavior="single">
         <item
                 android:id="@+id/nav_account"
-                android:icon="@drawable/profile3"
-                android:title="My Account"/>
+                android:icon="@drawable/my_acc"
+                android:title="My Account"
+
+        />
         <item
                 android:id="@+id/nav_theme"
                 android:icon="@drawable/theme"
-                android:title="Theme"/>
+                android:title="Theme"
+        />
 
         <item
                 android:id="@+id/nav_backup"
@@ -30,7 +33,7 @@
             <group android:checkableBehavior="single">
             <item
                     android:id="@+id/nav_contact"
-                    android:icon="@drawable/contact"
+                    android:icon="@drawable/contact_us"
                     android:title="Contact Us"/>
             <item
                     android:id="@+id/nav_help"
@@ -42,8 +45,8 @@
 
     <group android:checkableBehavior="single">
     <item android:id="@+id/nav_logout"
-
-    android:title="Logout"/>
+          android:icon="@drawable/exit"
+          android:title="Logout"/>
     </group>
 
 </menu>
