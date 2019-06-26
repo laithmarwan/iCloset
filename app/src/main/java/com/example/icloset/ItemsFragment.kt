@@ -33,8 +33,6 @@ class ItemsFragment : Fragment() {
         // Inflate the layout for this fragment
         var v = inflater.inflate(R.layout.fragment_items, container, false)
 
-
-        Toast.makeText(activity,AppInfo.type + AppInfo.desc,Toast.LENGTH_SHORT).show()
         var cats = ArrayList<Categories>()
         var bmp:Bitmap = BitmapFactory.decodeResource(context?.resources,R.drawable.outfits)
         cats.add(Categories("0","tops","blazers",bmp))
@@ -44,6 +42,8 @@ class ItemsFragment : Fragment() {
         v.recyclerView.layoutManager = GridLayoutManager(activity,3)
         val adapter = CustomAdapter(cats)
         v.recyclerView.adapter = adapter
+        Toast.makeText(activity,AppInfo.type + AppInfo.desc,Toast.LENGTH_SHORT).show()
+
         return v
     }
 

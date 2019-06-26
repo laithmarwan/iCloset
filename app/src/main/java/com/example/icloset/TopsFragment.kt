@@ -109,10 +109,9 @@ class TopsFragment : Fragment() {
 
 
     private fun MoveToFragment(frg:Fragment){
-        childFragmentManager.beginTransaction().apply {
-            add(R.id.vp,frg)
-            addToBackStack(null)
-            //setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
+
+        requireActivity().supportFragmentManager.beginTransaction().apply {
+            replace(R.id.main_frame, frg)
             commit()
         }
     }
