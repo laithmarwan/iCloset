@@ -3,13 +3,17 @@
              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".OutfitsFragment">
+             tools:context=".OutfitsFragment"
+             android:background="#f5f5f5"
+>
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+            android:text="@string/hello_blank_fragment"
+
+    />
     <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
