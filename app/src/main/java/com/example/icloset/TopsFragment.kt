@@ -112,6 +112,8 @@ class TopsFragment : Fragment() {
 
         requireActivity().supportFragmentManager.beginTransaction().apply {
             replace(R.id.main_frame, frg)
+            addToBackStack(null)
+            setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
             commit()
         }
     }
