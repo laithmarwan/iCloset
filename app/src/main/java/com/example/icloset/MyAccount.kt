@@ -35,7 +35,7 @@ class MyAccount : Fragment() {
         // Inflate the layout for this fragment
         var v = inflater.inflate(R.layout.fragment_my_account, container, false)
         v.email_view.text = AppInfo.Email
-        
+
         option = v.findViewById(R.id.city_spinner) as Spinner
         val options = arrayOf("Option1", "Option2")
         option.adapter = ArrayAdapter<String>(activity,android.R.layout.simple_list_item_1, options)
