@@ -16,7 +16,12 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
             android:src="@drawable/plus"
-            app:backgroundTint="@color/colorPrimary"/>
+            app:backgroundTint="@color/colorPrimary"
+            app:fabSize="mini"
+
+
+    />
+
     <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:id="@+id/lv_outfits"/>

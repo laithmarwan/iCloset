@@ -38,5 +38,9 @@
             android:layout_gravity="bottom|end"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            app:srcCompat="@drawable/plus" app:backgroundTint="@color/colorPrimary"/>
+            app:srcCompat="@drawable/plus"
+            app:backgroundTint="@color/colorPrimary"
+            app:fabSize="mini"
+
+    />
 </LinearLayout>

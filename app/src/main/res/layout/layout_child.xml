@@ -7,5 +7,8 @@
               android:paddingEnd="40dp"
               android:paddingBottom="40dp"
               android:paddingTop="40dp"
-              android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft" android:paddingRight="40dp"
-              android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"/>
+              android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft"
+              android:paddingRight="40dp"
+              android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
+              android:background="#eeeeee"
+/>
