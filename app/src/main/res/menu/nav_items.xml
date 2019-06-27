@@ -7,4 +7,5 @@
     <item android:title="Outfits" android:icon="@drawable/outfits2" android:id="@+id/menu_outfits"/>
 
     <item android:title="Calendar" android:icon="@drawable/calendar" android:id="@+id/menu_calendar"/>
+
 </menu>
