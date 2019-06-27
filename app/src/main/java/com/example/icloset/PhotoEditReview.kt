@@ -97,8 +97,8 @@ class PhotoEditReview : AppCompatActivity() {
                 stream.close()
                 Toast.makeText(this,"Stored successfully ${Uri.parse(file.absolutePath)}",Toast.LENGTH_SHORT).show()
            }catch (e:Exception){
-                    e.printStackTrace()
-                    Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show()
+                e.printStackTrace()
+                Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show()
            }
         }else{
             Toast.makeText(this,"Unable to save media to storage",Toast.LENGTH_SHORT).show()
@@ -121,7 +121,7 @@ class PhotoEditReview : AppCompatActivity() {
             }
 
             else{
-                Toast.makeText(this, "Bad URL", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "aaa", Toast.LENGTH_SHORT).show()
             }
        // }
 

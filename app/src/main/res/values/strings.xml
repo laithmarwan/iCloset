@@ -32,4 +32,61 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+
+    <string-array name="category_list">
+        <item>Tops/Blazer</item>
+        <item>Tops/Shirt</item>
+        <item>Tops/Sweater</item>
+        <item>Tops/T-shirt</item>
+        <item>Tops/Sleeveless</item>
+        <item>Bottoms/Trouser</item>
+        <item>Bottoms/Short</item>
+        <item>Bottoms/Jean</item>
+        <item>Bottoms/Skirt</item>
+        <item>Shoes/Boots</item>
+        <item>Shoes/Flats</item>
+        <item>Shoes/Heels</item>
+        <item>Shoes/Sandals</item>
+        <item>Dresses/Evening gowns</item>
+        <item>Dresses/Cocktail dress</item>
+        <item>Dresses/Strapless dress</item>
+        <item>Dresses/Sun dress</item>
+        <item>Dresses/Short dress</item>
+        <item>Bags/Stachel</item>
+        <item>Bags/Totes</item>
+        <item>Bags/Clutches</item>
+        <item>Accessories/Watche</item>
+        <item>Accessories/Sunglass</item>
+        <item>Accessories/Belt</item>
+        <item>Accessories/Hat</item>
+        <item>Accessories/Necklace</item>
+        <item>Accessories/Bracelet</item>
+        <item>Accessories/Ring</item>
+        <item>Accessories/Headband</item>
+        <item>Accessories/Earrings</item>
+        <item>Accessories/Scarve</item>
+        <item>Outerwear/Jacket</item>
+        <item>Outerwear/Coat</item>
+
+    </string-array>
+
+    <string-array name="season_list">
+        <item>Winter</item>
+        <item>Spring</item>
+        <item>Summer</item>
+        <item>Autumn</item>
+    </string-array>
+
+    <string-array name="occasion_list">
+        <item>Work</item>
+        <item>School</item>
+        <item>Friends</item>
+        <item>Wedding</item>
+        <item>Restaurant</item>
+        <item>Party</item>
+        <item>Gym</item>
+        <item>Trip</item>
+        <item>Other</item>
+    </string-array>
+
 </resources>
