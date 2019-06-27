@@ -39,6 +39,18 @@ class PhotoEditReview : AppCompatActivity() {
             pickImageFromGallery()
         }*/
 
+        ok_btn.setOnClickListener {
+            if(AppInfo.act == "add"){
+                //code for adding item to database
+                Toast.makeText(this,"Adding item...",Toast.LENGTH_SHORT).show()
+
+            }
+            else{
+                //code for help me match
+                Toast.makeText(this,"Matching item...",Toast.LENGTH_SHORT).show()
+            }
+        }
+
 
         item_photo_editor.isDrawingCacheEnabled = true
         item_photo_editor.buildDrawingCache(true)

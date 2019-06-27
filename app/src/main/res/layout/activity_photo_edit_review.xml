@@ -36,4 +36,8 @@
             app:layout_constraintTop_toBottomOf="@+id/item_photo_editor" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/item_photo_hex_info" app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintVertical_bias="0.879"/>
+    <Button
+            android:text="done"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/ok_btn"/>
 </LinearLayout>

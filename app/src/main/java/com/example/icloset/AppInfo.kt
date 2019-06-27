@@ -13,7 +13,7 @@ class AppInfo {
         var Gender:String = ""
         var type:String = ""
         var desc:String = ""
-        //var act:String = ""
+        var act:String = ""
 
 
     }

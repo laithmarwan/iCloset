@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import kotlinx.android.synthetic.main.fragment_closet.*
 import kotlinx.android.synthetic.main.fragment_tops.*
 import kotlinx.android.synthetic.main.fragment_tops.view.*
 
@@ -69,49 +70,14 @@ class TopsFragment : Fragment() {
 
 
         }
-
-/*
-        val recyclerView = v.findViewById(R.id.recyclerView) as RecyclerView
-        recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayout.VERTICAL,false)
-        val cats = ArrayList<Categories>()
-        var obj = icloset(activity)
-           var db = obj.writableDatabase
-           var cur= db.rawQuery("select * from item", arrayOf())
-           if(cur.count == 0){
-               Toast.makeText(activity,"No items", Toast.LENGTH_SHORT).show()
-
-           }
-           else{
-
-               cur.moveToNext()
-               while (!cur.isAfterLast){
-                   cats.add(Categories(cur.getString(0)))
-                   cur.moveToNext()
-               }
-           }
-
-
-
-           val adapter = CustomAdapter(cats)
-           recyclerView.adapter = adapter
-
-    v.add_btn.setOnClickListener {
-       db.execSQL("insert into im " +
-               "(Type,Description,Weather,Times_worn,Occasion,Available,Item_image)" +
-               " values ('Top','Shirt',1,0,'Party',1,'top_shirt1.png')", arrayOf())
-       //db.execSQL("drop table item", arrayOf())
-       Toast.makeText(activity,"done", Toast.LENGTH_SHORT).show()
-
-   }*/
         return v
     }
 
 
 
     private fun MoveToFragment(frg:Fragment){
-
         requireActivity().supportFragmentManager.beginTransaction().apply {
-            replace(R.id.main_frame, frg)
+            replace(R.id.main_frame , frg)
             addToBackStack(null)
             setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
             commit()

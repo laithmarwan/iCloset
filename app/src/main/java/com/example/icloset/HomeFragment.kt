@@ -99,50 +99,16 @@ class HomeFragment : Fragment() {
             val camera_help = view.findViewById<TextView>(R.id.camera_help_button)
             camera_help.setOnClickListener {
                 if (Build.VERSION.SDK_INT > 22) {
-
-
-                        requestPermissions(arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.READ_EXTERNAL_STORAGE),
-                            HomeFragment.camera_code)
-
-                   /* else
-                    {
-                        var i = Intent(activity, PhotoEditReview::class.java)
-                        //AppInfo.act = "cam"
-                        startActivity(i)
-                    }*/
+                    requestPermissions(arrayOf(android.Manifest.permission.CAMERA,
+                        android.Manifest.permission.READ_EXTERNAL_STORAGE),
+                        HomeFragment.camera_code)
                 }
                 else
                 {
-                    //crop
-                    //CropImage.activity()
-                        //.setGuidelines(CropImageView.Guidelines.ON)
-                        //.start(Activity())
                     var i = Intent(activity, PhotoEditReview::class.java)
-                    //AppInfo.act = "cam"
                     startActivity(i)
                 }
             }
-
-            /*val media = view.findViewById<TextView>(R.id.media_button)
-            media.setOnClickListener {
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if(checkSelfPermission(requireContext(),android.Manifest.permission.READ_EXTERNAL_STORAGE) ==
-                        PackageManager.PERMISSION_DENIED) {
-                        ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
-                            HomeFragment.permission_code)
-                    }
-                    else{
-                        var i = Intent(activity, PhotoEditReview::class.java)
-                        AppInfo.act = "media"
-                        startActivity(i)
-                    }
-                }
-                else{
-                    var i = Intent(activity, PhotoEditReview::class.java)
-                    AppInfo.act = "media"
-                    startActivity(i)
-                }
-            }*/
 
             val closet_help = view.findViewById<TextView>(R.id.closet_help_button)
             closet_help.setOnClickListener {
@@ -167,19 +133,8 @@ class HomeFragment : Fragment() {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if(requestCode == camera_code){
-            /* permission_code -> {
-                 if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                     var i = Intent(activity, PhotoEditReview::class.java)
-                     //i.putExtra("act", "media")
-                     startActivity(i)
-                 }
 
-                 else
-                 {
-                     //
-                 }
-             */
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
+            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
                 var i = Intent(activity, PhotoEditReview::class.java)
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(i)
