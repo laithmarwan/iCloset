@@ -54,7 +54,7 @@
 
     <Button
             android:text="done"
-            android:layout_width="match_parent"
+            android:layout_width="149dp"
             android:layout_height="wrap_content"
             android:id="@+id/ok_btn"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,8 +63,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/spinner3"/>
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/spinner3"
+            android:background="@drawable/round_corners_button2"
+
+
+    />
     <TextView
             android:text="Color"
             android:layout_width="99dp"
@@ -143,8 +147,11 @@
             android:layout_marginStart="4dp"
             android:entries="@array/occasion_list"
             android:layout_marginTop="2dp"
-            app:layout_constraintTop_toBottomOf="@+id/spinner"/>
+            app:layout_constraintTop_toBottomOf="@+id/spinner"/><![CDATA[
+
 
     >
 
+
+]]>
 </android.support.constraint.ConstraintLayout>
