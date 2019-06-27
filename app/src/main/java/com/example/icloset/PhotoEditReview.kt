@@ -81,7 +81,7 @@ class PhotoEditReview : AppCompatActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+
     private fun saveImageToStorage(url:String) {
         val externalStorageState = Environment.getExternalStorageState()
         if(externalStorageState == Environment.MEDIA_MOUNTED){
