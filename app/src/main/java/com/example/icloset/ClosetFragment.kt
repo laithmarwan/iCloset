@@ -51,7 +51,9 @@ class ClosetFragment : Fragment() {
         v.add_btn.setOnClickListener {
            if (Build.VERSION.SDK_INT > 22) {
                requestPermissions(arrayOf(android.Manifest.permission.CAMERA,
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE),ClosetFragment.camera_code)
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                   android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                   ClosetFragment.camera_code)
 
             }
             else
@@ -95,7 +97,7 @@ class ClosetFragment : Fragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if(requestCode == camera_code){
 
-            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
+            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED && grantResults[2] == PackageManager.PERMISSION_GRANTED){
                 var i = Intent(activity, PhotoEditReview::class.java)
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 AppInfo.act = "add"
