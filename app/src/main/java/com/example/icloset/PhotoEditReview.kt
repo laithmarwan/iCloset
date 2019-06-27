@@ -6,10 +6,15 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
+import android.icu.util.Output
+import android.net.Uri
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
+import android.support.annotation.RequiresApi
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
@@ -19,6 +24,10 @@ import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_photo_edit_review.*
+import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStream
+import java.lang.Exception
 
 class PhotoEditReview : AppCompatActivity() {
 
@@ -42,8 +51,8 @@ class PhotoEditReview : AppCompatActivity() {
         ok_btn.setOnClickListener {
             if(AppInfo.act == "add"){
                 //code for adding item to database
-                Toast.makeText(this,"Adding item...",Toast.LENGTH_SHORT).show()
-
+               // Toast.makeText(this,"Adding item...",Toast.LENGTH_SHORT).show()
+                this.saveImageToStorage("test_image.jpg")
             }
             else{
                 //code for help me match
@@ -72,6 +81,29 @@ class PhotoEditReview : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+    private fun saveImageToStorage(url:String) {
+        val externalStorageState = Environment.getExternalStorageState()
+        if(externalStorageState == Environment.MEDIA_MOUNTED){
+            val storageDirectory = Environment.getExternalStorageDirectory().toString()
+
+            val file = File(storageDirectory,url)
+            try {
+                val stream:OutputStream = FileOutputStream(file)
+                val drawble = ContextCompat.getDrawable(applicationContext,R.drawable.outfits)
+                val bmp = (drawble as BitmapDrawable).bitmap
+                bmp.compress(Bitmap.CompressFormat.JPEG,100,stream)
+                stream.flush()
+                stream.close()
+                Toast.makeText(this,"Stored successfully ${Uri.parse(file.absolutePath)}",Toast.LENGTH_SHORT).show()
+           }catch (e:Exception){
+                e.printStackTrace()
+                Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show()
+           }
+        }else{
+            Toast.makeText(this,"Unable to save media to storage",Toast.LENGTH_SHORT).show()
+        }
+    }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
