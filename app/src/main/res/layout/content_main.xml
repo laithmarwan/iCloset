@@ -9,6 +9,7 @@
         tools:showIn="@layout/app_bar_main"
         tools:context=".MainActivity"
         android:orientation="vertical"
+        android:background="#eeeeee"
 
         >
 

@@ -4,7 +4,10 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
               android:orientation="vertical"
-             tools:context=".MyAccount">
+             tools:context=".MyAccount"
+              android:background="#eeeeee"
+
+>
     <TextView
             android:text="TextView"
             android:layout_width="match_parent"
