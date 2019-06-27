@@ -26,8 +26,9 @@
             android:layout_margin="20dp"
             app:layout_constraintHorizontal_bias="0.497"
     />
+
     <TextView
-            android:text="TextView"
+            android:text=""
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/item_photo_hex_info"
@@ -67,4 +68,5 @@
             android:layout_height="wrap_content"
             android:id="@+id/ok_btn"
     />
+
 </LinearLayout>
