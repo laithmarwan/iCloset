@@ -97,6 +97,12 @@ class NewUserAct : AppCompatActivity() {
                             AppInfo.Address = register_address.text.toString()
                             AppInfo.Name = register_name.text.toString()
                             AppInfo.UserID = response
+                            if(radioButton5.isChecked){
+                                AppInfo.Gender = "0"
+                            }
+                            else{
+                                AppInfo.Gender = "1"
+                            }
                             var i = Intent(this, MainActivity::class.java)
                             Toast.makeText(this,"Welcome " + register_name.text.toString() +"!",Toast.LENGTH_LONG).show()
                             startActivity(i)

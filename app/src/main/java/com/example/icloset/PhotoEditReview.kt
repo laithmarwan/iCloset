@@ -75,7 +75,7 @@ class PhotoEditReview : AppCompatActivity() {
 
                 val hex = "#" + Integer.toHexString(pixel)
                 item_photo_color_info.setBackgroundColor(Color.rgb(r,g,b))
-                item_photo_hex_info.text = "RGB: $r, $g, $b \n HEX: $hex"
+                //item_photo_hex_info.text = "RGB: $r, $g, $b \n HEX: $hex"
             }
             true
         }
