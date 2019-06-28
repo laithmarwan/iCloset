@@ -79,9 +79,30 @@ class ClosetFragment : Fragment() {
                 0 -> TopsFragment()
                 1 -> BottomsFragment()
                 2 -> ShoesFragment()
-                3 -> DressesFragment()
-                4 -> BagsFragment()
-                5 -> AccessoriesFragment()
+                3 -> {
+                    if(AppInfo.Gender == "0")
+                        DressesFragment()
+                    else{
+                        BagsFragment()
+                    }
+
+                }
+                4 -> {
+                    if(AppInfo.Gender == "0")
+                        BagsFragment()
+                    else{
+                        AccessoriesFragment()
+                    }
+
+                }
+                5 -> {
+                    if(AppInfo.Gender == "0")
+                        AccessoriesFragment()
+                    else{
+                        OuterwearFragment()
+                    }
+
+                }
                 else -> OuterwearFragment()
 
             }
