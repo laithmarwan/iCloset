@@ -133,12 +133,12 @@ class PhotoEditReview : AppCompatActivity() {
 
         category_list.setOnClickListener {
             val builder = AlertDialog.Builder(this)
-            val categoryArray = arrayOf("Tops/Blazer","Tops/Shirt","Tops/Sweater","Tops/T-shirt","Tops/Sleeveless",
-                "Bottoms/Trouser","Bottoms/Short","Bottoms/Jean","Bottoms/Skirt","Shoes/Boots","Shoes/Flats","Shoes/Heels",
-                "Shoes/Sandals","Dresses/Evening gowns","Dresses/Cocktail dress","Dresses/Strapless dress","Dresses/Sun dress",
-                "Dresses/Short dress","Bags/Satchels","Bags/Totes","Bags/Clutches","Accessories/Watches","Accessories/Sunglasses",
-                "Accessories/Belt","Accessories/Hat","Accessories/Necklace","Accessories/Bracelet","Accessories/Ring","Accessories/Headband",
-                "Accessories/Earrings","Accessories/Scarves","Outerwear/Jacket","Outerwear/Coat")
+            val categoryArray = arrayOf("Blazers","Shirts","Sweaters","T-shirts","Sleeveless",
+                "Trousers","Shorts","Jeans","Skirts","Boots","Flats","Heels",
+                "Sandals","Evening gowns","Cocktail dresses","Strapless dresses","Sun dresses",
+                "Short dresses","Satchels","Totes","Clutches","Watches","Sunglasses",
+                "Belts","Hats","Necklaces","Bracelets","Rings","Headbands",
+                "Earrings","Scarves","Jackets","Coats")
 
             builder.setTitle("Select Seasons")
             builder.setSingleChoiceItems(categoryArray, -1){dialog: DialogInterface, which: Int ->
