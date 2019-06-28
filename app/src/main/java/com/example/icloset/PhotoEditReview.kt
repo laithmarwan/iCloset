@@ -1,33 +1,26 @@
 package com.example.icloset
 
-import android.Manifest
-import android.app.Activity
+import android.content.DialogInterface
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
-import android.icu.util.Output
 import android.net.Uri
-import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
-import android.provider.MediaStore
-import android.support.annotation.RequiresApi
-import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
-import android.support.v4.view.GravityCompat
+import android.support.v7.app.AlertDialog
 import android.view.MotionEvent
 import android.widget.Toast
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_photo_edit_review.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 import java.lang.Exception
+import java.util.*
 
 class PhotoEditReview : AppCompatActivity() {
 
@@ -78,6 +71,87 @@ class PhotoEditReview : AppCompatActivity() {
                 //item_photo_hex_info.text = "RGB: $r, $g, $b \n HEX: $hex"
             }
             true
+        }
+
+        season_list.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            val seasonArray = arrayOf("Winter","Spring","Summer","Autumn")
+            var checkedArray = booleanArrayOf(false,false,false,false)
+            val seasonlist = Arrays.asList(*seasonArray)
+            builder.setTitle("Select Seasons")
+            builder.setMultiChoiceItems(seasonArray,checkedArray){dialog, which, isChecked ->
+                checkedArray[which] = isChecked
+                val currentItem = seasonlist[which]
+            }
+            builder.setPositiveButton("OK"){dialog, which ->
+                season_list.text = ""
+                for (i in checkedArray.indices){
+                    val checked = checkedArray[i]
+                    if (checked){
+
+                        season_list.text = season_list.text.toString() + ", " + seasonlist[i]
+                        // database
+                    }
+
+                }
+            }
+            builder.setNegativeButton("Cancel"){dialog, which ->
+                dialog.dismiss()
+            }
+            val dialog = builder.create()
+            dialog.show()
+        }
+
+       occasion_list.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            val occasionArray = arrayOf("Work","School","Friends","Wedding","Restaurant","Party","Gym","Trip","Other")
+            var checkedArray = booleanArrayOf(false,false,false,false,false,false,false,false,false)
+            val occasionlist = Arrays.asList(*occasionArray)
+            builder.setTitle("Select Seasons")
+            builder.setMultiChoiceItems(occasionArray,checkedArray){dialog, which, isChecked ->
+                checkedArray[which] = isChecked
+                val currentItem = occasionlist[which]
+            }
+            builder.setPositiveButton("OK"){dialog, which ->
+                occasion_list.text = ""
+                for (i in checkedArray.indices){
+                    val checked = checkedArray[i]
+                    if (checked){
+
+                        occasion_list.text = occasion_list.text.toString() + ", " +occasionlist[i]
+                        // database
+                    }
+
+                }
+            }
+            builder.setNegativeButton("Cancel"){dialog, which ->
+                dialog.dismiss()
+            }
+            val dialog = builder.create()
+            dialog.show()
+        }
+
+        category_list.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            val categoryArray = arrayOf("Tops/Blazer","Tops/Shirt","Tops/Sweater","Tops/T-shirt","Tops/Sleeveless",
+                "Bottoms/Trouser","Bottoms/Short","Bottoms/Jean","Bottoms/Skirt","Shoes/Boots","Shoes/Flats","Shoes/Heels",
+                "Shoes/Sandals","Dresses/Evening gowns","Dresses/Cocktail dress","Dresses/Strapless dress","Dresses/Sun dress",
+                "Dresses/Short dress","Bags/Satchels","Bags/Totes","Bags/Clutches","Accessories/Watches","Accessories/Sunglasses",
+                "Accessories/Belt","Accessories/Hat","Accessories/Necklace","Accessories/Bracelet","Accessories/Ring","Accessories/Headband",
+                "Accessories/Earrings","Accessories/Scarves","Outerwear/Jacket","Outerwear/Coat")
+
+            builder.setTitle("Select Seasons")
+            builder.setSingleChoiceItems(categoryArray, -1){dialog: DialogInterface, which: Int ->
+                category_list.text = categoryArray[which]
+            }
+            builder.setPositiveButton("OK"){dialog, which ->
+                //database
+            }
+            builder.setNegativeButton("Cancel"){dialog, which ->
+                dialog.dismiss()
+            }
+            val dialog = builder.create()
+            dialog.show()
         }
     }
 

@@ -5,6 +5,7 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.preference.MultiSelectListPreference
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -59,9 +60,7 @@ class MyAccount : Fragment() {
         options.add("Option1")
         options.add("Option2")
 
-        //val options = arrayOf("Option1", "Option2")
         option.adapter = ArrayAdapter<String>(activity,android.R.layout.simple_list_item_1, options)
-
 
         option.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
