@@ -35,6 +35,15 @@ class MyAccount : Fragment() {
         v.email_view.text = AppInfo.Email
         v.account_name.hint = AppInfo.Name
 
+
+        if(AppInfo.Gender == "0"){
+            v.gender_toggle.text = "Female"
+        }
+        else if(AppInfo.Gender == "1"){
+            v.gender_toggle.text = "Male"
+        }
+
+
         var toggle = v.findViewById(R.id.gender_toggle) as ToggleButton
         var result = ""
 
@@ -61,6 +70,9 @@ class MyAccount : Fragment() {
                     var flag_name:Boolean = false
                     var flag_pass:Boolean = false
                     var flag_address:Boolean = false
+                    var flag_male:Boolean = false
+                    var flag_female:Boolean = false
+
 
                     if(v.account_name.hint.toString().equals(AppInfo.Name)){
                         // do nothing
@@ -86,9 +98,24 @@ class MyAccount : Fragment() {
                         flag_address = true
                     }
 
+                    v.gender_toggle.setOnClickListener {
+                        if(v.gender_toggle.text == "Male"){
+                            v.gender_toggle.text = "Female"
+                        }
+                        else{
+                            v.gender_toggle.text = "Male"
+                        }
+                    }
+
+                    if (AppInfo.Gender == "0" && v.gender_toggle.text.toString() == "male"){
+                        flag_male = true
+                    }
+                    else if (AppInfo.Gender == "1" && v.gender_toggle.text.toString() == "female"){
+                        flag_female = true
+                    }
 
 
-                    if(flag_name == true || flag_pass == true || flag_address == true){
+                    if(flag_name == true || flag_pass == true || flag_address == true || flag_male == true || flag_female == true){
                         val builder = android.app.AlertDialog.Builder(activity)
                         builder.setTitle("Alert")
                         builder.setMessage("Are you sure?")
