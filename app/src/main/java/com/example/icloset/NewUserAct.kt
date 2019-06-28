@@ -87,7 +87,7 @@ class NewUserAct : AppCompatActivity() {
 
                 if(tv_hidden.text.toString() == "ok"){
                     tv_hidden.text = ""
-
+                    var rq2 = Volley.newRequestQueue(this)
                     var sr = object : StringRequest(
                     Request.Method.POST, AppInfo.web + "signup.php",
                     Response.Listener { response ->
@@ -140,7 +140,7 @@ class NewUserAct : AppCompatActivity() {
                     }
                 }
 
-                rq.add(sr)
+                rq2.add(sr)
 
 
             }
