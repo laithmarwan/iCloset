@@ -22,10 +22,12 @@
             android:text="ToggleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:id="@+id/gender_toggle"/>
-    <Spinner android:id="@+id/city_spinner"
+
+    <cz.destil.settleup.gui.MultiSpinner android:id="@+id/city_spinner"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:padding="20dp"/>
+
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
