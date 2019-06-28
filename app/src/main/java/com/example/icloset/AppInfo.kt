@@ -14,7 +14,7 @@ class AppInfo {
         var type:String = ""
         var desc:String = ""
         var act:String = ""
-
+        var img_url:Int = 0
 
     }
 

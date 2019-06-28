@@ -7,6 +7,10 @@ import android.database.sqlite.SQLiteOpenHelper
 class icloset(var con:Context) :SQLiteOpenHelper(con,"icloset.db",null,2){
     override fun onCreate(db: SQLiteDatabase) {
 
+        db.execSQL("CREATE TABLE item_occasion (Item_ID INTEGER ,Occasion varchar(10) NOT NULL, PRIMARY KEY (Item_ID,Occasion), FOREIGN KEY(Item_ID) REFERENCES item(Item_ID))")
+
+        db.execSQL("CREATE TABLE item_weather (Item_ID INTEGER ,Weather varchar(10) NOT NULL, PRIMARY KEY (Item_ID,Weather), FOREIGN KEY(Item_ID) REFERENCES item(Item_ID))")
+
         db.execSQL("CREATE TABLE outfit (" +
                 " Outfit_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " Weather varchar(10) NOT NULL," +

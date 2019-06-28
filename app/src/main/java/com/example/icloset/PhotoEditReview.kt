@@ -44,8 +44,45 @@ class PhotoEditReview : AppCompatActivity() {
         ok_btn.setOnClickListener {
             if(AppInfo.act == "add"){
                 //code for adding item to database
-               // Toast.makeText(this,"Adding item...",Toast.LENGTH_SHORT).show()
-                this.saveImageToStorage("test_image.jpg")
+                if(season_list.text.toString() == "Select one season or more" || season_list.text.toString() == ""
+                    || occasion_list.text.toString() == "Select one or more occasions" || occasion_list.text.toString() == ""
+                    || category_list.text.toString() == "Select only one category" || category_list.text.toString() == "" ){
+                    Toast.makeText(this,"Make sure to fill all info",Toast.LENGTH_SHORT).show()
+                }
+                else{
+                        AppInfo.img_url = 1
+                    var obj = icloset(this)
+                    var db = obj.writableDatabase
+                    var typedesc =  category_list.text.toString().split(" - ")
+                    var cur = db.rawQuery("select MAX(Item_ID) from item", arrayOf())
+                    if(cur.count != 0){
+                        cur.moveToNext()
+                        AppInfo.img_url = cur.getString(0).toInt()
+                        AppInfo.img_url++
+                    }
+                    var image_url = "item_"+AppInfo.img_url+".jpg"
+                    this.saveImageToStorage(image_url)
+                    var seasonarr = season_list.text.toString().split(", ")
+                    var occasionarr = occasion_list.text.toString().split(", ")
+                    db.execSQL("insert into item (Type,Description,Times_worn,Available,Item_image) " +
+                            "values (?,?,0,1,?)", arrayOf(typedesc[0],typedesc[1],image_url))
+                    var cur2 = db.rawQuery("select Item_ID from item where Item_image=?", arrayOf(image_url))
+                    if(cur2.count != 0){
+                        cur2.moveToFirst()
+                        AppInfo.img_url = cur2.getString(0).toInt()
+                    }
+                    for(i in 0 until seasonarr.size)
+                        db.execSQL("insert into item_weather values (?,?)", arrayOf(AppInfo.img_url,seasonarr[i]))
+
+                    for(i in 0 until occasionarr.size)
+                        db.execSQL("insert into item_occasion values (?,?)", arrayOf(AppInfo.img_url,occasionarr[i]))
+
+
+                    Toast.makeText(this,"Item added successfully",Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this,MainActivity::class.java))
+                    finish()
+
+                }
             }
             else{
                 //code for help me match
@@ -88,8 +125,10 @@ class PhotoEditReview : AppCompatActivity() {
                 for (i in checkedArray.indices){
                     val checked = checkedArray[i]
                     if (checked){
-
-                        season_list.text = season_list.text.toString() + ", " + seasonlist[i]
+                        if(season_list.text.toString() == "")
+                            season_list.text = seasonlist[i]
+                        else
+                            season_list.text = season_list.text.toString() + ", " + seasonlist[i]
                         // database
                     }
 
@@ -117,8 +156,11 @@ class PhotoEditReview : AppCompatActivity() {
                 for (i in checkedArray.indices){
                     val checked = checkedArray[i]
                     if (checked){
-
-                        occasion_list.text = occasion_list.text.toString() + ", " +occasionlist[i]
+                        if(occasion_list.text.toString()=="")
+                            occasion_list.text = occasionlist[i]
+                        else{
+                            occasion_list.text = occasion_list.text.toString() + ", " +occasionlist[i]
+                        }
                         // database
                     }
 
@@ -133,12 +175,47 @@ class PhotoEditReview : AppCompatActivity() {
 
         category_list.setOnClickListener {
             val builder = AlertDialog.Builder(this)
-            val categoryArray = arrayOf("Blazers","Shirts","Sweaters","T-shirts","Sleeveless",
-                "Trousers","Shorts","Jeans","Skirts","Boots","Flats","Heels",
-                "Sandals","Evening gowns","Cocktail dresses","Strapless dresses","Sun dresses",
-                "Short dresses","Satchels","Totes","Clutches","Watches","Sunglasses",
-                "Belts","Hats","Necklaces","Bracelets","Rings","Headbands",
-                "Earrings","Scarves","Jackets","Coats")
+            val categoryArray = arrayOf(
+                    "Tops - Blazers",
+                    "Tops - Shirts",
+                    "Tops - Sweaters",
+                    "Tops - T-shirts",
+                    "Tops - Sleeveless",
+                    "Bottoms - Trousers",
+                    "Bottoms - Shorts",
+                    "Bottoms - Jeans",
+                    "Bottoms - Skirts",
+                    "Shoes - Boots",
+                    "Shoes - Flats",
+                    "Shoes - Heels",
+                    "Shoes - Sandals",
+                    "Shoes - Boat Shoes",
+                    "Shoes - Sneakers",
+                    "Shoes - Trainers",
+                    "Dresses - Evening Gowns",
+                    "Dresses - Cocktail Dress",
+                    "Dresses - Strapless Dress",
+                    "Dresses - Sundress",
+                    "Dresses - Shirt Dress",
+                    "Bags - Satchels",
+                    "Bags - Totes",
+                    "Bags - Clutches",
+                    "Bags - Briefcase",
+                    "Bags - Messenger Bag",
+                    "Bags - Hobo",
+                    "Accessories - Watches",
+                    "Accessories - Sunglasses",
+                    "Accessories - Belts",
+                    "Accessories - Hats",
+                    "Accessories - Necklaces",
+                    "Accessories - Bracelets",
+                    "Accessories - Rings",
+                    "Accessories - Headbands",
+                    "Accessories - Earrings",
+                    "Accessories - Scarves",
+                    "Outerwear - Jackets",
+                    "Outerwear - Coats"
+                )
 
             builder.setTitle("Select Seasons")
             builder.setSingleChoiceItems(categoryArray, -1){dialog: DialogInterface, which: Int ->
@@ -156,7 +233,7 @@ class PhotoEditReview : AppCompatActivity() {
     }
 
 
-    private fun saveImageToStorage(url:String) {
+    private fun saveImageToStorage(url:String): Boolean {
         val externalStorageState = Environment.getExternalStorageState()
         if(externalStorageState == Environment.MEDIA_MOUNTED){
             val storageDirectory = Environment.getExternalStorageDirectory().toString()
@@ -170,12 +247,15 @@ class PhotoEditReview : AppCompatActivity() {
                 stream.flush()
                 stream.close()
                 Toast.makeText(this,"Stored successfully ${Uri.parse(file.absolutePath)}",Toast.LENGTH_SHORT).show()
+                return true
            }catch (e:Exception){
                 e.printStackTrace()
                 Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show()
+                return false
            }
         }else{
             Toast.makeText(this,"Unable to save media to storage",Toast.LENGTH_SHORT).show()
+            return false
         }
     }
 
