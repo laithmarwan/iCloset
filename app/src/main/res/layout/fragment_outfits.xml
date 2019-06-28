@@ -16,15 +16,21 @@
 
 
     <android.support.design.widget.FloatingActionButton
+            android:padding="16dp"
+            android:scaleType="fitXY"
+            android:elevation="8dp"
+            app:maxImageSize="50dp"
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:src="@drawable/plus"
             app:backgroundTint="@color/colorPrimary"
-            app:fabSize="mini"
-
-            android:layout_marginBottom="15dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="38dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginRight="38dp"/>
+            app:fabSize="normal"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="38dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="38dp"
+    />
 </android.support.constraint.ConstraintLayout>
