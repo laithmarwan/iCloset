@@ -1,10 +1,12 @@
 package com.example.icloset
 
 
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -12,10 +14,25 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Toast
+import android.widget.Toolbar
+import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.app_bar_main.view.*
 import kotlinx.android.synthetic.main.fragment_closet.view.*
 
 class ClosetFragment : Fragment() {
+
+    lateinit var fab_main: FloatingActionButton
+    lateinit var fab_sub_1: FloatingActionButton
+    lateinit var fab_sub_2: FloatingActionButton
+    lateinit var toolbar: Toolbar
+    lateinit var fab_open: Animation
+    lateinit var fab_close: Animation
+    lateinit var rotate_cw: Animation
+    lateinit var rotate_acw: Animation
+    var isOpen: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,6 +40,11 @@ class ClosetFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
       var v = inflater.inflate(R.layout.fragment_closet, container, false)
+
+
+
+
+
 
         var adp = FPA(childFragmentManager)
         v.vp.adapter = adp
@@ -48,7 +70,39 @@ class ClosetFragment : Fragment() {
         }
         v.tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(v.vp))
 
-        v.add_btn.setOnClickListener {
+
+
+
+        var fab_open = AnimationUtils.loadAnimation(activity,R.anim.open_fab)
+        var fab_close = AnimationUtils.loadAnimation(activity,R.anim.close_fab)
+        var rotate_cw = AnimationUtils.loadAnimation(activity,R.anim.rotate_clockwise)
+        var rotate_acw = AnimationUtils.loadAnimation(activity,R.anim.rotate_anticlockwise)
+        v.add_btn.setOnClickListener{
+
+                /*if (isOpen)
+                {
+                    v.fab2.startAnimation(fab_close)
+                    v.fab3.startAnimation(fab_close)
+                    v.add_btn.startAnimation(rotate_acw)
+                    v.fab2.visibility = View.GONE
+                    v.fab3.visibility = View.GONE
+                    isOpen = false
+                }
+                else
+                {
+                    v.fab2.startAnimation(fab_open)
+                    v.fab3.startAnimation(fab_open)
+                    v.add_btn.startAnimation(rotate_cw)
+                    v.fab2.visibility = View.VISIBLE
+                    v.fab3.visibility = View.VISIBLE
+                    v.fab2.isClickable = true
+                    v.fab3.isClickable = true
+                    isOpen = true
+                }*/
+
+
+
+
            if (Build.VERSION.SDK_INT > 22) {
                requestPermissions(arrayOf(android.Manifest.permission.CAMERA,
                     android.Manifest.permission.READ_EXTERNAL_STORAGE,
