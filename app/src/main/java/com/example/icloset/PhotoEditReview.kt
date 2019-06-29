@@ -250,7 +250,7 @@ class PhotoEditReview : AppCompatActivity() {
             try {
                 val stream:OutputStream = FileOutputStream(file)
                 val drawble = ContextCompat.getDrawable(applicationContext,R.drawable.navbackground)
-                val bmp = (drawble as BitmapDrawable).bitmap
+                val bmp = item_photo_editor.imageAlpha as Bitmap
                 bmp.compress(Bitmap.CompressFormat.JPEG,100,stream)
                 stream.flush()
                 stream.close()
