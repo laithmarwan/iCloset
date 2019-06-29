@@ -1,12 +1,14 @@
 package com.example.icloset
 import android.app.PendingIntent.getActivity
 import android.app.ProgressDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.CalendarContract
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.AlertDialog
 import android.view.View
 import android.widget.Toast
 import com.android.volley.Request
@@ -16,12 +18,34 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_new_user.*
+import kotlinx.android.synthetic.main.fragment_my_account.*
+import kotlinx.android.synthetic.main.fragment_my_account.view.*
 
 class NewUserAct : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_user)
+
+        address_signup.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            val addressArray = arrayOf("Amman","London")
+
+            builder.setTitle("Select your address")
+            builder.setSingleChoiceItems(addressArray, -1){ dialog: DialogInterface, which: Int ->
+                register_address.setText(addressArray[which])
+
+            }
+            builder.setPositiveButton("OK"){dialog, which ->
+                //database
+            }
+            builder.setNegativeButton("Cancel"){dialog, which ->
+                register_address.setText("")
+                dialog.dismiss()
+            }
+            val dialog = builder.create()
+            dialog.show()
+        }
 
 
         radioButton3.setOnClickListener(object : View.OnClickListener {
@@ -142,10 +166,8 @@ class NewUserAct : AppCompatActivity() {
 
                 rq2.add(sr)
 
-
-            }
+                }
             }
         }
-
     }
 }

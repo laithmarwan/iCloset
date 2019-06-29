@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -22,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.fragment_closet.*
+import java.lang.Exception
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -155,9 +157,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
             R.id.nav_contact -> {
-                var trans = supportFragmentManager.beginTransaction().replace(R.id.main_frame, ContactUs())
-                trans.addToBackStack(null)
-                trans.commit()
+                //var trans = supportFragmentManager.beginTransaction().replace(R.id.main_frame, ContactUs())
+                //trans.addToBackStack(null)
+                //trans.commit()
+                var recipient = "support@icloset.com"
+                var subject = "FeedBack"
+                var message = ""
+
+                sendEmail(recipient, subject, message)
             }
             R.id.nav_help -> {
                 PrefManager(this).clearPreference()
@@ -190,5 +197,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun sendEmail(recipient: String, subject: String, message: String) {
+        val mIntent = Intent(Intent.ACTION_SEND)
+        mIntent.data = Uri.parse("")
+        mIntent.type = "text/plain"
+
+        mIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(recipient))
+        mIntent.putExtra(Intent.EXTRA_SUBJECT, subject)
+        mIntent.putExtra(Intent.EXTRA_TEXT, message)
+
+        try {
+            startActivity(Intent.createChooser(mIntent, ""))
+        }
+
+        catch (e: Exception){
+            Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
+        }
     }
 }
