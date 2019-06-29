@@ -43,26 +43,26 @@ class TopsFragment : Fragment() {
 
         v.ListView.setOnItemClickListener { parent, view, position, id ->
 
-            AppInfo.type = "tops"
+            AppInfo.type = "Tops"
             when (position) {
                 0 -> {
-                    AppInfo.desc = "blazers"
+                    AppInfo.desc = "Blazers"
                     MoveToFragment(ItemsFragment())
                 }
                 1 -> {
-                    AppInfo.desc = "shirts"
+                    AppInfo.desc = "Shirts"
                     MoveToFragment(ItemsFragment())
                 }
                 2 -> {
-                    AppInfo.desc = "sweaters"
+                    AppInfo.desc = "Sweaters"
                     MoveToFragment(ItemsFragment())
                 }
                 3 -> {
-                    AppInfo.desc = "tshirts"
+                    AppInfo.desc = "T-shirts"
                     MoveToFragment(ItemsFragment())
                 }
                 else -> {
-                    AppInfo.desc = "sleeveless"
+                    AppInfo.desc = "Sleeveless"
                     MoveToFragment(ItemsFragment())
                 }
             }

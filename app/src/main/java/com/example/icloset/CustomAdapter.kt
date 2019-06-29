@@ -1,5 +1,7 @@
 package com.example.icloset
 
+import android.net.Uri
+import android.os.Environment
 import android.support.design.widget.TabLayout
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -7,6 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import java.io.File
+import java.lang.Exception
 
 class CustomAdapter(val catList :ArrayList<Categories>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
@@ -19,8 +24,16 @@ class CustomAdapter(val catList :ArrayList<Categories>) : RecyclerView.Adapter<C
     }
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
+        try{
         val cat:Categories = catList[p1]
-        p0.imageviewname.setImageBitmap(cat.thumbnail)
+        val storageDirectory = Environment.getExternalStorageDirectory().toString()
+
+        val file = File(storageDirectory,cat.thumbnail)
+        p0.imageviewname.setImageURI(Uri.parse(file.absolutePath))}
+        catch (e: Exception)
+        {
+            e.printStackTrace()
+        }
 
     }
 

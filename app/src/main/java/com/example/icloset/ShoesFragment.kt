@@ -49,31 +49,31 @@ class ShoesFragment : Fragment() {
         v.lv_shoes.adapter = adp
 
           v.lv_shoes.setOnItemClickListener { parent, view, position, id ->
-              AppInfo.type = "shoes"
+              AppInfo.type = "Shoes"
               when (position) {
                   0 -> {
-                      AppInfo.desc = "boots"
+                      AppInfo.desc = "Boots"
                       MoveToFragment(ItemsFragment())
                   }
                   1 -> {
                       if(AppInfo.Gender == "0")
-                          AppInfo.desc = "flats"
+                          AppInfo.desc = "Flats"
                       else
-                          AppInfo.desc = "boat"
+                          AppInfo.desc = "Boat Shoes"
                       MoveToFragment(ItemsFragment())
                   }
                   2 -> {
                       if(AppInfo.Gender == "0")
-                          AppInfo.desc = "heels"
+                          AppInfo.desc = "Heels"
                       else
-                          AppInfo.desc = "sneakers"
+                          AppInfo.desc = "Sneakers"
                       MoveToFragment(ItemsFragment())
                   }
                 else -> {
                     if(AppInfo.Gender == "0")
-                        AppInfo.desc = "sandals"
+                        AppInfo.desc = "Sandals"
                     else
-                        AppInfo.desc = "trainers"
+                        AppInfo.desc = "Trainers"
                     MoveToFragment(ItemsFragment())
                   }
               }

@@ -47,27 +47,27 @@ class BagsFragment : Fragment() {
 
         v.lv_bags.setOnItemClickListener { parent, view, position, id ->
 
-            AppInfo.type = "bags"
+            AppInfo.type = "Bags"
             when (position) {
                 0 -> {
                     if(AppInfo.Gender == "0")
-                        AppInfo.desc = "satchels"
+                        AppInfo.desc = "Satchels"
                     else
-                        AppInfo.desc = "briefcase"
+                        AppInfo.desc = "Briefcases"
                     MoveToFragment(ItemsFragment())
                 }
                 1 -> {
                     if(AppInfo.Gender == "0")
-                        AppInfo.desc = "satchels"
+                        AppInfo.desc = "Satchels"
                     else
-                        AppInfo.desc = "messenger"
+                        AppInfo.desc = "Messenger Bag"
                     MoveToFragment(ItemsFragment())
                 }
                else ->{
                    if(AppInfo.Gender == "0")
-                       AppInfo.desc = "clutches"
+                       AppInfo.desc = "Clutches"
                    else
-                       AppInfo.desc = "hobo"
+                       AppInfo.desc = "Hobo"
                    MoveToFragment(ItemsFragment())
 
                     }
