@@ -5,7 +5,7 @@
                                              android:layout_height="match_parent"
                                              android:orientation="vertical"
                                              tools:context=".MyAccount"
-                                             android:background="@drawable/gradient_male"
+                                             android:background="#eeeeee"
                                              android:id="@+id/myaccbg"
 
 >
@@ -200,41 +200,29 @@
             android:textColor="#FFFF"
             android:textStyle="bold"
             android:text="Save changes"
-            android:layout_width="198dp"
+            android:layout_width="180dp"
             android:layout_height="52dp"
             android:id="@+id/save_changes"
-            android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginRight="8dp"
             android:textAllCaps="false"
             android:textSize="18sp"
-            app:layout_constraintHorizontal_bias="0.497"
-            android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@+id/confirm_password"
-    />
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="24dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/confirm_password"/>
 
     <Button
             android:background="@drawable/round_corners_button"
             android:textColor="#FFFF"
             android:textStyle="bold"
             android:text="Cancel"
-            android:layout_width="198dp"
+            android:layout_width="180dp"
             android:layout_height="52dp"
             android:id="@+id/cancel"
             android:textAllCaps="false"
             android:textSize="18sp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/save_changes"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="24dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginRight="8dp"
-    />
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/confirm_password"/>
 
     <TextView
             android:layout_width="349dp"

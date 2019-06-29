@@ -43,41 +43,27 @@ class MyAccount : Fragment() {
         var v = inflater.inflate(R.layout.fragment_my_account, container, false)
         if(AppInfo.Gender=="0")
         {
-            v.myaccbg.setBackgroundResource(R.drawable.gradient_female)
+
             v.gender_toggle.isChecked = false
             v.gender_toggle.textOff = "Female"
             v.gender_toggle.text = "Female"
             v.gender_toggle.setBackgroundResource(R.drawable.round_corners_button_female)
-            v.save_changes.setBackgroundResource(R.drawable.round_corners_button_female)
-            v.cancel.setBackgroundResource(R.drawable.round_corners_button_female)
-
-
-
         }
         else
         {
-            v.myaccbg.setBackgroundResource(R.drawable.gradient_male)
+
             v.gender_toggle.isChecked = true
             v.gender_toggle.textOn = "Male"
             v.gender_toggle.text = "Male"
             v.gender_toggle.setBackgroundResource(R.drawable.round_corners_button_male)
-            v.save_changes.setBackgroundResource(R.drawable.round_corners_button_male)
-            v.cancel.setBackgroundResource(R.drawable.round_corners_button_male)
-
         }
         v.gender_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                v.myaccbg.setBackgroundResource(R.drawable.gradient_male)
                 v.gender_toggle.setBackgroundResource(R.drawable.round_corners_button_male)
                 v.gender_toggle.text = "Male"
-                v.save_changes.setBackgroundResource(R.drawable.round_corners_button_male)
-                v.cancel.setBackgroundResource(R.drawable.round_corners_button_male)
             } else {
-                v.myaccbg.setBackgroundResource(R.drawable.gradient_female)
                 v.gender_toggle.setBackgroundResource(R.drawable.round_corners_button_female)
                 v.gender_toggle.text = "Female"
-                v.save_changes.setBackgroundResource(R.drawable.round_corners_button_female)
-                v.cancel.setBackgroundResource(R.drawable.round_corners_button_female)
             }
         }
 
