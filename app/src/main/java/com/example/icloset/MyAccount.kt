@@ -94,7 +94,7 @@ class MyAccount : Fragment() {
         }*/
 
         var opt = ""
-        var toggle = v.findViewById(R.id.gender_toggle) as ToggleButton
+       /* var toggle = v.findViewById(R.id.gender_toggle) as ToggleButton
         var result = ""
 
         option = v.findViewById(R.id.city_spinner) as Spinner
@@ -114,7 +114,7 @@ class MyAccount : Fragment() {
                 opt = option.getItemAtPosition(position).toString()
 
             }
-        }
+        }*/
 
         v.address_view.setOnClickListener {
             val builder = AlertDialog.Builder(requireContext())
@@ -144,7 +144,7 @@ class MyAccount : Fragment() {
         v.save_changes.setOnClickListener {
             var flag_name = false
             var flag_pass = false
-            var flag_address = false
+            //var flag_address = false
             var flag_male = false
             var flag_female = false
 

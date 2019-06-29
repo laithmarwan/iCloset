@@ -10,6 +10,7 @@ import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
+import android.support.v4.app.DialogFragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.view.MotionEvent
@@ -43,6 +44,7 @@ class PhotoEditReview : AppCompatActivity() {
         }*/
 
         ok_btn.setOnClickListener {
+
             if(AppInfo.act == "add"){
                 //code for adding item to database
                 if(season_list.text.toString() == "Select one season or more" || season_list.text.toString() == ""
@@ -97,6 +99,8 @@ class PhotoEditReview : AppCompatActivity() {
                 //code for help me match
                 Toast.makeText(this,"Matching item...",Toast.LENGTH_SHORT).show()
             }
+
+
         }
 
 
@@ -155,7 +159,7 @@ class PhotoEditReview : AppCompatActivity() {
             val occasionArray = arrayOf("Work","School","Friends","Wedding","Restaurant","Party","Gym","Trip","Other")
             var checkedArray = booleanArrayOf(false,false,false,false,false,false,false,false,false)
             val occasionlist = Arrays.asList(*occasionArray)
-            builder.setTitle("Select Seasons")
+            builder.setTitle("Select Occasions")
             builder.setMultiChoiceItems(occasionArray,checkedArray){dialog, which, isChecked ->
                 checkedArray[which] = isChecked
                 val currentItem = occasionlist[which]
@@ -226,7 +230,7 @@ class PhotoEditReview : AppCompatActivity() {
                     "Outerwear - Coats"
                 )
 
-            builder.setTitle("Select Seasons")
+            builder.setTitle("Select Category")
             builder.setSingleChoiceItems(categoryArray, -1){dialog: DialogInterface, which: Int ->
                 category_list.text = categoryArray[which]
             }

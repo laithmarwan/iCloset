@@ -3,6 +3,7 @@ package com.example.icloset
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.DialogFragment
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,9 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  *
  */
+
+
+
 class CalendarFragment : Fragment() {
 
     override fun onCreateView(
@@ -32,6 +36,10 @@ class CalendarFragment : Fragment() {
         var v = inflater.inflate(R.layout.fragment_calendar, container, false)
 
         v.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
+
+            //var obj = OutfitsFragment()
+            //obj.show(requireActivity().supportFragmentManager,"Qty")
+
 
             var trans = requireActivity().supportFragmentManager.beginTransaction()
             trans.replace(R.id.main_frame,OutfitsFragment())
@@ -45,5 +53,5 @@ class CalendarFragment : Fragment() {
         return  v
     }
 
-
 }
+
