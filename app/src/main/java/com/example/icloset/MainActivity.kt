@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.fragment_closet.*
+import kotlinx.android.synthetic.main.nav_header_main.*
 import java.lang.Exception
 
 
@@ -37,7 +38,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         //our code from here
-
 
 
         var navigationView = findViewById<NavigationView>(R.id.nav_view)
@@ -217,4 +217,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
         }
     }
+
+
 }

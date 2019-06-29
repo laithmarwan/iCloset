@@ -36,14 +36,15 @@ class CalendarFragment : Fragment() {
         var v = inflater.inflate(R.layout.fragment_calendar, container, false)
 
         v.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            
 
             //var obj = OutfitsFragment()
             //obj.show(requireActivity().supportFragmentManager,"Qty")
 
 
             var trans = requireActivity().supportFragmentManager.beginTransaction()
-            trans.replace(R.id.main_frame,OutfitsFragment())
             trans.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
+            trans.replace(R.id.main_frame,CalendarToOutfits())
             trans.addToBackStack(null)
             trans.commit()
         }
