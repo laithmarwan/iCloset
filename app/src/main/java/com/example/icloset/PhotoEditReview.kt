@@ -3,6 +3,7 @@ package com.example.icloset
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
@@ -249,9 +250,8 @@ class PhotoEditReview : AppCompatActivity() {
             val file = File(storageDirectory,url)
             try {
                 val stream:OutputStream = FileOutputStream(file)
-                val drawble = ContextCompat.getDrawable(applicationContext,R.drawable.navbackground)
-                val bmp = item_photo_editor.drawable as Bitmap
-                bmp.compress(Bitmap.CompressFormat.JPEG,100,stream)
+                val bm = (item_photo_editor.drawable as BitmapDrawable).bitmap
+                bm.compress(Bitmap.CompressFormat.JPEG,100,stream)
                 stream.flush()
                 stream.close()
                 Toast.makeText(this,"Stored successfully ${Uri.parse(file.absolutePath)}",Toast.LENGTH_SHORT).show()
