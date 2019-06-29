@@ -54,11 +54,19 @@ class PhotoEditReview : AppCompatActivity() {
                     var obj = icloset(this)
                     var db = obj.writableDatabase
                     var typedesc =  category_list.text.toString().split(" - ")
-                    var cur = db.rawQuery("select MAX(Item_ID) from item", arrayOf())
-                    if(cur.count != 0){
-                        cur.moveToNext()
-                        AppInfo.img_url = cur.getString(0).toInt()
-                        AppInfo.img_url++
+                    var cur = db.rawQuery("select Item_ID from item", arrayOf())
+                    if(cur.count > 0){
+                        cur.moveToFirst()
+                        var max=0
+                        while(!cur.isAfterLast){
+                            if(cur.getString(0).toInt() > max){
+                                max = cur.getString(0).toInt()
+                            }
+                            cur.moveToNext()
+                        }
+
+                        AppInfo.img_url = max+1
+
                     }
                     var image_url = "item_"+AppInfo.img_url+".jpg"
                     this.saveImageToStorage(image_url)
@@ -241,7 +249,7 @@ class PhotoEditReview : AppCompatActivity() {
             val file = File(storageDirectory,url)
             try {
                 val stream:OutputStream = FileOutputStream(file)
-                val drawble = ContextCompat.getDrawable(applicationContext,R.drawable.outfits)
+                val drawble = ContextCompat.getDrawable(applicationContext,R.drawable.navbackground)
                 val bmp = (drawble as BitmapDrawable).bitmap
                 bmp.compress(Bitmap.CompressFormat.JPEG,100,stream)
                 stream.flush()

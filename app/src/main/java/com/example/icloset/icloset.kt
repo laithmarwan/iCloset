@@ -26,8 +26,8 @@ class icloset(var con:Context) :SQLiteOpenHelper(con,"icloset.db",null,2){
                 " Description varchar(20) NOT NULL," +
                 " Times_worn integer(20) NOT NULL," +
                 " Last_time_worn varchar(20)," +
-                " Weather integer(10) NOT NULL," +
-                " Occasion varchar(20) NOT NULL," +
+                " Weather integer(10)," +
+                " Occasion varchar(20)," +
                 " Available integer(1) NOT NULL," +
                 " Item_image varchar(30) NOT NULL" +
                 ")")

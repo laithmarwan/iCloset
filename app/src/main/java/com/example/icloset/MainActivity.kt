@@ -87,6 +87,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             var tr = supportFragmentManager.beginTransaction()
             if(menuItem.itemId == R.id.menu_closet){
                 var obj = ClosetFragment()
+                tr.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
                 tr.replace(R.id.main_frame,obj)
                 tr.addToBackStack(null)
                 tr.commit()
@@ -94,19 +95,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             if(menuItem.itemId == R.id.menu_outfits){
                 var obj = OutfitsFragment()
+                tr.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
                 tr.replace(R.id.main_frame,obj)
+
                 tr.addToBackStack(null)
                 tr.commit()
 
             }
             if(menuItem.itemId == R.id.menu_home){
                 var obj = HomeFragment()
+                tr.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
                 tr.replace(R.id.main_frame,obj)
                 tr.commit()
             }
             if(menuItem.itemId == R.id.menu_calendar){
                 var obj = CalendarFragment()
+                tr.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
                 tr.replace(R.id.main_frame,obj)
+
                 tr.commit()
             }
 

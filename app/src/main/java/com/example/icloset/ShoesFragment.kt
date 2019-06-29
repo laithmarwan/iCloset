@@ -87,8 +87,8 @@ class ShoesFragment : Fragment() {
     private fun MoveToFragment(frg:Fragment){
         var trans = requireActivity().supportFragmentManager.beginTransaction()
         var obj = frg
-        trans.replace(R.id.vp,obj)
         trans.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
+        trans.replace(R.id.main_frame,obj)
         trans.addToBackStack(null)
         trans.commit()
     }
