@@ -93,8 +93,12 @@
             android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="8dp"
-            android:focusableInTouchMode="false" android:enabled="false" android:clickable="false"
-            android:layout_marginTop="2dp" app:layout_constraintTop_toBottomOf="@+id/textView10"/>
+            android:focusableInTouchMode="false"
+            android:enabled="false"
+            android:clickable="false"
+            android:layout_marginTop="2dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView10"
+    />
 
     <Spinner
             android:id="@+id/city_spinner"

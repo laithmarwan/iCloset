@@ -47,16 +47,16 @@ class PhotoEditReview : AppCompatActivity() {
 
             if(AppInfo.act == "add"){
                 //code for adding item to database
-                if(season_list.text.toString() == "Select one season or more" || season_list.text.toString() == ""
-                    || occasion_list.text.toString() == "Select one or more occasions" || occasion_list.text.toString() == ""
-                    || category_list.text.toString() == "Select only one category" || category_list.text.toString() == "" ){
+                if(season_list.text.toString() == "Select one season or more" || season_view.text.toString() == ""
+                    || occasion_list.text.toString() == "Select one or more occasions" || occasion_view.text.toString() == ""
+                    || category_list.text.toString() == "Select only one category" || category_view.text.toString() == "" ){
                     Toast.makeText(this,"Make sure to fill all info",Toast.LENGTH_SHORT).show()
                 }
                 else{
                         AppInfo.img_url = 1
                     var obj = icloset(this)
                     var db = obj.writableDatabase
-                    var typedesc =  category_list.text.toString().split(" - ")
+                    var typedesc =  category_view.text.toString().split(" - ")
                     var cur = db.rawQuery("select Item_ID from item", arrayOf())
                     if(cur.count > 0){
                         cur.moveToFirst()
@@ -73,8 +73,8 @@ class PhotoEditReview : AppCompatActivity() {
                     }
                     var image_url = "item_"+AppInfo.img_url+".jpg"
                     this.saveImageToStorage(image_url)
-                    var seasonarr = season_list.text.toString().split(", ")
-                    var occasionarr = occasion_list.text.toString().split(", ")
+                    var seasonarr = season_view.text.toString().split(", ")
+                    var occasionarr = occasion_view.text.toString().split(", ")
                     db.execSQL("insert into item (Type,Description,Times_worn,Available,Item_image) " +
                             "values (?,?,0,1,?)", arrayOf(typedesc[0],typedesc[1],image_url))
                     var cur2 = db.rawQuery("select Item_ID from item where Item_image=?", arrayOf(image_url))
@@ -134,14 +134,14 @@ class PhotoEditReview : AppCompatActivity() {
                 val currentItem = seasonlist[which]
             }
             builder.setPositiveButton("OK"){dialog, which ->
-                season_list.text = ""
+                season_view.setText("")
                 for (i in checkedArray.indices){
                     val checked = checkedArray[i]
                     if (checked){
-                        if(season_list.text.toString() == "")
-                            season_list.text = seasonlist[i]
+                        if(season_view.text.toString() == "")
+                            season_view.setText(seasonlist[i])
                         else
-                            season_list.text = season_list.text.toString() + ", " + seasonlist[i]
+                            season_view.setText(season_view.text.toString() + ", " + seasonlist[i])
                         // database
                     }
 
@@ -165,14 +165,14 @@ class PhotoEditReview : AppCompatActivity() {
                 val currentItem = occasionlist[which]
             }
             builder.setPositiveButton("OK"){dialog, which ->
-                occasion_list.text = ""
+                occasion_view.setText("")
                 for (i in checkedArray.indices){
                     val checked = checkedArray[i]
                     if (checked){
-                        if(occasion_list.text.toString()=="")
-                            occasion_list.text = occasionlist[i]
+                        if(occasion_view.text.toString()=="")
+                            occasion_view.setText(occasionlist[i])
                         else{
-                            occasion_list.text = occasion_list.text.toString() + ", " +occasionlist[i]
+                            occasion_view.setText(occasion_view.text.toString() + ", " +occasionlist[i])
                         }
                         // database
                     }
@@ -232,7 +232,7 @@ class PhotoEditReview : AppCompatActivity() {
 
             builder.setTitle("Select Category")
             builder.setSingleChoiceItems(categoryArray, -1){dialog: DialogInterface, which: Int ->
-                category_list.text = categoryArray[which]
+                category_view.setText(categoryArray[which])
             }
             builder.setPositiveButton("OK"){dialog, which ->
                 //database
