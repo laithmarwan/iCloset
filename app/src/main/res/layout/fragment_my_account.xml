@@ -91,6 +91,8 @@
     <EditText
             android:background="@drawable/round_corners"
             android:drawableLeft="@drawable/address"
+            android:drawableRight="@drawable/arrow_down"
+            android:paddingRight="10dp"
             android:paddingLeft="10dp"
             android:drawablePadding="10dp"
             android:foregroundGravity="center"
