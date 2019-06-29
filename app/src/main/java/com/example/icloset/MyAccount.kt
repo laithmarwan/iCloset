@@ -201,6 +201,10 @@ class MyAccount : Fragment() {
                                         }
                                     }
                                 }
+
+                                var i = Intent(activity, MainActivity::class.java)
+                                startActivity(i)
+
                             }
                             else if(response == "0"){
                                 Toast.makeText(activity,"Error",Toast.LENGTH_LONG).show()
