@@ -235,9 +235,10 @@ class PhotoEditReview : AppCompatActivity() {
                 category_view.setText(categoryArray[which])
             }
             builder.setPositiveButton("OK"){dialog, which ->
-                //database
+
             }
             builder.setNegativeButton("Cancel"){dialog, which ->
+                category_view.setText("")
                 dialog.dismiss()
             }
             val dialog = builder.create()
