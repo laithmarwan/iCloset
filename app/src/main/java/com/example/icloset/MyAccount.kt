@@ -68,7 +68,7 @@ class MyAccount : Fragment() {
         }
 
         var flag_address = false
-        v.email_view.text = AppInfo.Email
+        //v.email_view.text = AppInfo.Email
         v.account_name.hint = AppInfo.Name
         v.address.hint = AppInfo.Address
 
