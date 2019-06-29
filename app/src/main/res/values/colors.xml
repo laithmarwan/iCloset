@@ -3,9 +3,18 @@
     <color name="colorPrimary">#517f95</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#000000</color>
+
+    <color name="splash_colorPrimary">#607d8b</color>
+    <color name="splash_colorPrimaryDark">#303F9F</color>
+    <color name="splash_colorAccent">#FF4081</color>
+
+
     <color name="loginButton">#424242</color>
+
     <color name="colorBottomNavigation">#517f95</color>
+
     <color name="navbar">#000</color>
+
     <color name="closettab">#dbdfe5</color>
 
     <color name="colorFab1">#4CAF50</color>
