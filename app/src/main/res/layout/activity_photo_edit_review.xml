@@ -175,7 +175,7 @@
             android:text="Select one season or more" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/category_list" app:layout_constraintHorizontal_bias="0.333"
-            app:layout_constraintVertical_bias="0.037"/>
+            app:layout_constraintVertical_bias="0.037" android:textSize="18sp"/>
     <TextView
             android:layout_width="286dp"
             android:layout_height="33dp"
@@ -185,7 +185,8 @@
             app:layout_constraintTop_toTopOf="@+id/constraintLayout2" android:text="Select one or more occasions"
             android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/ok_btn"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintHorizontal_bias="0.333" app:layout_constraintVertical_bias="0.0"/>
+            app:layout_constraintHorizontal_bias="0.333" app:layout_constraintVertical_bias="0.0"
+            android:textSize="18sp"/>
     <TextView
             android:layout_width="288dp"
             android:layout_height="34dp"
@@ -195,7 +196,7 @@
             android:layout_marginStart="100dp" android:text="Select only one category"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2" app:layout_constraintHorizontal_bias="0.142"
-            app:layout_constraintVertical_bias="0.644"/><![CDATA[
+            app:layout_constraintVertical_bias="0.644" android:textSize="18sp"/><![CDATA[
 
 
 
