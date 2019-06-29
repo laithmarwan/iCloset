@@ -92,7 +92,7 @@ class OutfitsFragment : Fragment() {
         v.fab_new.setOnClickListener {
             var trans = requireActivity().supportFragmentManager.beginTransaction()
             trans.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
-            trans.replace(R.id.main_frame,NewOutfitFragment())
+            trans.replace(R.id.main_frame,ChooseItemFragment())
             trans.addToBackStack(null)
             trans.commit()
         }

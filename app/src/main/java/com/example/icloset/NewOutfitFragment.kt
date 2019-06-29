@@ -34,7 +34,7 @@ class NewOutfitFragment : Fragment() {
         // Inflate the layout for this fragment
 
         var v = inflater.inflate(R.layout.fragment_new_outfit, container, false)
-        v.add_btn.setOnClickListener {
+    //    v.add_btn.setOnClickListener {
             var cats = ArrayList<Categories>()
             var obj = icloset(requireActivity())
             var db = obj.readableDatabase
@@ -57,10 +57,10 @@ class NewOutfitFragment : Fragment() {
                 }
             }
 
-            v.rv_add.layoutManager = LinearLayoutManager(activity)
+            v.rv_add.layoutManager = GridLayoutManager(activity,1)
             val adapter = DraggableAdapter(cats)
             v.rv_add.adapter = adapter
-        }
+    //    }
 
         return v
     }
