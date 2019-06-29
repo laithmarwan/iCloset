@@ -3,10 +3,12 @@ package com.example.icloset
 
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.preference.MultiSelectListPreference
 import android.support.v4.app.Fragment
+import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -79,9 +81,10 @@ class MyAccount : Fragment() {
             }
         }
 
+        var flag_address = false
         v.email_view.text = AppInfo.Email
         v.account_name.hint = AppInfo.Name
-
+        v.address.hint = AppInfo.Address
 
         /*if(AppInfo.Gender == "0"){
             v.gender_toggle.text = "Female"
@@ -96,9 +99,9 @@ class MyAccount : Fragment() {
 
         option = v.findViewById(R.id.city_spinner) as Spinner
         val options = ArrayList<String>()
-        options.add(AppInfo.Address)
-        options.add("Option1")
-        options.add("Option2")
+        /*options.add(AppInfo.Address)
+        *//*options.add("Option1")
+        options.add("Option2")*/
 
         option.adapter = ArrayAdapter<String>(activity,android.R.layout.simple_list_item_1, options)
 
@@ -111,6 +114,30 @@ class MyAccount : Fragment() {
                 opt = option.getItemAtPosition(position).toString()
 
             }
+        }
+
+        v.address_view.setOnClickListener {
+            val builder = AlertDialog.Builder(requireContext())
+            val addressArray = arrayOf("Amman","London")
+
+
+            builder.setTitle("Select your address")
+            builder.setSingleChoiceItems(addressArray, -1){ dialog: DialogInterface, which: Int ->
+                v.address.hint = addressArray[which]
+                opt = addressArray[which]
+
+            }
+            builder.setPositiveButton("OK"){dialog, which ->
+                flag_address = true
+                //database
+            }
+            builder.setNegativeButton("Cancel"){dialog, which ->
+                v.address.hint = AppInfo.Address
+                dialog.dismiss()
+                flag_address = false
+            }
+            val dialog = builder.create()
+            dialog.show()
         }
 
 
@@ -137,8 +164,8 @@ class MyAccount : Fragment() {
                     Toast.makeText(activity, "Passwords don't match", Toast.LENGTH_LONG).show()
                 }
             }
-            if(opt != AppInfo.Address){
-                flag_address = true
+            if(opt == AppInfo.Address){
+                flag_address = false
             }
 /*
             v.gender_toggle.setOnClickListener {
