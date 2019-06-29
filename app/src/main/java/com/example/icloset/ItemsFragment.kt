@@ -34,7 +34,7 @@ class ItemsFragment : Fragment() {
         var v = inflater.inflate(R.layout.fragment_items, container, false)
 
         var cats = ArrayList<Categories>()
-        var bmp:Bitmap = BitmapFactory.decodeResource(context?.resources,R.drawable.outfits)
+        //var bmp:Bitmap = BitmapFactory.decodeResource(context?.resources,R.drawable.outfits)
         var obj = icloset(requireActivity())
         var db = obj.readableDatabase
         var cur = db.rawQuery("select * from item where Type=? and Description = ?", arrayOf(AppInfo.type,AppInfo.desc))

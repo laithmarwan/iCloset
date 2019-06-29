@@ -20,7 +20,7 @@
             android:scaleType="fitXY"
             android:elevation="8dp"
             app:maxImageSize="50dp"
-            android:id="@+id/fab"
+            android:id="@+id/fab_new"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
