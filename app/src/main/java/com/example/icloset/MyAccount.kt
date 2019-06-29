@@ -3,12 +3,10 @@ package com.example.icloset
 
 import android.app.ProgressDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.preference.MultiSelectListPreference
 import android.support.v4.app.Fragment
-import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +15,6 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import kotlinx.android.synthetic.main.activity_photo_edit_review.*
 import kotlinx.android.synthetic.main.fragment_my_account.*
 import kotlinx.android.synthetic.main.fragment_my_account.view.*
 import java.util.ArrayList
@@ -42,10 +39,8 @@ class MyAccount : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         var v = inflater.inflate(R.layout.fragment_my_account, container, false)
-        var flag_address = false
         v.email_view.text = AppInfo.Email
         v.account_name.hint = AppInfo.Name
-        v.address.hint = AppInfo.Address
 
 
         if(AppInfo.Gender == "0"){
@@ -59,13 +54,11 @@ class MyAccount : Fragment() {
         var toggle = v.findViewById(R.id.gender_toggle) as ToggleButton
         var result = ""
 
-
-
         option = v.findViewById(R.id.city_spinner) as Spinner
         val options = ArrayList<String>()
-        //options.add(AppInfo.Address)
-        //options.add("Option1")
-        //options.add("Option2")
+        options.add(AppInfo.Address)
+        options.add("Option1")
+        options.add("Option2")
 
         option.adapter = ArrayAdapter<String>(activity,android.R.layout.simple_list_item_1, options)
 
@@ -80,34 +73,11 @@ class MyAccount : Fragment() {
             }
         }
 
-        v.address_view.setOnClickListener {
-            val builder = AlertDialog.Builder(requireContext())
-            val addressArray = arrayOf("Amman","London")
-
-
-            builder.setTitle("Select your address")
-            builder.setSingleChoiceItems(addressArray, -1){ dialog: DialogInterface, which: Int ->
-                v.address.hint = addressArray[which]
-                opt = addressArray[which]
-
-            }
-            builder.setPositiveButton("OK"){dialog, which ->
-                flag_address = true
-                //database
-            }
-            builder.setNegativeButton("Cancel"){dialog, which ->
-                v.address.hint = AppInfo.Address
-                dialog.dismiss()
-                flag_address = false
-            }
-            val dialog = builder.create()
-            dialog.show()
-        }
 
         v.save_changes.setOnClickListener {
             var flag_name = false
             var flag_pass = false
-
+            var flag_address = false
             var flag_male = false
             var flag_female = false
 
@@ -127,8 +97,8 @@ class MyAccount : Fragment() {
                     Toast.makeText(activity, "Passwords don't match", Toast.LENGTH_LONG).show()
                 }
             }
-            if(opt == AppInfo.Address){
-                flag_address = false
+            if(opt != AppInfo.Address){
+                flag_address = true
             }
 /*
             v.gender_toggle.setOnClickListener {
@@ -147,9 +117,6 @@ class MyAccount : Fragment() {
                 flag_female = true
             }
 */
-
-
-
 
             if(flag_name || flag_pass || flag_address){ //|| flag_male || flag_female
                 val builder = android.app.AlertDialog.Builder(activity)

@@ -28,4 +28,6 @@
     <color name="signup_female">#f3e5f5</color>
 
     <color name="navigation_bar">#517f95</color>
+
+    <color name="female_btn">#e1bee7</color>
 </resources>
