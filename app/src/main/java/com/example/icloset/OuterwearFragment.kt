@@ -39,14 +39,14 @@ class OuterwearFragment : Fragment() {
 
       v.lv_outer.setOnItemClickListener { parent, view, position, id ->
 
-          AppInfo.type = "outerwear"
+          AppInfo.type = "Outerwear"
           when (position) {
               0 -> {
-                  AppInfo.desc = "jackets"
+                  AppInfo.desc = "Jackets"
                   MoveToFragment(ItemsFragment())
               }
               else -> {
-                  AppInfo.desc = "coats"
+                  AppInfo.desc = "Coats"
                   MoveToFragment(ItemsFragment())
               }
           }

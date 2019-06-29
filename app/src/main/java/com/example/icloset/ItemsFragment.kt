@@ -35,14 +35,31 @@ class ItemsFragment : Fragment() {
 
         var cats = ArrayList<Categories>()
         var bmp:Bitmap = BitmapFactory.decodeResource(context?.resources,R.drawable.outfits)
-        cats.add(Categories("0","tops","blazers",bmp))
-        cats.add(Categories("0","tops","blazers",bmp))
-        cats.add(Categories("0","tops","blazers",bmp))
+        var obj = icloset(requireActivity())
+        var db = obj.readableDatabase
+        var cur = db.rawQuery("select * from item where Type=? and Description = ?", arrayOf(AppInfo.type,AppInfo.desc))
+        if(cur.count ==0){
+            Toast.makeText(activity,"No items in this category",Toast.LENGTH_SHORT).show()
+        }
+        else{
+            cur.moveToFirst()
+            while (!cur.isAfterLast){
+
+
+                cats.add(Categories(cur.getString(cur.getColumnIndex("Item_ID")),
+                    cur.getString(cur.getColumnIndex("Type")),
+                    cur.getString(cur.getColumnIndex("Description")),
+                    cur.getString(cur.getColumnIndex("Item_image"))))
+
+
+                cur.moveToNext()
+            }
+        }
 
         v.recyclerView.layoutManager = GridLayoutManager(activity,3)
         val adapter = CustomAdapter(cats)
         v.recyclerView.adapter = adapter
-        Toast.makeText(activity,AppInfo.type + AppInfo.desc,Toast.LENGTH_SHORT).show()
+        //Toast.makeText(activity,AppInfo.type + AppInfo.desc,Toast.LENGTH_SHORT).show()
 
         return v
     }

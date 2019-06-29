@@ -42,22 +42,22 @@ class BottomsFragment : Fragment() {
 
 
         v.lv_bottoms.setOnItemClickListener { parent, view, position, id ->
-            AppInfo.type = "bottoms"
+            AppInfo.type = "Bottoms"
             when (position) {
                 0 -> {
-                    AppInfo.desc = "trousers"
+                    AppInfo.desc = "Trousers"
                     MoveToFragment(ItemsFragment())
                 }
                 1 -> {
-                    AppInfo.desc = "shorts"
+                    AppInfo.desc = "Shorts"
                     MoveToFragment(ItemsFragment())
                 }
                 2 -> {
-                    AppInfo.desc = "jeans"
+                    AppInfo.desc = "Jeans"
                     MoveToFragment(ItemsFragment())
                       }
                 else -> {
-                    AppInfo.desc = "skirts"
+                    AppInfo.desc = "Skirts"
                     MoveToFragment(ItemsFragment())
                 }
             }

@@ -42,26 +42,26 @@ class DressesFragment : Fragment() {
        v.lv_dresses.adapter = adp
 
         v.lv_dresses.setOnItemClickListener { parent, view, position, id ->
-            AppInfo.type = "dresses"
+            AppInfo.type = "Dresses"
             when (position) {
                 0 -> {
-                    AppInfo.desc = "evening"
+                    AppInfo.desc = "Evening Gowns"
                     MoveToFragment(ItemsFragment())
                 }
                 1 -> {
-                    AppInfo.desc = "cocktail"
+                    AppInfo.desc = "Cocktail Dress"
                     MoveToFragment(ItemsFragment())
                 }
                 2 -> {
-                    AppInfo.desc = "strapless"
+                    AppInfo.desc = "Strapless Dress"
                     MoveToFragment(ItemsFragment())
                 }
                 3 -> {
-                    AppInfo.desc = "sundresses"
+                    AppInfo.desc = "Sundress"
                     MoveToFragment(ItemsFragment())
                 }
                 else -> {
-                    AppInfo.desc = "shirt"
+                    AppInfo.desc = "Shirt Dress"
                     MoveToFragment(ItemsFragment())
                 }
             }

@@ -47,46 +47,46 @@ class AccessoriesFragment : Fragment() {
         v.lv_accessories.adapter = adp
 
         v.lv_accessories.setOnItemClickListener { parent, view, position, id ->
-            AppInfo.type = "accessories"
+            AppInfo.type = "Accessories"
             when (position) {
                 0 -> {
-                    AppInfo.desc = "watches"
+                    AppInfo.desc = "Watches"
                     MoveToFragment(ItemsFragment())
                 }
                 1 -> {
-                    AppInfo.desc = "sunglasses"
+                    AppInfo.desc = "Sunglasses"
                     MoveToFragment(ItemsFragment())
                 }
                 2 -> {
-                    AppInfo.desc = "belts"
+                    AppInfo.desc = "Belts"
                     MoveToFragment(ItemsFragment())
                 }
                 3 -> {
-                    AppInfo.desc = "hats"
+                    AppInfo.desc = "Hats"
                     MoveToFragment(ItemsFragment())
                 }
                 4 -> {
-                    AppInfo.desc = "necklaces"
+                    AppInfo.desc = "Necklaces"
                     MoveToFragment(ItemsFragment())
                 }
                 5 -> {
-                    AppInfo.desc = "bracelets"
+                    AppInfo.desc = "Bracelets"
                     MoveToFragment(ItemsFragment())
                 }
                 6 -> {
-                    AppInfo.desc = "rings"
+                    AppInfo.desc = "Rings"
                     MoveToFragment(ItemsFragment())
                 }
                 7 -> {
-                    AppInfo.desc = "headbands"
+                    AppInfo.desc = "Headbands"
                     MoveToFragment(ItemsFragment())
                 }
                 8 -> {
-                    AppInfo.desc = "earrings"
+                    AppInfo.desc = "Earrings"
                     MoveToFragment(ItemsFragment())
                 }
                 else -> {
-                    AppInfo.desc = "scarves"
+                    AppInfo.desc = "Scarves"
                     MoveToFragment(ItemsFragment())
                 }
             }
