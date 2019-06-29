@@ -47,7 +47,7 @@
 
     <EditText
             android:background="@drawable/round_corners"
-            android:drawableLeft="@drawable/address"
+            android:drawableLeft="@drawable/color_select"
             android:paddingRight="10dp"
             android:paddingLeft="10dp"
             android:drawablePadding="10dp"
@@ -69,7 +69,7 @@
 
     <EditText
             android:background="@drawable/round_corners"
-            android:drawableLeft="@drawable/address"
+            android:drawableLeft="@drawable/season"
             android:drawableRight="@drawable/arrow_down"
             android:paddingRight="10dp"
             android:paddingLeft="10dp"
@@ -94,7 +94,7 @@
 
     <EditText
             android:background="@drawable/round_corners"
-            android:drawableLeft="@drawable/address"
+            android:drawableLeft="@drawable/clothes_category"
             android:drawableRight="@drawable/arrow_down"
             android:paddingRight="10dp"
             android:paddingLeft="10dp"
@@ -119,7 +119,7 @@
 
     <EditText
             android:background="@drawable/round_corners"
-            android:drawableLeft="@drawable/address"
+            android:drawableLeft="@drawable/occasion"
             android:drawableRight="@drawable/arrow_down"
             android:paddingRight="10dp"
             android:paddingLeft="10dp"
@@ -143,19 +143,15 @@
     />
 
 
-
-
     <View
             android:background="@drawable/round_corners"
-            android:layout_width="255dp"
+            android:layout_width="100dp"
             android:layout_height="34dp"
             android:id="@+id/item_photo_color_info"
             app:layout_constraintEnd_toEndOf="@+id/color_view"
             app:layout_constraintTop_toTopOf="@+id/color_view"
             app:layout_constraintBottom_toBottomOf="@+id/color_view"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-    />
+            app:layout_constraintStart_toStartOf="@+id/color_view"/>
 
 
     <TextView
