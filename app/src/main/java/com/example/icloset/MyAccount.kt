@@ -19,6 +19,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.fragment_my_account.*
 import kotlinx.android.synthetic.main.fragment_my_account.view.*
+import kotlinx.android.synthetic.main.nav_header_main.*
 import java.util.ArrayList
 
 
@@ -130,7 +131,6 @@ class MyAccount : Fragment() {
         v.save_changes.setOnClickListener {
             var flag_name = false
             var flag_pass = false
-            //var flag_address = false
             var flag_male = false
             var flag_female = false
 
@@ -153,25 +153,17 @@ class MyAccount : Fragment() {
             if(opt == AppInfo.Address){
                 flag_address = false
             }
-/*
-            v.gender_toggle.setOnClickListener {
-                if(v.gender_toggle.text == "Male"){
-                    v.gender_toggle.text = "Female"
-                }
-                else{
-                    v.gender_toggle.text = "Male"
-                }
-            }
 
-            if (AppInfo.Gender == "0" && v.gender_toggle.text.toString() == "male"){
+
+            if (AppInfo.Gender == "0" && v.gender_toggle.isChecked){
                 flag_male = true
             }
-            else if (AppInfo.Gender == "1" && v.gender_toggle.text.toString() == "female"){
+            else if (AppInfo.Gender == "1" && !v.gender_toggle.isChecked){
                 flag_female = true
             }
-*/
 
-            if(flag_name || flag_pass || flag_address){ //|| flag_male || flag_female
+
+            if(flag_name || flag_pass || flag_address || flag_male || flag_female){ //|| flag_male || flag_female
                 val builder = android.app.AlertDialog.Builder(activity)
                 builder.setTitle("Alert")
                 builder.setMessage("Are you sure?")
@@ -200,6 +192,14 @@ class MyAccount : Fragment() {
                                     else if(arr[i] == "pass"){
                                         Toast.makeText(activity,"Password changed successfully",Toast.LENGTH_LONG).show()
                                     }
+                                    else if(arr[i] == "gender"){
+                                        Toast.makeText(activity,"Gender changed successfully",Toast.LENGTH_LONG).show()
+                                        if(AppInfo.Gender == "0")
+                                            AppInfo.Gender = "1"
+                                        else{
+                                            AppInfo.Gender = "0"
+                                        }
+                                    }
                                 }
                             }
                             else if(response == "0"){
@@ -226,6 +226,12 @@ class MyAccount : Fragment() {
                             if(flag_pass) {
                                 map.put("password", v.old_password.text.toString())
                                 map.put("new", v.new_password.text.toString())
+                            }
+                            if(flag_male){
+                                map.put("gender","1")
+                            }
+                            if(flag_female){
+                                map.put("gender","0")
                             }
                             map.put("email",AppInfo.Email)
 
