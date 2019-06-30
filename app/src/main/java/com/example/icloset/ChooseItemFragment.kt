@@ -70,7 +70,6 @@ class ChooseItemFragment : Fragment() {
                     val file = File(storageDirectory,cur.getString(cur.getColumnIndex("Item_image")))
                     image_view.setImageURI(Uri.parse(file.absolutePath))
                     
-
             }
 
             root_layout.addView(image_view)
