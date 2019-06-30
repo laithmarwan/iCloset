@@ -4,9 +4,10 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.widget.FrameLayout
+import android.widget.ImageView
 
 class DraggableBox @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
-    FrameLayout(context, attrs, defStyleAttr) {
+    ImageView(context, attrs, defStyleAttr) {
     private var startingPointerX: Float = 0.toFloat()
     private var startingPointerY: Float = 0.toFloat()
     private var startingViewX: Float = 0.toFloat()
