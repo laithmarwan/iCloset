@@ -2,6 +2,7 @@ package com.example.icloset
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -10,10 +11,13 @@ import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
 import android.support.v4.app.DialogFragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
+import android.support.v7.graphics.Palette
 import android.view.MotionEvent
+import android.view.View
 import android.widget.Toast
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
@@ -22,26 +26,93 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 import java.lang.Exception
+import java.lang.Thread.sleep
 import java.util.*
 
 class PhotoEditReview : AppCompatActivity() {
 
     private lateinit var bitmap: Bitmap
 
+
+    private var vibrantSwatch: Palette.Swatch? = null
+    private var lightVibrantSwatch: Palette.Swatch? = null
+    private var darkVibrantSwatch: Palette.Swatch? = null
+    private var mutedSwatch: Palette.Swatch? = null
+    private var lightMutedSwatch: Palette.Swatch? = null
+    private var darkMutedSwatch: Palette.Swatch? = null
+    private var swatchNumber: Int = 0
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_photo_edit_review)
+        item_photo_editor.setImageURI(AppInfo.img)
+
+        item_photo_editor.setOnClickListener {
+            findColors() }
 
 
-       // if (AppInfo.act == "cam")
-       // {
-            openCamera()
-       // }
 
-        /*else if(AppInfo.act == "media")
-        {
-            pickImageFromGallery()
-        }*/
+        var count = 0
+        var count2 = 0
+        var count3 = 0
+        var count4 = 0
+        var count5 = 0
+        var count6 = 0
+
+
+
+
+        item_photo_color_info.setOnClickListener {
+
+            if (count%2 == 0 && count > 0){
+                item_photo_editor.setImageResource(R.drawable.home)
+                item_photo_editor.isDrawingCacheEnabled = true
+                item_photo_editor.buildDrawingCache(true)
+
+                item_photo_editor.setOnTouchListener { v, event ->
+                    if (event.action == MotionEvent.ACTION_DOWN || event.action == MotionEvent.ACTION_MOVE){
+                        bitmap = item_photo_editor.drawingCache
+                        val pixel = bitmap.getPixel(event.x.toInt(), event.y.toInt())
+
+                        val r = Color.red(pixel)
+                        val g = Color.green(pixel)
+                        val b = Color.blue(pixel)
+
+                        val hex = "#" + Integer.toHexString(pixel)
+                        item_photo_color_info.setBackgroundColor(Color.rgb(r,g,b))
+                        //item_photo_hex_info.text = "RGB: $r, $g, $b \n HEX: $hex"
+                    }
+                    true
+                }
+                count++
+            }
+            else{
+
+            }
+
+        }
+
+        item_photo_color_info2.setOnClickListener {
+
+        }
+
+        item_photo_color_info3.setOnClickListener {
+
+        }
+
+        item_photo_color_info4.setOnClickListener {
+
+        }
+
+        item_photo_color_info5.setOnClickListener {
+
+        }
+
+        item_photo_color_info6.setOnClickListener {
+
+        }
+
 
         ok_btn.setOnClickListener {
 
@@ -103,25 +174,6 @@ class PhotoEditReview : AppCompatActivity() {
 
         }
 
-
-        item_photo_editor.isDrawingCacheEnabled = true
-        item_photo_editor.buildDrawingCache(true)
-
-        item_photo_editor.setOnTouchListener { v, event ->
-            if (event.action == MotionEvent.ACTION_DOWN || event.action == MotionEvent.ACTION_MOVE){
-                bitmap = item_photo_editor.drawingCache
-                val pixel = bitmap.getPixel(event.x.toInt(), event.y.toInt())
-
-                val r = Color.red(pixel)
-                val g = Color.green(pixel)
-                val b = Color.blue(pixel)
-
-                val hex = "#" + Integer.toHexString(pixel)
-                item_photo_color_info.setBackgroundColor(Color.rgb(r,g,b))
-                //item_photo_hex_info.text = "RGB: $r, $g, $b \n HEX: $hex"
-            }
-            true
-        }
 
         season_list.setOnClickListener {
             val builder = AlertDialog.Builder(this)
@@ -244,7 +296,12 @@ class PhotoEditReview : AppCompatActivity() {
             val dialog = builder.create()
             dialog.show()
         }
+
+
     }
+
+
+
 
 
     private fun saveImageToStorage(url:String): Boolean {
@@ -256,7 +313,8 @@ class PhotoEditReview : AppCompatActivity() {
             try {
                 val stream:OutputStream = FileOutputStream(file)
                 val bm = (item_photo_editor.drawable as BitmapDrawable).bitmap
-                bm.compress(Bitmap.CompressFormat.JPEG,100,stream)
+                val resized = Bitmap.createScaledBitmap(bm, 300, 400, true)
+                resized.compress(Bitmap.CompressFormat.JPEG,100,stream)
                 stream.flush()
                 stream.close()
                 Toast.makeText(this,"Stored successfully ${Uri.parse(file.absolutePath)}",Toast.LENGTH_SHORT).show()
@@ -280,21 +338,113 @@ class PhotoEditReview : AppCompatActivity() {
             //var bmp = data?.extras?.get("data") as Bitmap
             //item_photo_editor.setImageBitmap(bmp)
             // crop
-            if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
 
 
-                var result = CropImage.getActivityResult(data)
-                item_photo_editor.setImageURI(result.uri)
-            }
-
-            else{
-                Toast.makeText(this, "aaa", Toast.LENGTH_SHORT).show()
-            }
        // }
 
        /* if (resultCode == Activity.RESULT_OK && requestCode == 1234){
             item_photo_editor.setImageURI(data?.data)
         }*/
+
+}
+
+    private fun findColors(){
+
+        val bmp = (item_photo_editor.drawable as BitmapDrawable).bitmap
+
+
+        Palette.from(bmp).maximumColorCount(32).generate { palette ->
+            vibrantSwatch = palette!!.vibrantSwatch
+            lightVibrantSwatch = palette.lightVibrantSwatch
+            darkVibrantSwatch = palette.darkVibrantSwatch
+            mutedSwatch = palette.mutedSwatch
+            lightMutedSwatch = palette.lightMutedSwatch
+            darkMutedSwatch = palette.darkMutedSwatch
+
+
+        }
+
+
+        var currentSwatch: Palette.Swatch? = null
+
+
+        currentSwatch = vibrantSwatch
+        if (currentSwatch != null) {
+            item_photo_color_info.setBackgroundColor(currentSwatch.rgb)
+
+        }
+        else{
+            Toast.makeText(this,"here",Toast.LENGTH_SHORT).show()
+        }
+
+        //textViewTitle.setText("Vibrant")
+
+        currentSwatch = lightVibrantSwatch
+        if (currentSwatch != null) {
+            item_photo_color_info2.setBackgroundColor(currentSwatch.rgb)
+
+        }
+        else{
+            Toast.makeText(this,"here",Toast.LENGTH_SHORT).show()
+        }
+
+        //textViewTitle.setText("Light Vibrant")
+
+        currentSwatch = darkVibrantSwatch
+        if (currentSwatch != null) {
+            item_photo_color_info3.setBackgroundColor(currentSwatch.rgb)
+
+        }
+        else{
+            Toast.makeText(this,"here",Toast.LENGTH_SHORT).show()
+        }
+
+        //textViewTitle.setText("Dark Vibrant")
+
+
+        currentSwatch = mutedSwatch
+        if (currentSwatch != null) {
+            item_photo_color_info4.setBackgroundColor(currentSwatch.rgb)
+
+        }
+        else{
+            Toast.makeText(this,"here",Toast.LENGTH_SHORT).show()
+        }
+
+        //textViewTitle.setText("Muted")
+
+
+        currentSwatch = lightMutedSwatch
+        if (currentSwatch != null) {
+            item_photo_color_info5.setBackgroundColor(currentSwatch.rgb)
+
+        }
+        else{
+            Toast.makeText(this,"here",Toast.LENGTH_SHORT).show()
+        }
+
+        //textViewTitle.setText("Light Muted")
+
+        currentSwatch = darkMutedSwatch
+        if (currentSwatch != null) {
+            item_photo_color_info6.setBackgroundColor(currentSwatch.rgb)
+
+        }
+        else{
+            Toast.makeText(this,"here",Toast.LENGTH_SHORT).show()
+        }
+        //textViewTitle.setText("Dark Muted")
+
+
+
+
+//textViewTitle.setTextColor(currentSwatch.titleTextColor)
+//textViewBody.setTextColor(currentSwatch.bodyTextColor)
+
+
+
+
+
     }
 
     private fun openCamera(){

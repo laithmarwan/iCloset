@@ -15,7 +15,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_choose_item.*
 import kotlinx.android.synthetic.main.fragment_choose_item.view.*
 import java.io.File

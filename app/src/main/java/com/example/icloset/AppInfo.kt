@@ -1,5 +1,7 @@
 package com.example.icloset
 
+import android.net.Uri
+
 
 class AppInfo {
 
@@ -15,6 +17,8 @@ class AppInfo {
         var desc:String = ""
         var act:String = ""
         var img_url:Int = 0
+        var wait:Int = 0
+        lateinit var img:Uri
 
     }
 

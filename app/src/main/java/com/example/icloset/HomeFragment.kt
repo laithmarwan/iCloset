@@ -105,9 +105,12 @@ class HomeFragment : Fragment() {
                 }
                 else
                 {
-                    var i = Intent(activity, PhotoEditReview::class.java)
-                    AppInfo.act = "help"
-                    startActivity(i)
+
+                    var crm = CropImage.activity()
+                        .setGuidelines(CropImageView.Guidelines.ON)
+
+                    crm.start(requireActivity())
+
                 }
             }
 
@@ -136,10 +139,11 @@ class HomeFragment : Fragment() {
         if(requestCode == camera_code){
 
             if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
-                var i = Intent(activity, PhotoEditReview::class.java)
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                AppInfo.act = "help"
-                startActivity(i)
+                var crm = CropImage.activity()
+                    .setGuidelines(CropImageView.Guidelines.ON)
+
+                crm.start(requireActivity())
+
             }
 
             else
@@ -148,6 +152,8 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
+
 
 }
 

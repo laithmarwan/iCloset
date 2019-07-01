@@ -19,6 +19,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -217,6 +218,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
         }
     }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+
+
+            var result = CropImage.getActivityResult(data)
+            var i = Intent(this, PhotoEditReview::class.java)
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            AppInfo.img = result.uri
+            startActivity(i)
+
+            //item_photo_editor.setImageURI(result.uri)
+        }
+    }
 
 }
