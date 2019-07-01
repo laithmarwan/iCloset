@@ -10,16 +10,31 @@
     </style>
     <!-- Base application theme.End -->
 
+    <!-- Base application theme2.Start -->
+    <style name="BlackTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/female_btn</item>
+        <item name="colorPrimaryDark">@color/female_btn</item>
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="android:navigationBarColor">@color/navbar</item>
+    </style>
+    <!-- Base application theme2.End -->
 
-    <!-- Base application theme.Start -->
+    <!-- SplashTheme.Start -->
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/splash_colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/splash_colorAccent</item>
     </style>
-    <!-- Base application theme.End-->
+    <!-- SplashTheme.End-->
 
+    <!-- ThemeTransition.Start -->
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+    <!-- ThemeTransition.End-->
 
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
