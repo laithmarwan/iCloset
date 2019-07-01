@@ -1,6 +1,7 @@
 package com.example.icloset
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -90,11 +91,7 @@ class OutfitsFragment : Fragment() {
         }
 
         v.fab_new.setOnClickListener {
-            var trans = requireActivity().supportFragmentManager.beginTransaction()
-            trans.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
-            trans.replace(R.id.main_frame,ChooseItemFragment())
-            trans.addToBackStack(null)
-            trans.commit()
+            startActivity(Intent(activity,CreateOutfitActivity::class.java))
         }
         return v
     }
