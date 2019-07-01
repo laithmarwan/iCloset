@@ -19,6 +19,7 @@ class AppInfo {
         var img_url:Int = 0
         var wait:Int = 0
         lateinit var img:Uri
+        var theme:Int = 0
 
     }
 

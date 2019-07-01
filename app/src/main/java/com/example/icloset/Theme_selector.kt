@@ -10,22 +10,25 @@ import kotlinx.android.synthetic.main.activity_theme_selector.*
 class Theme_selector : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        if(AppInfo.theme == 0)
+        setTheme(R.style.AppTheme)
+    else{
+        setTheme(R.style.BlackTheme)
+    }
         super.onCreate(savedInstanceState)
-
-        if (setTheme(getFlag())) R.style.AppThemeDark else R.Style.Apptheme
         setContentView(R.layout.activity_theme_selector)
-        btn_theme.setOnClickListener
-        run({ saveFlag(!getFlag())
-            Intent(startActivity(Theme_selector))
-            startActivity()
-            finish() })
+
+        btn_theme.setOnClickListener {
+
+            AppInfo.theme = 1
+            startActivity(Intent(this,Theme_selector::class.java))
+            finish()
+        }
+
+
+
+
     }
 
-    private fun saveFlag(flag:Boolean) {
-        val preferences = PreferenceManager.getDefaultSharedPreference(this)
-        val editor = preferences.edit()
-        editor.putBoolean('dark'.flag)
-        editor.commit()
-    }
 
 }

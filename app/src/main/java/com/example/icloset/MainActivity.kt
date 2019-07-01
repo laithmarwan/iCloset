@@ -8,6 +8,7 @@ import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -17,6 +18,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Range
 import android.view.MenuItem
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.theartofdev.edmodo.cropper.CropImage
@@ -24,7 +26,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.fragment_closet.*
+import kotlinx.android.synthetic.main.fragment_new_outfit.*
 import kotlinx.android.synthetic.main.nav_header_main.*
+import java.io.File
 import java.lang.Exception
 
 
@@ -151,6 +155,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 //Toast.makeText(this,AppInfo.UserID+AppInfo.Gender+AppInfo.Name+AppInfo.Address, Toast.LENGTH_SHORT).show()
             }
             R.id.nav_theme -> {
+                startActivity(Intent(this,Theme_selector::class.java))
 
             }
             R.id.nav_backup -> {
@@ -231,6 +236,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             startActivity(i)
 
             //item_photo_editor.setImageURI(result.uri)
+
+
         }
     }
 

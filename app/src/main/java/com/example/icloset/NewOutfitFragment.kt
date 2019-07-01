@@ -39,7 +39,7 @@ class NewOutfitFragment : Fragment() {
         return v
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+   /* override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1010) {
             val draggableBox = DraggableBox(requireContext())
@@ -75,5 +75,5 @@ class NewOutfitFragment : Fragment() {
             root_layout.addView(draggableBox)
 
         }
-    }
+    }*/
 }
