@@ -58,7 +58,7 @@ class ItemsFragment : Fragment() {
         }
 
         v.recyclerView.layoutManager = GridLayoutManager(activity,3)
-        val adapter = CustomAdapter(cats)
+        val adapter = CustomAdapter(cats,requireActivity())
         v.recyclerView.adapter = adapter
         //Toast.makeText(activity,AppInfo.type + AppInfo.desc,Toast.LENGTH_SHORT).show()
 
