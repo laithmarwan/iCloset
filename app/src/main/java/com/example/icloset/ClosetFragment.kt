@@ -18,6 +18,8 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import android.widget.Toolbar
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.app_bar_main.view.*
 import kotlinx.android.synthetic.main.fragment_closet.view.*
@@ -112,9 +114,12 @@ class ClosetFragment : Fragment() {
             }
             else
             {
-                var i = Intent(activity, PhotoEditReview::class.java)
                 AppInfo.act = "add"
-                startActivity(i)
+                var crm = CropImage.activity()
+                    .setGuidelines(CropImageView.Guidelines.ON)
+
+                crm.start(requireActivity())
+
             }
         }
 
@@ -173,10 +178,12 @@ class ClosetFragment : Fragment() {
         if(requestCode == camera_code){
 
             if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED && grantResults[2] == PackageManager.PERMISSION_GRANTED){
-                var i = Intent(activity, PhotoEditReview::class.java)
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 AppInfo.act = "add"
-                startActivity(i)
+                var crm = CropImage.activity()
+                    .setGuidelines(CropImageView.Guidelines.ON)
+
+                crm.start(requireActivity())
+
             }
 
             else

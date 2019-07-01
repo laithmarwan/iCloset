@@ -53,20 +53,8 @@ class PhotoEditReview : AppCompatActivity() {
 
 
 
-        var count = 0
-        var count2 = 0
-        var count3 = 0
-        var count4 = 0
-        var count5 = 0
-        var count6 = 0
-
-
-
-
         item_photo_color_info.setOnClickListener {
-
-            if (count%2 == 0 && count > 0){
-                item_photo_editor.setImageResource(R.drawable.home)
+                //item_photo_editor.setImageResource(R.drawable.home)
                 item_photo_editor.isDrawingCacheEnabled = true
                 item_photo_editor.buildDrawingCache(true)
 
@@ -85,32 +73,111 @@ class PhotoEditReview : AppCompatActivity() {
                     }
                     true
                 }
-                count++
-            }
-            else{
-
-            }
-
         }
 
         item_photo_color_info2.setOnClickListener {
+            item_photo_editor.isDrawingCacheEnabled = true
+            item_photo_editor.buildDrawingCache(true)
 
+            item_photo_editor.setOnTouchListener { v, event ->
+                if (event.action == MotionEvent.ACTION_DOWN || event.action == MotionEvent.ACTION_MOVE){
+                    bitmap = item_photo_editor.drawingCache
+                    val pixel = bitmap.getPixel(event.x.toInt(), event.y.toInt())
+
+                    val r = Color.red(pixel)
+                    val g = Color.green(pixel)
+                    val b = Color.blue(pixel)
+
+                    val hex = "#" + Integer.toHexString(pixel)
+                    item_photo_color_info2.setBackgroundColor(Color.rgb(r,g,b))
+                    //item_photo_hex_info.text = "RGB: $r, $g, $b \n HEX: $hex"
+                }
+                true
+            }
         }
 
         item_photo_color_info3.setOnClickListener {
+            item_photo_editor.isDrawingCacheEnabled = true
+            item_photo_editor.buildDrawingCache(true)
 
+            item_photo_editor.setOnTouchListener { v, event ->
+                if (event.action == MotionEvent.ACTION_DOWN || event.action == MotionEvent.ACTION_MOVE){
+                    bitmap = item_photo_editor.drawingCache
+                    val pixel = bitmap.getPixel(event.x.toInt(), event.y.toInt())
+
+                    val r = Color.red(pixel)
+                    val g = Color.green(pixel)
+                    val b = Color.blue(pixel)
+
+                    val hex = "#" + Integer.toHexString(pixel)
+                    item_photo_color_info3.setBackgroundColor(Color.rgb(r,g,b))
+                    //item_photo_hex_info.text = "RGB: $r, $g, $b \n HEX: $hex"
+                }
+                true
+            }
         }
 
         item_photo_color_info4.setOnClickListener {
+            item_photo_editor.isDrawingCacheEnabled = true
+            item_photo_editor.buildDrawingCache(true)
 
+            item_photo_editor.setOnTouchListener { v, event ->
+                if (event.action == MotionEvent.ACTION_DOWN || event.action == MotionEvent.ACTION_MOVE){
+                    bitmap = item_photo_editor.drawingCache
+                    val pixel = bitmap.getPixel(event.x.toInt(), event.y.toInt())
+
+                    val r = Color.red(pixel)
+                    val g = Color.green(pixel)
+                    val b = Color.blue(pixel)
+
+                    val hex = "#" + Integer.toHexString(pixel)
+                    item_photo_color_info4.setBackgroundColor(Color.rgb(r,g,b))
+                    //item_photo_hex_info.text = "RGB: $r, $g, $b \n HEX: $hex"
+                }
+                true
+            }
         }
 
         item_photo_color_info5.setOnClickListener {
+            item_photo_editor.isDrawingCacheEnabled = true
+            item_photo_editor.buildDrawingCache(true)
 
+            item_photo_editor.setOnTouchListener { v, event ->
+                if (event.action == MotionEvent.ACTION_DOWN || event.action == MotionEvent.ACTION_MOVE){
+                    bitmap = item_photo_editor.drawingCache
+                    val pixel = bitmap.getPixel(event.x.toInt(), event.y.toInt())
+
+                    val r = Color.red(pixel)
+                    val g = Color.green(pixel)
+                    val b = Color.blue(pixel)
+
+                    val hex = "#" + Integer.toHexString(pixel)
+                    item_photo_color_info5.setBackgroundColor(Color.rgb(r,g,b))
+                    //item_photo_hex_info.text = "RGB: $r, $g, $b \n HEX: $hex"
+                }
+                true
+            }
         }
 
         item_photo_color_info6.setOnClickListener {
+            item_photo_editor.isDrawingCacheEnabled = true
+            item_photo_editor.buildDrawingCache(true)
 
+            item_photo_editor.setOnTouchListener { v, event ->
+                if (event.action == MotionEvent.ACTION_DOWN || event.action == MotionEvent.ACTION_MOVE){
+                    bitmap = item_photo_editor.drawingCache
+                    val pixel = bitmap.getPixel(event.x.toInt(), event.y.toInt())
+
+                    val r = Color.red(pixel)
+                    val g = Color.green(pixel)
+                    val b = Color.blue(pixel)
+
+                    val hex = "#" + Integer.toHexString(pixel)
+                    item_photo_color_info6.setBackgroundColor(Color.rgb(r,g,b))
+                    //item_photo_hex_info.text = "RGB: $r, $g, $b \n HEX: $hex"
+                }
+                true
+            }
         }
 
 
