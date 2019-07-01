@@ -1,8 +1,8 @@
 package com.example.icloset
 
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.graphics.*
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -66,6 +66,4 @@ class ItemsFragment : Fragment() {
 
         return v
     }
-
-
 }

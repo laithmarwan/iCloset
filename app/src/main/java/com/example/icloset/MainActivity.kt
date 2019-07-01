@@ -35,8 +35,19 @@ import java.lang.Exception
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
+
+        if(AppInfo.theme == 0){
+            setTheme(R.style.AppTheme)
+        }
+
+        if(AppInfo.theme == 1){
+            setTheme(R.style.AppTheme1)
+        }
+
         setContentView(R.layout.activity_main)
+
 
         setSupportActionBar(toolbar)
 
@@ -107,6 +118,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
             if(menuItem.itemId == R.id.menu_home){
+                Toast.makeText(this,AppInfo.Name+AppInfo.theme, Toast.LENGTH_SHORT).show()
                 var obj = HomeFragment()
                 tr.replace(R.id.main_frame,obj)
                 tr.commit()
