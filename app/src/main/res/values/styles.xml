@@ -10,15 +10,15 @@
     </style>
     <!-- Base application theme.End -->
 
-    <!-- Base application theme2.Start -->
-    <style name="BlackTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Base application theme1.Start -->
+    <style name="AppTheme1" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/female_btn</item>
-        <item name="colorPrimaryDark">@color/female_btn</item>
-        <item name="colorAccent">@color/colorPrimaryDark</item>
-        <item name="android:navigationBarColor">@color/navbar</item>
+        <item name="colorPrimary">@color/colorPrimary1</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark1</item>
+        <item name="colorAccent">@color/colorPrimary1</item>
+        <item name="android:navigationBarColor">@color/navbar1</item>
     </style>
-    <!-- Base application theme2.End -->
+    <!-- Base application theme1.End -->
 
     <!-- SplashTheme.Start -->
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">

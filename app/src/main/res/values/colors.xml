@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- AppTheme colors -->
     <color name="colorPrimary">#517f95</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#000000</color>
+    <color name="navbar">#000</color>
+    <!-- AppTheme colors -->
+
+    <!-- AppTheme1 colors -->
+    <color name="colorPrimary1">#e1a7e0</color>
+    <color name="colorPrimaryDark1">#801919</color>
+    <color name="colorAccent1">#af2b2b</color>
+    <color name="navbar1">#ef0b0b</color>
+    <!-- AppTheme1 colors -->
 
     <color name="splash_colorPrimary">#607d8b</color>
     <color name="splash_colorPrimaryDark">#303F9F</color>
@@ -13,7 +23,7 @@
 
     <color name="colorBottomNavigation">#517f95</color>
 
-    <color name="navbar">#000</color>
+
 
     <color name="closettab">#dbdfe5</color>
 
