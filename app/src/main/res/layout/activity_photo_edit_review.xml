@@ -159,46 +159,46 @@
             android:layout_width="37dp"
             android:layout_height="31dp"
             android:id="@+id/item_photo_color_info2"
-            app:layout_constraintEnd_toEndOf="@+id/color_view"
             app:layout_constraintTop_toTopOf="@+id/color_view"
             app:layout_constraintBottom_toBottomOf="@+id/color_view"
-            android:layout_marginEnd="128dp" android:layout_marginRight="128dp"/>
+            android:layout_marginEnd="2dp" android:layout_marginRight="2dp"
+            app:layout_constraintEnd_toStartOf="@+id/item_photo_color_info6"/>
     <View
             android:background="@drawable/round_corners"
             android:layout_width="37dp"
             android:layout_height="31dp"
             android:id="@+id/item_photo_color_info3"
-            app:layout_constraintEnd_toEndOf="@+id/color_view"
             app:layout_constraintTop_toTopOf="@+id/color_view"
             app:layout_constraintBottom_toBottomOf="@+id/color_view"
-            android:layout_marginEnd="168dp" android:layout_marginRight="168dp"/>
+            app:layout_constraintEnd_toStartOf="@+id/item_photo_color_info2" android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"/>
     <View
             android:background="@drawable/round_corners"
             android:layout_width="37dp"
             android:layout_height="31dp"
             android:id="@+id/item_photo_color_info4"
-            app:layout_constraintEnd_toEndOf="@+id/color_view"
             app:layout_constraintTop_toTopOf="@+id/color_view"
             app:layout_constraintBottom_toBottomOf="@+id/color_view"
-            android:layout_marginEnd="208dp" android:layout_marginRight="208dp"/>
+            app:layout_constraintEnd_toStartOf="@+id/item_photo_color_info3" android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"/>
     <View
             android:background="@drawable/round_corners"
             android:layout_width="37dp"
             android:layout_height="31dp"
             android:id="@+id/item_photo_color_info5"
-            app:layout_constraintEnd_toEndOf="@+id/color_view"
             app:layout_constraintTop_toTopOf="@+id/color_view"
             app:layout_constraintBottom_toBottomOf="@+id/color_view"
-            android:layout_marginEnd="52dp" android:layout_marginRight="52dp"/>
+            app:layout_constraintEnd_toStartOf="@+id/item_photo_color_info" android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"/>
     <View
             android:background="@drawable/round_corners"
             android:layout_width="37dp"
             android:layout_height="31dp"
             android:id="@+id/item_photo_color_info6"
-            app:layout_constraintEnd_toEndOf="@+id/color_view"
             app:layout_constraintTop_toTopOf="@+id/color_view"
             app:layout_constraintBottom_toBottomOf="@+id/color_view"
-            android:layout_marginEnd="92dp" android:layout_marginRight="92dp"/>
+            android:layout_marginEnd="2dp" android:layout_marginRight="2dp"
+            app:layout_constraintEnd_toStartOf="@+id/item_photo_color_info5"/>
     <TextView
             android:layout_width="340dp"
             android:layout_height="35dp"
