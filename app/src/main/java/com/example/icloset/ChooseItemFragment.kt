@@ -55,49 +55,48 @@ class ChooseItemFragment : Fragment() {
             val intent: Intent = requireActivity().intent
             when (position) {
                 0 -> {
-                    intent.putExtra("Type","Tops")
+                    AppInfo.type = "Tops"
+                    MoveToFragment()
 
                 }
                 1 -> {
-                    intent.putExtra("Type","Bottoms")
-
+                    AppInfo.type = "Bottoms"
+                    MoveToFragment()
                 }
                 2 -> {
-                    intent.putExtra("Type","Shoes")
-
+                    AppInfo.type = "Shoes"
+                    MoveToFragment()
                 }
                 3 -> {
                     if(AppInfo.Gender == "0"){
-                        intent.putExtra("Type","Dresses")}
+                        AppInfo.type = "Dresses"}
                     else{
-                        intent.putExtra("Type","Bags")}
+                            AppInfo.type = "Bags"}
                     //startActivityForResult(Intent(this,))
+                    MoveToFragment()
 
                 }
                 4 -> {
                     if(AppInfo.Gender == "0")
-                        intent.putExtra("Type","Bags")
+                        AppInfo.type = "Bags"
                     else
-                        intent.putExtra("Type","Accessories")
+                        AppInfo.type = "Accessories"
 
                 }
                 5 -> {
-                    if(AppInfo.Gender == "0")
-                        intent.putExtra("Type","Accessories")
+                    if(AppInfo.Gender =="0")
+                        AppInfo.type = "Accessories"
                     else
-                        intent.putExtra("Type","Outerwear")
-
+                        AppInfo.type = "Outerwear"
+                    MoveToFragment()
                 }
                 else -> {
-                    intent.putExtra("Type","Outerwear")
-
+                    AppInfo.type = "Outerwear"
+                    MoveToFragment()
                 }
 
 
             }
-
-            requireActivity().setResult(Activity.RESULT_OK,intent)
-            requireActivity().finish()
 
 
 
@@ -107,6 +106,13 @@ class ChooseItemFragment : Fragment() {
 
         return v
     }
-
+    private fun MoveToFragment(){
+        requireActivity().supportFragmentManager.beginTransaction().apply {
+            setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
+            replace(R.id.container , NewOutfitFragment())
+            addToBackStack(null)
+            commit()
+        }
+    }
 
 }

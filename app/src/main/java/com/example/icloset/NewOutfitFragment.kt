@@ -1,9 +1,11 @@
 package com.example.icloset
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.support.v4.app.Fragment
+import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,47 +35,39 @@ class NewOutfitFragment : Fragment() {
 
         var v = inflater.inflate(R.layout.fragment_new_outfit, container, false)
 
-        v.button.setOnClickListener{
-            startActivityForResult(Intent(activity,ChooseItemActivity::class.java),1010)
+        var cats = ArrayList<Categories>()
+        var obj = icloset(requireActivity())
+        var db = obj.readableDatabase
+        var cur = db.rawQuery("select * from item where Type=?", arrayOf(AppInfo.type))
+        if(cur.count ==0){
+            Toast.makeText(activity,"No items in this category",Toast.LENGTH_SHORT).show()
         }
+        else{
+            cur.moveToFirst()
+            while (!cur.isAfterLast){
+
+
+                cats.add(Categories(cur.getString(cur.getColumnIndex("Item_ID")),
+                    cur.getString(cur.getColumnIndex("Type")),
+                    cur.getString(cur.getColumnIndex("Description")),
+                    cur.getString(cur.getColumnIndex("Item_image"))))
+
+
+                cur.moveToNext()
+            }
+        }
+
+        v.recView.layoutManager = GridLayoutManager(activity,3)
+        val adapter = CustomAdapter(cats, requireActivity())
+        v.recView.adapter = adapter
+        //Toast.makeText(activity,AppInfo.type + AppInfo.desc,Toast.LENGTH_SHORT).show()
+
+
+
+
+
+
         return v
     }
 
-   /* override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 1010) {
-            val draggableBox = DraggableBox(requireContext())
-
-            // Creating a LinearLayout.LayoutParams object for text view
-            var params: LinearLayout.LayoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, // This will define text view width
-                LinearLayout.LayoutParams.WRAP_CONTENT // This will define text view height
-            )
-
-            // Add margin to the text view
-            params.setMargins(10, 10, 10, 10)
-
-            // Now, specify the text view width and height (dimension)
-            draggableBox.layoutParams = params
-
-            // Display some text on the newly created text view
-            var obj = icloset(requireActivity())
-            var db = obj.readableDatabase
-            var cur = db.rawQuery("select * from item where Type=? and Description = ?", arrayOf("Tops", "Shirts"))
-            if (cur.count == 0) {
-                Toast.makeText(activity, "No items in this category", Toast.LENGTH_SHORT).show()
-            } else {
-                cur.moveToFirst()
-
-                val storageDirectory = Environment.getExternalStorageDirectory().toString()
-
-                val file = File(storageDirectory, cur.getString(cur.getColumnIndex("Item_image")))
-                draggableBox.setImageURI(Uri.parse(file.absolutePath))
-
-            }
-
-            root_layout.addView(draggableBox)
-
-        }
-    }*/
 }

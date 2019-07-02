@@ -3,10 +3,9 @@ package com.example.icloset
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.res.Resources
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Color
+import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -447,9 +446,6 @@ class PhotoEditReview : AppCompatActivity() {
             item_photo_color_info.setBackgroundColor(currentSwatch.rgb)
 
         }
-        else{
-            Toast.makeText(this,"here",Toast.LENGTH_SHORT).show()
-        }
 
         //textViewTitle.setText("Vibrant")
 
@@ -458,9 +454,7 @@ class PhotoEditReview : AppCompatActivity() {
             item_photo_color_info2.setBackgroundColor(currentSwatch.rgb)
 
         }
-        else{
-            Toast.makeText(this,"here",Toast.LENGTH_SHORT).show()
-        }
+
 
         //textViewTitle.setText("Light Vibrant")
 
@@ -469,9 +463,7 @@ class PhotoEditReview : AppCompatActivity() {
             item_photo_color_info3.setBackgroundColor(currentSwatch.rgb)
 
         }
-        else{
-            Toast.makeText(this,"here",Toast.LENGTH_SHORT).show()
-        }
+
 
         //textViewTitle.setText("Dark Vibrant")
 
@@ -480,9 +472,6 @@ class PhotoEditReview : AppCompatActivity() {
         if (currentSwatch != null) {
             item_photo_color_info4.setBackgroundColor(currentSwatch.rgb)
 
-        }
-        else{
-            Toast.makeText(this,"here",Toast.LENGTH_SHORT).show()
         }
 
         //textViewTitle.setText("Muted")
@@ -493,9 +482,7 @@ class PhotoEditReview : AppCompatActivity() {
             item_photo_color_info5.setBackgroundColor(currentSwatch.rgb)
 
         }
-        else{
-            Toast.makeText(this,"here",Toast.LENGTH_SHORT).show()
-        }
+
 
         //textViewTitle.setText("Light Muted")
 
@@ -504,9 +491,7 @@ class PhotoEditReview : AppCompatActivity() {
             item_photo_color_info6.setBackgroundColor(currentSwatch.rgb)
 
         }
-        else{
-            Toast.makeText(this,"here",Toast.LENGTH_SHORT).show()
-        }
+
         //textViewTitle.setText("Dark Muted")
 
 
@@ -536,6 +521,7 @@ class PhotoEditReview : AppCompatActivity() {
         //intent.type = "image/*"
         //startActivityForResult(intent, 1234)
    // }
+
 
 
 }

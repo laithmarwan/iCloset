@@ -1,8 +1,8 @@
 package com.example.icloset
 
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.graphics.*
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -58,7 +58,7 @@ class ItemsFragment : Fragment() {
         }
 
         v.recyclerView.layoutManager = GridLayoutManager(activity,3)
-        val adapter = CustomAdapter(cats)
+        val adapter = CustomAdapter(cats,requireActivity())
         v.recyclerView.adapter = adapter
         //Toast.makeText(activity,AppInfo.type + AppInfo.desc,Toast.LENGTH_SHORT).show()
 
@@ -66,6 +66,4 @@ class ItemsFragment : Fragment() {
 
         return v
     }
-
-
 }
