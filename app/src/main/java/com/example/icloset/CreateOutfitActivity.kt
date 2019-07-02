@@ -6,6 +6,8 @@ import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.LinearLayout
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_create_outfit.*
@@ -24,10 +26,26 @@ class CreateOutfitActivity : AppCompatActivity() {
         }
         setContentView(R.layout.activity_create_outfit)
 
-        button.setOnClickListener{
-            startActivityForResult(Intent(this,ChooseItemActivity::class.java),1010)
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.create_outfit,menu)
+
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+
+        if(item?.itemId == R.id.menu_save){
 
         }
+        else if(item?.itemId == R.id.menu_add){
+            startActivityForResult(Intent(this,ChooseItemActivity::class.java),1010)
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

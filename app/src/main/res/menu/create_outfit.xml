@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Save outfit" android:id="@+id/menu_save" android:icon="@drawable/baseline_save_white_48"
+          app:showAsAction="always"/>
+    <item android:title="Add item" android:id="@+id/menu_add" android:icon="@drawable/plus" app:showAsAction="always"/>
+</menu>
