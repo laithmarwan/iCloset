@@ -90,6 +90,7 @@ class ShoesFragment : Fragment() {
         trans.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
         trans.replace(R.id.main_frame,obj)
         trans.addToBackStack(null)
+        AppInfo.act = "closet"
         trans.commit()
     }
 

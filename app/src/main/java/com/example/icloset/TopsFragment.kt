@@ -80,6 +80,7 @@ class TopsFragment : Fragment() {
             setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
             replace(R.id.main_frame , frg)
             addToBackStack(null)
+            AppInfo.act = "closet"
             commit()
         }
     }

@@ -16,7 +16,7 @@ import android.widget.Toast
 import java.io.File
 import java.lang.Exception
 
-class CustomAdapter(val catList :ArrayList<Categories>,val con:Activity) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
+class CustomAdapter(private val catList :ArrayList<Categories>, private val con:Activity) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         val v = LayoutInflater.from(p0.context).inflate(R.layout.cardview_item,p0,false)
         return ViewHolder(v)
@@ -41,16 +41,14 @@ class CustomAdapter(val catList :ArrayList<Categories>,val con:Activity) : Recyc
 
 
         p0.imageviewname.setOnClickListener {
-            if(AppInfo.act != "outfit"){
-                Toast.makeText(con,"Clicked",Toast.LENGTH_SHORT).show()}
-            else
+            if(AppInfo.act == "outfit")         
             {
                 AppInfo.itemID = cat.ID
                 con.setResult(RESULT_OK)
                 con.finish()
             }
-        }
-    }
+        
+    }}
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
