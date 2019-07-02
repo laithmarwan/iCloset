@@ -20,6 +20,7 @@ class AppInfo {
         var wait:Int = 0
         lateinit var img:Uri
         var theme:Int = 0
+        var itemID:String = ""
 
     }
 

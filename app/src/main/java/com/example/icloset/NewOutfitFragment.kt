@@ -1,5 +1,6 @@
 package com.example.icloset
 import android.app.Activity
+import android.appwidget.AppWidgetProvider
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -56,7 +57,7 @@ class NewOutfitFragment : Fragment() {
                 cur.moveToNext()
             }
         }
-
+        AppInfo.act = "outfit"
         v.recView.layoutManager = GridLayoutManager(activity,3)
         val adapter = CustomAdapter(cats, requireActivity())
         v.recView.adapter = adapter

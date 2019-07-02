@@ -1,6 +1,7 @@
 package com.example.icloset
 
 import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.net.Uri
 import android.os.Environment
@@ -15,7 +16,7 @@ import android.widget.Toast
 import java.io.File
 import java.lang.Exception
 
-class CustomAdapter(val catList :ArrayList<Categories>,val con:Context) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
+class CustomAdapter(val catList :ArrayList<Categories>,val con:Activity) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         val v = LayoutInflater.from(p0.context).inflate(R.layout.cardview_item,p0,false)
         return ViewHolder(v)
@@ -26,9 +27,9 @@ class CustomAdapter(val catList :ArrayList<Categories>,val con:Context) : Recycl
     }
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
-
-        try{
         val cat:Categories = catList[p1]
+        try{
+
         val storageDirectory = Environment.getExternalStorageDirectory().toString()
 
         val file = File(storageDirectory,cat.thumbnail)
@@ -40,11 +41,13 @@ class CustomAdapter(val catList :ArrayList<Categories>,val con:Context) : Recycl
 
 
         p0.imageviewname.setOnClickListener {
-            if(AppInfo.act == ""){
+            if(AppInfo.act != "outfit"){
                 Toast.makeText(con,"Clicked",Toast.LENGTH_SHORT).show()}
             else
             {
-                //
+                AppInfo.itemID = cat.ID
+                con.setResult(RESULT_OK)
+                con.finish()
             }
         }
     }

@@ -28,7 +28,7 @@ class CreateOutfitActivity : AppCompatActivity() {
 
         if(requestCode == 1010 && resultCode == Activity.RESULT_OK){
 
-            val str = data?.getStringExtra("Type")
+//            val str = data?.getStringExtra("Type")
 
             val draggableBox = DraggableBox(this)
 
@@ -47,7 +47,7 @@ class CreateOutfitActivity : AppCompatActivity() {
             // Display some text on the newly created text view
             var obj = icloset(this)
             var db = obj.readableDatabase
-            var cur = db.rawQuery("select * from item where Type=? and Description = ?", arrayOf("Tops","Shirts"))
+            var cur = db.rawQuery("select * from item where Item_ID =?", arrayOf(AppInfo.itemID))
             if(cur.count ==0){
                 Toast.makeText(this,"No items in this category", Toast.LENGTH_SHORT).show()
             }

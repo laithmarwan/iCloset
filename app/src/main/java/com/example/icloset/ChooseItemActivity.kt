@@ -16,7 +16,6 @@ class ChooseItemActivity : AppCompatActivity() {
         var trans = supportFragmentManager.beginTransaction()
         trans.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
         trans.replace(R.id.container,ChooseItemFragment())
-        trans.addToBackStack(null)
         trans.commit()
 
     }
