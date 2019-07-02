@@ -8,11 +8,20 @@
     <!-- AppTheme colors -->
 
     <!-- AppTheme1 colors -->
-    <color name="colorPrimary1">#e1a7e0</color>
-    <color name="colorPrimaryDark1">#801919</color>
-    <color name="colorAccent1">#af2b2b</color>
-    <color name="navbar1">#ef0b0b</color>
+    <color name="colorPrimary1">#e1bee7</color>
+    <color name="colorAccent1">#e1bee7</color>
     <!-- AppTheme1 colors -->
+
+    <!-- AppTheme2 colors -->
+    <color name="colorPrimary2">#263238</color>
+    <color name="colorAccent2">#263238</color>
+    <!-- AppTheme2 colors -->
+
+    <!-- AppTheme3 colors -->
+    <color name="colorPrimary3">#9575cd</color>
+    <color name="colorAccent3">#9575cd</color>
+    <!-- AppTheme3 colors -->
+
 
     <color name="splash_colorPrimary">#607d8b</color>
     <color name="splash_colorPrimaryDark">#303F9F</color>

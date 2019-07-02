@@ -11,6 +11,13 @@ class ChooseItemActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if(AppInfo.theme == 0){
+            setTheme(R.style.AppTheme)
+        }
+
+        if(AppInfo.theme == 1){
+            setTheme(R.style.AppTheme1)
+        }
         setContentView(R.layout.activity_choose_item)
 
         var trans = supportFragmentManager.beginTransaction()
