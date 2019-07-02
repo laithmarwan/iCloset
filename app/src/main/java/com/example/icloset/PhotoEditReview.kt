@@ -44,6 +44,13 @@ class PhotoEditReview : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if(AppInfo.theme == 0){
+            setTheme(R.style.AppTheme)
+        }
+
+        if(AppInfo.theme == 1){
+            setTheme(R.style.AppTheme1)
+        }
         setContentView(R.layout.activity_photo_edit_review)
         item_photo_editor.setImageURI(AppInfo.img)
 

@@ -21,7 +21,13 @@ class Theme_selector : AppCompatActivity() {
         if(AppInfo.theme == 1){
             setTheme(R.style.AppTheme1)
         }
+        if(AppInfo.theme == 2){
+            setTheme(R.style.AppTheme2)
+        }
 
+        if(AppInfo.theme == 3){
+            setTheme(R.style.AppTheme3)
+        }
 
 
         super.onCreate(savedInstanceState)
@@ -35,6 +41,18 @@ class Theme_selector : AppCompatActivity() {
 
         rb_theme1.setOnClickListener {
             AppInfo.theme = 1
+            startActivity(Intent(this,Theme_selector::class.java))
+            finish()
+        }
+
+        rb_theme2.setOnClickListener {
+            AppInfo.theme = 2
+            startActivity(Intent(this,Theme_selector::class.java))
+            finish()
+        }
+
+        rb_theme3.setOnClickListener {
+            AppInfo.theme = 3
             startActivity(Intent(this,Theme_selector::class.java))
             finish()
         }

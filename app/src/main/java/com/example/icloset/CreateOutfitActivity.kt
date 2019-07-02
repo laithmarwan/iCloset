@@ -15,6 +15,13 @@ class CreateOutfitActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if(AppInfo.theme == 0){
+            setTheme(R.style.AppTheme)
+        }
+
+        if(AppInfo.theme == 1){
+            setTheme(R.style.AppTheme1)
+        }
         setContentView(R.layout.activity_create_outfit)
 
         button.setOnClickListener{
