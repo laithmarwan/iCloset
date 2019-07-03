@@ -19,11 +19,7 @@
         </activity>
         <activity android:name=".CreateOutfitActivity">
         </activity>
-        <activity android:name=".AddItemReview">
-        </activity>
         <activity android:name=".PhotoEditReview">
-        </activity>
-        <activity android:name=".photo_editor_review">
         </activity>
         <activity android:name=".TabAct">
         </activity>

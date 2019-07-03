@@ -47,7 +47,8 @@ class ItemsFragment : Fragment() {
         var db = obj.readableDatabase
         var cur = db.rawQuery("select * from item where Type=? and Description = ?", arrayOf(AppInfo.type,AppInfo.desc))
         if(cur.count ==0){
-            Toast.makeText(activity,"No items in this category",Toast.LENGTH_SHORT).show()
+            //Toast.makeText(activity,"No items in this category",Toast.LENGTH_SHORT).show()
+            v.tv_empty.text = "No items in this category"
         }
         else{
             cur.moveToFirst()

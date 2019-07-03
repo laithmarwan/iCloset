@@ -25,10 +25,15 @@ class CreateOutfitActivity : AppCompatActivity() {
             setTheme(R.style.AppTheme1)
         }
         setContentView(R.layout.activity_create_outfit)
+        setSupportActionBar(toolbar)
 
 
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.create_outfit,menu)
+        return super.onPrepareOptionsMenu(menu)
+    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         return super.onCreateOptionsMenu(menu)
         menuInflater.inflate(R.menu.create_outfit,menu)
