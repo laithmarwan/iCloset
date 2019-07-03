@@ -3,10 +3,12 @@ package com.example.icloset
 import android.app.Activity
 import android.app.Activity.RESULT_OK
 import android.content.Context
+import android.media.Image
 import android.net.Uri
 import android.os.Environment
 import android.support.design.widget.TabLayout
 import android.support.v7.widget.RecyclerView
+import android.view.DragEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,7 +49,25 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
                 con.setResult(RESULT_OK)
                 con.finish()
             }
-        
+
+            p0.imageviewname.setOnLongClickListener {
+                if(AppInfo.act !== "outfit"){
+                    val builder = android.app.AlertDialog.Builder(con)
+                    builder.setTitle("Delete Item?")
+                    builder.setMessage("Are you sure?")
+                    builder.setPositiveButton("Yes"){dialog, which ->
+                        catList.removeAt(p1)
+                        notifyItemRemoved(p1)
+                        Toast.makeText(con,"Delete", Toast.LENGTH_SHORT).show()
+                    }
+                    builder.setNegativeButton("No"){
+                            dialog, which ->
+                        dialog.dismiss()
+                    }
+                    builder.show()
+                }
+                true
+            }
     }}
 
 
@@ -55,4 +75,34 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
         val imageviewname = itemView.findViewById(R.id.imageView) as ImageView
 
     }
+
+/*
+    class choiceDrageListener(val context:Context,val imageviewname:ImageView) : View.OnDragListener {
+
+        override fun onDrag(v: View, event: DragEvent): Boolean {
+
+            when (event.action) {
+                DragEvent.ACTION_DRAG_STARTED -> {
+                }
+
+                DragEvent.ACTION_DRAG_ENTERED -> {
+                }
+
+                DragEvent.ACTION_DRAG_EXITED -> {
+                }
+
+                DragEvent.ACTION_DROP -> {
+
+                    val view = event.localState as ImageView
+                    (v as ImageView).setImageDrawable(context.getResources().getDrawable(R.drawable.plus))
+                    imageviewname.setImageDrawable(null)
+                }
+
+                DragEvent.ACTION_DRAG_ENDED -> {
+                }
+            }
+            return true
+        }
+    }
+*/
 }

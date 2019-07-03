@@ -1,6 +1,8 @@
 package com.example.icloset
 
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.*
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -15,8 +17,9 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_items.*
 import kotlinx.android.synthetic.main.fragment_items.view.*
 import android.provider.MediaStore.Audio.Playlists.Members.moveItem
-
-
+import android.support.v7.widget.helper.ItemTouchHelper.RIGHT
+import android.view.DragEvent
+import android.widget.ImageView
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -75,9 +78,8 @@ class ItemsFragment : Fragment() {
 
         //Drag and Drop
         val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
-            ItemTouchHelper.UP or ItemTouchHelper.DOWN or ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT,
-            ItemTouchHelper.RIGHT or ItemTouchHelper.RIGHT
-        ) {
+            ItemTouchHelper.END ,
+            ItemTouchHelper.RIGHT or ItemTouchHelper.RIGHT){
 
             override fun onMove(
                 recyclerView: RecyclerView,
@@ -89,14 +91,18 @@ class ItemsFragment : Fragment() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                deleteItem(viewHolder.adapterPosition)
+                    deleteItem(viewHolder.adapterPosition)
+                    Toast.makeText(activity,"Right/ landry", Toast.LENGTH_SHORT).show()
             }
-
         })
+
+
         itemTouchHelper.attachToRecyclerView(v.recyclerView)
+        //v.recyclerView.setOnDragListener(choiceDrageListener(requireContext()))
 
         return v
     }
+
 
     fun moveItem(oldPos: Int, newPos: Int) {
 
@@ -111,6 +117,4 @@ class ItemsFragment : Fragment() {
         cats.removeAt(position)
         adapter.notifyItemRemoved(position)
     }
-
-     
 }
