@@ -53,7 +53,7 @@ class PhotoEditReview : AppCompatActivity() {
         }
         setContentView(R.layout.activity_photo_edit_review)
         item_photo_editor.setImageURI(AppInfo.img)
-
+        findColors()
         item_photo_editor.setOnClickListener {
             findColors() }
 
