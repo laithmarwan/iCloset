@@ -35,14 +35,12 @@ class Theme_selector : AppCompatActivity() {
 
         rb_default.setOnClickListener {
             AppInfo.theme = 0
-            btn_set_theme.setBackgroundResource(R.drawable.round_corners_button)
             startActivity(Intent(this,Theme_selector::class.java))
             finish()
         }
 
         rb_theme1.setOnClickListener {
             AppInfo.theme = 1
-            btn_set_theme.setBackgroundResource(R.drawable.round_corners_button_theme1)
             startActivity(Intent(this,Theme_selector::class.java))
             finish()
         }

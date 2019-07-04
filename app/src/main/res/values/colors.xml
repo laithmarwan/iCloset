@@ -30,7 +30,8 @@
 
     <color name="loginButton">#424242</color>
 
-    <color name="colorBottomNavigation">#517f95</color>
+    <color name="colorBottomNavigation">@color/colorPrimary</color>
+    <color name="colorBottomNavigation1">@color/colorPrimary1</color>
 
 
 
