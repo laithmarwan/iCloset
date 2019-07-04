@@ -58,7 +58,10 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
                     builder.setPositiveButton("Yes"){dialog, which ->
                         catList.removeAt(p1)
                         notifyItemRemoved(p1)
-                        Toast.makeText(con,"Delete", Toast.LENGTH_SHORT).show()
+                        val obj = icloset(con)
+                        val db = obj.writableDatabase
+                        db.execSQL("delete from item where Item_ID = ?", arrayOf(cat.ID))
+                        Toast.makeText(con,"Item deleted", Toast.LENGTH_SHORT).show()
                     }
                     builder.setNegativeButton("No"){
                             dialog, which ->

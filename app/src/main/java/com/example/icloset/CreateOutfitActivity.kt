@@ -12,8 +12,6 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_create_outfit.*
 import java.io.File
-import android.opengl.ETC1.getHeight
-import android.opengl.ETC1.getWidth
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
@@ -23,8 +21,8 @@ import java.lang.Exception
 
 
 class CreateOutfitActivity : AppCompatActivity() {
- lateinit var BitArray:ArrayList<Bitmap>
-    lateinit var ItemArray:ArrayList<String>
+ private lateinit var bitArray:ArrayList<Bitmap>
+    private lateinit var itemArray:ArrayList<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if(AppInfo.theme == 0){
@@ -37,8 +35,8 @@ class CreateOutfitActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_outfit)
         setSupportActionBar(toolbar)
 
-        BitArray = ArrayList()
-        ItemArray = ArrayList()
+        bitArray = ArrayList()
+        itemArray = ArrayList()
 
     }
 
@@ -50,12 +48,12 @@ class CreateOutfitActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
 
-        if(item?.itemId == R.id.menu_save && ItemArray.isNotEmpty()){
-           val bm =  createSingleImageFromMultipleImages(BitArray)
+        if(item?.itemId == R.id.menu_save && itemArray.isNotEmpty()){
+           val bm =  createSingleImageFromMultipleImages(bitArray)
             AppInfo.img_url = 1
-            var obj = icloset(this)
-            var db = obj.writableDatabase
-            var cur = db.rawQuery("select Outfit_ID from outfit", arrayOf())
+            val obj = icloset(this)
+            val db = obj.writableDatabase
+            val cur = db.rawQuery("select Outfit_ID from outfit", arrayOf())
             if(cur.count > 0){
                 cur.moveToFirst()
                 var max=0
@@ -70,8 +68,8 @@ class CreateOutfitActivity : AppCompatActivity() {
 
             }
             var oldArray = arrayOf(0,0,0,0)
-            for (i in 0 until ItemArray.size) {
-                val cur = db.rawQuery("select Weather from item_weather where Item_ID =?", arrayOf(ItemArray[i]))
+            for (i in 0 until itemArray.size) {
+                val cur = db.rawQuery("select Weather from item_weather where Item_ID =?", arrayOf(itemArray[i]))
                 cur.moveToFirst()
                 val arr1 = arrayOf(0,0,0,0)
 
@@ -171,9 +169,9 @@ class CreateOutfitActivity : AppCompatActivity() {
             draggableBox.layoutParams = params
 
             // Display some text on the newly created text view
-            var obj = icloset(this)
-            var db = obj.readableDatabase
-            var cur = db.rawQuery("select * from item where Item_ID =?", arrayOf(AppInfo.itemID))
+            val obj = icloset(this)
+            val db = obj.readableDatabase
+            val cur = db.rawQuery("select * from item where Item_ID =?", arrayOf(AppInfo.itemID))
             if(cur.count ==0){
                 Toast.makeText(this,"No items in this category", Toast.LENGTH_SHORT).show()
             }
@@ -186,8 +184,8 @@ class CreateOutfitActivity : AppCompatActivity() {
                 val file = File(storageDirectory,cur.getString(cur.getColumnIndex("Item_image")))
                 draggableBox.setImageURI(Uri.parse(file.absolutePath))
                 val bm = (draggableBox.drawable as BitmapDrawable).bitmap
-                BitArray.add(bm)
-                ItemArray.add(cur.getString(cur.getColumnIndex("Item_ID")))
+                bitArray.add(bm)
+                itemArray.add(cur.getString(cur.getColumnIndex("Item_ID")))
 
             }
 
@@ -214,7 +212,7 @@ class CreateOutfitActivity : AppCompatActivity() {
             val storageDirectory = Environment.getExternalStorageDirectory().toString()
 
             val file = File(storageDirectory,url)
-            try {
+            return try {
                 val stream: OutputStream = FileOutputStream(file)
                 //val bm = (item_photo_editor.drawable as BitmapDrawable).bitmap
                 val resized = Bitmap.createScaledBitmap(bm, 300, 400, true)
@@ -222,11 +220,11 @@ class CreateOutfitActivity : AppCompatActivity() {
                 stream.flush()
                 stream.close()
                 Toast.makeText(this,"Stored successfully ${Uri.parse(file.absolutePath)}",Toast.LENGTH_SHORT).show()
-                return true
+                true
             }catch (e: Exception){
                 e.printStackTrace()
                 Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show()
-                return false
+                false
             }
         }else{
             Toast.makeText(this,"Unable to save media to storage",Toast.LENGTH_SHORT).show()
