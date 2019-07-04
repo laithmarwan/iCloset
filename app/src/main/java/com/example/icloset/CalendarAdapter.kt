@@ -9,7 +9,9 @@ import android.widget.ImageView
 class CalendarAdapter(val catList :ArrayList<Outfit>) : RecyclerView.Adapter<CalendarAdapter.ViewHolder>(){
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
         val cat:Outfit = catList[p1]
-        p0.imageviewname.setImageBitmap(cat.thumbnail)
+
+        //put this back
+        //p0.imageviewname.setImageBitmap(cat.thumbnail)
     }
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): CalendarAdapter.ViewHolder {

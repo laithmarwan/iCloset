@@ -36,9 +36,9 @@ class CalendarToOutfits : Fragment() {
 
         var cats = ArrayList<Outfit>()
         var bmp: Bitmap = BitmapFactory.decodeResource(context?.resources,R.drawable.outfits)
+        /*cats.add(Outfit("0","tops","blazers",bmp))
         cats.add(Outfit("0","tops","blazers",bmp))
-        cats.add(Outfit("0","tops","blazers",bmp))
-        cats.add(Outfit("0","tops","blazers",bmp))
+        cats.add(Outfit("0","tops","blazers",bmp))*/
 
         v.rv_calendar.layoutManager = GridLayoutManager(activity, 3)
         val adapter = CalendarAdapter(cats)

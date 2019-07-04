@@ -12,9 +12,19 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_create_outfit.*
 import java.io.File
+import android.opengl.ETC1.getHeight
+import android.opengl.ETC1.getWidth
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.drawable.BitmapDrawable
+import java.io.FileOutputStream
+import java.io.OutputStream
+import java.lang.Exception
+
 
 class CreateOutfitActivity : AppCompatActivity() {
-
+ lateinit var BitArray:ArrayList<Bitmap>
+    lateinit var ItemArray:ArrayList<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if(AppInfo.theme == 0){
@@ -27,25 +37,111 @@ class CreateOutfitActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_outfit)
         setSupportActionBar(toolbar)
 
+        BitArray = ArrayList()
+        ItemArray = ArrayList()
 
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.create_outfit,menu)
-        return super.onPrepareOptionsMenu(menu)
-    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        return super.onCreateOptionsMenu(menu)
         menuInflater.inflate(R.menu.create_outfit,menu)
-
-
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
 
         if(item?.itemId == R.id.menu_save){
+           val bm =  createSingleImageFromMultipleImages(BitArray)
+            AppInfo.img_url = 1
+            var obj = icloset(this)
+            var db = obj.writableDatabase
+            var cur = db.rawQuery("select Outfit_ID from outfit", arrayOf())
+            if(cur.count > 0){
+                cur.moveToFirst()
+                var max=0
+                while(!cur.isAfterLast){
+                    if(cur.getString(0).toInt() > max){
+                        max = cur.getString(0).toInt()
+                    }
+                    cur.moveToNext()
+                }
 
+                AppInfo.img_url = max+1
+
+            }
+            var oldArray = arrayOf(0,0,0,0)
+            for (i in 0 until ItemArray.size) {
+                val cur = db.rawQuery("select Weather from item_weather where Item_ID =?", arrayOf(ItemArray[i]))
+                cur.moveToFirst()
+                val arr1 = arrayOf(0,0,0,0)
+
+                while(!cur.isAfterLast) {
+                    val weather = cur.getString(0)
+                    if(weather == "Winter")
+                        arr1[0]=1
+                    if(weather == "Spring")
+                        arr1[1]=1
+                    if(weather == "Summer")
+                        arr1[2]=1
+                    if(weather == "Autumn")
+                        arr1[3]=1
+
+                    cur.moveToNext()
+                }
+
+                if(!oldArray.contentEquals(arrayOf(0,0,0,0))){
+                    for (j in 0..3){
+                        if(oldArray[j] == 0 && arr1[j] == 1){
+                            arr1[j] = 0
+                        }
+                    }
+                }
+
+                    oldArray = arr1
+
+
+                //val occasion = cur.getString(1)
+
+
+
+
+            }
+
+
+            val image_url = "outfit_"+AppInfo.img_url+".jpg"
+            this.saveImageToStorage(image_url,bm)
+            db.execSQL("insert into outfit (Times_worn,Available,Outfit_image) " +
+                    "values (0,1,?)", arrayOf(image_url))
+
+
+            var cur2 = db.rawQuery("select Item_ID from item where Item_image=?", arrayOf(image_url))
+            if(cur2.count != 0){
+                cur2.moveToFirst()
+                AppInfo.img_url = cur2.getString(0).toInt()
+            }
+
+            val list = ArrayList<String>()
+            if(oldArray[0] == 1)
+                list.add("Winter")
+            if(oldArray[1] == 1)
+                list.add("Spring")
+            if(oldArray[2] == 1)
+                list.add("Summer")
+            if(oldArray[3] == 1)
+                list.add("Autumn")
+
+            for(i in 0 until list.size)
+                db.execSQL("insert into outfit_weather values (?,?)", arrayOf(AppInfo.img_url,list[i]))
+
+            //code for occasions
+
+            /*for(i in 0 until occasionarr.size)
+                db.execSQL("insert into outfit_occasion values (?,?)", arrayOf(AppInfo.img_url,occasionarr[i]))*/
+
+
+            Toast.makeText(this,"Item added successfully",Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this,MainActivity::class.java))
+            finish()
         }
         else if(item?.itemId == R.id.menu_add){
             startActivityForResult(Intent(this,ChooseItemActivity::class.java),1010)
@@ -84,14 +180,57 @@ class CreateOutfitActivity : AppCompatActivity() {
             else{
                 cur.moveToFirst()
 
+
                 val storageDirectory = Environment.getExternalStorageDirectory().toString()
 
                 val file = File(storageDirectory,cur.getString(cur.getColumnIndex("Item_image")))
                 draggableBox.setImageURI(Uri.parse(file.absolutePath))
+                val bm = (draggableBox.drawable as BitmapDrawable).bitmap
+                BitArray.add(bm)
+                ItemArray.add(cur.getString(cur.getColumnIndex("Item_ID")))
 
             }
 
             root_layout.addView(draggableBox)
     }
+    }
+
+    private fun createSingleImageFromMultipleImages(array:ArrayList<Bitmap>): Bitmap {
+
+        val result = Bitmap.createBitmap(array[0].width, array[0].height, array[0].config)
+        val canvas = Canvas(result)
+        var f = 0f
+        for (i in 0 until array.size){
+            canvas.drawBitmap(array[i], f, f, null)
+
+            f+=10f
+
+        }
+        return result
+    }
+    private fun saveImageToStorage(url:String, bm:Bitmap): Boolean {
+        val externalStorageState = Environment.getExternalStorageState()
+        if(externalStorageState == Environment.MEDIA_MOUNTED){
+            val storageDirectory = Environment.getExternalStorageDirectory().toString()
+
+            val file = File(storageDirectory,url)
+            try {
+                val stream: OutputStream = FileOutputStream(file)
+                //val bm = (item_photo_editor.drawable as BitmapDrawable).bitmap
+                val resized = Bitmap.createScaledBitmap(bm, 300, 400, true)
+                resized.compress(Bitmap.CompressFormat.JPEG,100,stream)
+                stream.flush()
+                stream.close()
+                Toast.makeText(this,"Stored successfully ${Uri.parse(file.absolutePath)}",Toast.LENGTH_SHORT).show()
+                return true
+            }catch (e: Exception){
+                e.printStackTrace()
+                Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show()
+                return false
+            }
+        }else{
+            Toast.makeText(this,"Unable to save media to storage",Toast.LENGTH_SHORT).show()
+            return false
+        }
     }
 }

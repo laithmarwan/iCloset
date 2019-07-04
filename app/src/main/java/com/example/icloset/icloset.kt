@@ -7,18 +7,22 @@ import android.database.sqlite.SQLiteOpenHelper
 class icloset(var con:Context) :SQLiteOpenHelper(con,"icloset.db",null,2){
     override fun onCreate(db: SQLiteDatabase) {
 
+        db.execSQL("CREATE TABLE outfit_occasion (Outfit_ID INTEGER ,Occasion varchar(10) NOT NULL, PRIMARY KEY (Outfit_ID,Occasion), FOREIGN KEY(Outfit_ID) REFERENCES outfit(Outfit_ID))")
+
+        db.execSQL("CREATE TABLE outfit_weather (Outfit_ID INTEGER ,Weather varchar(10) NOT NULL, PRIMARY KEY (Outfit_ID,Weather), FOREIGN KEY(Outfit_ID) REFERENCES outfit(Outfit_ID))")
+
         db.execSQL("CREATE TABLE item_occasion (Item_ID INTEGER ,Occasion varchar(10) NOT NULL, PRIMARY KEY (Item_ID,Occasion), FOREIGN KEY(Item_ID) REFERENCES item(Item_ID))")
 
         db.execSQL("CREATE TABLE item_weather (Item_ID INTEGER ,Weather varchar(10) NOT NULL, PRIMARY KEY (Item_ID,Weather), FOREIGN KEY(Item_ID) REFERENCES item(Item_ID))")
 
         db.execSQL("CREATE TABLE outfit (" +
                 " Outfit_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " Weather varchar(10) NOT NULL," +
+                " Weather varchar(10)," +
                 " Times_worn integer(10) NOT NULL," +
-                " Last_time_worn varchar(20) NOT NULL," +
-                " Occasion varchar(20) NOT NULL," +
-                " Available integer(1) NOT NULL" +
-                ")")
+                " Last_time_worn varchar(20)," +
+                " Occasion varchar(20)," +
+                " Available integer(1) NOT NULL," +
+                " Outfit_image varchar(30) NOT NULL)")
 
         db.execSQL("CREATE TABLE item(" +
                 " Item_ID INTEGER PRIMARY KEY AUTOINCREMENT," +

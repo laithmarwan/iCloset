@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,26 +24,84 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class OutfitItemsFragment : Fragment() {
-
+    lateinit var cats : ArrayList<Outfit>
+    lateinit var adapter: OutfitsAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         var v = inflater.inflate(R.layout.fragment_outfit_items, container, false)
 
-        var cats = ArrayList<Outfit>()
-        var bmp: Bitmap = BitmapFactory.decodeResource(context?.resources,R.drawable.outfits)
-        cats.add(Outfit("0","tops","blazers",bmp))
-        cats.add(Outfit("0","tops","blazers",bmp))
-        cats.add(Outfit("0","tops","blazers",bmp))
+        cats = ArrayList()
 
-        v.rv_outfits.layoutManager = GridLayoutManager(activity, 3)
-        val adapter = OutfitsAdapter(cats)
+        //var bmp:Bitmap = BitmapFactory.decodeResource(context?.resources,R.drawable.outfits)
+        var obj = icloset(requireActivity())
+        var db = obj.readableDatabase
+        var cur = db.rawQuery("select * from outfit where Available = 1", arrayOf())
+        if(cur.count ==0){
+            //Toast.makeText(activity,"No items in this category",Toast.LENGTH_SHORT).show()
+            v.tv_emptyoutfit.text = "No outfits in this category"
+        }
+        else{
+            cur.moveToFirst()
+            while (!cur.isAfterLast){
+
+
+                cats.add(Outfit(cur.getString(cur.getColumnIndex("Outfit_ID")),
+                    cur.getString(cur.getColumnIndex("Times_worn")),
+                    cur.getString(cur.getColumnIndex("Available")).toInt(),
+                    cur.getString(cur.getColumnIndex("Outfit_image"))))
+
+
+                cur.moveToNext()
+            }
+        }
+
+        v.rv_outfits.layoutManager = GridLayoutManager(activity,3)
+        adapter = OutfitsAdapter(cats)
         v.rv_outfits.adapter = adapter
+        //Toast.makeText(activity,AppInfo.type + AppInfo.desc,Toast.LENGTH_SHORT).show()
 
+
+
+
+        //Drag and Drop
+        val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
+            ItemTouchHelper.UP or ItemTouchHelper.DOWN or ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT,
+            ItemTouchHelper.RIGHT or ItemTouchHelper.RIGHT
+        ) {
+
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                moveItem(viewHolder.adapterPosition, target.adapterPosition)
+                return true
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                deleteItem(viewHolder.adapterPosition)
+            }
+
+        })
+        itemTouchHelper.attachToRecyclerView(v.rv_outfits)
 
         return v
     }
 
+    fun moveItem(oldPos: Int, newPos: Int) {
+
+        val item = cats.get(oldPos)
+        cats.removeAt(oldPos)
+        cats.add(newPos, item)
+        adapter.notifyItemMoved(oldPos, newPos)
+    }
+
+    fun deleteItem(position: Int) {
+
+        cats.removeAt(position)
+        adapter.notifyItemRemoved(position)
+    }
 
 }
