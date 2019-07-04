@@ -50,7 +50,7 @@ class CreateOutfitActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
 
-        if(item?.itemId == R.id.menu_save){
+        if(item?.itemId == R.id.menu_save && ItemArray.isNotEmpty()){
            val bm =  createSingleImageFromMultipleImages(BitArray)
             AppInfo.img_url = 1
             var obj = icloset(this)
