@@ -14,6 +14,8 @@ class Theme_selector : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
         if(AppInfo.theme == 0){
             setTheme(R.style.AppTheme)
         }
@@ -29,8 +31,6 @@ class Theme_selector : AppCompatActivity() {
             setTheme(R.style.AppTheme3)
         }
 
-
-        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_theme_selector)
 
         rb_default.setOnClickListener {
