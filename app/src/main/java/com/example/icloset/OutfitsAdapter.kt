@@ -1,5 +1,6 @@
 package com.example.icloset
 
+import android.content.Context
 import android.net.Uri
 import android.os.Environment
 import android.support.v7.widget.RecyclerView
@@ -7,10 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import java.io.File
 import java.lang.Exception
 
-class OutfitsAdapter(val catList :ArrayList<Outfit>) : RecyclerView.Adapter<OutfitsAdapter.ViewHolder>(){
+class OutfitsAdapter(val catList :ArrayList<Outfit>,val con:Context) : RecyclerView.Adapter<OutfitsAdapter.ViewHolder>(){
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): OutfitsAdapter.ViewHolder {
         val v = LayoutInflater.from(p0.context).inflate(R.layout.cardview_outfit,p0,false)
         return OutfitsAdapter.ViewHolder(v)
@@ -32,7 +34,29 @@ class OutfitsAdapter(val catList :ArrayList<Outfit>) : RecyclerView.Adapter<Outf
         {
             e.printStackTrace()
         }
+        p0.imageviewname.setOnLongClickListener {
 
+                val builder = android.app.AlertDialog.Builder(con)
+                builder.setTitle("Delete outfit?")
+                builder.setMessage("Are you sure?")
+                builder.setPositiveButton("Yes"){dialog, which ->
+                    catList.removeAt(p1)
+                    notifyItemRemoved(p1)
+                    val obj = icloset(con)
+                    val db = obj.writableDatabase
+                    db.execSQL("delete from outfit where Outfit_ID = ?", arrayOf(cat.ID))
+                    db.execSQL("delete from outfit_weather where Outfit_ID = ?", arrayOf(cat.ID))
+                    db.execSQL("delete from outfit_occasion where Outfit_ID = ?", arrayOf(cat.ID))
+                    Toast.makeText(con,"Outfit deleted", Toast.LENGTH_SHORT).show()
+                }
+                builder.setNegativeButton("No"){
+                        dialog, which ->
+                    dialog.dismiss()
+                }
+                builder.show()
+
+            true
+        }
 
     }
 
