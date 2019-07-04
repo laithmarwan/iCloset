@@ -25,7 +25,7 @@
         <item name="colorAccent">@color/colorPrimary1</item>
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
         <item name="buttonStyle">@style/Button_theme1</item>
-        <item name="android:tabWidgetStyle">@style/BottomNavigationTheme1</item>
+        <item name="android:colorBackgroundFloating">@color/colorPrimary1</item>
     </style>
 
     <style name="Button_theme1" parent="Widget.AppCompat.Button">
