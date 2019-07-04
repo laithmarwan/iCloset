@@ -33,8 +33,6 @@ class OutfitItemsFragment : Fragment() {
         var v = inflater.inflate(R.layout.fragment_outfit_items, container, false)
 
         cats = ArrayList()
-
-        //var bmp:Bitmap = BitmapFactory.decodeResource(context?.resources,R.drawable.outfits)
         var obj = icloset(requireActivity())
         var db = obj.readableDatabase
         var cur = db.rawQuery("select * from outfit where Available = 1", arrayOf())

@@ -35,10 +35,28 @@ class CalendarToOutfits : Fragment() {
         var v = inflater.inflate(R.layout.fragment_calendar_to_outfits, container, false)
 
         var cats = ArrayList<Outfit>()
-        var bmp: Bitmap = BitmapFactory.decodeResource(context?.resources,R.drawable.outfits)
-        /*cats.add(Outfit("0","tops","blazers",bmp))
-        cats.add(Outfit("0","tops","blazers",bmp))
-        cats.add(Outfit("0","tops","blazers",bmp))*/
+
+        var obj = icloset(requireActivity())
+        var db = obj.readableDatabase
+        var cur = db.rawQuery("select * from outfit", arrayOf())
+        if(cur.count ==0){
+            v.tv_emptycal.text = "No outfits"
+        }
+        else{
+            cur.moveToFirst()
+            while (!cur.isAfterLast){
+
+
+                cats.add(Outfit(cur.getString(cur.getColumnIndex("Outfit_ID")),
+                    cur.getString(cur.getColumnIndex("Times_worn")),
+                    cur.getString(cur.getColumnIndex("Available")).toInt(),
+                    cur.getString(cur.getColumnIndex("Outfit_image"))))
+
+
+                cur.moveToNext()
+            }
+        }
+
 
         v.rv_calendar.layoutManager = GridLayoutManager(activity, 3)
         val adapter = CalendarAdapter(cats)
