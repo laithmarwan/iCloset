@@ -17,10 +17,10 @@
     <string name="slide3_des">Click on \"Help me match\" in the home screen to let the application help you match an item from your choice with other items that goes well with this item from your closet</string>
 
     <string name="slide4_title">Closet</string>
-    <string name="slide4_des">Lets you add items to your closet and check items already in it</string>
+    <string name="slide4_des">Closet tab lets you browse your wears through the phone. \n The \"+\" symbol in the closet tab lets you add an item to your closet</string>
 
-    <string name="slide5_title">Laundry</string>
-    <string name="slide5_des">Lets you check which items are not unavailable and in laundry</string>
+    <string name="slide5_title">Outfits</string>
+    <string name="slide5_des">Outfits tab lets you check out your outfits for each occasion. \n The \"+\" symbol in the outfits tab lets you assemble an outfit to add it to your outfits collection </string>
 
     <string name="slide6_title">Calender</string>
     <string name="slide6_des">lets your plan outfits in advance for future days and allows you to check weather</string>
