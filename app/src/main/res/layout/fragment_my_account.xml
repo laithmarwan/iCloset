@@ -70,7 +70,8 @@
             app:layout_constraintHorizontal_bias="0.863"
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="@+id/textView10"
-            android:textOn="Male" android:textOff="Female"/>
+            android:textOn="Male" android:textOff="Female"
+    />
 
 
     <EditText

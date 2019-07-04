@@ -3,6 +3,7 @@ package com.example.icloset
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Environment
 import android.support.v7.widget.RecyclerView
@@ -11,6 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import android.widget.ToggleButton
+import kotlinx.android.synthetic.main.activity_photo_edit_review.*
 import java.io.File
 import java.lang.Exception
 
@@ -62,22 +65,22 @@ class OutfitsAdapter(val catList :ArrayList<Outfit>,val con:Context) : RecyclerV
 
 
 
-        /*p0.fav.setOnClickListener {
-            var bmp: Bitmap = BitmapFactory.decodeResource(con.resources,R.drawable.not_fav)
-            if (p0.fav.drawable as Bitmap == bmp){
-            p0.fav.setImageResource(R.drawable.fav)
+        p0.fav_btn.setOnClickListener {
+            if(p0.fav_btn.isChecked == true){
+                p0.fav_btn.setBackgroundResource(R.drawable.not_fav)
             }
-            else{
-                p0.fav.setImageResource(R.drawable.not_fav)
+            else {
+
+                p0.fav_btn.setBackgroundResource(R.drawable.fav)
             }
 
-        }*/
+        }
 
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val imageviewname = itemView.findViewById(R.id.iv_outfit) as ImageView
-        val fav = itemView.findViewById(R.id.imageView9) as ImageView
+        val fav_btn = itemView.findViewById(R.id.fav_button) as ToggleButton
 
     }
 
