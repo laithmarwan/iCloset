@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import kotlinx.android.synthetic.main.fragment_laundry.*
 import kotlinx.android.synthetic.main.fragment_laundry.view.*
 
 
@@ -42,7 +43,7 @@ class LaundryFragment : Fragment() {
         var cur = db.rawQuery("select * from item where Available = 0", arrayOf())
         if(cur.count ==0){
             //Toast.makeText(activity,"No items in this category",Toast.LENGTH_SHORT).show()
-            v.tv_laundry_empty.text = "No items in this category"
+            v.tv_laundry_empty.text = "Laundry is empty"
         }
         else{
             cur.moveToFirst()
@@ -79,7 +80,7 @@ class LaundryFragment : Fragment() {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 deleteItem(viewHolder.adapterPosition)
-                Toast.makeText(activity,"Item moved back to closet", Toast.LENGTH_SHORT).show()
+
             }
         })
         itemTouchHelper.attachToRecyclerView(v.recyclerView_laundry)
@@ -101,5 +102,18 @@ class LaundryFragment : Fragment() {
         db.execSQL("update item set Available = 1 where Item_ID = ?" , arrayOf(cats[position].ID))
         cats.removeAt(position)
         adapter.notifyItemRemoved(position)
+        if(cats.isEmpty()){
+            requireActivity().supportFragmentManager.beginTransaction().apply {
+                setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
+                replace(R.id.main_frame , ItemsFragment())
+                addToBackStack(null)
+                AppInfo.act = "closet"
+                commit()
+                //Toast.makeText(activity,"Item moved back to closet", Toast.LENGTH_SHORT).show()
+            }
+        }
+        else {
+            Toast.makeText(activity,"Item moved back to closet", Toast.LENGTH_SHORT).show()
+        }
     }
 }

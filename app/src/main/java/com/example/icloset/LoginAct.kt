@@ -102,9 +102,11 @@ class LoginAct : AppCompatActivity() {
                         startActivity(i)
                         finish()
                     }
-                    else
+                    else{
                         Toast.makeText(this,"Login Failed",
                             Toast.LENGTH_LONG).show()
+                        login_pass.setText("")
+                    }
                 },
                 Response.ErrorListener { error ->
                     pd.hide()
