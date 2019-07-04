@@ -7,6 +7,7 @@ import android.media.Image
 import android.net.Uri
 import android.os.Environment
 import android.support.design.widget.TabLayout
+import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.DragEvent
 import android.view.LayoutInflater
@@ -50,36 +51,36 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
                 con.finish()
             }
 
-            p0.imageviewname.setOnLongClickListener {
-                if(AppInfo.act !== "outfit"){
-                    val builder = android.app.AlertDialog.Builder(con)
-                    builder.setTitle("Delete Item?")
-                    builder.setMessage("Are you sure?")
-                    builder.setPositiveButton("Yes"){dialog, which ->
-                        catList.removeAt(p1)
-                        notifyItemRemoved(p1)
-                        val obj = icloset(con)
-                        val db = obj.writableDatabase
-                        db.execSQL("delete from item where Item_ID = ?", arrayOf(cat.ID))
-                        db.execSQL("delete from item_weather where Item_ID = ?", arrayOf(cat.ID))
-                        db.execSQL("delete from item_occasion where Item_ID = ?", arrayOf(cat.ID))
-
-                    }
-                    builder.setNegativeButton("No"){
-                            dialog, which ->
-                        dialog.dismiss()
-                    }
-                    builder.show()
+    }
+        p0.imageviewname.setOnLongClickListener {
+            if(AppInfo.act !== "outfit" && AppInfo.act !== "nodelete"){
+                val builder = android.app.AlertDialog.Builder(con)
+                builder.setTitle("Delete Item?")
+                builder.setMessage("Are you sure?")
+                builder.setPositiveButton("Yes"){dialog, which ->
+                    catList.removeAt(p1)
+                    notifyItemRemoved(p1)
+                    val obj = icloset(con)
+                    val db = obj.writableDatabase
+                    db.execSQL("delete from item where Item_ID = ?", arrayOf(cat.ID))
+                    db.execSQL("delete from item_weather where Item_ID = ?", arrayOf(cat.ID))
+                    db.execSQL("delete from item_occasion where Item_ID = ?", arrayOf(cat.ID))
+                    Toast.makeText(con,"Item deleted", Toast.LENGTH_SHORT).show()
                 }
-                Toast.makeText(con,"Item deleted", Toast.LENGTH_SHORT).show()
-                true
+                builder.setNegativeButton("No"){
+                        dialog, which ->
+                    dialog.dismiss()
+                }
+                builder.show()
             }
-    }}
+
+            true
+        }}
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val imageviewname = itemView.findViewById(R.id.imageView) as ImageView
-
+        val card = itemView.findViewById(R.id.card) as CardView
     }
 
 /*

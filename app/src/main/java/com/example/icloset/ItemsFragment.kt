@@ -79,7 +79,7 @@ class ItemsFragment : Fragment() {
                 setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
                 replace(R.id.main_frame , LaundryFragment())
                 addToBackStack(null)
-                AppInfo.act = "closet"
+                AppInfo.act = "nodelete"
                 commit()
             }
         }
@@ -87,7 +87,7 @@ class ItemsFragment : Fragment() {
 
         //Drag and Drop
         val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
-            ItemTouchHelper.END ,
+            ItemTouchHelper.RIGHT ,
             RIGHT or RIGHT
         ){
 
@@ -96,7 +96,7 @@ class ItemsFragment : Fragment() {
                 viewHolder: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
             ): Boolean {
-                moveItem(viewHolder.adapterPosition, target.adapterPosition)
+               // moveItem(viewHolder.adapterPosition, target.adapterPosition)
                 return true
             }
 
@@ -108,7 +108,7 @@ class ItemsFragment : Fragment() {
 
 
         itemTouchHelper.attachToRecyclerView(v.recyclerView)
-        //v.recyclerView.setOnDragListener(choiceDrageListener(requireContext()))
+
 
         return v
     }
