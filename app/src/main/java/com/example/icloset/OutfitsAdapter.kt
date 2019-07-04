@@ -1,6 +1,8 @@
 package com.example.icloset
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Environment
 import android.support.v7.widget.RecyclerView
@@ -58,10 +60,24 @@ class OutfitsAdapter(val catList :ArrayList<Outfit>,val con:Context) : RecyclerV
             true
         }
 
+
+
+        /*p0.fav.setOnClickListener {
+            var bmp: Bitmap = BitmapFactory.decodeResource(con.resources,R.drawable.not_fav)
+            if (p0.fav.drawable as Bitmap == bmp){
+            p0.fav.setImageResource(R.drawable.fav)
+            }
+            else{
+                p0.fav.setImageResource(R.drawable.not_fav)
+            }
+
+        }*/
+
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val imageviewname = itemView.findViewById(R.id.iv_outfit) as ImageView
+        val fav = itemView.findViewById(R.id.imageView9) as ImageView
 
     }
 

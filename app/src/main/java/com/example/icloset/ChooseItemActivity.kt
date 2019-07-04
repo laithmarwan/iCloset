@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_choose_item.*
 class ChooseItemActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
+        super.onCreate(savedInstanceState)
         if(AppInfo.theme == 0){
             setTheme(R.style.AppTheme)
         }
