@@ -61,6 +61,8 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
                         val obj = icloset(con)
                         val db = obj.writableDatabase
                         db.execSQL("delete from item where Item_ID = ?", arrayOf(cat.ID))
+                        db.execSQL("delete from item_weather where Item_ID = ?", arrayOf(cat.ID))
+                        db.execSQL("delete from item_occasion where Item_ID = ?", arrayOf(cat.ID))
                         Toast.makeText(con,"Item deleted", Toast.LENGTH_SHORT).show()
                     }
                     builder.setNegativeButton("No"){

@@ -58,7 +58,7 @@ class OutfitItemsFragment : Fragment() {
         }
 
         v.rv_outfits.layoutManager = GridLayoutManager(activity,3)
-        adapter = OutfitsAdapter(cats)
+        adapter = OutfitsAdapter(cats,requireContext())
         v.rv_outfits.adapter = adapter
         //Toast.makeText(activity,AppInfo.type + AppInfo.desc,Toast.LENGTH_SHORT).show()
 
@@ -67,7 +67,7 @@ class OutfitItemsFragment : Fragment() {
 
         //Drag and Drop
         val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
-            ItemTouchHelper.UP or ItemTouchHelper.DOWN or ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT,
+            ItemTouchHelper.END,
             ItemTouchHelper.RIGHT or ItemTouchHelper.RIGHT
         ) {
 

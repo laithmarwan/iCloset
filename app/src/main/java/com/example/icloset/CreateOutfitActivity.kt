@@ -195,13 +195,13 @@ class CreateOutfitActivity : AppCompatActivity() {
 
     private fun createSingleImageFromMultipleImages(array:ArrayList<Bitmap>): Bitmap {
 
-        val result = Bitmap.createBitmap(array[0].width, array[0].height, array[0].config)
+        val result = Bitmap.createBitmap(root_layout.width, root_layout.height, array[0].config)
         val canvas = Canvas(result)
         var f = 0f
         for (i in 0 until array.size){
             canvas.drawBitmap(array[i], f, f, null)
 
-            f+=10f
+            f+=100f
 
         }
         return result
