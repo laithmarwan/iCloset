@@ -24,7 +24,7 @@
     </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
-            
+
             android:layout_width="match_parent"
             android:layout_height="46dp"
             app:menu="@menu/nav_items"

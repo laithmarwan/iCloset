@@ -125,7 +125,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
             if(menuItem.itemId == R.id.menu_home){
-                Toast.makeText(this,AppInfo.Name+AppInfo.theme, Toast.LENGTH_SHORT).show()
                 var obj = HomeFragment()
                 tr.replace(R.id.main_frame,obj)
                 tr.commit()
