@@ -6,6 +6,15 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimary</item>
         <item name="android:navigationBarColor">@color/navbar</item>
+        <item name="buttonStyle">@style/Button_theme</item>
+    </style>
+
+    <style name="Button_theme" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/round_corners_button</item>
+    </style>
+
+    <style name="BottomNavigationTheme" parent="Widget.Design.BottomNavigationView">
+        <item name="colorPrimary">@color/colorBottomNavigation</item>
     </style>
     <!-- Base application theme.End -->
 
@@ -15,6 +24,15 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimary1</item>
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+        <item name="buttonStyle">@style/Button_theme1</item>
+    </style>
+
+    <style name="Button_theme1" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/round_corners_button_theme1</item>
+    </style>
+
+    <style name="BottomNavigationTheme1" parent="Widget.Design.BottomNavigationView">
+        <item name="colorPrimary">@color/colorBottomNavigation1</item>
     </style>
     <!-- Base application theme1.End -->
 
@@ -24,6 +42,11 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimary2</item>
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+        <item name="buttonStyle">@style/Button_theme2</item>
+    </style>
+
+    <style name="Button_theme2" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/round_corners_button_theme2</item>
     </style>
     <!-- Base application theme2.End -->
 
@@ -33,6 +56,11 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimary3</item>
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+        <item name="buttonStyle">@style/Button_theme3</item>
+    </style>
+
+    <style name="Button_theme3" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/round_corners_button_theme3</item>
     </style>
     <!-- Base application theme3.End -->
 
@@ -64,13 +92,9 @@
 
     </style>
 
-    <style name="BottomNavigationTheme" parent="Widget.Design.BottomNavigationView">
-        <item name="colorPrimary">@color/colorBottomNavigation</item>
 
 
 
-
-    </style>
 
 
 

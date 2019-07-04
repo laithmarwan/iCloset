@@ -183,7 +183,6 @@
             android:layout_marginRight="8dp"/>
 
     <Button
-            android:background="@drawable/round_corners_button"
             android:textColor="#FFFF"
             android:textStyle="bold"
             android:text="Save changes"
@@ -197,7 +196,6 @@
             app:layout_constraintTop_toBottomOf="@+id/confirm_password"/>
 
     <Button
-            android:background="@drawable/round_corners_button"
             android:textColor="#FFFF"
             android:textStyle="bold"
             android:text="Cancel"
