@@ -1,10 +1,7 @@
 package com.example.icloset
 
-
 import android.content.Context
-import android.content.Intent
-import android.graphics.*
-import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -14,12 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_items.*
-import kotlinx.android.synthetic.main.fragment_items.view.*
-import android.provider.MediaStore.Audio.Playlists.Members.moveItem
-import android.support.v7.widget.helper.ItemTouchHelper.RIGHT
-import android.view.DragEvent
-import android.widget.ImageView
+import kotlinx.android.synthetic.main.fragment_laundry.view.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -31,10 +23,9 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  *
  */
-class ItemsFragment : Fragment() {
+class LaundryFragment : Fragment() {
 
-
-   lateinit var cats : ArrayList<Categories>
+    lateinit var cats : ArrayList<Categories>
     lateinit var adapter: CustomAdapter
 
     override fun onCreateView(
@@ -42,16 +33,16 @@ class ItemsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var v = inflater.inflate(R.layout.fragment_items, container, false)
+        var v = inflater.inflate(R.layout.fragment_laundry, container, false)
         cats = ArrayList<Categories>()
 
         //var bmp:Bitmap = BitmapFactory.decodeResource(context?.resources,R.drawable.outfits)
         var obj = icloset(requireActivity())
         var db = obj.readableDatabase
-        var cur = db.rawQuery("select * from item where Type=? and Description = ? and Available = 1", arrayOf(AppInfo.type,AppInfo.desc))
+        var cur = db.rawQuery("select * from item where Available = 0", arrayOf())
         if(cur.count ==0){
             //Toast.makeText(activity,"No items in this category",Toast.LENGTH_SHORT).show()
-            v.tv_empty.text = "No items in this category"
+            v.tv_laundry_empty.text = "No items in this category"
         }
         else{
             cur.moveToFirst()
@@ -68,28 +59,14 @@ class ItemsFragment : Fragment() {
             }
         }
 
-        v.recyclerView.layoutManager = GridLayoutManager(activity,3)
-         adapter = CustomAdapter(cats,requireActivity())
-        v.recyclerView.adapter = adapter
-        //Toast.makeText(activity,AppInfo.type + AppInfo.desc,Toast.LENGTH_SHORT).show()
 
+        v.recyclerView_laundry.layoutManager = GridLayoutManager(activity,3)
+        adapter = CustomAdapter(cats,requireActivity())
+        v.recyclerView_laundry.adapter = adapter
 
-        v.laundry_btn.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction().apply {
-                setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
-                replace(R.id.main_frame , LaundryFragment())
-                addToBackStack(null)
-                AppInfo.act = "closet"
-                commit()
-            }
-        }
-
-
-        //Drag and Drop
         val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
             ItemTouchHelper.END ,
-            RIGHT or RIGHT
-        ){
+            ItemTouchHelper.LEFT or ItemTouchHelper.LEFT){
 
             override fun onMove(
                 recyclerView: RecyclerView,
@@ -101,18 +78,14 @@ class ItemsFragment : Fragment() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                    deleteItem(viewHolder.adapterPosition)
-                    Toast.makeText(activity,"Item moved to Laundry", Toast.LENGTH_SHORT).show()
+                deleteItem(viewHolder.adapterPosition)
+                Toast.makeText(activity,"Item moved back to closet", Toast.LENGTH_SHORT).show()
             }
         })
-
-
-        itemTouchHelper.attachToRecyclerView(v.recyclerView)
-        //v.recyclerView.setOnDragListener(choiceDrageListener(requireContext()))
+        itemTouchHelper.attachToRecyclerView(v.recyclerView_laundry)
 
         return v
     }
-
 
     fun moveItem(oldPos: Int, newPos: Int) {
 
@@ -125,7 +98,7 @@ class ItemsFragment : Fragment() {
     fun deleteItem(position: Int) {
         val obj = icloset(requireActivity())
         val db = obj.writableDatabase
-        db.execSQL("update item set Available = 0 where Item_ID = ?" , arrayOf(cats[position].ID))
+        db.execSQL("update item set Available = 1 where Item_ID = ?" , arrayOf(cats[position].ID))
         cats.removeAt(position)
         adapter.notifyItemRemoved(position)
     }
