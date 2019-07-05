@@ -67,11 +67,10 @@ class OutfitsAdapter(val catList :ArrayList<Outfit>,val con:Context) : RecyclerV
 
         p0.fav_btn.setOnClickListener {
             if(p0.fav_btn.isChecked == true){
-                p0.fav_btn.setBackgroundResource(R.drawable.not_fav)
+                p0.fav_btn.setBackgroundResource(R.drawable.fav)
             }
             else {
-
-                p0.fav_btn.setBackgroundResource(R.drawable.fav)
+                p0.fav_btn.setBackgroundResource(R.drawable.not_fav)
             }
 
         }

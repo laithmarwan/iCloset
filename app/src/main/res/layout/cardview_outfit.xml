@@ -40,10 +40,11 @@
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginRight="8dp"
-                android:textOff=" "
-                android:textOn=" "
+                android:textOff="off"
+                android:textOn="on"
 
-        />
+
+                android:checked="false"/>
 
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>
