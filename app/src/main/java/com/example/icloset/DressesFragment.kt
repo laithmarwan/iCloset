@@ -29,6 +29,7 @@ class DressesFragment : Fragment() {
         var v = inflater.inflate(R.layout.fragment_dresses, container, false)
 
         var tops = ArrayList<String>()
+        tops.add("All")
         tops.add("Evening Gowns")
         tops.add("Cocktail Dresses")
         tops.add("Strapless Dresses")
@@ -37,7 +38,7 @@ class DressesFragment : Fragment() {
 
 
 
-        var adp = ArrayAdapter(activity,R.layout.layout_group,tops)
+        var adp = ArrayAdapter(requireContext(),R.layout.layout_group,tops)
 
        v.lv_dresses.adapter = adp
 
@@ -45,18 +46,22 @@ class DressesFragment : Fragment() {
             AppInfo.type = "Dresses"
             when (position) {
                 0 -> {
-                    AppInfo.desc = "Evening Gowns"
+                    AppInfo.desc = "All"
                     MoveToFragment(ItemsFragment())
                 }
                 1 -> {
-                    AppInfo.desc = "Cocktail Dress"
+                    AppInfo.desc = "Evening Gowns"
                     MoveToFragment(ItemsFragment())
                 }
                 2 -> {
-                    AppInfo.desc = "Strapless Dress"
+                    AppInfo.desc = "Cocktail Dress"
                     MoveToFragment(ItemsFragment())
                 }
                 3 -> {
+                    AppInfo.desc = "Strapless Dress"
+                    MoveToFragment(ItemsFragment())
+                }
+                4 -> {
                     AppInfo.desc = "Sundress"
                     MoveToFragment(ItemsFragment())
                 }

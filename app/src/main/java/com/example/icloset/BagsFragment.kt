@@ -29,6 +29,7 @@ class BagsFragment : Fragment() {
         var v = inflater.inflate(R.layout.fragment_bags, container, false)
 
         var tops = ArrayList<String>()
+        tops.add("All")
         if(AppInfo.Gender == "0"){
             tops.add("Satchels")
             tops.add("Totes")
@@ -50,13 +51,17 @@ class BagsFragment : Fragment() {
             AppInfo.type = "Bags"
             when (position) {
                 0 -> {
+                    AppInfo.desc = "All"
+                    MoveToFragment(ItemsFragment())
+                }
+                1 -> {
                     if(AppInfo.Gender == "0")
                         AppInfo.desc = "Satchels"
                     else
                         AppInfo.desc = "Briefcases"
                     MoveToFragment(ItemsFragment())
                 }
-                1 -> {
+                2 -> {
                     if(AppInfo.Gender == "0")
                         AppInfo.desc = "Satchels"
                     else

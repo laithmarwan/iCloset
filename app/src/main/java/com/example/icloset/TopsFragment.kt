@@ -31,13 +31,14 @@ class TopsFragment : Fragment() {
         // Inflate the layout for this fragment
         var v = inflater.inflate(R.layout.fragment_tops, container, false)
         var tops = ArrayList<String>()
+        tops.add("All")
         tops.add("Blazers")
         tops.add("Shirts")
         tops.add("Sweaters")
         tops.add("T-Shirts")
         tops.add("Sleeveless")
 
-        var adp = ArrayAdapter(activity,R.layout.layout_group,tops)
+        var adp = ArrayAdapter(requireContext(),R.layout.layout_group,tops)
 
         v.ListView.adapter = adp
 
@@ -46,18 +47,22 @@ class TopsFragment : Fragment() {
             AppInfo.type = "Tops"
             when (position) {
                 0 -> {
-                    AppInfo.desc = "Blazers"
+                    AppInfo.desc = "All"
                     MoveToFragment(ItemsFragment())
                 }
                 1 -> {
-                    AppInfo.desc = "Shirts"
+                    AppInfo.desc = "Blazers"
                     MoveToFragment(ItemsFragment())
                 }
                 2 -> {
-                    AppInfo.desc = "Sweaters"
+                    AppInfo.desc = "Shirts"
                     MoveToFragment(ItemsFragment())
                 }
                 3 -> {
+                    AppInfo.desc = "Sweaters"
+                    MoveToFragment(ItemsFragment())
+                }
+                4 -> {
                     AppInfo.desc = "T-shirts"
                     MoveToFragment(ItemsFragment())
                 }

@@ -48,7 +48,12 @@ class ItemsFragment : Fragment() {
         //var bmp:Bitmap = BitmapFactory.decodeResource(context?.resources,R.drawable.outfits)
         var obj = icloset(requireActivity())
         var db = obj.readableDatabase
-        var cur = db.rawQuery("select * from item where Type=? and Description = ? and Available = 1", arrayOf(AppInfo.type,AppInfo.desc))
+        val cur = if(AppInfo.desc == "All"){
+                    db.rawQuery("select * from item where Type=? and Available = 1", arrayOf(AppInfo.type))
+                }
+                else{
+                    db.rawQuery("select * from item where Type=? and Description = ? and Available = 1", arrayOf(AppInfo.type,AppInfo.desc))
+                }
         if(cur.count ==0){
             //Toast.makeText(activity,"No items in this category",Toast.LENGTH_SHORT).show()
             v.tv_empty.text = "No items in this category"

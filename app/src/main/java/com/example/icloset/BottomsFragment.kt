@@ -29,6 +29,7 @@ class BottomsFragment : Fragment() {
          var v = inflater.inflate(R.layout.fragment_bottoms, container, false)
 
         var tops = ArrayList<String>()
+        tops.add("All")
         tops.add("Trousers")
         tops.add("Shorts")
         tops.add("Jeans")
@@ -45,14 +46,18 @@ class BottomsFragment : Fragment() {
             AppInfo.type = "Bottoms"
             when (position) {
                 0 -> {
-                    AppInfo.desc = "Trousers"
+                    AppInfo.desc = "All"
                     MoveToFragment(ItemsFragment())
                 }
                 1 -> {
-                    AppInfo.desc = "Shorts"
+                    AppInfo.desc = "Trousers"
                     MoveToFragment(ItemsFragment())
                 }
                 2 -> {
+                    AppInfo.desc = "Shorts"
+                    MoveToFragment(ItemsFragment())
+                }
+                3 -> {
                     AppInfo.desc = "Jeans"
                     MoveToFragment(ItemsFragment())
                       }

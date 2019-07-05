@@ -30,7 +30,7 @@ class OutfitsFragment : Fragment() {
         var v =inflater.inflate(R.layout.fragment_outfits, container, false)
 
         var tops = ArrayList<String>()
-
+        tops.add("All")
         tops.add("Work")
         tops.add("School")
         tops.add("Friends")
@@ -49,39 +49,43 @@ class OutfitsFragment : Fragment() {
 
             when (position) {
                 0 -> {
-                    AppInfo.desc = "work"
+                    AppInfo.desc = "All"
                     MoveToFragment(OutfitItemsFragment())
                 }
                 1 -> {
-                    AppInfo.desc = "school"
+                    AppInfo.desc = "Work"
                     MoveToFragment(OutfitItemsFragment())
                 }
                 2 -> {
-                    AppInfo.desc = "friends"
+                    AppInfo.desc = "School"
                     MoveToFragment(OutfitItemsFragment())
                 }
                 3 -> {
-                    AppInfo.desc = "wedding"
+                    AppInfo.desc = "Friends"
                     MoveToFragment(OutfitItemsFragment())
                 }
                 4 -> {
-                    AppInfo.desc = "party"
+                    AppInfo.desc = "Wedding"
                     MoveToFragment(OutfitItemsFragment())
                 }
                 5 -> {
-                    AppInfo.desc = "restaurant"
+                    AppInfo.desc = "Party"
                     MoveToFragment(OutfitItemsFragment())
                 }
                 6 -> {
-                    AppInfo.desc = "gym"
+                    AppInfo.desc = "Restaurant"
                     MoveToFragment(OutfitItemsFragment())
                 }
                 7 -> {
-                    AppInfo.desc = "trip"
+                    AppInfo.desc = "Gym"
+                    MoveToFragment(OutfitItemsFragment())
+                }
+                8 -> {
+                    AppInfo.desc = "Trip"
                     MoveToFragment(OutfitItemsFragment())
                 }
                 else -> {
-                    AppInfo.desc = "other"
+                    AppInfo.desc = "Other"
                     MoveToFragment(OutfitItemsFragment())
                 }
 

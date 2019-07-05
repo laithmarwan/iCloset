@@ -97,12 +97,6 @@ class CreateOutfitActivity : AppCompatActivity() {
 
                     oldArray = arr1
 
-
-                //val occasion = cur.getString(1)
-
-
-
-
             }
 
 
@@ -132,10 +126,24 @@ class CreateOutfitActivity : AppCompatActivity() {
                 db.execSQL("insert into outfit_weather values (?,?)", arrayOf(AppInfo.img_url,list[i]))
 
             //code for occasions
+            val occasion_arr = ArrayList<String>()
+            for (i in 0 until itemArray.size) {
+                val cur = db.rawQuery("select Occasion from item_occasion where Item_ID =?", arrayOf(itemArray[i]))
+                cur.moveToFirst()
 
-            /*for(i in 0 until occasionarr.size)
-                db.execSQL("insert into outfit_occasion values (?,?)", arrayOf(AppInfo.img_url,occasionarr[i]))*/
+                while(!cur.isAfterLast) {
+                    val occasion = cur.getString(0)
+                    if(!occasion_arr.contains(occasion))
+                        occasion_arr.add(occasion)
 
+                    cur.moveToNext()
+                }
+            }
+            for(i in 0 until occasion_arr.size)
+                db.execSQL("insert into outfit_occasion values (?,?)", arrayOf(AppInfo.img_url,occasion_arr[i]))
+
+            for(i in 0 until itemArray.size)
+                db.execSQL("insert into consists_of values (?,?)", arrayOf(AppInfo.img_url,itemArray[i]))
 
             Toast.makeText(this,"Item added successfully",Toast.LENGTH_SHORT).show()
             startActivity(Intent(this,MainActivity::class.java))

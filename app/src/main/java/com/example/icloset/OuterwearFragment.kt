@@ -29,7 +29,7 @@ class OuterwearFragment : Fragment() {
         var v = inflater.inflate(R.layout.fragment_outerwear, container, false)
 
         var tops = ArrayList<String>()
-
+        tops.add("All")
         tops.add("Jackets")
         tops.add("Coats")
 
@@ -42,6 +42,10 @@ class OuterwearFragment : Fragment() {
           AppInfo.type = "Outerwear"
           when (position) {
               0 -> {
+                  AppInfo.desc = "All"
+                  MoveToFragment(ItemsFragment())
+              }
+              1 -> {
                   AppInfo.desc = "Jackets"
                   MoveToFragment(ItemsFragment())
               }

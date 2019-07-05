@@ -30,12 +30,17 @@ class OutfitItemsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var v = inflater.inflate(R.layout.fragment_outfit_items, container, false)
+        val v = inflater.inflate(R.layout.fragment_outfit_items, container, false)
 
         cats = ArrayList()
-        var obj = icloset(requireActivity())
-        var db = obj.readableDatabase
-        var cur = db.rawQuery("select * from outfit where Available = 1", arrayOf())
+        val obj = icloset(requireActivity())
+        val db = obj.readableDatabase
+
+        val cur = if(AppInfo.desc !="All"){
+            db.rawQuery("select * from outfit o,outfit_occasion oo where o.Outfit_ID = oo.Outfit_ID and oo.Occasion = ? and o.Available = 1", arrayOf(AppInfo.desc))
+        } else{
+            db.rawQuery("select * from outfit where Available = 1", arrayOf())
+        }
         if (cur.count == 0) {
             //Toast.makeText(activity,"No items in this category",Toast.LENGTH_SHORT).show()
             v.tv_emptyoutfit.text = "No outfits in this category"
@@ -61,7 +66,7 @@ class OutfitItemsFragment : Fragment() {
         v.rv_outfits.layoutManager = GridLayoutManager(activity, 3)
         adapter = OutfitsAdapter(cats, requireContext())
         v.rv_outfits.adapter = adapter
-        
+
 
  return v
 }}

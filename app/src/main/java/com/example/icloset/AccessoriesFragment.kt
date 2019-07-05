@@ -30,7 +30,7 @@ class AccessoriesFragment : Fragment() {
         var v = inflater.inflate(R.layout.fragment_accessories, container, false)
 
         var tops = ArrayList<String>()
-
+        tops.add("All")
         tops.add("Watches")
         tops.add("Sunglasses")
         tops.add("Belts")
@@ -42,7 +42,7 @@ class AccessoriesFragment : Fragment() {
         tops.add("Earrings")
         tops.add("Scarves")
 
-        var adp = ArrayAdapter(activity,R.layout.layout_group,tops)
+        var adp = ArrayAdapter(requireContext(),R.layout.layout_group,tops)
 
         v.lv_accessories.adapter = adp
 
@@ -50,38 +50,42 @@ class AccessoriesFragment : Fragment() {
             AppInfo.type = "Accessories"
             when (position) {
                 0 -> {
-                    AppInfo.desc = "Watches"
+                    AppInfo.desc = "All"
                     MoveToFragment(ItemsFragment())
                 }
                 1 -> {
-                    AppInfo.desc = "Sunglasses"
+                    AppInfo.desc = "Watches"
                     MoveToFragment(ItemsFragment())
                 }
                 2 -> {
-                    AppInfo.desc = "Belts"
+                    AppInfo.desc = "Sunglasses"
                     MoveToFragment(ItemsFragment())
                 }
                 3 -> {
-                    AppInfo.desc = "Hats"
+                    AppInfo.desc = "Belts"
                     MoveToFragment(ItemsFragment())
                 }
                 4 -> {
-                    AppInfo.desc = "Necklaces"
+                    AppInfo.desc = "Hats"
                     MoveToFragment(ItemsFragment())
                 }
                 5 -> {
-                    AppInfo.desc = "Bracelets"
+                    AppInfo.desc = "Necklaces"
                     MoveToFragment(ItemsFragment())
                 }
                 6 -> {
-                    AppInfo.desc = "Rings"
+                    AppInfo.desc = "Bracelets"
                     MoveToFragment(ItemsFragment())
                 }
                 7 -> {
-                    AppInfo.desc = "Headbands"
+                    AppInfo.desc = "Rings"
                     MoveToFragment(ItemsFragment())
                 }
                 8 -> {
+                    AppInfo.desc = "Headbands"
+                    MoveToFragment(ItemsFragment())
+                }
+                9 -> {
                     AppInfo.desc = "Earrings"
                     MoveToFragment(ItemsFragment())
                 }
