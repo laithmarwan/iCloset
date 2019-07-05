@@ -35,9 +35,9 @@
             android:layout_marginLeft="0dp"
             android:layout_marginStart="0dp"
             app:itemIconSize="21dp"
-
-            
-
+            android:background="@android:color/white"
+            app:itemBackground="@android:color/white"
+            app:elevation="15dp"
     >
 
 
