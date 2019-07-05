@@ -63,13 +63,28 @@ class OutfitsAdapter(val catList :ArrayList<Outfit>,val con:Context) : RecyclerV
             true
         }
 
+        val obj = icloset(con)
+        val db = obj.writableDatabase
+        val cur = db.rawQuery("select Favorite from outfit where Outfit_ID = ?", arrayOf(cat.ID))
+        cur.moveToFirst()
 
+        if(cur.getString(0) == "1"){
+            p0.fav_btn.isChecked = true
+            p0.fav_btn.setBackgroundResource(R.drawable.fav_heart)
+        }
 
         p0.fav_btn.setOnClickListener {
-            if(p0.fav_btn.isChecked == true){
+            val obj = icloset(con)
+            val db = obj.writableDatabase
+
+            if(p0.fav_btn.isChecked){
+
+                db.execSQL("update outfit set Favorite = 1 where Outfit_ID = ?", arrayOf(cat.ID))
                 p0.fav_btn.setBackgroundResource(R.drawable.fav_heart)
             }
             else {
+
+                db.execSQL("update outfit set Favorite = 0 where Outfit_ID = ?", arrayOf(cat.ID))
                 p0.fav_btn.setBackgroundResource(R.drawable.not_fav_heart)
             }
 

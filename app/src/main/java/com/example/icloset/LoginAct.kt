@@ -44,6 +44,9 @@ class LoginAct : AppCompatActivity() {
             AppInfo.Name = arr[2]
             AppInfo.Address = arr[3]
             AppInfo.Email = arr[4]
+
+            if (sp.getString("theme","")!="")
+                AppInfo.theme = sp.getString("theme","").toInt()
             startActivity(i)
             finish()
         }

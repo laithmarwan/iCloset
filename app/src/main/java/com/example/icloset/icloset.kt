@@ -22,6 +22,7 @@ class icloset(var con:Context) :SQLiteOpenHelper(con,"icloset.db",null,2){
                 " Last_time_worn varchar(20)," +
                 " Occasion varchar(20)," +
                 " Available integer(1) NOT NULL," +
+                " Favorite integer(1) DEFAULT 0," +
                 " Outfit_image varchar(30) NOT NULL)")
 
         db.execSQL("CREATE TABLE item(" +
