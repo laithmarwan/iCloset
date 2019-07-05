@@ -33,6 +33,4 @@ class ChooseItemActivity : AppCompatActivity() {
         trans.commit()
 
     }
-
-
 }
