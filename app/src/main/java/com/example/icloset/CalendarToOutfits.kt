@@ -59,7 +59,7 @@ class CalendarToOutfits : Fragment() {
 
 
         v.rv_calendar.layoutManager = GridLayoutManager(activity, 3)
-        val adapter = CalendarAdapter(cats)
+        val adapter = CalendarAdapter(cats,requireContext(),requireActivity())
         v.rv_calendar.adapter = adapter
 
 

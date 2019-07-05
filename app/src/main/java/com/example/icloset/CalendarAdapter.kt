@@ -1,8 +1,11 @@
 package com.example.icloset
 
+import android.app.Activity
+import android.content.Context
 import android.net.Uri
 import android.os.Environment
 import android.support.v7.widget.RecyclerView
+import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +13,7 @@ import android.widget.ImageView
 import java.io.File
 import java.lang.Exception
 
-class CalendarAdapter(val catList :ArrayList<Outfit>) : RecyclerView.Adapter<CalendarAdapter.ViewHolder>(){
+class CalendarAdapter(val catList :ArrayList<Outfit>, val con: Context,val act:Activity) : RecyclerView.Adapter<CalendarAdapter.ViewHolder>(){
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
         val cat:Outfit = catList[p1]
         try{
@@ -23,6 +26,16 @@ class CalendarAdapter(val catList :ArrayList<Outfit>) : RecyclerView.Adapter<Cal
         {
             e.printStackTrace()
         }
+        p0.imageviewname.setOnClickListener {
+            val obj = icloset(con)
+            val db = obj.writableDatabase
+            val date = "${AppInfo.day}/${AppInfo.month}/${AppInfo.year}"
+            db.execSQL("insert into reminders (Date,Outfit_ID) values (?,?)", arrayOf(date,cat.ID))
+            act.onBackPressed()
+            act.onBackPressed()
+        }
+
+
     }
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): CalendarAdapter.ViewHolder {

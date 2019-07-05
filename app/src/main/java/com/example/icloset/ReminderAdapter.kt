@@ -19,7 +19,7 @@ import android.widget.Toast
 import java.io.File
 import java.lang.Exception
 
-class ReminderAdapter(private val catList :ArrayList<Reminder>, private val con:Activity) : RecyclerView.Adapter<ReminderAdapter.ViewHolder>() {
+class ReminderAdapter(private val catList :ArrayList<Reminder>, private val con:Context) : RecyclerView.Adapter<ReminderAdapter.ViewHolder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         val v = LayoutInflater.from(p0.context).inflate(R.layout.cardview_calendar, p0, false)
         return ViewHolder(v)
@@ -46,7 +46,7 @@ class ReminderAdapter(private val catList :ArrayList<Reminder>, private val con:
             e.printStackTrace()
         }
 
-        p0.textView.setText(cat.reminder_date)
+        p0.textView.text = cat.reminder_date
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

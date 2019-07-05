@@ -21,6 +21,9 @@ class AppInfo {
         lateinit var img:Uri
         var theme:Int = 0
         var itemID:String = ""
+        var day:String = ""
+        var month:String = ""
+        var year:String = ""
 
     }
 
