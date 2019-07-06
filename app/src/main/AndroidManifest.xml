@@ -59,6 +59,8 @@
         </activity>
         <activity android:name=".Theme_selector">
         </activity>
+        <activity android:name=".ImageSlider">
+        </activity>
     </application>
 
 </manifest>
