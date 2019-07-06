@@ -195,6 +195,37 @@ class PhotoEditReview : AppCompatActivity() {
         }
 
 
+        item_photo_color_info.setOnLongClickListener {
+            item_photo_color_info.setBackgroundResource(R.drawable.clear)
+            true
+        }
+
+        item_photo_color_info2.setOnLongClickListener {
+            item_photo_color_info2.setBackgroundResource(R.drawable.clear)
+            true
+        }
+
+        item_photo_color_info3.setOnLongClickListener {
+            item_photo_color_info3.setBackgroundResource(R.drawable.clear)
+            true
+        }
+
+        item_photo_color_info4.setOnLongClickListener {
+            item_photo_color_info4.setBackgroundResource(R.drawable.clear)
+            true
+        }
+
+        item_photo_color_info5.setOnLongClickListener {
+            item_photo_color_info5.setBackgroundResource(R.drawable.clear)
+            true
+        }
+
+        item_photo_color_info6.setOnLongClickListener {
+            item_photo_color_info6.setBackgroundResource(R.drawable.clear)
+            true
+        }
+
+
         ok_btn.setOnClickListener {
 
             if(AppInfo.act == "add"){
@@ -522,6 +553,28 @@ class PhotoEditReview : AppCompatActivity() {
 
              crm.start(this)
 
+    }
+
+
+    fun calculateAverageColor(bitmap: android.graphics.Bitmap, pixelSpacing: Int): Int {
+        var R = 0
+        var G = 0
+        var B = 0
+        val height = bitmap.height
+        val width = bitmap.width
+        var n = 0
+        val pixels = IntArray(width * height)
+        bitmap.getPixels(pixels, 0, width, 0, 0, width, height)
+        var i = 0
+        while (i < pixels.size) {
+            val color = pixels[i]
+            R += Color.red(color)
+            G += Color.green(color)
+            B += Color.blue(color)
+            n++
+            i += pixelSpacing
+        }
+        return Color.rgb(R / n, G / n, B / n)
     }
 
    //private fun pickImageFromGallery() {
