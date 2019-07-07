@@ -65,6 +65,19 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
                     db.execSQL("delete from item where Item_ID = ?", arrayOf(cat.ID))
                     db.execSQL("delete from item_weather where Item_ID = ?", arrayOf(cat.ID))
                     db.execSQL("delete from item_occasion where Item_ID = ?", arrayOf(cat.ID))
+                    val cur = db.rawQuery("select Outfit_ID from consists_of where Item_ID =?", arrayOf(cat.ID))
+                    if(cur.count !=0){
+                    cur.moveToFirst()
+                    while(!cur.isAfterLast){
+                        db.execSQL("delete from outfit where Outfit_ID = ?", arrayOf(cur.getString(0)))
+                        db.execSQL("delete from outfit_weather where Outfit_ID = ?", arrayOf(cur.getString(0)))
+                        db.execSQL("delete from outfit_occasion where Outfit_ID = ?", arrayOf(cur.getString(0)))
+                        db.execSQL("delete from reminders where Outfit_ID = ?", arrayOf(cur.getString(0)))
+                        cur.moveToNext()}
+                    }
+
+
+                    db.execSQL("delete from consists_of where Item_ID = ?", arrayOf(cat.ID))
                     Toast.makeText(con,"Item deleted", Toast.LENGTH_SHORT).show()
                 }
                 builder.setNegativeButton("No"){

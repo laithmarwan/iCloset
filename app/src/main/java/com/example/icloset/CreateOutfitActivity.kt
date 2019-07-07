@@ -242,16 +242,17 @@ class CreateOutfitActivity : AppCompatActivity() {
     private fun createSingleImageFromMultipleImages(array:ArrayList<Bitmap>): Bitmap {
 
 
-        val result = Bitmap.createBitmap(array[0].width*array.size, array[0].height*array.size, Bitmap.Config.ARGB_8888)
+
+        val result = Bitmap.createBitmap(root_layout.width, root_layout.height, Bitmap.Config.ARGB_8888)
 
         val canvas = Canvas(result)
         canvas.drawARGB(255,255,255,255)
+        var xy = IntArray(2)
+        for (i in 0 until root_layout.childCount){
+            val child = root_layout.getChildAt(i)
+            child.getLocationOnScreen(xy)
+            canvas.drawBitmap(array[i], xy[0].toFloat(), xy[1].toFloat(), null)
 
-        var f = 0f
-        for (i in 0 until array.size){
-            canvas.drawBitmap(array[i], f, f, null)
-
-            f+=100f
 
         }
         return result

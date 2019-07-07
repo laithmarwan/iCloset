@@ -52,6 +52,8 @@ class OutfitsAdapter(val catList :ArrayList<Outfit>,val con:Context) : RecyclerV
                     db.execSQL("delete from outfit where Outfit_ID = ?", arrayOf(cat.ID))
                     db.execSQL("delete from outfit_weather where Outfit_ID = ?", arrayOf(cat.ID))
                     db.execSQL("delete from outfit_occasion where Outfit_ID = ?", arrayOf(cat.ID))
+                    db.execSQL("delete from reminders where Outfit_ID = ?", arrayOf(cat.ID))
+                    db.execSQL("delete from consists_of where Outfit_ID = ?", arrayOf(cat.ID))
                     Toast.makeText(con,"Outfit deleted", Toast.LENGTH_SHORT).show()
                 }
                 builder.setNegativeButton("No"){
