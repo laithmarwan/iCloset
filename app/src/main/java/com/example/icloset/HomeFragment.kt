@@ -56,6 +56,7 @@ class HomeFragment : Fragment() {
 
             val gym = view.findViewById<TextView>(R.id.gym_button)
             gym.setOnClickListener {
+                startActivity(Intent(activity,ImageSlider::class.java))
 
             }
             val party = view.findViewById<TextView>(R.id.party_button)

@@ -5,9 +5,11 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 
 class DraggableBox @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
-    ImageView(context, attrs, defStyleAttr) {
+    RelativeLayout(context, attrs, defStyleAttr) {
 
 
     private var startingPointerX: Float = 0.toFloat()

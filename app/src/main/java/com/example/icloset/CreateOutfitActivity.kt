@@ -15,6 +15,12 @@ import java.io.File
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.GradientDrawable
+import android.text.Layout
+import android.view.View
+import android.widget.Button
+import android.widget.ImageView
+import kotlinx.android.synthetic.main.fragment_tops.view.*
 import java.io.FileOutputStream
 import java.io.OutputStream
 import java.lang.Exception
@@ -23,6 +29,7 @@ import java.lang.Exception
 class CreateOutfitActivity : AppCompatActivity() {
  private lateinit var bitArray:ArrayList<Bitmap>
     private lateinit var itemArray:ArrayList<String>
+    private lateinit var draggableBox:DraggableBox
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if(AppInfo.theme == 0){
@@ -37,6 +44,8 @@ class CreateOutfitActivity : AppCompatActivity() {
 
         bitArray = ArrayList()
         itemArray = ArrayList()
+
+
 
     }
 
@@ -152,6 +161,9 @@ class CreateOutfitActivity : AppCompatActivity() {
         else if(item?.itemId == R.id.menu_add){
             startActivityForResult(Intent(this,ChooseItemActivity::class.java),1010)
         }
+        else if(itemArray.isEmpty()){
+            Toast.makeText(this,"Add items to create an outfit",Toast.LENGTH_SHORT).show()
+        }
         return super.onOptionsItemSelected(item)
     }
 
@@ -162,16 +174,16 @@ class CreateOutfitActivity : AppCompatActivity() {
 
 //            val str = data?.getStringExtra("Type")
 
-            val draggableBox = DraggableBox(this)
-
+            draggableBox = DraggableBox(this)
+            //draggableBox.orientation = LinearLayout.VERTICAL
             // Creating a LinearLayout.LayoutParams object for text view
             var params : LinearLayout.LayoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, // This will define text view width
+                LinearLayout.LayoutParams.WRAP_CONTENT, // This will define text view width
                 LinearLayout.LayoutParams.WRAP_CONTENT // This will define text view height
             )
-
+            var img = ImageView(this)
             // Add margin to the text view
-            params.setMargins(10,10,10,10)
+            params.setMargins(0,0,0,0)
 
             // Now, specify the text view width and height (dimension)
             draggableBox.layoutParams = params
@@ -190,16 +202,42 @@ class CreateOutfitActivity : AppCompatActivity() {
                 val storageDirectory = Environment.getExternalStorageDirectory().toString()
 
                 val file = File(storageDirectory,cur.getString(cur.getColumnIndex("Item_image")))
-                draggableBox.setImageURI(Uri.parse(file.absolutePath))
-                val bm = (draggableBox.drawable as BitmapDrawable).bitmap
+                img.setImageURI(Uri.parse(file.absolutePath))
+                val bm = (img.drawable as BitmapDrawable).bitmap
+                draggableBox.addView(img)
                 bitArray.add(bm)
                 itemArray.add(cur.getString(cur.getColumnIndex("Item_ID")))
 
             }
 
+            var btn = Button(this)
+
+            btn.setBackgroundResource(R.drawable.redcross)
+            btn.setOnClickListener(deleteBtn)
+            draggableBox.addView(btn)
+
             root_layout.addView(draggableBox)
+
     }
     }
+
+    private val deleteBtn = object : View.OnClickListener {
+        override fun onClick(v: View) {
+            val vv:View = v.parent as View
+
+            bitArray.removeAt(root_layout.indexOfChild(vv))
+            itemArray.removeAt(root_layout.indexOfChild(vv))
+            root_layout.removeView(vv)
+
+
+
+            Toast.makeText(
+                applicationContext, "Deleted",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
 
     private fun createSingleImageFromMultipleImages(array:ArrayList<Bitmap>): Bitmap {
 
