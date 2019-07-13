@@ -30,16 +30,6 @@ import kotlinx.android.synthetic.main.dialog_layout.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import java.util.jar.Manifest
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- *
- */
 class HomeFragment : Fragment() {
 
     @SuppressLint("NewApi")
@@ -51,42 +41,44 @@ class HomeFragment : Fragment() {
         var v = inflater.inflate(R.layout.fragment_home, container, false)
 
         v.dress_me_up.setOnClickListener {
+
+
             val dialog = BottomSheetDialog(requireContext())
             val view = layoutInflater.inflate(R.layout.dialog_layout, null)
 
             val gym = view.findViewById<TextView>(R.id.gym_button)
             gym.setOnClickListener {
-                startActivity(Intent(activity,ImageSlider::class.java))
+                checkPermissions()
 
             }
             val party = view.findViewById<TextView>(R.id.party_button)
             party.setOnClickListener {
-
+                checkPermissions()
             }
             val wedding = view.findViewById<TextView>(R.id.wedding_button)
             wedding.setOnClickListener {
-
+                checkPermissions()
             }
             val school = view.findViewById<TextView>(R.id.school_button)
             school.setOnClickListener {
-
+                checkPermissions()
             }
 
             val work = view.findViewById<TextView>(R.id.work_button)
             work.setOnClickListener {
-
+                checkPermissions()
             }
             val restaurant = view.findViewById<TextView>(R.id.restaurant_button)
             restaurant.setOnClickListener {
-
+                checkPermissions()
             }
             val trip = view.findViewById<TextView>(R.id.trip_button)
             trip.setOnClickListener {
-
+                checkPermissions()
             }
             val other = view.findViewById<TextView>(R.id.other_button)
             other.setOnClickListener {
-
+                checkPermissions()
             }
 
             dialog.setContentView(view)
@@ -129,7 +121,17 @@ class HomeFragment : Fragment() {
 
     }
 
+    private fun checkPermissions(){
+        if (Build.VERSION.SDK_INT > 22) {
+            requestPermissions(arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                android.Manifest.permission.ACCESS_FINE_LOCATION),2)
 
+        }
+        else
+        {
+            startActivity(Intent(requireContext(),ImageSlider::class.java))
+        }
+    }
     companion object {
         //private val permission_code = 1001
         private val camera_code = 1002
@@ -147,6 +149,16 @@ class HomeFragment : Fragment() {
 
             }
 
+            else
+            {
+                Toast.makeText(activity,"Permissions must be granted",Toast.LENGTH_SHORT).show()
+            }
+        }
+        else if(requestCode == 2){
+            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
+                startActivity(Intent(requireContext(),ImageSlider::class.java))
+
+            }
             else
             {
                 Toast.makeText(activity,"Permissions must be granted",Toast.LENGTH_SHORT).show()
