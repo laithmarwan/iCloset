@@ -50,6 +50,20 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
                 con.setResult(RESULT_OK)
                 con.finish()
             }
+            else if(AppInfo.act == "closet"){
+                var weather = ""
+                val obj = icloset(con)
+                val db = obj.readableDatabase
+                val cur = db.rawQuery("select Weather from outfit_weather where Outfit_ID =?", arrayOf(cat.ID))
+                cur.moveToFirst()
+                while (!cur.isAfterLast){
+                    weather += cur.getString(0)
+                    cur.moveToNext()
+                }
+
+                Toast.makeText(con,"${cat.type}-${cat.desc} | $weather",Toast.LENGTH_LONG).show()
+
+            }
 
     }
         p0.imageviewname.setOnLongClickListener {

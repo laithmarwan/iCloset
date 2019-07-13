@@ -154,7 +154,7 @@ class CreateOutfitActivity : AppCompatActivity() {
             for(i in 0 until itemArray.size)
                 db.execSQL("insert into consists_of values (?,?)", arrayOf(AppInfo.img_url,itemArray[i]))
 
-            Toast.makeText(this,"Item added successfully",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"Outfit added successfully",Toast.LENGTH_SHORT).show()
             startActivity(Intent(this,MainActivity::class.java))
             finish()
         }

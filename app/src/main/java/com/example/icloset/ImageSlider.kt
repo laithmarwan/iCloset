@@ -3,6 +3,7 @@ package com.example.icloset
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -32,10 +33,6 @@ class ImageSlider : AppCompatActivity() {
 
         var lon = 0.0
         var lat = 0.0
-        var pd = ProgressDialog(this)
-        pd.setMessage("Please Wait...")
-        pd.setProgressStyle(ProgressDialog.STYLE_SPINNER)
-        pd.show()
         val locationManager:LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val hasGPS = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
         val hasNetwork = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
@@ -96,38 +93,41 @@ class ImageSlider : AppCompatActivity() {
                 }
 
             }
-            if(locationGPS != null && locationNetwork != null) {
-                if(locationGPS.accuracy > locationNetwork.accuracy){
-                    lon = locationGPS.longitude
-                    lat = locationGPS.latitude
-                }
-                else{
-                    lon = locationNetwork.longitude
-                    lat = locationNetwork.latitude
-                }
-
+            if(locationGPS.accuracy > locationNetwork.accuracy){
+                lon = locationGPS.longitude
+                lat = locationGPS.latitude
+            }
+            else{
+                lon = locationNetwork.longitude
+                lat = locationNetwork.latitude
             }
         }else{
             Toast.makeText(this,"problem",Toast.LENGTH_LONG).show()
         }
 
-        var rq = Volley.newRequestQueue(this)
+        //Toast.makeText(this,lon.toString()+lat.toString(),Toast.LENGTH_LONG).show()
 
+        val occasion = intent.getStringExtra("occasion")
+        val rq = Volley.newRequestQueue(this)
         val key = "fe7e0122aa2663a7f2aa546b5e121a59"
-        var jo = JsonObjectRequest(Request.Method.GET,
-            "api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$key",
+        val jo = JsonObjectRequest(Request.Method.GET,
+            "http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$key",
             null, Response.Listener {
                     response ->
-                        val arr = response.getJSONArray("weather")
-                        val ob = arr.getJSONObject(0)
-                        pd.hide()
-                        val city = response.getString("")
-
+                        val ob = response.getJSONObject("main")
+                        var temp = ob.getDouble("temp_max")
+                        temp -= 273.15
+                        AppInfo.season = when {
+                            temp < 15.0 -> "Winter"
+                            temp < 20.0 -> "Autumn"
+                            temp < 25.0 -> "Spring"
+                            else -> "Summer"
+                        }
 
 
             }, Response.ErrorListener {
                     error ->
-                pd.hide()
+
                 Toast.makeText(
                     this, error.message,
                     Toast.LENGTH_LONG
@@ -138,12 +138,27 @@ class ImageSlider : AppCompatActivity() {
 
         val obj = icloset(this)
         val db = obj.readableDatabase
-        val cur = db.rawQuery("select * from outfit where occasion = ?", arrayOf()) //and weather = ?
+        val cur = db.rawQuery("select * from outfit o,outfit_occasion oo,outfit_weather ow" +
+                " where o.Outfit_ID = oo.Outfit_ID and oo.Outfit_ID = ow.Outfit_ID and ow.Weather = ? and oo.Occasion = ?", arrayOf(AppInfo.season,occasion))
+        val mArray:ArrayList<Outfit> = ArrayList()
+        if(cur.count !=0){
+            cur.moveToFirst()
 
+            while(!cur.isAfterLast){
+                mArray.add(Outfit(cur.getString(0),cur.getString(2),cur.getInt(5),cur.getString(7)))
+
+
+                cur.moveToNext()
+            }
+        }
+        else{
+            Toast.makeText(this, "$occasion||${AppInfo.season}",Toast.LENGTH_SHORT).show()
+        }
 
 
         viewPager = findViewById<View>(R.id.viewPager) as ViewPager
-        val adapter = ViewPageAdapter(this)
+
+        val adapter = ViewPageAdapter(this,mArray)
         viewPager.adapter = adapter
     }
 }

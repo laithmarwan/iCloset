@@ -31,7 +31,7 @@ import kotlinx.android.synthetic.main.fragment_home.view.*
 import java.util.jar.Manifest
 
 class HomeFragment : Fragment() {
-
+    lateinit var occasion:String
     @SuppressLint("NewApi")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,36 +49,50 @@ class HomeFragment : Fragment() {
             val gym = view.findViewById<TextView>(R.id.gym_button)
             gym.setOnClickListener {
                 checkPermissions()
+                occasion = "Gym"
+
+            }
+            val friends = view.findViewById<TextView>(R.id.friends_button)
+            friends.setOnClickListener {
+                checkPermissions()
+                occasion = "Friends"
 
             }
             val party = view.findViewById<TextView>(R.id.party_button)
             party.setOnClickListener {
                 checkPermissions()
+                occasion = "Party"
             }
             val wedding = view.findViewById<TextView>(R.id.wedding_button)
             wedding.setOnClickListener {
                 checkPermissions()
+                occasion = "Wedding"
             }
             val school = view.findViewById<TextView>(R.id.school_button)
             school.setOnClickListener {
                 checkPermissions()
+                occasion = "School"
             }
 
             val work = view.findViewById<TextView>(R.id.work_button)
             work.setOnClickListener {
                 checkPermissions()
+                occasion = "Work"
             }
             val restaurant = view.findViewById<TextView>(R.id.restaurant_button)
             restaurant.setOnClickListener {
                 checkPermissions()
+                occasion = "Restaurant"
             }
             val trip = view.findViewById<TextView>(R.id.trip_button)
             trip.setOnClickListener {
                 checkPermissions()
+                occasion = "Trip"
             }
             val other = view.findViewById<TextView>(R.id.other_button)
             other.setOnClickListener {
                 checkPermissions()
+                occasion = "Other"
             }
 
             dialog.setContentView(view)
@@ -129,7 +143,10 @@ class HomeFragment : Fragment() {
         }
         else
         {
-            startActivity(Intent(requireContext(),ImageSlider::class.java))
+
+            val i = Intent(requireContext(),ImageSlider::class.java)
+            i.putExtra("occasion",occasion)
+            startActivity(i)
         }
     }
     companion object {
@@ -156,8 +173,9 @@ class HomeFragment : Fragment() {
         }
         else if(requestCode == 2){
             if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
-                startActivity(Intent(requireContext(),ImageSlider::class.java))
-
+                val i = Intent(requireContext(),ImageSlider::class.java)
+                i.putExtra("occasion",occasion)
+                startActivity(i)
             }
             else
             {

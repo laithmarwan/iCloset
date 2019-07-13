@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.preference.PreferenceManager
 import android.widget.Toast
-import com.example.icloset.AppInfo.Companion.wait
 import kotlinx.android.synthetic.main.activity_theme_selector.*
 
 class Theme_selector : AppCompatActivity() {

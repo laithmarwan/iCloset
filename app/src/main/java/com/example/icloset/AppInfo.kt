@@ -17,7 +17,7 @@ class AppInfo {
         var desc:String = ""
         var act:String = ""
         var img_url:Int = 0
-        var wait:Int = 0
+        var season:String = ""
         lateinit var img:Uri
         var theme:Int = 0
         var itemID:String = ""
