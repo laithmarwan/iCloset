@@ -12,8 +12,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/viewPager"
     />
-
-
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp" android:id="@+id/textView15" tools:layout_editor_absoluteY="276dp"
+            tools:layout_editor_absoluteX="176dp"/>
 
 
 </android.support.constraint.ConstraintLayout>

@@ -11,6 +11,9 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Build
 import android.provider.MediaStore
 import android.support.design.widget.BaseTransientBottomBar
@@ -18,11 +21,17 @@ import android.support.design.widget.BottomSheetDialog
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.ContextCompat.checkSelfPermission
+import android.support.v4.content.ContextCompat.getSystemService
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_photo_edit_review.*
@@ -32,7 +41,11 @@ import java.util.jar.Manifest
 
 class HomeFragment : Fragment() {
     lateinit var occasion:String
-    @SuppressLint("NewApi")
+    var lon = 0.0
+    var lat = 0.0
+    @SuppressLint("NewApi", "MissingPermission")
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,6 +54,107 @@ class HomeFragment : Fragment() {
         var v = inflater.inflate(R.layout.fragment_home, container, false)
 
         v.dress_me_up.setOnClickListener {
+
+
+            val locationManager = activity!!.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            val hasGPS = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+            val hasNetwork = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+            lateinit var locationGPS: Location
+            lateinit var locationNetwork: Location
+            if(hasGPS || hasNetwork){
+                if(hasGPS){
+                    Log.d("CodeAndroidLocation", "hasGPS")
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,5000,0f,object: LocationListener {
+                        override fun onLocationChanged(p0: Location) {
+                            locationGPS =p0
+
+
+                        }
+
+                        override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
+
+                        }
+
+                        override fun onProviderEnabled(p0: String?) {
+
+                        }
+
+                        override fun onProviderDisabled(p0: String?) {
+
+                        }
+                    })
+                    val local = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+                    if(local != null){
+                        locationGPS = local
+                    }
+
+                }
+                if(hasNetwork){
+                    Log.d("CodeAndroidLocation", "hasGPS")
+                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,5000,0f,object:
+                        LocationListener {
+                        override fun onLocationChanged(p0: Location) {
+                            locationNetwork =p0
+
+
+                        }
+
+                        override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
+
+                        }
+
+                        override fun onProviderEnabled(p0: String?) {
+
+                        }
+
+                        override fun onProviderDisabled(p0: String?) {
+
+                        }
+                    })
+                    val local = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+                    if(local != null){
+                        locationNetwork= local
+                    }
+
+                }
+                if(locationGPS.accuracy > locationNetwork.accuracy){
+                    lon = locationGPS.longitude
+                    lat = locationGPS.latitude
+                }
+                else{
+                    lon = locationNetwork.longitude
+                    lat = locationNetwork.latitude
+                }
+            }else{
+                Toast.makeText(activity,"problem",Toast.LENGTH_LONG).show()
+            }
+            val rq = Volley.newRequestQueue(activity)
+            val key = "fe7e0122aa2663a7f2aa546b5e121a59"
+            val jo = JsonObjectRequest(Request.Method.GET,
+                "http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$key",
+                null, Response.Listener {
+                        response ->
+                    val ob = response.getJSONObject("main")
+                    var temp = ob.getDouble("temp_max")
+                    temp -= 273.15
+                    AppInfo.season = when {
+                        temp < 15.0 -> "Winter"
+                        temp < 20.0 -> "Autumn"
+                        temp < 25.0 -> "Spring"
+                        else -> "Summer"
+                    }
+
+
+                }, Response.ErrorListener {
+                        error ->
+
+                    Toast.makeText(
+                        activity, error.message,
+                        Toast.LENGTH_LONG
+                    ).show()
+                })
+
+            rq.add(jo)
 
 
             val dialog = BottomSheetDialog(requireContext())
@@ -108,7 +222,7 @@ class HomeFragment : Fragment() {
                 if (Build.VERSION.SDK_INT > 22) {
                     requestPermissions(arrayOf(android.Manifest.permission.CAMERA,
                         android.Manifest.permission.READ_EXTERNAL_STORAGE),
-                        HomeFragment.camera_code)
+                        camera_code)
                 }
                 else
                 {
