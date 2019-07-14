@@ -17,6 +17,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import kotlinx.android.synthetic.main.activity_image_slider.*
 import kotlinx.android.synthetic.main.activity_image_slider.view.*
 
 class ImageSlider : AppCompatActivity() {
@@ -32,8 +33,6 @@ class ImageSlider : AppCompatActivity() {
         //weather API
 
         val occasion = intent.getStringExtra("occasion")
-
-
         val obj = icloset(this)
         val db = obj.readableDatabase
         val mArray:ArrayList<Outfit> = ArrayList()
@@ -44,15 +43,15 @@ class ImageSlider : AppCompatActivity() {
 
             while(!cur.isAfterLast){
                 mArray.add(Outfit(cur.getString(0),cur.getString(2),cur.getInt(5),cur.getString(7)))
-
-
                 cur.moveToNext()
             }
         }
         else{
-            Toast.makeText(this, "$occasion||${AppInfo.season}",Toast.LENGTH_SHORT).show()
+
+            tv_empty.text = "No items found relating to your occasion"
         }
 
+        Toast.makeText(this, AppInfo.season,Toast.LENGTH_LONG).show()
 
         viewPager = findViewById<View>(R.id.viewPager) as ViewPager
 

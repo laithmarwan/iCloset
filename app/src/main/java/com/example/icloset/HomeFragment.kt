@@ -56,107 +56,6 @@ class HomeFragment : Fragment() {
         v.dress_me_up.setOnClickListener {
 
 
-            val locationManager = activity!!.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-            val hasGPS = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-            val hasNetwork = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
-            lateinit var locationGPS: Location
-            lateinit var locationNetwork: Location
-            if(hasGPS || hasNetwork){
-                if(hasGPS){
-                    Log.d("CodeAndroidLocation", "hasGPS")
-                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,5000,0f,object: LocationListener {
-                        override fun onLocationChanged(p0: Location) {
-                            locationGPS =p0
-
-
-                        }
-
-                        override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
-
-                        }
-
-                        override fun onProviderEnabled(p0: String?) {
-
-                        }
-
-                        override fun onProviderDisabled(p0: String?) {
-
-                        }
-                    })
-                    val local = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
-                    if(local != null){
-                        locationGPS = local
-                    }
-
-                }
-                if(hasNetwork){
-                    Log.d("CodeAndroidLocation", "hasGPS")
-                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,5000,0f,object:
-                        LocationListener {
-                        override fun onLocationChanged(p0: Location) {
-                            locationNetwork =p0
-
-
-                        }
-
-                        override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
-
-                        }
-
-                        override fun onProviderEnabled(p0: String?) {
-
-                        }
-
-                        override fun onProviderDisabled(p0: String?) {
-
-                        }
-                    })
-                    val local = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
-                    if(local != null){
-                        locationNetwork= local
-                    }
-
-                }
-                if(locationGPS.accuracy > locationNetwork.accuracy){
-                    lon = locationGPS.longitude
-                    lat = locationGPS.latitude
-                }
-                else{
-                    lon = locationNetwork.longitude
-                    lat = locationNetwork.latitude
-                }
-            }else{
-                Toast.makeText(activity,"problem",Toast.LENGTH_LONG).show()
-            }
-            val rq = Volley.newRequestQueue(activity)
-            val key = "fe7e0122aa2663a7f2aa546b5e121a59"
-            val jo = JsonObjectRequest(Request.Method.GET,
-                "http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$key",
-                null, Response.Listener {
-                        response ->
-                    val ob = response.getJSONObject("main")
-                    var temp = ob.getDouble("temp_max")
-                    temp -= 273.15
-                    AppInfo.season = when {
-                        temp < 15.0 -> "Winter"
-                        temp < 20.0 -> "Autumn"
-                        temp < 25.0 -> "Spring"
-                        else -> "Summer"
-                    }
-
-
-                }, Response.ErrorListener {
-                        error ->
-
-                    Toast.makeText(
-                        activity, error.message,
-                        Toast.LENGTH_LONG
-                    ).show()
-                })
-
-            rq.add(jo)
-
-
             val dialog = BottomSheetDialog(requireContext())
             val view = layoutInflater.inflate(R.layout.dialog_layout, null)
 
@@ -257,7 +156,7 @@ class HomeFragment : Fragment() {
         }
         else
         {
-
+            getData()
             val i = Intent(requireContext(),ImageSlider::class.java)
             i.putExtra("occasion",occasion)
             startActivity(i)
@@ -266,6 +165,150 @@ class HomeFragment : Fragment() {
     companion object {
         //private val permission_code = 1001
         private val camera_code = 1002
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun getData(){
+
+        val locationManager = activity!!.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val hasGPS = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        val hasNetwork = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+        lateinit var locationGPS: Location
+        lateinit var locationNetwork: Location
+        if(hasGPS || hasNetwork){
+            if(hasGPS){
+                Log.d("CodeAndroidLocation", "hasGPS")
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,5000,0f,object: LocationListener {
+                    override fun onLocationChanged(p0: Location) {
+                        locationGPS =p0
+
+
+                    }
+
+                    override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
+
+                    }
+
+                    override fun onProviderEnabled(p0: String?) {
+
+                    }
+
+                    override fun onProviderDisabled(p0: String?) {
+
+                    }
+                })
+                val local = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+                if(local != null){
+                    locationGPS = local
+                }
+
+            }
+            if(hasNetwork){
+                Log.d("CodeAndroidLocation", "hasGPS")
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,5000,0f,object:
+                    LocationListener {
+                    override fun onLocationChanged(p0: Location) {
+                        locationNetwork =p0
+
+
+                    }
+
+                    override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
+
+                    }
+
+                    override fun onProviderEnabled(p0: String?) {
+
+                    }
+
+                    override fun onProviderDisabled(p0: String?) {
+
+                    }
+                })
+                val local = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+                if(local != null){
+                    locationNetwork= local
+                }
+
+            }
+            if(locationGPS.accuracy > locationNetwork.accuracy){
+                lon = locationGPS.longitude
+                lat = locationGPS.latitude
+            }
+            else{
+                lon = locationNetwork.longitude
+                lat = locationNetwork.latitude
+            }
+        }else{
+            Toast.makeText(activity,"problem",Toast.LENGTH_LONG).show()
+        }
+        val rq = Volley.newRequestQueue(activity)
+        val key = "fe7e0122aa2663a7f2aa546b5e121a59"
+        val jo = JsonObjectRequest(Request.Method.GET,
+            "http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$key",
+            null, Response.Listener {
+                    response ->
+                val ob = response.getJSONObject("main")
+                var maxtemp = ob.getDouble("temp_max")
+                var mintemp = ob.getDouble("temp_min")
+
+                maxtemp -= 273.15
+                mintemp -= 273.15
+                val avgtemp = (maxtemp +mintemp)/2
+                AppInfo.season = when {
+                    avgtemp < 15.0 -> "Winter"
+                    avgtemp < 20.0 -> "Autumn"
+                    avgtemp < 25.0 -> "Spring"
+                    else -> "Summer"
+                }
+
+
+            }, Response.ErrorListener {
+                    error ->
+
+                Toast.makeText(
+                    activity, error.message,
+                    Toast.LENGTH_LONG
+                ).show()
+            })
+
+        rq.add(jo)
+
+
+    }
+
+    private fun caseDenied(){
+        val rq = Volley.newRequestQueue(activity)
+        val key = "fe7e0122aa2663a7f2aa546b5e121a59"
+        val jo = JsonObjectRequest(Request.Method.GET,
+            "http://api.openweathermap.org/data/2.5/weather?q=${AppInfo.Address}&appid=$key",
+            null, Response.Listener {
+                    response ->
+                val ob = response.getJSONObject("main")
+                var maxtemp = ob.getDouble("temp_max")
+                var mintemp = ob.getDouble("temp_min")
+
+                maxtemp -= 273.15
+                mintemp -= 273.15
+                val avgtemp = (maxtemp +mintemp)/2
+                AppInfo.season = when {
+                    avgtemp < 15.0 -> "Winter"
+                    avgtemp < 20.0 -> "Autumn"
+                    avgtemp < 25.0 -> "Spring"
+                    else -> "Summer"
+                }
+
+
+            }, Response.ErrorListener {
+                    error ->
+
+                Toast.makeText(
+                    activity, error.message,
+                    Toast.LENGTH_LONG
+                ).show()
+            })
+
+        rq.add(jo)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -287,13 +330,17 @@ class HomeFragment : Fragment() {
         }
         else if(requestCode == 2){
             if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
+                getData()
                 val i = Intent(requireContext(),ImageSlider::class.java)
                 i.putExtra("occasion",occasion)
                 startActivity(i)
             }
             else
             {
-                Toast.makeText(activity,"Permissions must be granted",Toast.LENGTH_SHORT).show()
+                caseDenied()
+                val i = Intent(requireContext(),ImageSlider::class.java)
+                i.putExtra("occasion",occasion)
+                startActivity(i)
             }
         }
     }
