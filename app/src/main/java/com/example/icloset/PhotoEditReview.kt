@@ -313,7 +313,7 @@ class PhotoEditReview : AppCompatActivity() {
 
                     }
 
-                    
+
                     val colorcur = db.rawQuery("select Color_ID from color", arrayOf())
 
                     colorcur.moveToFirst()
