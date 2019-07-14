@@ -39,8 +39,10 @@ class icloset(var con:Context) :SQLiteOpenHelper(con,"icloset.db",null,2){
 
         db.execSQL("CREATE TABLE color (" +
                 " Color_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " Color_Name varchar(20) NOT NULL"+
-                ")")
+                " Color_Name varchar(20),"+
+                " Red INTEGER NOT NULL," +
+                " GREEN INTEGER NOT NULL," +
+                " BLUE INTEGER NOT NULL)")
         db.execSQL("CREATE TABLE complements(" +
                 " Color_1 integer(10) NOT NULL ," +
                 " Color_2 integer(10) NOT NULL ," +
@@ -56,7 +58,7 @@ class icloset(var con:Context) :SQLiteOpenHelper(con,"icloset.db",null,2){
         db.execSQL("CREATE TABLE contains(" +
                 " Item_ID integer(10) NOT NULL ," +
                 " Color_ID integer(10) ," +
-                " Color_percentage integer(11) NOT NULL," +
+                " Color_percentage integer(11)," +
                 " PRIMARY KEY (Item_ID,Color_ID)," +
                 " FOREIGN KEY(Item_ID) REFERENCES item(Item_ID)," +
                 " FOREIGN KEY(Color_ID) REFERENCES color(Color_ID))")

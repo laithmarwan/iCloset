@@ -27,20 +27,21 @@ import java.io.OutputStream
 import java.lang.Exception
 import java.lang.Thread.sleep
 import java.util.*
+import kotlin.collections.ArrayList
 
 class PhotoEditReview : AppCompatActivity() {
 
     private lateinit var bitmap: Bitmap
-
-
+    var emptyBoxes = true
     private var vibrantSwatch: Palette.Swatch? = null
     private var lightVibrantSwatch: Palette.Swatch? = null
     private var darkVibrantSwatch: Palette.Swatch? = null
     private var mutedSwatch: Palette.Swatch? = null
     private var lightMutedSwatch: Palette.Swatch? = null
     private var darkMutedSwatch: Palette.Swatch? = null
-    private var swatchNumber: Int = 0
-
+    var red = arrayOf(0,0,0,0,0,0)
+    var green = arrayOf(0,0,0,0,0,0)
+    var blue = arrayOf(0,0,0,0,0,0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,7 +69,7 @@ class PhotoEditReview : AppCompatActivity() {
 
 
         item_photo_color_info.setOnClickListener {
-                //item_photo_editor.setImageResource(R.drawable.home)
+
                 item_photo_editor.isDrawingCacheEnabled = true
                 item_photo_editor.buildDrawingCache(true)
 
@@ -76,11 +77,12 @@ class PhotoEditReview : AppCompatActivity() {
                     if (event.action == MotionEvent.ACTION_DOWN || event.action == MotionEvent.ACTION_MOVE){
                         bitmap = item_photo_editor.drawingCache
                         val pixel = bitmap.getPixel(event.x.toInt(), event.y.toInt())
-
                         val r = Color.red(pixel)
                         val g = Color.green(pixel)
                         val b = Color.blue(pixel)
-
+                        red[0] = r
+                        green[0] = g
+                        blue[0] = b
                         val hex = "#" + Integer.toHexString(pixel)
                         item_photo_color_info.setBackgroundColor(Color.rgb(r,g,b))
                         //item_photo_hex_info.text = "RGB: $r, $g, $b \n HEX: $hex"
@@ -101,7 +103,9 @@ class PhotoEditReview : AppCompatActivity() {
                     val r = Color.red(pixel)
                     val g = Color.green(pixel)
                     val b = Color.blue(pixel)
-
+                    red[1] = r
+                    green[1] = g
+                    blue[1] = b
                     val hex = "#" + Integer.toHexString(pixel)
                     item_photo_color_info2.setBackgroundColor(Color.rgb(r,g,b))
                     //item_photo_hex_info.text = "RGB: $r, $g, $b \n HEX: $hex"
@@ -122,7 +126,9 @@ class PhotoEditReview : AppCompatActivity() {
                     val r = Color.red(pixel)
                     val g = Color.green(pixel)
                     val b = Color.blue(pixel)
-
+                    red[2] = r
+                    green[2] = g
+                    blue[2] = b
                     val hex = "#" + Integer.toHexString(pixel)
                     item_photo_color_info3.setBackgroundColor(Color.rgb(r,g,b))
                     //item_photo_hex_info.text = "RGB: $r, $g, $b \n HEX: $hex"
@@ -143,7 +149,9 @@ class PhotoEditReview : AppCompatActivity() {
                     val r = Color.red(pixel)
                     val g = Color.green(pixel)
                     val b = Color.blue(pixel)
-
+                    red[3] = r
+                    green[3] = g
+                    blue[3] = b
                     val hex = "#" + Integer.toHexString(pixel)
                     item_photo_color_info4.setBackgroundColor(Color.rgb(r,g,b))
                     //item_photo_hex_info.text = "RGB: $r, $g, $b \n HEX: $hex"
@@ -164,7 +172,9 @@ class PhotoEditReview : AppCompatActivity() {
                     val r = Color.red(pixel)
                     val g = Color.green(pixel)
                     val b = Color.blue(pixel)
-
+                    red[4] = r
+                    green[4] = g
+                    blue[4] = b
                     val hex = "#" + Integer.toHexString(pixel)
                     item_photo_color_info5.setBackgroundColor(Color.rgb(r,g,b))
                     //item_photo_hex_info.text = "RGB: $r, $g, $b \n HEX: $hex"
@@ -185,7 +195,9 @@ class PhotoEditReview : AppCompatActivity() {
                     val r = Color.red(pixel)
                     val g = Color.green(pixel)
                     val b = Color.blue(pixel)
-
+                    red[5] = r
+                    green[5] = g
+                    blue[5] = b
                     val hex = "#" + Integer.toHexString(pixel)
                     item_photo_color_info6.setBackgroundColor(Color.rgb(r,g,b))
                     //item_photo_hex_info.text = "RGB: $r, $g, $b \n HEX: $hex"
@@ -197,31 +209,49 @@ class PhotoEditReview : AppCompatActivity() {
 
         item_photo_color_info.setOnLongClickListener {
             item_photo_color_info.setBackgroundResource(R.drawable.clear)
+            red[0] = 0
+            green[0] = 0
+            blue[0] = 0
             true
         }
 
         item_photo_color_info2.setOnLongClickListener {
             item_photo_color_info2.setBackgroundResource(R.drawable.clear)
+            red[1] = 0
+            green[1] = 0
+            blue[1] = 0
             true
         }
 
         item_photo_color_info3.setOnLongClickListener {
             item_photo_color_info3.setBackgroundResource(R.drawable.clear)
+            red[2] = 0
+            green[2] = 0
+            blue[2] = 0
             true
         }
 
         item_photo_color_info4.setOnLongClickListener {
             item_photo_color_info4.setBackgroundResource(R.drawable.clear)
+            red[3] = 0
+            green[3] = 0
+            blue[3] = 0
             true
         }
 
         item_photo_color_info5.setOnLongClickListener {
             item_photo_color_info5.setBackgroundResource(R.drawable.clear)
+            red[4] = 0
+            green[4] = 0
+            blue[4] = 0
             true
         }
 
         item_photo_color_info6.setOnLongClickListener {
             item_photo_color_info6.setBackgroundResource(R.drawable.clear)
+            red[5] = 0
+            green[5] = 0
+            blue[5] = 0
             true
         }
 
@@ -230,10 +260,13 @@ class PhotoEditReview : AppCompatActivity() {
 
             if(AppInfo.act == "add"){
                 //code for adding item to database
+                val test = arrayOf(0,0,0,0,0,0)
                 if(season_list.text.toString() == "Select one season or more" || season_view.text.toString() == ""
                     || occasion_list.text.toString() == "Select one or more occasions" || occasion_view.text.toString() == ""
                     || category_list.text.toString() == "Select only one category" || category_view.text.toString() == "" ){
-                    Toast.makeText(this,"Make sure to fill all info",Toast.LENGTH_SHORT).show()
+
+
+                        Toast.makeText(this,"Make sure to fill all info",Toast.LENGTH_SHORT).show()
                 }
                 else{
                         AppInfo.img_url = 1
@@ -271,12 +304,36 @@ class PhotoEditReview : AppCompatActivity() {
                     for(i in 0 until occasionarr.size)
                         db.execSQL("insert into item_occasion values (?,?)", arrayOf(AppInfo.img_url,occasionarr[i]))
 
+                    for(i in 0 until 6) {
+
+                        db.execSQL(
+                            "insert into color (Red,Green, Blue) values (?,?,?)",
+                            arrayOf(red[i], green[i], blue[i])
+                        )
+
+                    }
+
+                    
+                    val colorcur = db.rawQuery("select Color_ID from color", arrayOf())
+
+                    colorcur.moveToFirst()
+                    var max = 0
+                    while(!colorcur.isAfterLast){
+                        if(colorcur.getInt(0) > max)
+                            max = colorcur.getInt(0)
+                        colorcur.moveToNext()
+                    }
+
+                    db.execSQL("insert into contains (Item_ID,Color_ID) values (?,?)", arrayOf(AppInfo.img_url,max))
 
                     Toast.makeText(this,"Item added successfully",Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this,MainActivity::class.java))
                     finish()
 
+
                 }
+
+
             }
             else{
                 //code for help me match
@@ -485,64 +542,52 @@ class PhotoEditReview : AppCompatActivity() {
             item_photo_color_info.setBackgroundColor(currentSwatch.rgb)
 
         }
-
-        //textViewTitle.setText("Vibrant")
-
+        else{
+            item_photo_color_info.setBackgroundResource(R.drawable.clear)
+        }
         currentSwatch = lightVibrantSwatch
         if (currentSwatch != null) {
             item_photo_color_info2.setBackgroundColor(currentSwatch.rgb)
 
         }
-
-
-        //textViewTitle.setText("Light Vibrant")
-
+        else{
+            item_photo_color_info2.setBackgroundResource(R.drawable.clear)
+        }
         currentSwatch = darkVibrantSwatch
         if (currentSwatch != null) {
             item_photo_color_info3.setBackgroundColor(currentSwatch.rgb)
 
         }
-
-
-        //textViewTitle.setText("Dark Vibrant")
-
+        else{
+            item_photo_color_info3.setBackgroundResource(R.drawable.clear)
+        }
 
         currentSwatch = mutedSwatch
         if (currentSwatch != null) {
             item_photo_color_info4.setBackgroundColor(currentSwatch.rgb)
 
         }
-
-        //textViewTitle.setText("Muted")
-
+        else{
+            item_photo_color_info4.setBackgroundResource(R.drawable.clear)
+        }
 
         currentSwatch = lightMutedSwatch
         if (currentSwatch != null) {
             item_photo_color_info5.setBackgroundColor(currentSwatch.rgb)
 
         }
-
-
-        //textViewTitle.setText("Light Muted")
+        else{
+            item_photo_color_info5.setBackgroundResource(R.drawable.clear)
+        }
 
         currentSwatch = darkMutedSwatch
         if (currentSwatch != null) {
             item_photo_color_info6.setBackgroundColor(currentSwatch.rgb)
 
         }
-
-        //textViewTitle.setText("Dark Muted")
-
-
-
-
-//textViewTitle.setTextColor(currentSwatch.titleTextColor)
-//textViewBody.setTextColor(currentSwatch.bodyTextColor)
-
-
-
-
-
+        else{
+            item_photo_color_info6.setBackgroundResource(R.drawable.clear)
+        }
     }
 
     private fun openCamera(){
