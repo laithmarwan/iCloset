@@ -49,39 +49,39 @@ class ChooseReminderFragment : Fragment() {
 
             when (position) {
                 0 -> {
-                    AppInfo.desc = "work"
+                    AppInfo.desc = "Work"
                     MoveToFragment(CalendarToOutfits())
                 }
                 1 -> {
-                    AppInfo.desc = "school"
+                    AppInfo.desc = "School"
                     MoveToFragment(CalendarToOutfits())
                 }
                 2 -> {
-                    AppInfo.desc = "friends"
+                    AppInfo.desc = "Friends"
                     MoveToFragment(CalendarToOutfits())
                 }
                 3 -> {
-                    AppInfo.desc = "wedding"
+                    AppInfo.desc = "Wedding"
                     MoveToFragment(CalendarToOutfits())
                 }
                 4 -> {
-                    AppInfo.desc = "party"
+                    AppInfo.desc = "Party"
                     MoveToFragment(CalendarToOutfits())
                 }
                 5 -> {
-                    AppInfo.desc = "restaurant"
+                    AppInfo.desc = "Restaurant"
                     MoveToFragment(CalendarToOutfits())
                 }
                 6 -> {
-                    AppInfo.desc = "gym"
+                    AppInfo.desc = "Gym"
                     MoveToFragment(CalendarToOutfits())
                 }
                 7 -> {
-                    AppInfo.desc = "trip"
+                    AppInfo.desc = "Trip"
                     MoveToFragment(CalendarToOutfits())
                 }
                 else -> {
-                    AppInfo.desc = "other"
+                    AppInfo.desc = "Other"
                     MoveToFragment(CalendarToOutfits())
                 }
 

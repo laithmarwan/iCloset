@@ -38,7 +38,8 @@ class CalendarToOutfits : Fragment() {
 
         var obj = icloset(requireActivity())
         var db = obj.readableDatabase
-        var cur = db.rawQuery("select * from outfit", arrayOf())
+        var cur = db.rawQuery("select * from outfit o,outfit_occasion oo where o.Outfit_ID = oo.Outfit_ID and oo.Occasion = ? ",
+            arrayOf(AppInfo.desc))
         if(cur.count ==0){
             v.tv_emptycal.text = "No outfits"
         }
