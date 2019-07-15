@@ -54,6 +54,14 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
         }
 
 
+        val txtclose: TextView
+        val itemImage: ImageView
+        myDialog = Dialog(con)
+        myDialog.setContentView(R.layout.custompopup)
+        txtclose = myDialog.findViewById(R.id.txtclose)
+        txtclose.text = "X"
+        //itemImage.setBackgroundResource(R.p0.imageviewname)
+
         p0.imageviewname.setOnClickListener {
             if(AppInfo.act == "outfit")         
             {
@@ -70,6 +78,13 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
                 while (!cur.isAfterLast){
                     weather += cur.getString(0)
                     cur.moveToNext()
+                }
+                
+                myDialog.getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                myDialog.show()
+
+                txtclose.setOnClickListener {
+                    myDialog.dismiss()
                 }
 
                 Toast.makeText(con,"${cat.type}-${cat.desc} | $weather",Toast.LENGTH_LONG).show()
@@ -114,27 +129,6 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
 
             true
         }
-
-
-        val txtclose: TextView
-        val itemImage: ImageView
-        myDialog = Dialog(con)
-        myDialog.setContentView(R.layout.custompopup)
-        txtclose = myDialog.findViewById(R.id.txtclose)
-        txtclose.text = "X"
-        //itemImage.setBackgroundResource(R.p0.imageviewname)
-
-        p0.imageviewname.setOnClickListener {
-            myDialog.getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            myDialog.show()
-
-            txtclose.setOnClickListener {
-                myDialog.dismiss()
-            }
-        }
-
-
-
     }
 
 
