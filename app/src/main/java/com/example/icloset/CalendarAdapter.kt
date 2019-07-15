@@ -34,8 +34,6 @@ class CalendarAdapter(val catList :ArrayList<Outfit>, val con: Context,val act:A
             act.onBackPressed()
             act.onBackPressed()
         }
-
-
     }
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): CalendarAdapter.ViewHolder {
