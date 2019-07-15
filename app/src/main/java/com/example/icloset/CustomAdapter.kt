@@ -2,7 +2,10 @@ package com.example.icloset
 
 import android.app.Activity
 import android.app.Activity.RESULT_OK
+import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.media.Image
 import android.net.Uri
 import android.os.Environment
@@ -18,8 +21,16 @@ import android.widget.TextView
 import android.widget.Toast
 import java.io.File
 import java.lang.Exception
+import android.widget.PopupMenu
+import android.widget.PopupWindow
+
+
+
 
 class CustomAdapter(private val catList :ArrayList<Categories>, private val con:Activity) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
+
+    private lateinit var myDialog:Dialog
+
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         val v = LayoutInflater.from(p0.context).inflate(R.layout.cardview_item,p0,false)
         return ViewHolder(v)
@@ -102,7 +113,29 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
             }
 
             true
-        }}
+        }
+
+
+        val txtclose: TextView
+        val itemImage: ImageView
+        myDialog = Dialog(con)
+        myDialog.setContentView(R.layout.custompopup)
+        txtclose = myDialog.findViewById(R.id.txtclose)
+        txtclose.text = "X"
+        //itemImage.setBackgroundResource(R.p0.imageviewname)
+
+        p0.imageviewname.setOnClickListener {
+            myDialog.getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            myDialog.show()
+
+            txtclose.setOnClickListener {
+                myDialog.dismiss()
+            }
+        }
+
+
+
+    }
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
