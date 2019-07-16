@@ -1,5 +1,6 @@
 package com.example.icloset
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.res.Resources
@@ -20,6 +21,7 @@ import android.view.View
 import android.widget.Toast
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_photo_edit_review.*
 import java.io.File
 import java.io.FileOutputStream
@@ -32,16 +34,15 @@ import kotlin.collections.ArrayList
 class PhotoEditReview : AppCompatActivity() {
 
     private lateinit var bitmap: Bitmap
-    var emptyBoxes = true
     private var vibrantSwatch: Palette.Swatch? = null
     private var lightVibrantSwatch: Palette.Swatch? = null
     private var darkVibrantSwatch: Palette.Swatch? = null
     private var mutedSwatch: Palette.Swatch? = null
     private var lightMutedSwatch: Palette.Swatch? = null
     private var darkMutedSwatch: Palette.Swatch? = null
-    var red = arrayOf(0,0,0,0,0,0)
-    var green = arrayOf(0,0,0,0,0,0)
-    var blue = arrayOf(0,0,0,0,0,0)
+    var red = arrayOf(-1,-1,-1,-1,-1,-1)
+    var green = arrayOf(-1,-1,-1,-1,-1,-1)
+    var blue = arrayOf(-1,-1,-1,-1,-1,-1)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -209,49 +210,49 @@ class PhotoEditReview : AppCompatActivity() {
 
         item_photo_color_info.setOnLongClickListener {
             item_photo_color_info.setBackgroundResource(R.drawable.clear)
-            red[0] = 0
-            green[0] = 0
-            blue[0] = 0
+            red[0] = -1
+            green[0] = -1
+            blue[0] = -1
             true
         }
 
         item_photo_color_info2.setOnLongClickListener {
             item_photo_color_info2.setBackgroundResource(R.drawable.clear)
-            red[1] = 0
-            green[1] = 0
-            blue[1] = 0
+            red[1] = -1
+            green[1] = -1
+            blue[1] = -1
             true
         }
 
         item_photo_color_info3.setOnLongClickListener {
             item_photo_color_info3.setBackgroundResource(R.drawable.clear)
-            red[2] = 0
-            green[2] = 0
-            blue[2] = 0
+            red[2] = -1
+            green[2] = -1
+            blue[2] = -1
             true
         }
 
         item_photo_color_info4.setOnLongClickListener {
             item_photo_color_info4.setBackgroundResource(R.drawable.clear)
-            red[3] = 0
-            green[3] = 0
-            blue[3] = 0
+            red[3] = -1
+            green[3] = -1
+            blue[3] = -1
             true
         }
 
         item_photo_color_info5.setOnLongClickListener {
             item_photo_color_info5.setBackgroundResource(R.drawable.clear)
-            red[4] = 0
-            green[4] = 0
-            blue[4] = 0
+            red[4] = -1
+            green[4] = -1
+            blue[4] = -1
             true
         }
 
         item_photo_color_info6.setOnLongClickListener {
             item_photo_color_info6.setBackgroundResource(R.drawable.clear)
-            red[5] = 0
-            green[5] = 0
-            blue[5] = 0
+            red[5] = -1
+            green[5] = -1
+            blue[5] = -1
             true
         }
 
@@ -260,16 +261,22 @@ class PhotoEditReview : AppCompatActivity() {
 
             if(AppInfo.act == "add"){
                 //code for adding item to database
-                val test = arrayOf(0,0,0,0,0,0)
+                val test = arrayOf(-1,-1,-1,-1,-1,-1)
                 if(season_list.text.toString() == "Select one season or more" || season_view.text.toString() == ""
                     || occasion_list.text.toString() == "Select one or more occasions" || occasion_view.text.toString() == ""
-                    || category_list.text.toString() == "Select only one category" || category_view.text.toString() == "" ){
+                    || category_list.text.toString() == "Select only one category" || category_view.text.toString() == ""){
 
 
                         Toast.makeText(this,"Make sure to fill all info",Toast.LENGTH_SHORT).show()
                 }
+                else if(red[0] == -1 && red[1] == -1 && red[2] == -1 && red[3] == -1 && red[4] == -1 && red[5] == -1 &&
+                        green[0] == -1 && green[1] == -1 && green[2] == -1 && green[3] == -1 && green[4] == -1 && green[5] == -1 &&
+                        blue[0] == -1 && blue[1] == -1 && blue[2] == -1 && blue[3] == -1 && blue[4] == -1 && blue[5] == -1
+                        ) {
+                    Toast.makeText(this,"Item must at least contain one color",Toast.LENGTH_SHORT).show()
+                }
                 else{
-                        AppInfo.img_url = 1
+                    AppInfo.img_url = 1
                     var obj = icloset(this)
                     var db = obj.writableDatabase
                     var typedesc =  category_view.text.toString().split(" - ")
@@ -291,8 +298,8 @@ class PhotoEditReview : AppCompatActivity() {
                     this.saveImageToStorage(image_url)
                     var seasonarr = season_view.text.toString().split(", ")
                     var occasionarr = occasion_view.text.toString().split(", ")
-                    db.execSQL("insert into item (Type,Description,Times_worn,Available,Item_image) " +
-                            "values (?,?,0,1,?)", arrayOf(typedesc[0],typedesc[1],image_url))
+                    db.execSQL("insert into item (Type,Description,Times_worn,Last_time_worn,Available,Item_image) " +
+                            "values (?,?,0,?,1,?)", arrayOf(typedesc[0],typedesc[1],"Never",image_url))
                     var cur2 = db.rawQuery("select Item_ID from item where Item_image=?", arrayOf(image_url))
                     if(cur2.count != 0){
                         cur2.moveToFirst()
@@ -304,16 +311,20 @@ class PhotoEditReview : AppCompatActivity() {
                     for(i in 0 until occasionarr.size)
                         db.execSQL("insert into item_occasion values (?,?)", arrayOf(AppInfo.img_url,occasionarr[i]))
 
+                    var c = 0
                     for(i in 0 until 6) {
+                        if(red[i] > -1 && green[i] > -1 && blue[i] >-1) {
+                            db.execSQL(
+                                "insert into color (Red,Green, Blue) values (?,?,?)",
+                                arrayOf(red[i], green[i], blue[i])
+                            )
+                            c++
 
-                        db.execSQL(
-                            "insert into color (Red,Green, Blue) values (?,?,?)",
-                            arrayOf(red[i], green[i], blue[i])
-                        )
+                        }
 
                     }
 
-
+                    Toast.makeText(this,c.toString(),Toast.LENGTH_SHORT).show()
                     val colorcur = db.rawQuery("select Color_ID from color", arrayOf())
 
                     colorcur.moveToFirst()
@@ -323,8 +334,10 @@ class PhotoEditReview : AppCompatActivity() {
                             max = colorcur.getInt(0)
                         colorcur.moveToNext()
                     }
-
-                    db.execSQL("insert into contains (Item_ID,Color_ID) values (?,?)", arrayOf(AppInfo.img_url,max))
+                    c--
+                    val k = max  - c
+                    for(i in k..max)
+                        db.execSQL("insert into contains (Item_ID,Color_ID) values (?,?)", arrayOf(AppInfo.img_url,i))
 
                     Toast.makeText(this,"Item added successfully",Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this,MainActivity::class.java))
@@ -540,6 +553,13 @@ class PhotoEditReview : AppCompatActivity() {
         currentSwatch = vibrantSwatch
         if (currentSwatch != null) {
             item_photo_color_info.setBackgroundColor(currentSwatch.rgb)
+            val pixel = item_photo_color_info.background as ColorDrawable
+            val r = Color.red(pixel.color)
+            val g = Color.green(pixel.color)
+            val b = Color.blue(pixel.color)
+            red[0] = r
+            green[0] = g
+            blue[0] = b
 
         }
         else{
@@ -548,6 +568,13 @@ class PhotoEditReview : AppCompatActivity() {
         currentSwatch = lightVibrantSwatch
         if (currentSwatch != null) {
             item_photo_color_info2.setBackgroundColor(currentSwatch.rgb)
+            val pixel = item_photo_color_info2.background as ColorDrawable
+            val r = Color.red(pixel.color)
+            val g = Color.green(pixel.color)
+            val b = Color.blue(pixel.color)
+            red[1] = r
+            green[1] = g
+            blue[1] = b
 
         }
         else{
@@ -556,6 +583,13 @@ class PhotoEditReview : AppCompatActivity() {
         currentSwatch = darkVibrantSwatch
         if (currentSwatch != null) {
             item_photo_color_info3.setBackgroundColor(currentSwatch.rgb)
+            val pixel = item_photo_color_info3.background as ColorDrawable
+            val r = Color.red(pixel.color)
+            val g = Color.green(pixel.color)
+            val b = Color.blue(pixel.color)
+            red[2] = r
+            green[2] = g
+            blue[2] = b
 
         }
         else{
@@ -565,6 +599,13 @@ class PhotoEditReview : AppCompatActivity() {
         currentSwatch = mutedSwatch
         if (currentSwatch != null) {
             item_photo_color_info4.setBackgroundColor(currentSwatch.rgb)
+            val pixel = item_photo_color_info4.background as ColorDrawable
+            val r = Color.red(pixel.color)
+            val g = Color.green(pixel.color)
+            val b = Color.blue(pixel.color)
+            red[3] = r
+            green[3] = g
+            blue[3] = b
 
         }
         else{
@@ -574,6 +615,13 @@ class PhotoEditReview : AppCompatActivity() {
         currentSwatch = lightMutedSwatch
         if (currentSwatch != null) {
             item_photo_color_info5.setBackgroundColor(currentSwatch.rgb)
+            val pixel = item_photo_color_info5.background as ColorDrawable
+            val r = Color.red(pixel.color)
+            val g = Color.green(pixel.color)
+            val b = Color.blue(pixel.color)
+            red[4] = r
+            green[4] = g
+            blue[4] = b
 
         }
         else{
@@ -583,6 +631,14 @@ class PhotoEditReview : AppCompatActivity() {
         currentSwatch = darkMutedSwatch
         if (currentSwatch != null) {
             item_photo_color_info6.setBackgroundColor(currentSwatch.rgb)
+            val pixel = item_photo_color_info6.background as ColorDrawable
+
+            val r = Color.red(pixel.color)
+            val g = Color.green(pixel.color)
+            val b = Color.blue(pixel.color)
+            red[5] = r
+            green[5] = g
+            blue[5] = b
 
         }
         else{

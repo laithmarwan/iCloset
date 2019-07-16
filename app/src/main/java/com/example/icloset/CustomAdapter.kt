@@ -3,16 +3,12 @@ package com.example.icloset
 import android.app.Activity
 import android.app.Activity.RESULT_OK
 import android.app.Dialog
-import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.media.Image
 import android.net.Uri
 import android.os.Environment
-import android.support.design.widget.TabLayout
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
-import android.view.DragEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,10 +17,6 @@ import android.widget.TextView
 import android.widget.Toast
 import java.io.File
 import java.lang.Exception
-import android.widget.PopupMenu
-import android.widget.PopupWindow
-
-
 
 
 class CustomAdapter(private val catList :ArrayList<Categories>, private val con:Activity) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
@@ -61,35 +53,64 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
         txtclose.text = "X"
 
         p0.imageviewname.setOnClickListener {
-            if(AppInfo.act == "outfit")
+            if(AppInfo.act == "outfit")         
             {
                 AppInfo.itemID = cat.ID
                 con.setResult(RESULT_OK)
                 con.finish()
             }
-
             else if(AppInfo.act == "closet"){
-                var weather = ""
                 val obj = icloset(con)
                 val db = obj.readableDatabase
-                val cur = db.rawQuery("select Weather from outfit_weather where Outfit_ID =?", arrayOf(cat.ID))
-                cur.moveToFirst()
-                while (!cur.isAfterLast){
-                    weather += cur.getString(0)
-                    cur.moveToNext()
+                val colorcur = db.rawQuery("select Red,Green,Blue from color c,contains n where c.Color_ID = n.Color_ID and n.Item_ID = ?", arrayOf(cat.ID))
+                colorcur.moveToFirst()
+
+                while (!colorcur.isAfterLast){
+                    val R = colorcur.getInt(0)
+                    val G = colorcur.getInt(1)
+                    val B = colorcur.getInt(2)
+
+                    colorcur.moveToNext()
                 }
 
-                myDialog.getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                
+                val occasioncur = db.rawQuery("select Occasion from item_occasion where Item_ID = ?", arrayOf(cat.ID))
+                occasioncur.moveToFirst()
+                
+                val OccasionArray = ArrayList<String>()
+                while (!occasioncur.isAfterLast){
+                    OccasionArray.add(occasioncur.getString(0))
+                    occasioncur.moveToNext()
+                }
+
+                val weathercur = db.rawQuery("select Weather from item_weather where Item_ID = ?", arrayOf(cat.ID))
+                weathercur.moveToFirst()
+                
+                val weatherArray = ArrayList<String>()
+                while (!weathercur.isAfterLast){
+                    weatherArray.add(weathercur.getString(0))
+                    weathercur.moveToNext()
+                }
+
+                val cur = db.rawQuery("select Times_worn,Last_time_worn from item where Item_ID = ?", arrayOf(cat.ID))
+                cur.moveToFirst()
+
+                val times_worn = cur.getString(0)
+                val last_time_worn = cur.getString(1)
+                val type = cat.type
+                val description = cat.desc
+
+                myDialog.window.setBackgroundDrawable(ColorDrawable(Color.WHITE))
                 myDialog.show()
 
                 txtclose.setOnClickListener {
                     myDialog.dismiss()
                 }
 
-                Toast.makeText(con,"${cat.type}-${cat.desc} | $weather",Toast.LENGTH_LONG).show()
+               
             }
-        }
 
+    }
         p0.imageviewname.setOnLongClickListener {
             if(AppInfo.act !== "outfit" && AppInfo.act !== "nodelete"){
                 val builder = android.app.AlertDialog.Builder(con)

@@ -189,7 +189,8 @@ class CreateOutfitActivity : AppCompatActivity() {
             )
             var img = ImageView(this)
             // Add margin to the text view
-            params.setMargins(0,0,0,0)
+            params.setMargins(200,0,0,0)
+
 
             // Now, specify the text view width and height (dimension)
             draggableBox.layoutParams = params
@@ -218,6 +219,8 @@ class CreateOutfitActivity : AppCompatActivity() {
 
             var btn = Button(this)
             btn.setBackgroundResource(R.drawable.cross)
+            params.setMargins(-50,0,100,0)
+            btn.layoutParams = params
             btn.setOnClickListener(deleteBtn)
             draggableBox.addView(btn)
             root_layout.addView(draggableBox)
