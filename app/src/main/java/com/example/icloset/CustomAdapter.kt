@@ -61,12 +61,13 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
         txtclose.text = "X"
 
         p0.imageviewname.setOnClickListener {
-            if(AppInfo.act == "outfit")         
+            if(AppInfo.act == "outfit")
             {
                 AppInfo.itemID = cat.ID
                 con.setResult(RESULT_OK)
                 con.finish()
             }
+
             else if(AppInfo.act == "closet"){
                 var weather = ""
                 val obj = icloset(con)
@@ -86,10 +87,9 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
                 }
 
                 Toast.makeText(con,"${cat.type}-${cat.desc} | $weather",Toast.LENGTH_LONG).show()
-
             }
+        }
 
-    }
         p0.imageviewname.setOnLongClickListener {
             if(AppInfo.act !== "outfit" && AppInfo.act !== "nodelete"){
                 val builder = android.app.AlertDialog.Builder(con)

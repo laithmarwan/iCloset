@@ -1,9 +1,12 @@
 package com.example.icloset
 
+import android.app.Dialog
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Environment
 import android.support.v7.widget.RecyclerView
@@ -11,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import android.widget.ToggleButton
 import kotlinx.android.synthetic.main.activity_photo_edit_review.*
@@ -18,6 +22,8 @@ import java.io.File
 import java.lang.Exception
 
 class OutfitsAdapter(val catList :ArrayList<Outfit>,val con:Context) : RecyclerView.Adapter<OutfitsAdapter.ViewHolder>(){
+    private lateinit var myDialog:Dialog
+
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): OutfitsAdapter.ViewHolder {
         val v = LayoutInflater.from(p0.context).inflate(R.layout.cardview_outfit,p0,false)
         return OutfitsAdapter.ViewHolder(v)
@@ -63,6 +69,21 @@ class OutfitsAdapter(val catList :ArrayList<Outfit>,val con:Context) : RecyclerV
                 builder.show()
 
             true
+        }
+
+        val txtclose: TextView
+        myDialog = Dialog(con)
+        myDialog.setContentView(R.layout.custompopup)
+        txtclose = myDialog.findViewById(R.id.txtclose)
+        txtclose.text = "X"
+
+        p0.imageviewname.setOnClickListener {
+            myDialog.getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            myDialog.show()
+
+            txtclose.setOnClickListener {
+                myDialog.dismiss()
+            }
         }
 
         val obj = icloset(con)

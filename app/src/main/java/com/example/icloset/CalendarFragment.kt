@@ -61,7 +61,7 @@ class CalendarFragment : Fragment() {
 
 
         ////////////////////////////
-        //notificationManager = getSystemService(context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager = activity!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         //notificationManager = Context!!.getSystemService(Context!!.NOTIFICATION_SERVICE) as NotificationManager
         ////////////////////////////
 
@@ -113,15 +113,14 @@ class CalendarFragment : Fragment() {
         })
 
 /////////////////////////////////////////////////////////////////////////////////////
-       /* v.recyclerView2.setOnClickListener {
+       /*v.recyclerView2.setOnClickListener {
             var trans = requireActivity().supportFragmentManager.beginTransaction()
             trans.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right)
             trans.replace(R.id.main_frame,ChooseReminderFragment())
             trans.addToBackStack(null)
             trans.commit()
 
-            val pendingIntent = Pen(requireContext(),0,trans,PendingIntent.FLAG_UPDATE_CURRENT)
-
+            val pendingIntent = PendingIntent(requireContext(),0,trans,PendingIntent.FLAG_UPDATE_CURRENT)
             val contentView = RemoteViews(packageName,R.layout.notification_layout)
             contentView.setTextViewText(R.id.tv_title,"CodeAndroid")
             contentView.setTextViewText(R.id.tv_content,"Text notification")
