@@ -217,7 +217,7 @@ class CreateOutfitActivity : AppCompatActivity() {
             }
 
             var btn = Button(this)
-            btn.setBackgroundResource(R.drawable.redcross)
+            btn.setBackgroundResource(R.drawable.cross)
             btn.setOnClickListener(deleteBtn)
             draggableBox.addView(btn)
             root_layout.addView(draggableBox)
