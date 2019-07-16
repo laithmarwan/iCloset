@@ -330,7 +330,7 @@ class HomeFragment : Fragment() {
         }
         else if(requestCode == 2){
             if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
-                getData()
+                    getData()
                 val i = Intent(requireContext(),ImageSlider::class.java)
                 i.putExtra("occasion",occasion)
                 startActivity(i)

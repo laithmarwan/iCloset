@@ -218,10 +218,8 @@ class CreateOutfitActivity : AppCompatActivity() {
 
             var btn = Button(this)
             btn.setBackgroundResource(R.drawable.redcross)
-            
             btn.setOnClickListener(deleteBtn)
             draggableBox.addView(btn)
-
             root_layout.addView(draggableBox)
 
     }
@@ -230,7 +228,6 @@ class CreateOutfitActivity : AppCompatActivity() {
     private val deleteBtn = object : View.OnClickListener {
         override fun onClick(v: View) {
             val vv:View = v.parent as View
-
             bitArray.removeAt(root_layout.indexOfChild(vv))
             itemArray.removeAt(root_layout.indexOfChild(vv))
             root_layout.removeView(vv)
