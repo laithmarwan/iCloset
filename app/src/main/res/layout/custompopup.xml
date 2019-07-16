@@ -3,7 +3,7 @@
               android:orientation="vertical"
               android:layout_width="350dp"
               android:layout_height="475dp"
-              android:background="@color/colorPrimaryDark"
+              android:background="@drawable/popup_border"
               android:padding="5dp"
               android:layout_gravity="center">
     <TextView
@@ -64,7 +64,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Followers"
+                    android:text="Occassion"
                     android:textSize="18sp"
                     android:textColor="@color/white"/>
         </LinearLayout>
@@ -85,7 +85,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cities"
+                    android:text="Weather"
                     android:textSize="18sp"
                     android:textColor="@color/white"/>
         </LinearLayout>
@@ -106,7 +106,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Posts"
+                    android:text="Color"
                     android:textSize="18sp"
                     android:textColor="@color/white"/>
         </LinearLayout>
