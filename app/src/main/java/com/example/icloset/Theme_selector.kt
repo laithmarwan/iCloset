@@ -44,6 +44,7 @@ class Theme_selector : AppCompatActivity() {
             editor.putString("theme","0")
             editor.commit()
             startActivity(Intent(this,Theme_selector::class.java))
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             finish()
         }
 
@@ -52,6 +53,7 @@ class Theme_selector : AppCompatActivity() {
             editor.putString("theme","1")
             editor.commit()
             startActivity(Intent(this,Theme_selector::class.java))
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             finish()
         }
 
@@ -60,6 +62,7 @@ class Theme_selector : AppCompatActivity() {
             editor.putString("theme","2")
             editor.commit()
             startActivity(Intent(this,Theme_selector::class.java))
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             finish()
         }
 
@@ -68,6 +71,7 @@ class Theme_selector : AppCompatActivity() {
             editor.putString("theme","3")
             editor.commit()
             startActivity(Intent(this,Theme_selector::class.java))
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             finish()
         }
 
