@@ -35,9 +35,15 @@ class CreateOutfitActivity : AppCompatActivity() {
         if(AppInfo.theme == 0){
             setTheme(R.style.AppTheme)
         }
-
         if(AppInfo.theme == 1){
             setTheme(R.style.AppTheme1)
+        }
+        if(AppInfo.theme == 2){
+            setTheme(R.style.AppTheme2)
+        }
+
+        if(AppInfo.theme == 3){
+            setTheme(R.style.AppTheme3)
         }
         setContentView(R.layout.activity_create_outfit)
         setSupportActionBar(toolbar)
@@ -211,8 +217,8 @@ class CreateOutfitActivity : AppCompatActivity() {
             }
 
             var btn = Button(this)
-
             btn.setBackgroundResource(R.drawable.redcross)
+            
             btn.setOnClickListener(deleteBtn)
             draggableBox.addView(btn)
 
