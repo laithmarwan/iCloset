@@ -46,11 +46,51 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
         }
 
 
-        val txtclose: TextView
+        var txtclose: TextView
+        var itemview:ImageView
+        var view0: View
+        var view1: View
+        var view2: View
+        var view3: View
+        var view4: View
+        var view5: View
+        var itemoccasion: TextView
+        var itemweather: TextView
+        var lastworn: TextView
+        var timesworn: TextView
+        var itemtype: TextView
+        var itemdesc: TextView
+
         myDialog = Dialog(con)
         myDialog.setContentView(R.layout.custompopup)
         txtclose = myDialog.findViewById(R.id.txtclose)
+        itemview = myDialog.findViewById(R.id.itemview)
+        view0 = myDialog.findViewById(R.id.view0)
+        view1 = myDialog.findViewById(R.id.view1)
+        view2 = myDialog.findViewById(R.id.view2)
+        view3 = myDialog.findViewById(R.id.view3)
+        view4 = myDialog.findViewById(R.id.view4)
+        view5 = myDialog.findViewById(R.id.view5)
+        itemoccasion = myDialog.findViewById(R.id.itemoccasion)
+        itemweather = myDialog.findViewById(R.id.itemweather)
+        lastworn = myDialog.findViewById(R.id.lastworn)
+        timesworn = myDialog.findViewById(R.id. timesworn)
+        itemtype = myDialog.findViewById(R.id.itemtype)
+        itemdesc = myDialog.findViewById(R.id.itemdesc)
+
         txtclose.text = "X"
+
+        try{
+
+            val storageDirectory = Environment.getExternalStorageDirectory().toString()
+
+            val file = File(storageDirectory,cat.thumbnail)
+            itemview.setImageURI(Uri.parse(file.absolutePath))}
+        catch (e: Exception)
+        {
+            e.printStackTrace()
+        }
+
 
         p0.imageviewname.setOnClickListener {
             if(AppInfo.act == "outfit")         
@@ -60,19 +100,48 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
                 con.finish()
             }
             else if(AppInfo.act == "closet"){
+                myDialog.window.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+                myDialog.show()
+
+                txtclose.setOnClickListener {
+                    myDialog.dismiss()
+                }
+
                 val obj = icloset(con)
                 val db = obj.readableDatabase
                 val colorcur = db.rawQuery("select Red,Green,Blue from color c,contains n where c.Color_ID = n.Color_ID and n.Item_ID = ?", arrayOf(cat.ID))
                 colorcur.moveToFirst()
 
+                var r = arrayOf(-1,-1,-1,-1,-1,-1)
+                var g = arrayOf(-1,-1,-1,-1,-1,-1)
+                var b = arrayOf(-1,-1,-1,-1,-1,-1)
+                var i = 0
                 while (!colorcur.isAfterLast){
-                    val R = colorcur.getInt(0)
-                    val G = colorcur.getInt(1)
-                    val B = colorcur.getInt(2)
-
+                    r[i]=(colorcur.getInt(0))
+                    g[i]=(colorcur.getInt(1))
+                    b[i]=(colorcur.getInt(2))
                     colorcur.moveToNext()
+                    i++
                 }
 
+                if(r[0] != -1 && g[0] != -1 && b[0] != -1){
+                    view0.setBackgroundColor(Color.rgb(r[0],g[0],b[0]))
+                }
+                if(r[1] != -1 && g[1] != -1 && b[1] != -1){
+                    view1.setBackgroundColor(Color.rgb(r[1],g[1],b[1]))
+                }
+                if(r[2] != -1 && g[2] != -1 && b[2] != -1){
+                    view2.setBackgroundColor(Color.rgb(r[2],g[2],b[2]))
+                }
+                if(r[3] != -1 && g[3] != -1 && b[3] != -1){
+                    view3.setBackgroundColor(Color.rgb(r[3],g[3],b[3]))
+                }
+                if(r[4] != -1 && g[4] != -1 && b[4] != -1){
+                    view4.setBackgroundColor(Color.rgb(r[4],g[4],b[4]))
+                }
+                if(r[5] != -1 && g[5] != -1 && b[5] != -1){
+                    view5.setBackgroundColor(Color.rgb(r[5],g[5],b[5]))
+                }
                 
                 val occasioncur = db.rawQuery("select Occasion from item_occasion where Item_ID = ?", arrayOf(cat.ID))
                 occasioncur.moveToFirst()
@@ -82,6 +151,8 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
                     OccasionArray.add(occasioncur.getString(0))
                     occasioncur.moveToNext()
                 }
+                val str:String = OccasionArray.joinToString()
+                itemoccasion.text = str.toString()
 
                 val weathercur = db.rawQuery("select Weather from item_weather where Item_ID = ?", arrayOf(cat.ID))
                 weathercur.moveToFirst()
@@ -91,6 +162,8 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
                     weatherArray.add(weathercur.getString(0))
                     weathercur.moveToNext()
                 }
+                val str2:String = weatherArray.joinToString()
+                itemweather.text = str2.toString()
 
                 val cur = db.rawQuery("select Times_worn,Last_time_worn from item where Item_ID = ?", arrayOf(cat.ID))
                 cur.moveToFirst()
@@ -100,17 +173,13 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
                 val type = cat.type
                 val description = cat.desc
 
-                myDialog.window.setBackgroundDrawable(ColorDrawable(Color.WHITE))
-                myDialog.show()
-
-                txtclose.setOnClickListener {
-                    myDialog.dismiss()
-                }
-
-               
+//                timesworn.text = times_worn.toString()
+//                lastworn.text = last_time_worn.toString()
+                itemtype.text = type.toString()
+                itemdesc.text = description.toString()
             }
+        }
 
-    }
         p0.imageviewname.setOnLongClickListener {
             if(AppInfo.act !== "outfit" && AppInfo.act !== "nodelete"){
                 val builder = android.app.AlertDialog.Builder(con)

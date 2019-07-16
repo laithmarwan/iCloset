@@ -21,9 +21,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
         <ImageView
+                android:id="@+id/itemview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/washing_machine"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"/>
         <TextView
@@ -58,12 +58,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="150"
-                    android:textSize="18sp"
-                    android:textColor="@color/white"/>
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/itemoccasion"
                     android:text="Occassion"
                     android:textSize="18sp"
                     android:textColor="@color/white"/>
@@ -79,12 +74,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="19"
-                    android:textSize="18sp"
-                    android:textColor="@color/white"/>
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/itemweather"
                     android:text="Weather"
                     android:textSize="18sp"
                     android:textColor="@color/white"/>
@@ -96,19 +86,43 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="100dp">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="50"
-                    android:textSize="18sp"
-                    android:textColor="@color/white"/>
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Color"
-                    android:textSize="18sp"
-                    android:textColor="@color/white"/>
         </LinearLayout>
     </LinearLayout>
+    <LinearLayout android:layout_width="350dp" android:layout_height="50dp">
+        <View
+                android:layout_width="50dp"
+                android:layout_height="50dp" android:id="@+id/view0"/>
+        <View
+                android:layout_width="50dp"
+                android:layout_height="50dp" android:id="@+id/view1"/>
+        <View
+                android:layout_width="50dp"
+                android:layout_height="50dp" android:id="@+id/view2"/>
+        <View
+                android:layout_width="50dp"
+                android:layout_height="50dp" android:id="@+id/view3"/>
+        <View
+                android:layout_width="50dp"
+                android:layout_height="50dp" android:id="@+id/view4"/>
+        <View
+                android:layout_width="50dp"
+                android:layout_height="50dp" android:id="@+id/view5"/>
+    </LinearLayout>
+    <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" android:id="@+id/lastworn"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" android:id="@+id/timesworn"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" android:id="@+id/itemtype"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" android:id="@+id/itemdesc"/>
+
 </LinearLayout>

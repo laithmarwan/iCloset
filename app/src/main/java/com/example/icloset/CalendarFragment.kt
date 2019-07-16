@@ -62,7 +62,6 @@ class CalendarFragment : Fragment() {
 
         ////////////////////////////
         notificationManager = activity!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        //notificationManager = Context!!.getSystemService(Context!!.NOTIFICATION_SERVICE) as NotificationManager
         ////////////////////////////
 
         v.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
@@ -120,8 +119,8 @@ class CalendarFragment : Fragment() {
             trans.addToBackStack(null)
             trans.commit()
 
-            val pendingIntent = PendingIntent(requireContext(),0,trans,PendingIntent.FLAG_UPDATE_CURRENT)
-            val contentView = RemoteViews(packageName,R.layout.notification_layout)
+            val pendingIntent = PendingIntent.getActivity(requireContext(),0,trans,PendingIntent.FLAG_UPDATE_CURRENT)
+            val contentView = RemoteViews(getPackageName(),R.layout.notification_layout)
             contentView.setTextViewText(R.id.tv_title,"CodeAndroid")
             contentView.setTextViewText(R.id.tv_content,"Text notification")
 
