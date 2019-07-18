@@ -41,8 +41,11 @@ class icloset(var con:Context) :SQLiteOpenHelper(con,"icloset.db",null,2){
                 " Color_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " Color_Name varchar(20),"+
                 " Red INTEGER NOT NULL," +
-                " GREEN INTEGER NOT NULL," +
-                " BLUE INTEGER NOT NULL)")
+                " Green INTEGER NOT NULL," +
+                " Blue INTEGER NOT NULL," +
+                " ClassR INTEGER," +
+                " ClassG INTEGER," +
+                " ClassB INTEGER)")
         db.execSQL("CREATE TABLE complements(" +
                 " Color_1 integer(10) NOT NULL ," +
                 " Color_2 integer(10) NOT NULL ," +

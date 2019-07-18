@@ -312,12 +312,18 @@ class PhotoEditReview : AppCompatActivity() {
                         db.execSQL("insert into item_occasion values (?,?)", arrayOf(AppInfo.img_url,occasionarr[i]))
 
                     var c = 0
+                    val knn= KNN()
+
                     for(i in 0 until 6) {
                         if(red[i] > -1 && green[i] > -1 && blue[i] >-1) {
+                            val str = knn.classify(red[i].toDouble(),green[i].toDouble(),blue[i].toDouble())
+                            val cls = str.split("/")
+
                             db.execSQL(
-                                "insert into color (Red,Green, Blue) values (?,?,?)",
-                                arrayOf(red[i], green[i], blue[i])
+                                "insert into color (Red,Green, Blue,ClassR,ClassG,ClassB) values (?,?,?,?,?,?)",
+                                arrayOf(red[i], green[i], blue[i],cls[0],cls[1],cls[2])
                             )
+
                             c++
 
                         }
@@ -338,6 +344,9 @@ class PhotoEditReview : AppCompatActivity() {
                     val k = max  - c
                     for(i in k..max)
                         db.execSQL("insert into contains (Item_ID,Color_ID) values (?,?)", arrayOf(AppInfo.img_url,i))
+
+
+
 
                     Toast.makeText(this,"Item added successfully",Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this,MainActivity::class.java))
