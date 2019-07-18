@@ -46,53 +46,44 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
         }
 
 
-        var txtclose: TextView
-        var itemview:ImageView
-        var view0: View
-        var view1: View
-        var view2: View
-        var view3: View
-        var view4: View
-        var view5: View
-        var itemoccasion: TextView
-        var itemweather: TextView
-        var lastworn: TextView
-        var timesworn: TextView
-        var itemtype: TextView
-        var itemdesc: TextView
-
-        myDialog = Dialog(con)
-        myDialog.setContentView(R.layout.custompopup)
-        txtclose = myDialog.findViewById(R.id.txtclose)
-        itemview = myDialog.findViewById(R.id.itemview)
-        view0 = myDialog.findViewById(R.id.view0)
-        view1 = myDialog.findViewById(R.id.view1)
-        view2 = myDialog.findViewById(R.id.view2)
-        view3 = myDialog.findViewById(R.id.view3)
-        view4 = myDialog.findViewById(R.id.view4)
-        view5 = myDialog.findViewById(R.id.view5)
-        itemoccasion = myDialog.findViewById(R.id.itemoccasion)
-        itemweather = myDialog.findViewById(R.id.itemweather)
-        lastworn = myDialog.findViewById(R.id.lastworn)
-        timesworn = myDialog.findViewById(R.id. timesworn)
-        itemtype = myDialog.findViewById(R.id.itemtype)
-        itemdesc = myDialog.findViewById(R.id.itemdesc)
-
-        txtclose.text = "X"
-
-        try{
-
-            val storageDirectory = Environment.getExternalStorageDirectory().toString()
-
-            val file = File(storageDirectory,cat.thumbnail)
-            itemview.setImageURI(Uri.parse(file.absolutePath))}
-        catch (e: Exception)
-        {
-            e.printStackTrace()
-        }
 
 
         p0.imageviewname.setOnClickListener {
+            var txtclose: TextView
+            var itemview:ImageView
+            var view0: View
+            var view1: View
+            var view2: View
+            var view3: View
+            var view4: View
+            var view5: View
+            var itemoccasion: TextView
+            var itemweather: TextView
+            var lastworn: TextView
+            var timesworn: TextView
+            var itemtype: TextView
+            var itemdesc: TextView
+
+            myDialog = Dialog(con)
+            myDialog.setContentView(R.layout.custompopup)
+            txtclose = myDialog.findViewById(R.id.txtclose)
+            itemview = myDialog.findViewById(R.id.itemview)
+            view0 = myDialog.findViewById(R.id.view0)
+            view1 = myDialog.findViewById(R.id.view1)
+            view2 = myDialog.findViewById(R.id.view2)
+            view3 = myDialog.findViewById(R.id.view3)
+            view4 = myDialog.findViewById(R.id.view4)
+            view5 = myDialog.findViewById(R.id.view5)
+            itemoccasion = myDialog.findViewById(R.id.itemoccasion)
+            itemweather = myDialog.findViewById(R.id.itemweather)
+            lastworn = myDialog.findViewById(R.id.lastworn)
+            timesworn = myDialog.findViewById(R.id. timesworn)
+            itemtype = myDialog.findViewById(R.id.itemtype)
+            itemdesc = myDialog.findViewById(R.id.itemdesc)
+
+            txtclose.text = "X"
+
+
             if(AppInfo.act == "outfit")         
             {
                 AppInfo.itemID = cat.ID
@@ -142,7 +133,18 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
                 if(r[5] != -1 && g[5] != -1 && b[5] != -1){
                     view5.setBackgroundColor(Color.rgb(r[5],g[5],b[5]))
                 }
-                
+
+                try{
+
+                    val storageDirectory = Environment.getExternalStorageDirectory().toString()
+
+                    val file = File(storageDirectory,cat.thumbnail)
+                    itemview.setImageURI(Uri.parse(file.absolutePath))}
+                catch (e: Exception)
+                {
+                    e.printStackTrace()
+                }
+
                 val occasioncur = db.rawQuery("select Occasion from item_occasion where Item_ID = ?", arrayOf(cat.ID))
                 occasioncur.moveToFirst()
                 
@@ -173,8 +175,8 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
                 val type = cat.type
                 val description = cat.desc
 
-//                timesworn.text = times_worn.toString()
-//                lastworn.text = last_time_worn.toString()
+                timesworn.text = times_worn.toString()
+                lastworn.text = last_time_worn.toString()
                 itemtype.text = type.toString()
                 itemdesc.text = description.toString()
             }
