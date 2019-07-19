@@ -312,7 +312,7 @@ class PhotoEditReview : AppCompatActivity() {
                         db.execSQL("insert into item_occasion values (?,?)", arrayOf(AppInfo.img_url,occasionarr[i]))
 
                     var c = 0
-                    val knn= KNN()
+                    val knn= KNN(this)
 
                     for(i in 0 until 6) {
                         if(red[i] > -1 && green[i] > -1 && blue[i] >-1) {
@@ -359,6 +359,9 @@ class PhotoEditReview : AppCompatActivity() {
             }
             else{
                 //code for help me match
+                
+
+
                 Toast.makeText(this,"Matching item...",Toast.LENGTH_SHORT).show()
             }
 

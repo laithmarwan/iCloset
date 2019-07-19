@@ -49,20 +49,20 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
 
 
         p0.imageviewname.setOnClickListener {
-            var txtclose: TextView
-            var itemview:ImageView
-            var view0: View
-            var view1: View
-            var view2: View
-            var view3: View
-            var view4: View
-            var view5: View
-            var itemoccasion: TextView
-            var itemweather: TextView
-            var lastworn: TextView
-            var timesworn: TextView
-            var itemtype: TextView
-            var itemdesc: TextView
+            val txtclose: TextView
+            val itemview:ImageView
+            val view0: View
+            val view1: View
+            val view2: View
+            val view3: View
+            val view4: View
+            val view5: View
+            val itemoccasion: TextView
+            val itemweather: TextView
+            val lastworn: TextView
+            val timesworn: TextView
+            val itemtype: TextView
+            val itemdesc: TextView
 
             myDialog = Dialog(con)
             myDialog.setContentView(R.layout.custompopup)
@@ -177,9 +177,16 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
 
                 timesworn.text = times_worn.toString()
                 lastworn.text = last_time_worn.toString()
-                itemtype.text = type.toString()
-                itemdesc.text = description.toString()
-            }
+                itemtype.text = type
+                itemdesc.text = description
+
+                val testcur = db.rawQuery("select ClassR,ClassG,ClassB from color c,contains n where c.Color_ID = n.Color_ID and n.Item_ID = ?",
+                    arrayOf(cat.ID))
+                if(testcur.count!=0){
+                    testcur.moveToFirst()
+                    Toast.makeText(con,testcur.getString(0)+testcur.getString(1)+testcur.getString(2),Toast.LENGTH_LONG).show()
+
+                }}
         }
 
         p0.imageviewname.setOnLongClickListener {
