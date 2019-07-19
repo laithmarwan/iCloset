@@ -184,7 +184,8 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
                     arrayOf(cat.ID))
                 if(testcur.count!=0){
                     testcur.moveToFirst()
-                    Toast.makeText(con,testcur.getString(0)+testcur.getString(1)+testcur.getString(2),Toast.LENGTH_LONG).show()
+                    Toast.makeText(con,testcur.getString(0)+"/"+testcur.getString(1)+"/"+testcur.getString(2),Toast.LENGTH_LONG).show()
+
 
                 }}
         }
