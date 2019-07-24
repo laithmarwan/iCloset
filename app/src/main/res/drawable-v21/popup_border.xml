@@ -7,7 +7,7 @@ android:shape="rectangle">
         android:color="@color/colorPrimary"
         android:width="2dp"
         />
-    
+
     <solid android:color="#eeeeee"/>
 
 </shape>
