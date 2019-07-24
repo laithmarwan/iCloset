@@ -34,8 +34,6 @@
     <style name="BottomNavigationTheme1" parent="Widget.Design.BottomNavigationView">
         <item name="colorPrimary">@color/colorBottomNavigation1</item>
     </style>
-
-
     <!-- Base application theme1.End -->
 
     <!-- Base application theme2.Start -->
