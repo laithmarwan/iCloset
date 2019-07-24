@@ -63,6 +63,7 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
             val timesworn: TextView
             val itemtype: TextView
             val itemdesc: TextView
+            val itemoccassiontv : TextView
 
             myDialog = Dialog(con)
             myDialog.setContentView(R.layout.custompopup)
@@ -80,6 +81,7 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
             timesworn = myDialog.findViewById(R.id. timesworn)
             itemtype = myDialog.findViewById(R.id.itemtype)
             itemdesc = myDialog.findViewById(R.id.itemdesc)
+            itemoccassiontv = myDialog.findViewById(R.id.item_occassion_tv)
 
             txtclose.text = "X"
 
@@ -145,6 +147,8 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
                     e.printStackTrace()
                 }
 
+
+                //itemoccassiontv.setText("")
                 val occasioncur = db.rawQuery("select Occasion from item_occasion where Item_ID = ?", arrayOf(cat.ID))
                 occasioncur.moveToFirst()
                 
@@ -155,6 +159,8 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
                 }
                 val str:String = OccasionArray.joinToString()
                 itemoccasion.text = str.toString()
+                //itemoccassiontv.setText(OccasionArray.joinToString())
+
 
                 val weathercur = db.rawQuery("select Weather from item_weather where Item_ID = ?", arrayOf(cat.ID))
                 weathercur.moveToFirst()
