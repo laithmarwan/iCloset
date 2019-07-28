@@ -218,7 +218,7 @@ class CreateOutfitActivity : AppCompatActivity() {
             }
 
             var btn = Button(this)
-            btn.setBackgroundResource(R.drawable.cross)
+            btn.setBackgroundResource(R.drawable.cross_s)
             params.setMargins(-50,0,100,0)
             btn.layoutParams = params
             btn.setOnClickListener(deleteBtn)

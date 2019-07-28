@@ -43,12 +43,12 @@
 
 
 
-    <color name="slide1">#3F51B5</color>
-    <color name="slide2">#795548</color>
-    <color name="slide3">#009688</color>
-    <color name="slide4">#3F51B5</color>
-    <color name="slide5">#795548</color>
-    <color name="slide6">#009688</color>
+    <color name="slide1">#517f95</color>
+    <color name="slide2">#80A59D</color>
+    <color name="slide3">#435E69</color>
+    <color name="slide4">#312D58</color>
+    <color name="slide5">#495191</color>
+    <color name="slide6">#585858</color>
 
     <color name="active_dots">#fffafa</color>
     <color name="inactive_dots">#83878B</color>

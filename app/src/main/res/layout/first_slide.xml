@@ -3,12 +3,13 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/slide1">
+                android:background="@color/slide1"
+>
 
     <TextView
             android:text="ICLOSET"
             android:scaleType="centerCrop"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="150dp"
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,7 +47,7 @@
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:layout_below="@+id/textView13"
-            android:layout_marginTop="260dp"
+            android:layout_marginTop="240dp"
             android:gravity="center_horizontal"
             android:id="@+id/slide_des"
             android:layout_alignParentStart="true"
