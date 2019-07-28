@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
-                                             android:layout_height="match_parent"
-android:background="@color/slide3">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/slide3"
+>
 
     <TextView
             android:layout_width="match_parent"
@@ -16,18 +18,6 @@ android:background="@color/slide3">
             android:id="@+id/slide_title"
     />
 
-    <TextView
-            android:padding="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/slide6_des"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:layout_below="@+id/img"
-            android:layout_marginTop="90dp"
-            android:gravity="center_horizontal"
-            android:id="@+id/slide_des"
-    />
     <ImageView
             android:layout_width="227dp"
             android:layout_height="375dp"
@@ -39,6 +29,20 @@ android:background="@color/slide3">
             android:layout_below="@+id/slide_title"
 
     />
+
+    <TextView
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/slide6_des"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:layout_below="@+id/img"
+            android:layout_marginTop="120dp"
+            android:gravity="center_horizontal"
+            android:id="@+id/slide_des"
+    />
+
 
 
 </RelativeLayout>
