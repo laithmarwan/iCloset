@@ -85,7 +85,8 @@ class icloset(var con:Context) :SQLiteOpenHelper(con,"icloset.db",null,2){
                 " ClassG integer(10) NOT NULL," +
                 " ClassB integer(10) NOT NULL)")
 
-        val str = "0\t0\t255\n" +
+        val str = "0\t0\t0\n"+
+                "0\t0\t255\n" +
                 "58\t71\t255\n" +
                 "90\t104\t255\n" +
                 "119\t137\t255\n" +
@@ -353,7 +354,8 @@ class icloset(var con:Context) :SQLiteOpenHelper(con,"icloset.db",null,2){
                 "191\t89\t5\n" +
                 "163\t76\t4\n" +
                 "166\t73\t7\n" +
-                "171\t105\t47"
+                "171\t105\t47\n" +
+                "255\t255\t255"
 
         val arr = str.split("\n")
         for (i in 0 until arr.size) {
