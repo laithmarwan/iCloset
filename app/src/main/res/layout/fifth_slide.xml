@@ -3,17 +3,6 @@
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
 android:background="@color/slide3">
-    
-    <ImageView
-            android:layout_width="227dp"
-            android:layout_height="375dp"
-            android:layout_centerHorizontal="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/fifth_slide"
-            android:layout_marginTop="12dp"
-            android:id="@+id/img"
-            android:layout_below="@+id/slide_title"
-    />
 
     <TextView
             android:layout_width="match_parent"
@@ -27,6 +16,19 @@ android:background="@color/slide3">
             android:id="@+id/slide_title"
     />
 
+    <ImageView
+            android:layout_width="227dp"
+            android:layout_height="375dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/fifth_slide"
+            android:layout_marginTop="69dp"
+            android:id="@+id/img"
+            android:layout_below="@+id/slide_title"
+    />
+
+
+
     <TextView
             android:padding="5dp"
             android:layout_width="match_parent"
@@ -35,7 +37,7 @@ android:background="@color/slide3">
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:layout_below="@+id/img"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="70dp"
             android:gravity="center_horizontal"
             android:id="@+id/slide_des"
     />
