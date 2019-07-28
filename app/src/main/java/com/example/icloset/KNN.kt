@@ -5,10 +5,7 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 
 class KNN(con:Context) {
-    var graphR = IntArray(256)
-    var graphG = IntArray(256)
-    var graphB = IntArray(256)
-
+    var graph = Array(256) { Array(256) { IntArray(256) } }
 
     init {
 
@@ -18,9 +15,8 @@ class KNN(con:Context) {
         if(cur.count!=0){
             cur.moveToFirst()
             while(!cur.isAfterLast){
-                graphR[cur.getInt(0)] = 1
-                graphG[cur.getInt(1)] = 1
-                graphB[cur.getInt(2)] = 1
+                graph[cur.getInt(0)][cur.getInt(1)][cur.getInt(2)] = 1
+
                 cur.moveToNext()
             }
         }
@@ -39,7 +35,7 @@ class KNN(con:Context) {
             {
                 for (k in 0..255)
                 {
-                    if(graphR[i] == 1 && graphG[j]==1 && graphB[k] == 1){
+                    if(graph[i][j][k] == 1){
                         val d = sqrt((x-i).pow(2)+(y-j).pow(2)+(z-k).pow(2))
                         if( d < min){
                             min = d
