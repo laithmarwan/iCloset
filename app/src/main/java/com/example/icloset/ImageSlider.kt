@@ -46,7 +46,7 @@ class ImageSlider : AppCompatActivity() {
 
         //weather API
 
-        val occasion = intent.getStringExtra("occasion")
+        val occasion = AppInfo.occ
         val obj = icloset(this)
         val db = obj.readableDatabase
         val mArray:ArrayList<Outfit> = ArrayList()
@@ -61,7 +61,7 @@ class ImageSlider : AppCompatActivity() {
             }
         }
         else{
-
+            Toast.makeText(this,"empty",Toast.LENGTH_LONG).show()
             tv_empty.text = "No items found relating to your occasion"
         }
 

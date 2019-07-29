@@ -4,6 +4,8 @@ package com.example.icloset
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -15,6 +17,7 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Build
+import android.os.Handler
 import android.provider.MediaStore
 import android.support.design.widget.BaseTransientBottomBar
 import android.support.design.widget.BottomSheetDialog
@@ -22,6 +25,7 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.ContextCompat.checkSelfPermission
 import android.support.v4.content.ContextCompat.getSystemService
+import android.support.v4.view.ViewPager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -40,6 +44,9 @@ import kotlinx.android.synthetic.main.fragment_home.view.*
 import java.util.jar.Manifest
 
 class HomeFragment : Fragment() {
+    private lateinit var viewPager: ViewPager
+    private lateinit var tv: TextView
+    private lateinit var myDialog: Dialog
     lateinit var occasion:String
     var lon = 0.0
     var lat = 0.0
@@ -50,8 +57,9 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        // Inflate the layout for activity fragment
         var v = inflater.inflate(R.layout.fragment_home, container, false)
+
         if(AppInfo.Gender == "0"){
             v.dress_me_up_girl.visibility=View.VISIBLE
             v.dress_me_up_girl.isClickable=true
@@ -77,58 +85,72 @@ class HomeFragment : Fragment() {
 
 
         v.dress_me_up_girl.setOnClickListener {
-
+            val permissionLocation = ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
+            if (permissionLocation == PackageManager.PERMISSION_GRANTED) {
+                getData()
+            }
+            else {
+                caseDenied()
+            }
 
             val dialog = BottomSheetDialog(requireContext())
             val view = layoutInflater.inflate(R.layout.dialog_layout, null)
 
             val gym = view.findViewById<TextView>(R.id.gym_button)
             gym.setOnClickListener {
-                checkPermissions()
+
                 occasion = "Gym"
+                weatherAPI()
 
             }
             val friends = view.findViewById<TextView>(R.id.friends_button)
             friends.setOnClickListener {
-                checkPermissions()
                 occasion = "Friends"
+                weatherAPI()
 
             }
             val party = view.findViewById<TextView>(R.id.party_button)
             party.setOnClickListener {
-                checkPermissions()
+
                 occasion = "Party"
+                weatherAPI()
             }
             val wedding = view.findViewById<TextView>(R.id.wedding_button)
             wedding.setOnClickListener {
-                checkPermissions()
+
                 occasion = "Wedding"
+                weatherAPI()
             }
             val school = view.findViewById<TextView>(R.id.school_button)
             school.setOnClickListener {
-                checkPermissions()
+
                 occasion = "School"
+                weatherAPI()
             }
 
             val work = view.findViewById<TextView>(R.id.work_button)
             work.setOnClickListener {
-                checkPermissions()
+
                 occasion = "Work"
+                weatherAPI()
             }
             val restaurant = view.findViewById<TextView>(R.id.restaurant_button)
             restaurant.setOnClickListener {
-                checkPermissions()
+
                 occasion = "Restaurant"
+                weatherAPI()
             }
             val trip = view.findViewById<TextView>(R.id.trip_button)
             trip.setOnClickListener {
-                checkPermissions()
+
                 occasion = "Trip"
+                weatherAPI()
             }
             val other = view.findViewById<TextView>(R.id.other_button)
             other.setOnClickListener {
-                checkPermissions()
+
                 occasion = "Other"
+                weatherAPI()
             }
 
             dialog.setContentView(view)
@@ -138,58 +160,73 @@ class HomeFragment : Fragment() {
 
 
         v.dress_me_up.setOnClickListener {
-
+            val permissionLocation = ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
+            if (permissionLocation == PackageManager.PERMISSION_GRANTED) {
+                getData()
+            }
+            else {
+                caseDenied()
+            }
 
             val dialog = BottomSheetDialog(requireContext())
             val view = layoutInflater.inflate(R.layout.dialog_layout, null)
 
             val gym = view.findViewById<TextView>(R.id.gym_button)
             gym.setOnClickListener {
-                checkPermissions()
+
                 occasion = "Gym"
+                weatherAPI()
 
             }
             val friends = view.findViewById<TextView>(R.id.friends_button)
             friends.setOnClickListener {
-                checkPermissions()
+
                 occasion = "Friends"
+                weatherAPI()
 
             }
             val party = view.findViewById<TextView>(R.id.party_button)
             party.setOnClickListener {
-                checkPermissions()
+
                 occasion = "Party"
+                weatherAPI()
             }
             val wedding = view.findViewById<TextView>(R.id.wedding_button)
             wedding.setOnClickListener {
-                checkPermissions()
+
                 occasion = "Wedding"
+                weatherAPI()
             }
             val school = view.findViewById<TextView>(R.id.school_button)
             school.setOnClickListener {
-                checkPermissions()
+
                 occasion = "School"
+                weatherAPI()
             }
 
             val work = view.findViewById<TextView>(R.id.work_button)
             work.setOnClickListener {
-                checkPermissions()
+
                 occasion = "Work"
+                weatherAPI()
             }
             val restaurant = view.findViewById<TextView>(R.id.restaurant_button)
             restaurant.setOnClickListener {
-                checkPermissions()
+
                 occasion = "Restaurant"
+                weatherAPI()
             }
             val trip = view.findViewById<TextView>(R.id.trip_button)
             trip.setOnClickListener {
-                checkPermissions()
+
                 occasion = "Trip"
+                weatherAPI()
             }
             val other = view.findViewById<TextView>(R.id.other_button)
             other.setOnClickListener {
-                checkPermissions()
+
                 occasion = "Other"
+                weatherAPI()
             }
 
             dialog.setContentView(view)
@@ -264,25 +301,72 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun checkPermissions(){
-        if (Build.VERSION.SDK_INT > 22) {
-            requestPermissions(arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION,
-                android.Manifest.permission.ACCESS_FINE_LOCATION),2)
 
-        }
-        else
-        {
-            getData()
-            val i = Intent(requireContext(),ImageSlider::class.java)
-            i.putExtra("occasion",occasion)
-            startActivity(i)
-        }
-    }
     companion object {
         //private val permission_code = 1001
         private val camera_code = 1002
     }
 
+
+
+
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == camera_code){
+
+            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
+                var crm = CropImage.activity()
+                    .setGuidelines(CropImageView.Guidelines.ON)
+
+                crm.start(requireActivity())
+
+            }
+
+            else
+            {
+                Toast.makeText(activity,"Permissions must be granted",Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    }
+
+    fun weatherAPI(){
+        AppInfo.occ = occasion
+        myDialog = Dialog(activity)
+        myDialog.setContentView(R.layout.activity_image_slider)
+
+        tv = myDialog.findViewById(R.id.tv_empty)
+
+
+        val occasion = AppInfo.occ
+        val obj = icloset(requireContext())
+        val db = obj.readableDatabase
+        val mArray:ArrayList<Outfit> = ArrayList()
+        val cur = db.rawQuery("select * from outfit o,outfit_occasion oo,outfit_weather ow" +
+                " where o.Outfit_ID = oo.Outfit_ID and oo.Outfit_ID = ow.Outfit_ID and ow.Weather = ? and oo.Occasion = ?", arrayOf(AppInfo.season,occasion))
+        if(cur.count !=0){
+            cur.moveToFirst()
+
+            while(!cur.isAfterLast){
+                mArray.add(Outfit(cur.getString(0),cur.getString(2),cur.getInt(5),cur.getString(7)))
+                cur.moveToNext()
+            }
+        }
+        else{
+            Toast.makeText(activity,"empty",Toast.LENGTH_LONG).show()
+            tv.text = "No items found relating to your occasion"
+        }
+
+        Toast.makeText(activity, AppInfo.season,Toast.LENGTH_LONG).show()
+
+        viewPager = myDialog.findViewById(R.id.viewPager)
+
+        val adapter = ViewPageAdapter(requireContext(),mArray)
+        viewPager.adapter = adapter
+
+        myDialog.show()
+    }
     @SuppressLint("MissingPermission")
     private fun getData(){
 
@@ -347,14 +431,37 @@ class HomeFragment : Fragment() {
                 }
 
             }
-            if(locationGPS.accuracy > locationNetwork.accuracy){
+            if(locationGPS == null){
+                if(locationNetwork != null){
+                    lon = locationNetwork.longitude
+                    lat = locationNetwork.latitude
+                }
+                else{
+                    if(locationGPS.accuracy > locationNetwork.accuracy){
+                        lon = locationGPS.longitude
+                        lat = locationGPS.latitude
+                    }
+                    else{
+                        lon = locationNetwork.longitude
+                        lat = locationNetwork.latitude
+                    }
+                }
+            }
+            else if(locationNetwork == null){
                 lon = locationGPS.longitude
                 lat = locationGPS.latitude
             }
             else{
-                lon = locationNetwork.longitude
-                lat = locationNetwork.latitude
+                if(locationGPS.accuracy > locationNetwork.accuracy){
+                    lon = locationGPS.longitude
+                    lat = locationGPS.latitude
+                }
+                else{
+                    lon = locationNetwork.longitude
+                    lat = locationNetwork.latitude
+                }
             }
+
         }else{
             Toast.makeText(activity,"problem",Toast.LENGTH_LONG).show()
         }
@@ -392,7 +499,6 @@ class HomeFragment : Fragment() {
 
 
     }
-
     private fun caseDenied(){
         val rq = Volley.newRequestQueue(activity)
         val key = "fe7e0122aa2663a7f2aa546b5e121a59"
@@ -426,42 +532,6 @@ class HomeFragment : Fragment() {
 
         rq.add(jo)
     }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(requestCode == camera_code){
-
-            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
-                var crm = CropImage.activity()
-                    .setGuidelines(CropImageView.Guidelines.ON)
-
-                crm.start(requireActivity())
-
-            }
-
-            else
-            {
-                Toast.makeText(activity,"Permissions must be granted",Toast.LENGTH_SHORT).show()
-            }
-        }
-        else if(requestCode == 2){
-            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
-                    getData()
-                val i = Intent(requireContext(),ImageSlider::class.java)
-                i.putExtra("occasion",occasion)
-                startActivity(i)
-            }
-            else
-            {
-                caseDenied()
-                val i = Intent(requireContext(),ImageSlider::class.java)
-                i.putExtra("occasion",occasion)
-                startActivity(i)
-            }
-        }
-    }
-
-
 
 }
 

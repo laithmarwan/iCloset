@@ -6,8 +6,13 @@ import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.drawable.AnimationDrawable
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.support.design.widget.Snackbar
@@ -16,12 +21,17 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.util.Range
 import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -76,27 +86,34 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var obj1 = icloset(this)
         var db = obj1.writableDatabase
         var cur= db.rawQuery("select * from item", arrayOf())
-        if(cur.count == 0 && intent.getStringExtra("act") == "login"){
+        if(intent.getStringExtra("act") == "login") {
+            if (Build.VERSION.SDK_INT > 22) {
+                requestPermissions(arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION),2)
 
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Lets start")
-            builder.setMessage("Would you like to add your closet?")
-            builder.setPositiveButton("Start"
-            ) { dialogInterface: DialogInterface, i: Int ->
-                var trans = supportFragmentManager.beginTransaction()
-                var obj = ClosetFragment()
-                trans.replace(R.id.main_frame,obj)
-                trans.commit()
-                main_nav.menu.getItem(1).isChecked = true
+            }
+            if (cur.count == 0) {
+
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Lets start")
+                builder.setMessage("Would you like to add your closet?")
+                builder.setPositiveButton(
+                    "Start"
+                ) { dialogInterface: DialogInterface, i: Int ->
+                    var trans = supportFragmentManager.beginTransaction()
+                    var obj = ClosetFragment()
+                    trans.replace(R.id.main_frame, obj)
+                    trans.commit()
+                    main_nav.menu.getItem(1).isChecked = true
+                }
+
+                builder.setNegativeButton("Later") { dialog, which ->
+                    dialog.dismiss()
+                }
+                builder.show()
             }
 
-            builder.setNegativeButton("Later"){
-                    dialog, which ->
-                dialog.dismiss()}
-            builder.show()
         }
-
-
         var trans = supportFragmentManager.beginTransaction()
         var obj = HomeFragment()
         trans.replace(R.id.main_frame,obj)
@@ -252,9 +269,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             AppInfo.img = result.uri
             startActivity(i)
-
-            //item_photo_editor.setImageURI(result.uri)
-
 
         }
     }
