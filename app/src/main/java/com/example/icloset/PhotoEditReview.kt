@@ -357,15 +357,46 @@ class PhotoEditReview : AppCompatActivity() {
 
 
             }
-            else{
+            else {
                 //code for help me match
-                
+                if (season_list.text.toString() == "Select one season or more" || season_view.text.toString() == ""
+                    || occasion_list.text.toString() == "Select one or more occasions" || occasion_view.text.toString() == ""
+                    || category_list.text.toString() == "Select only one category" || category_view.text.toString() == ""
+                ) {
+                    Toast.makeText(this, "Make sure to fill all info", Toast.LENGTH_SHORT).show()
+
+                } else if (red[0] == -1 && red[1] == -1 && red[2] == -1 && red[3] == -1 && red[4] == -1 && red[5] == -1 &&
+                    green[0] == -1 && green[1] == -1 && green[2] == -1 && green[3] == -1 && green[4] == -1 && green[5] == -1 &&
+                    blue[0] == -1 && blue[1] == -1 && blue[2] == -1 && blue[3] == -1 && blue[4] == -1 && blue[5] == -1
+                ) {
+                    Toast.makeText(this, "Item must at least contain one color", Toast.LENGTH_SHORT).show()
+                } else {
+
+                    val builder = AlertDialog.Builder(this)
+                    val categoryArray: Array<String> = if (AppInfo.Gender == "0") {
+                        arrayOf("Tops", "Bottoms", "Shoes", "Dresses", "Bags", "Accessories", "Outerwear")
+                    } else {
+                        arrayOf("Tops", "Bottoms", "Shoes", "Bags", "Accessories", "Outerwear")
+                    }
+
+                    builder.setTitle("Select second item category")
+                    builder.setSingleChoiceItems(categoryArray, -1) { dialog: DialogInterface, which: Int ->
+                        AppInfo.type = categoryArray[which]
+                    }
+                    builder.setPositiveButton("OK") { dialog, which ->
+                        Toast.makeText(this, "Matching item...", Toast.LENGTH_SHORT).show()
+                        startActivityForResult(Intent(this,ChooseItemActivity::class.java),5000)
+                    }
+                    builder.setNegativeButton("Cancel") { dialog, which ->
+                        dialog.dismiss()
+                    }
+                    val dialog = builder.create()
+                    dialog.show()
 
 
-                Toast.makeText(this,"Matching item...",Toast.LENGTH_SHORT).show()
+                }
+
             }
-
-
         }
 
 
