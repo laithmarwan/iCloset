@@ -52,6 +52,90 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         var v = inflater.inflate(R.layout.fragment_home, container, false)
+        if(AppInfo.Gender == "0"){
+            v.dress_me_up_girl.visibility=View.VISIBLE
+            v.dress_me_up_girl.isClickable=true
+            v.dress_me_up.isClickable=false
+            v.dress_me_up.visibility = View.INVISIBLE
+
+            v.help_me_match_girl.visibility=View.VISIBLE
+            v.help_me_match_girl.isClickable=true
+            v.help_me_match.isClickable=false
+            v.help_me_match.visibility= View.INVISIBLE
+        }
+        if(AppInfo.Gender == "1"){
+            v.dress_me_up_girl.visibility=View.INVISIBLE
+            v.dress_me_up_girl.isClickable=false
+            v.dress_me_up.isClickable=true
+            v.dress_me_up.visibility = View.VISIBLE
+
+            v.help_me_match_girl.visibility=View.INVISIBLE
+            v.help_me_match_girl.isClickable=false
+            v.help_me_match.isClickable=true
+            v.help_me_match.visibility= View.VISIBLE
+        }
+
+
+        v.dress_me_up_girl.setOnClickListener {
+
+
+            val dialog = BottomSheetDialog(requireContext())
+            val view = layoutInflater.inflate(R.layout.dialog_layout, null)
+
+            val gym = view.findViewById<TextView>(R.id.gym_button)
+            gym.setOnClickListener {
+                checkPermissions()
+                occasion = "Gym"
+
+            }
+            val friends = view.findViewById<TextView>(R.id.friends_button)
+            friends.setOnClickListener {
+                checkPermissions()
+                occasion = "Friends"
+
+            }
+            val party = view.findViewById<TextView>(R.id.party_button)
+            party.setOnClickListener {
+                checkPermissions()
+                occasion = "Party"
+            }
+            val wedding = view.findViewById<TextView>(R.id.wedding_button)
+            wedding.setOnClickListener {
+                checkPermissions()
+                occasion = "Wedding"
+            }
+            val school = view.findViewById<TextView>(R.id.school_button)
+            school.setOnClickListener {
+                checkPermissions()
+                occasion = "School"
+            }
+
+            val work = view.findViewById<TextView>(R.id.work_button)
+            work.setOnClickListener {
+                checkPermissions()
+                occasion = "Work"
+            }
+            val restaurant = view.findViewById<TextView>(R.id.restaurant_button)
+            restaurant.setOnClickListener {
+                checkPermissions()
+                occasion = "Restaurant"
+            }
+            val trip = view.findViewById<TextView>(R.id.trip_button)
+            trip.setOnClickListener {
+                checkPermissions()
+                occasion = "Trip"
+            }
+            val other = view.findViewById<TextView>(R.id.other_button)
+            other.setOnClickListener {
+                checkPermissions()
+                occasion = "Other"
+            }
+
+            dialog.setContentView(view)
+            dialog.show()
+        }
+
+
 
         v.dress_me_up.setOnClickListener {
 
@@ -107,6 +191,38 @@ class HomeFragment : Fragment() {
                 checkPermissions()
                 occasion = "Other"
             }
+
+            dialog.setContentView(view)
+            dialog.show()
+        }
+
+        v.help_me_match_girl.setOnClickListener {
+            val dialog = BottomSheetDialog(requireActivity())
+            val view = layoutInflater.inflate(R.layout.dialog_help_layout, null)
+
+            val camera_help = view.findViewById<TextView>(R.id.camera_help_button)
+            camera_help.setOnClickListener {
+                if (Build.VERSION.SDK_INT > 22) {
+                    requestPermissions(arrayOf(android.Manifest.permission.CAMERA,
+                        android.Manifest.permission.READ_EXTERNAL_STORAGE),
+                        camera_code)
+                }
+                else
+                {
+
+                    var crm = CropImage.activity()
+                        .setGuidelines(CropImageView.Guidelines.ON)
+
+                    crm.start(requireActivity())
+
+                }
+            }
+
+            val closet_help = view.findViewById<TextView>(R.id.closet_help_button)
+            closet_help.setOnClickListener {
+                //Go to closet
+            }
+
 
             dialog.setContentView(view)
             dialog.show()
