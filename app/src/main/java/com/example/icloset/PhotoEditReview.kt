@@ -384,8 +384,8 @@ class PhotoEditReview : AppCompatActivity() {
                         AppInfo.type = categoryArray[which]
                     }
                     builder.setPositiveButton("OK") { dialog, which ->
-                        Toast.makeText(this, "Matching item...", Toast.LENGTH_SHORT).show()
-                        startActivityForResult(Intent(this,ChooseItemActivity::class.java),5000)
+
+                        startActivityForResult(Intent(this,ChooseItemActivity2::class.java),5000)
                     }
                     builder.setNegativeButton("Cancel") { dialog, which ->
                         dialog.dismiss()
@@ -558,18 +558,9 @@ class PhotoEditReview : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        //if (requestCode === 123){
-            //camera action here
-            //var bmp = data?.extras?.get("data") as Bitmap
-            //item_photo_editor.setImageBitmap(bmp)
-            // crop
+        if(requestCode == 5000){
 
-
-       // }
-
-       /* if (resultCode == Activity.RESULT_OK && requestCode == 1234){
-            item_photo_editor.setImageURI(data?.data)
-        }*/
+        }
 
 }
 
@@ -688,44 +679,6 @@ class PhotoEditReview : AppCompatActivity() {
             item_photo_color_info6.setBackgroundResource(R.drawable.clear)
         }
     }
-
-    private fun openCamera(){
-        //var i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-
-         var crm = CropImage.activity()
-            .setGuidelines(CropImageView.Guidelines.ON)
-
-             crm.start(this)
-
-    }
-
-
-    fun calculateAverageColor(bitmap: android.graphics.Bitmap, pixelSpacing: Int): Int {
-        var R = 0
-        var G = 0
-        var B = 0
-        val height = bitmap.height
-        val width = bitmap.width
-        var n = 0
-        val pixels = IntArray(width * height)
-        bitmap.getPixels(pixels, 0, width, 0, 0, width, height)
-        var i = 0
-        while (i < pixels.size) {
-            val color = pixels[i]
-            R += Color.red(color)
-            G += Color.green(color)
-            B += Color.blue(color)
-            n++
-            i += pixelSpacing
-        }
-        return Color.rgb(R / n, G / n, B / n)
-    }
-
-   //private fun pickImageFromGallery() {
-        //val intent = Intent(Intent.ACTION_PICK)
-        //intent.type = "image/*"
-        //startActivityForResult(intent, 1234)
-   // }
 
 
 
