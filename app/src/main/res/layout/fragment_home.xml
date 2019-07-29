@@ -47,7 +47,7 @@
 
     <Button
             android:fontFamily="@font/aldith"
-            android:background="#DCDDDF"
+            android:background="@drawable/girl_home_buttons"
             android:drawableRight="@drawable/helpme_dress_girl"
             android:text="               Dress me up"
             android:layout_width="399dp"
@@ -64,7 +64,7 @@
 
     <Button
             android:fontFamily="@font/aldith"
-            android:background="#DCDDDF"
+            android:background="@drawable/girl_home_buttons"
             android:drawableRight="@drawable/dressme_up_girl"
             android:text="              HELP ME MATCH"
             android:layout_width="399dp"
@@ -76,7 +76,7 @@
             app:layout_constraintTop_toBottomOf="@+id/dress_me_up_girl"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="6dp"
 
     />
     <Button
