@@ -17,6 +17,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
+        <activity android:name=".ChooseItemActivity2">
+        </activity>
         <activity android:name=".ChooseItemActivity">
         </activity>
         <activity android:name=".CreateOutfitActivity">
