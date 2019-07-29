@@ -27,6 +27,20 @@ class ImageSlider : AppCompatActivity() {
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if(AppInfo.theme == 0){
+            setTheme(R.style.AppTheme)
+        }
+        if(AppInfo.theme == 1){
+            setTheme(R.style.AppTheme1)
+        }
+        if(AppInfo.theme == 2){
+            setTheme(R.style.AppTheme2)
+        }
+
+        if(AppInfo.theme == 3){
+            setTheme(R.style.AppTheme3)
+        }
         setContentView(R.layout.activity_image_slider)
 
 
