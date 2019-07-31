@@ -25,6 +25,7 @@ class AppInfo {
         var month:String = ""
         var year:String = ""
         var occ:String = ""
+        lateinit var catarr:ArrayList<Categories>
 
     }
 

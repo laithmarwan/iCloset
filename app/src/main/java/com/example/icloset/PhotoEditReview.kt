@@ -342,9 +342,22 @@ class PhotoEditReview : AppCompatActivity() {
                     }
                     c--
                     val k = max  - c
-                    for(i in k..max)
-                        db.execSQL("insert into contains (Item_ID,Color_ID) values (?,?)", arrayOf(AppInfo.img_url,i))
 
+                    for(i in k..max) {
+                        val cr1 = db.rawQuery("select Red,Green,Blue from color where Color_ID = ?",
+                            arrayOf(i.toString()))
+
+                        cr1.moveToFirst()
+
+                        val str = knn.classify(cr1.getDouble(0),cr1.getDouble(1),cr1.getDouble(2))
+                        val cls = str.split("/")
+                        val cr = db.rawQuery("select Class_ID from classes where ClassR = ? and ClassG = ? and ClassB = ?",
+                            arrayOf(cls[0],cls[1],cls[2]))
+                        cr.moveToFirst()
+
+                        db.execSQL("insert into contains (Item_ID,Color_ID,Class_ID) values (?,?,?)", arrayOf(AppInfo.img_url, i,cr.getInt(0)))
+
+                    }
 
 
 
@@ -384,8 +397,90 @@ class PhotoEditReview : AppCompatActivity() {
                         AppInfo.type = categoryArray[which]
                     }
                     builder.setPositiveButton("OK") { dialog, which ->
+                        val season = season_view.text.toString()
+                        var seasons =""
+                        if(season.indexOf("Winter") != -1 || season.indexOf("Autumn") != -1){
+                            if(season.indexOf("Spring") != -1 || season.indexOf("Summer") != -1){
+                                seasons = ""
+                            }
+                            else{
+                                seasons = "and (item_weather.Weather = 'Winter' or item_weather.Weather = 'Autumn')"
+                            }
+                        }
+                        else{
+                            seasons = "and (item_weather.Weather = 'Summer' or item_weather.Weather = 'Spring')"
+                        }
+                        var colorArray = ArrayList<Int>()
+                        var knn = KNN(this)
+                        for(i in 0 until 6){
+                            if(red[i] !=-1 && green[i] !=-1 && blue[i] !=-1){
+                                val str = knn.classify(red[i].toDouble(),green[i].toDouble(),blue[i].toDouble())
+                                val arr = str.split(",")
 
-                        startActivityForResult(Intent(this,ChooseItemActivity2::class.java),5000)
+                                val obj = icloset(this)
+                                val db = obj.readableDatabase
+                                var cur = db.rawQuery("select Class_ID from classes " +
+                                        "where ClassR = ${arr[0]} and ClassG = ${arr[1]} and ClassB = ${arr[2]}",
+                                    arrayOf())
+                                cur.moveToFirst()
+
+                                val class_id = cur.getInt(0)
+
+                                cur = db.rawQuery("select Color_2 from complements where Color_1 = $class_id",
+                                    arrayOf())
+
+                                if(cur.count !=0 ){
+                                    cur.moveToFirst()
+                                    while(!cur.isAfterLast){
+                                        colorArray.add(cur.getInt(0))
+                                        cur.moveToNext()
+                                    }
+                                }
+
+
+                            }
+                        }
+                        var colorStr = "(item.Class_ID = ${colorArray[0]}"
+                        for(i in 1 until colorArray.size){
+                            colorStr += " or item.Class_ID = ${colorArray[i]}"
+                        }
+
+
+                        var occasionarr = occasion_view.text.toString().split(", ")
+                        var occstr = "(item_occasion.Occasion = '${occasionarr[0]}'"
+                        for(i in 1 until occasionarr.size){
+                            occstr += " or item_occasion.Occasion = '${occasionarr[i]}'"
+                        }
+                        occstr+=")"
+                        val obj = icloset(this)
+                        val db = obj.readableDatabase
+                        var cur = db.rawQuery("select * from item,item_weather,item_occasion " +
+                                "where item.Item_ID = item_weather.Item_ID $seasons " +
+                                "and item.Item_ID = item_occasion.Item_ID and $occstr and item.Type = ? and ($colorStr)",
+                            arrayOf(AppInfo.type))
+
+                        AppInfo.catarr = ArrayList<Categories>()
+                        AppInfo.catarr.clear()
+
+                        if(cur.count ==0){
+                            Toast.makeText(this,"Could not find matching items in this category", Toast.LENGTH_LONG).show()
+                        }
+                        else{
+                            cur.moveToFirst()
+                            while (!cur.isAfterLast){
+
+
+                                AppInfo.catarr.add(Categories(cur.getString(cur.getColumnIndex("Item_ID")),
+                                    cur.getString(cur.getColumnIndex("Type")),
+                                    cur.getString(cur.getColumnIndex("Description")),
+                                    cur.getString(cur.getColumnIndex("Item_image"))))
+
+
+                                cur.moveToNext()
+                            }
+                            startActivityForResult(Intent(this,ChooseItemActivity2::class.java),5000)
+                        }
+
                     }
                     builder.setNegativeButton("Cancel") { dialog, which ->
                         dialog.dismiss()
