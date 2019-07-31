@@ -5,10 +5,23 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ChooseItemActivity2">
+        tools:context=".ChooseItemActivity2"
+        android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/recView"/>
+            android:layout_height="730dp"
+            android:id="@+id/recView" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"/>
+
+    <Button
+            android:layout_width="134dp"
+            android:layout_height="45dp"
+            android:id="@+id/btn_ok"
+            android:text="ok"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="24dp"/>
 </android.support.constraint.ConstraintLayout>

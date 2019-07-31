@@ -80,7 +80,7 @@ class ClosetFragment : Fragment() {
         var rotate_cw = AnimationUtils.loadAnimation(activity,R.anim.rotate_clockwise)
         var rotate_acw = AnimationUtils.loadAnimation(activity,R.anim.rotate_anticlockwise)
         v.add_btn.setOnClickListener{
-
+            AppInfo.act = "add"
                 /*if (isOpen)
                 {
                     v.fab2.startAnimation(fab_close)
@@ -114,7 +114,7 @@ class ClosetFragment : Fragment() {
             }
             else
             {
-                AppInfo.act = "add"
+
                 var crm = CropImage.activity()
                     .setGuidelines(CropImageView.Guidelines.ON)
 

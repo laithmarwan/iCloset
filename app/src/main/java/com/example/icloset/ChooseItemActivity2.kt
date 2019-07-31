@@ -1,5 +1,6 @@
 package com.example.icloset
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
@@ -13,11 +14,15 @@ class ChooseItemActivity2 : AppCompatActivity() {
         setContentView(R.layout.activity_choose_item2)
 
 
-        AppInfo.act = "outfit"
+        AppInfo.act = "help"
         recView.layoutManager = GridLayoutManager(this,3)
         val adapter = CustomAdapter(AppInfo.catarr, this)
         recView.adapter = adapter
 
+        btn_ok.setOnClickListener {
+            startActivity(Intent(this,MainActivity::class.java))
+            finish()
+        }
 
 
 

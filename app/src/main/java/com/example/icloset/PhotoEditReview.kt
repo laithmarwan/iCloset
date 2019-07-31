@@ -415,7 +415,7 @@ class PhotoEditReview : AppCompatActivity() {
                         for(i in 0 until 6){
                             if(red[i] !=-1 && green[i] !=-1 && blue[i] !=-1){
                                 val str = knn.classify(red[i].toDouble(),green[i].toDouble(),blue[i].toDouble())
-                                val arr = str.split(",")
+                                val arr = str.split("/")
 
                                 val obj = icloset(this)
                                 val db = obj.readableDatabase
@@ -440,9 +440,9 @@ class PhotoEditReview : AppCompatActivity() {
 
                             }
                         }
-                        var colorStr = "(item.Class_ID = ${colorArray[0]}"
+                        var colorStr = "contains.Class_ID = ${colorArray[0]}"
                         for(i in 1 until colorArray.size){
-                            colorStr += " or item.Class_ID = ${colorArray[i]}"
+                            colorStr += " or contains.Class_ID = ${colorArray[i]}"
                         }
 
 
@@ -454,28 +454,34 @@ class PhotoEditReview : AppCompatActivity() {
                         occstr+=")"
                         val obj = icloset(this)
                         val db = obj.readableDatabase
-                        var cur = db.rawQuery("select * from item,item_weather,item_occasion " +
+                        var cur = db.rawQuery("select * from item,item_weather,item_occasion,contains " +
                                 "where item.Item_ID = item_weather.Item_ID $seasons " +
-                                "and item.Item_ID = item_occasion.Item_ID and $occstr and item.Type = ? and ($colorStr)",
-                            arrayOf(AppInfo.type))
+                                "and item.Item_ID = item_occasion.Item_ID and $occstr and item.Type = '${AppInfo.type}' " +
+                                "and contains.Item_ID = item.Item_ID and ($colorStr)",
+                            arrayOf())
 
                         AppInfo.catarr = ArrayList<Categories>()
                         AppInfo.catarr.clear()
-
+                        var itemstr = ""
                         if(cur.count ==0){
                             Toast.makeText(this,"Could not find matching items in this category", Toast.LENGTH_LONG).show()
                         }
                         else{
                             cur.moveToFirst()
                             while (!cur.isAfterLast){
+                                val id = cur.getString(cur.getColumnIndex("Item_ID"))
 
-
-                                AppInfo.catarr.add(Categories(cur.getString(cur.getColumnIndex("Item_ID")),
-                                    cur.getString(cur.getColumnIndex("Type")),
-                                    cur.getString(cur.getColumnIndex("Description")),
-                                    cur.getString(cur.getColumnIndex("Item_image"))))
-
-
+                                if(itemstr.indexOf(id) ==-1) {
+                                    AppInfo.catarr.add(
+                                        Categories(
+                                            id,
+                                            cur.getString(cur.getColumnIndex("Type")),
+                                            cur.getString(cur.getColumnIndex("Description")),
+                                            cur.getString(cur.getColumnIndex("Item_image"))
+                                        )
+                                    )
+                                    itemstr = "$itemstr$id,"
+                                }
                                 cur.moveToNext()
                             }
                             startActivityForResult(Intent(this,ChooseItemActivity2::class.java),5000)

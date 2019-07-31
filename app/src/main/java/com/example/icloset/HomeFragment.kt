@@ -236,6 +236,7 @@ class HomeFragment : Fragment() {
         v.help_me_match_girl.setOnClickListener {
             val dialog = BottomSheetDialog(requireActivity())
             val view = layoutInflater.inflate(R.layout.dialog_help_layout, null)
+            AppInfo.act = "help"
 
             val camera_help = view.findViewById<TextView>(R.id.camera_help_button)
             camera_help.setOnClickListener {
@@ -268,7 +269,7 @@ class HomeFragment : Fragment() {
         v.help_me_match.setOnClickListener {
             val dialog = BottomSheetDialog(requireActivity())
             val view = layoutInflater.inflate(R.layout.dialog_help_layout, null)
-
+            AppInfo.act = "help"
             val camera_help = view.findViewById<TextView>(R.id.camera_help_button)
             camera_help.setOnClickListener {
                 if (Build.VERSION.SDK_INT > 22) {

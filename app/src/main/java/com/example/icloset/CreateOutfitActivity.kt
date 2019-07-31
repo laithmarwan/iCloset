@@ -117,8 +117,8 @@ class CreateOutfitActivity : AppCompatActivity() {
 
             val image_url = "outfit_"+AppInfo.img_url+".jpg"
             this.saveImageToStorage(image_url,bm)
-            db.execSQL("insert into outfit (Times_worn,Available,Outfit_image) " +
-                    "values (0,1,?)", arrayOf(image_url))
+            db.execSQL("insert into outfit (Times_worn,Last_time_worn,Available,Outfit_image) " +
+                    "values (0,'Never',1,?)", arrayOf(image_url))
 
 
             var cur2 = db.rawQuery("select Item_ID from item where Item_image=?", arrayOf(image_url))

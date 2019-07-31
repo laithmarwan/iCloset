@@ -10,6 +10,19 @@
 
 >
 
+    <Button
+            android:gravity="center"
+            android:textColor="#FFFF"
+            android:textStyle="bold"
+            android:text="Select"
+            android:layout_width="175dp"
+            android:layout_height="47dp"
+            android:id="@+id/select_btn"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/viewPager"
+            app:layout_constraintStart_toStartOf="@+id/viewPager" app:layout_constraintEnd_toEndOf="@+id/viewPager"/>
     <android.support.v4.view.ViewPager
             android:layout_width="260dp"
             android:layout_height="369dp"

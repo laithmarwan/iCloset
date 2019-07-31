@@ -71,21 +71,83 @@ class OutfitsAdapter(val catList :ArrayList<Outfit>,val con:Context) : RecyclerV
             true
         }
 
-        val txtclose: TextView
-        myDialog = Dialog(con)
-        myDialog.setContentView(R.layout.custompopup)
-        txtclose = myDialog.findViewById(R.id.txtclose)
-        txtclose.text = "X"
 
         p0.imageviewname.setOnClickListener {
+
+            val itemview: ImageView
+            val itemoccasion: TextView
+            val itemweather: TextView
+            val lastworn: TextView
+            val timesworn: TextView
+            val txtclose: TextView
+
+
+            myDialog = Dialog(con)
+
+            myDialog.setContentView(R.layout.outfitpopup)
+            txtclose = myDialog.findViewById(R.id.outfittxtclose)
+            txtclose.text = "X"
+
+            itemview = myDialog.findViewById(R.id.outfitview)
+            itemoccasion = myDialog.findViewById(R.id.outfitoccasion)
+            itemweather = myDialog.findViewById(R.id.outfitweather)
+            lastworn = myDialog.findViewById(R.id.outfitlastworn)
+            timesworn = myDialog.findViewById(R.id.outfittimesworn)
+
             myDialog.getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             myDialog.show()
 
             txtclose.setOnClickListener {
                 myDialog.dismiss()
             }
-        }
+            val obj2 = icloset(con)
+            val db2 = obj2.readableDatabase
 
+            try {
+
+                val storageDirectory = Environment.getExternalStorageDirectory().toString()
+
+                val file = File(storageDirectory, cat.thumbnail)
+                itemview.setImageURI(Uri.parse(file.absolutePath))
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
+            val occasioncur = db2.rawQuery("select Occasion from outfit_occasion where Outfit_ID = ?", arrayOf(cat.ID))
+            occasioncur.moveToFirst()
+
+            val OccasionArray = ArrayList<String>()
+            while (!occasioncur.isAfterLast) {
+                OccasionArray.add(occasioncur.getString(0))
+                occasioncur.moveToNext()
+            }
+            val str: String = OccasionArray.joinToString()
+            itemoccasion.text = str
+
+
+            val weathercur = db2.rawQuery("select Weather from outfit_weather where Outfit_ID = ?", arrayOf(cat.ID))
+            weathercur.moveToFirst()
+
+            val weatherArray = ArrayList<String>()
+            while (!weathercur.isAfterLast) {
+                weatherArray.add(weathercur.getString(0))
+                weathercur.moveToNext()
+            }
+            val str2: String = weatherArray.joinToString()
+            itemweather.text = str2
+
+            val cur2 = db2.rawQuery("select Times_worn,Last_time_worn from outfit where Outfit_ID = ?", arrayOf(cat.ID))
+            cur2.moveToFirst()
+
+            val times_worn = cur2.getString(0)
+            val last_time_worn = cur2.getString(1)
+
+
+            timesworn.text = times_worn.toString()
+            lastworn.text = last_time_worn.toString()
+
+
+        }
         val obj = icloset(con)
         val db = obj.writableDatabase
         val cur = db.rawQuery("select Favorite from outfit where Outfit_ID = ?", arrayOf(cat.ID))

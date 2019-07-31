@@ -84,7 +84,7 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
             txtclose.text = "X"
 
 
-            if(AppInfo.act == "outfit")         
+            if(AppInfo.act == "outfit")
             {
                 AppInfo.itemID = cat.ID
                 con.setResult(RESULT_OK)
@@ -181,11 +181,16 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
                 itemtype.text = type
                 itemdesc.text = description
 
-                val testcur = db.rawQuery("select ClassR,ClassG,ClassB from color c,contains n where c.Color_ID = n.Color_ID and n.Item_ID = ?",
+
+                val testcur = db.rawQuery("select Red,Green,Blue,ClassR,ClassG,ClassB from color c,contains n where c.Color_ID = n.Color_ID and n.Item_ID = ?",
                     arrayOf(cat.ID))
-                if(testcur.count!=0){
+
+                if(testcur.count!=0 ){
+
                     testcur.moveToFirst()
-                    Toast.makeText(con,testcur.getString(0)+"/"+testcur.getString(1)+"/"+testcur.getString(2),Toast.LENGTH_LONG).show()
+
+                    val str = "rgb:"+testcur.getString(0)+ "-"+testcur.getString(1)+"-"+testcur.getString(2)
+                    Toast.makeText(con,str +" class:"+testcur.getString(3)+"/"+testcur.getString(4)+"/"+testcur.getString(5),Toast.LENGTH_LONG).show()
 
 
                 }}
