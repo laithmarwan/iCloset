@@ -121,7 +121,7 @@ class CreateOutfitActivity : AppCompatActivity() {
                     "values (0,'Never',1,?)", arrayOf(image_url))
 
 
-            var cur2 = db.rawQuery("select Item_ID from item where Item_image=?", arrayOf(image_url))
+            var cur2 = db.rawQuery("select Outfit_ID from outfit where Outfit_image=?", arrayOf(image_url))
             if(cur2.count != 0){
                 cur2.moveToFirst()
                 AppInfo.img_url = cur2.getString(0).toInt()

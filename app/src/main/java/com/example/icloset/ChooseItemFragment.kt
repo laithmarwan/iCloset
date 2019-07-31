@@ -81,7 +81,7 @@ class ChooseItemFragment : Fragment() {
                         AppInfo.type = "Bags"
                     else
                         AppInfo.type = "Accessories"
-
+                    MoveToFragment()
                 }
                 5 -> {
                     if(AppInfo.Gender =="0")
