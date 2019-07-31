@@ -190,7 +190,7 @@ class CustomAdapter(private val catList :ArrayList<Categories>, private val con:
                     testcur.moveToFirst()
 
                     val str = "rgb:"+testcur.getString(0)+ "-"+testcur.getString(1)+"-"+testcur.getString(2)
-                    Toast.makeText(con,str +" class:"+testcur.getString(3)+"/"+testcur.getString(4)+"/"+testcur.getString(5),Toast.LENGTH_LONG).show()
+                    //Toast.makeText(con,str +" class:"+testcur.getString(3)+"/"+testcur.getString(4)+"/"+testcur.getString(5),Toast.LENGTH_LONG).show()
 
 
                 }}

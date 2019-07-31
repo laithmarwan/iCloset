@@ -30,6 +30,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.android.volley.Request
@@ -41,11 +43,14 @@ import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_photo_edit_review.*
 import kotlinx.android.synthetic.main.dialog_layout.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.jar.Manifest
 
 class HomeFragment : Fragment() {
     private lateinit var viewPager: ViewPager
     private lateinit var tv: TextView
+    private lateinit var btn: Button
     private lateinit var myDialog: Dialog
     lateinit var occasion:String
     var lon = 0.0
@@ -332,12 +337,14 @@ class HomeFragment : Fragment() {
 
     }
 
+    @SuppressLint("NewApi")
     fun weatherAPI(){
         AppInfo.occ = occasion
         myDialog = Dialog(activity)
         myDialog.setContentView(R.layout.activity_image_slider)
 
         tv = myDialog.findViewById(R.id.tv_empty)
+        btn = myDialog.findViewById(R.id.select_btn)
 
 
         val occasion = AppInfo.occ
@@ -345,7 +352,7 @@ class HomeFragment : Fragment() {
         val db = obj.readableDatabase
         val mArray:ArrayList<Outfit> = ArrayList()
         val cur = db.rawQuery("select * from outfit o,outfit_occasion oo,outfit_weather ow" +
-                " where o.Outfit_ID = oo.Outfit_ID and oo.Outfit_ID = ow.Outfit_ID and ow.Weather = ? and oo.Occasion = ?", arrayOf(AppInfo.season,occasion))
+                " where o.Outfit_ID = oo.Outfit_ID and o.Available = 1 and oo.Outfit_ID = ow.Outfit_ID and ow.Weather = ? and oo.Occasion = ?", arrayOf(AppInfo.season,occasion))
         if(cur.count !=0){
             cur.moveToFirst()
 
@@ -359,7 +366,7 @@ class HomeFragment : Fragment() {
             tv.text = "No items found relating to your occasion"
         }
 
-        Toast.makeText(activity, AppInfo.season,Toast.LENGTH_LONG).show()
+        //Toast.makeText(activity, AppInfo.season,Toast.LENGTH_LONG).show()
 
         viewPager = myDialog.findViewById(R.id.viewPager)
 
@@ -367,6 +374,31 @@ class HomeFragment : Fragment() {
         viewPager.adapter = adapter
 
         myDialog.show()
+
+        btn.setOnClickListener {
+            val cat = mArray[viewPager.currentItem]
+
+            val obj = icloset(requireContext())
+            val db = obj.writableDatabase
+            val current = LocalDateTime.now()
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+            val formatted = current.format(formatter)
+
+            db.execSQL("update outfit set Times_worn = Times_worn +1 where Outfit_ID = ?", arrayOf(cat.ID))
+            db.execSQL("update outfit set Last_time_worn = '$formatted' where Outfit_ID = ?", arrayOf(cat.ID))
+
+            val cur = db.rawQuery("select Item_ID from consists_of where Outfit_ID = ?", arrayOf(cat.ID))
+            if(cur.count !=0) {
+                cur.moveToFirst()
+                while(!cur.isAfterLast){
+                    db.execSQL("update item set Times_worn = Times_worn +1 where Item_ID = ?", arrayOf(cur.getInt(0)))
+                    db.execSQL("update item set Last_time_worn = '$formatted' where Item_ID = ?", arrayOf(cur.getInt(0)))
+                    cur.moveToNext()
+                }
+            }
+            myDialog.dismiss()
+        }
+
     }
     @SuppressLint("MissingPermission")
     private fun getData(){

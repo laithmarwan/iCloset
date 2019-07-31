@@ -131,6 +131,14 @@ class ItemsFragment : Fragment() {
         val obj = icloset(requireActivity())
         val db = obj.writableDatabase
         db.execSQL("update item set Available = 0 where Item_ID = ?" , arrayOf(cats[position].ID))
+        val cur = db.rawQuery("select Outfit_ID from consists_of where Item_ID = ?" , arrayOf(cats[position].ID))
+        if(cur.count !=0) {
+            cur.moveToFirst()
+            while(!cur.isAfterLast) {
+                db.execSQL("update outfit set Available = 0 where Outfit_ID = ?", arrayOf(cur.getInt(0)))
+                cur.moveToNext()
+            }
+        }
         cats.removeAt(position)
         adapter.notifyItemRemoved(position)
     }
