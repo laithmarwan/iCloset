@@ -133,7 +133,7 @@ class IntroAct : AppCompatActivity(), View.OnClickListener {
 
     private fun loadHome() {
 
-        startActivity(Intent(this,LoginAct::class.java))
+        startActivity(Intent(this,MainActivity::class.java))
         finish()
     }
 
